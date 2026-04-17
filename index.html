@@ -1,280 +1,585 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>כובש השטחים</title>
+<title>מצ'עמם לי</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#0d0d1a;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:'Segoe UI',Arial,sans-serif;color:#fff;direction:rtl;user-select:none;-webkit-user-select:none;transition:background 1s;}
-h1{font-size:24px;margin-bottom:8px;transition:color 0.8s;}
-#hud{display:flex;gap:10px;margin-bottom:8px;font-size:14px;font-weight:bold;flex-wrap:wrap;justify-content:center;}
-.chip{background:rgba(255,255,255,0.08);padding:4px 14px;border-radius:20px;display:flex;align-items:center;gap:5px;}
-canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;transition:border-color 1s,box-shadow 1s;}
-#hint{margin-top:6px;font-size:12px;opacity:0.4;text-align:center;}
-#game-wrap{display:grid;grid-template-areas:'.    up   .'' left mid  right''.    down .';grid-template-columns:58px auto 58px;grid-template-rows:58px auto 58px;gap:6px;align-items:center;justify-items:center;}
-#game-wrap canvas{grid-area:mid;}
-.db{width:50px;height:50px;background:rgba(255,255,255,0.13);border:1.5px solid rgba(255,255,255,0.22);border-radius:12px;color:white;font-size:22px;cursor:pointer;touch-action:manipulation;display:flex;align-items:center;justify-content:center;transition:background 0.1s,transform 0.08s;-webkit-tap-highlight-color:transparent;}
-.db:active{background:rgba(255,255,255,0.35);transform:scale(0.91);}
-#dbU{grid-area:up;}#dbD{grid-area:down;}#dbL{grid-area:left;}#dbR{grid-area:right;}
+body{background:#0d0d1a;font-family:'Segoe UI',Arial,sans-serif;color:#fff;direction:rtl;user-select:none;-webkit-user-select:none;min-height:100vh;}
 
-/* Game over overlay */
-#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);align-items:center;justify-content:center;z-index:20;}
-#overlay.show{display:flex;}
-.modal{background:#12122a;border:2px solid rgba(255,255,255,0.2);border-radius:14px;padding:28px 36px;text-align:center;}
-.modal h2{font-size:24px;margin-bottom:8px;}
-.modal p{margin-bottom:20px;opacity:0.75;font-size:14px;}
-.btn-row{display:flex;gap:10px;justify-content:center;}
-.modal button{padding:10px 24px;border:none;border-radius:7px;color:white;font-size:15px;cursor:pointer;transition:opacity 0.2s;}
-.modal button:hover{opacity:0.8;}
-#btnMenu{background:#444;}
-#btnNext{background:#7b2ff7;display:none;}
+/* ── TOP NAV ── */
+#topNav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,25,0.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.08);height:52px;display:flex;align-items:center;padding:0 20px;gap:0;}
+.nav-logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-left:auto;cursor:pointer;letter-spacing:0.5px;}
+.nav-links{display:flex;gap:2px;margin-right:auto;}
+.nav-link{padding:7px 14px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:600;color:rgba(255,255,255,0.6);transition:all 0.2s;}
+.nav-link:hover,.nav-link.active{background:rgba(255,255,255,0.1);color:#fff;}
 
-/* ── Name entry screen ── */
-#nameScreen{display:none;position:fixed;inset:0;background:rgba(5,5,20,0.97);align-items:center;justify-content:center;z-index:50;padding:20px;}
+/* ── PAGE SYSTEM ── */
+.page{display:none;padding-top:52px;min-height:100vh;}
+.page.active{display:block;}
+
+/* ── NAME SCREEN ── */
+#nameScreen{position:fixed;inset:0;background:linear-gradient(135deg,#0d0d1a 0%,#1a0030 50%,#001a30 100%);z-index:200;display:none;align-items:center;justify-content:center;}
 #nameScreen.show{display:flex;}
-.name-card{background:linear-gradient(135deg,#0d1a2e,#1a0d2e);border:1px solid rgba(255,255,255,0.18);border-radius:24px;padding:36px 40px;max-width:380px;width:100%;text-align:center;}
-.name-card .big-title{font-size:36px;margin-bottom:6px;}
-.name-card .sub{opacity:0.6;font-size:14px;margin-bottom:24px;}
-.name-card input{width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:18px;text-align:center;outline:none;direction:rtl;margin-bottom:16px;transition:border-color 0.2s;}
-.name-card input:focus{border-color:rgba(130,80,255,0.7);}
-.name-card input::placeholder{opacity:0.4;}
-.name-card .start-btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#7b2ff7,#4a1bb5);color:#fff;font-size:18px;font-weight:bold;cursor:pointer;transition:opacity 0.2s;}
-.name-card .start-btn:hover{opacity:0.85;}
+.name-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:28px;padding:44px 52px;max-width:430px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.6);}
+.name-card .logo-big{font-size:52px;margin-bottom:10px;}
+.name-card h1{font-size:30px;font-weight:900;background:linear-gradient(135deg,#ff6b6b,#ffd93d,#4d96ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;}
+.name-card .sub{opacity:0.45;font-size:14px;margin-bottom:28px;}
+.name-card .big-q{font-size:20px;font-weight:700;margin-bottom:14px;}
+.name-card input{width:100%;padding:14px 18px;border-radius:12px;border:2px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.07);color:#fff;font-size:20px;text-align:center;outline:none;direction:rtl;margin-bottom:18px;transition:border-color 0.2s;}
+.name-card input:focus{border-color:rgba(130,80,255,0.8);}
+.name-card input::placeholder{opacity:0.3;}
+.name-card .start-btn{width:100%;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,#ff6b6b,#ff8e53);color:#fff;font-size:18px;font-weight:800;cursor:pointer;transition:transform 0.15s,opacity 0.2s;letter-spacing:1px;}
+.name-card .start-btn:hover{transform:scale(1.03);opacity:0.9;}
 
-/* ── Main menu screen ── */
-#menuScreen{display:none;position:fixed;inset:0;background:rgba(3,5,18,0.97);align-items:flex-start;justify-content:center;z-index:40;padding:20px;overflow-y:auto;}
-#menuScreen.show{display:flex;}
-.menu-inner{max-width:560px;width:100%;padding:10px 0 30px;}
-.menu-title{font-size:28px;font-weight:bold;text-align:center;margin-bottom:4px;}
-.menu-player{text-align:center;font-size:14px;opacity:0.6;margin-bottom:20px;}
-.menu-player button{background:none;border:none;color:#aa88ff;cursor:pointer;font-size:13px;text-decoration:underline;padding:0 4px;}
+/* ── MAIN PAGE ── */
+#mainPage{background:#0d0d1a;}
+.main-layout{display:flex;min-height:calc(100vh - 52px);direction:ltr;}
 
-/* Score cards */
-.score-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
-.score-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:14px;text-align:center;}
-.score-card .sc-label{font-size:12px;opacity:0.5;margin-bottom:6px;}
-.score-card .sc-num{font-size:26px;font-weight:bold;color:#f1c40f;}
-.score-card .sc-name{font-size:12px;opacity:0.65;margin-top:4px;}
-.score-card .sc-empty{font-size:14px;opacity:0.3;margin-top:4px;}
+/* Ad strips */
+.ad-strip{width:168px;min-width:168px;padding:14px 8px;display:flex;flex-direction:column;gap:10px;position:sticky;top:52px;height:calc(100vh - 52px);overflow:hidden;direction:rtl;}
+.ad-banner{background:#f5f5ee;border-radius:12px;padding:14px 10px;text-align:center;border:2px solid #ccc;color:#222;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-height:190px;}
+.ad-banner .ad-brand{font-size:26px;font-weight:900;letter-spacing:1px;}
+.ad-banner .ad-sale{font-size:11px;font-weight:800;padding:2px 8px;border-radius:4px;color:#fff;margin:0 auto;}
+.ad-banner .ad-tagline{font-size:12px;font-weight:700;line-height:1.4;color:#333;}
+.ad-banner .ad-cta{border:none;border-radius:7px;padding:7px 12px;font-size:11px;font-weight:700;cursor:pointer;width:100%;color:#fff;}
+.ad-fox{border-color:#e74c3c;}.ad-fox .ad-brand{color:#e74c3c;}.ad-fox .ad-sale{background:#e74c3c;}.ad-fox .ad-cta{background:#e74c3c;}
+.ad-renault{border-color:#f39c12;}.ad-renault .ad-brand{color:#c0392b;font-size:16px;letter-spacing:2px;}.ad-renault .ad-sale{background:#f39c12;}.ad-renault .ad-cta{background:#f39c12;}
+.ad-label{font-size:9px;color:rgba(255,255,255,0.25);text-align:center;}
 
-/* Leaderboard */
-.lb-title{font-size:14px;opacity:0.5;margin-bottom:8px;text-align:center;}
-.lb-table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:14px;}
-.lb-table tr:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.06);}
-.lb-table td{padding:6px 8px;}
-.lb-table .rank{opacity:0.4;width:24px;}
-.lb-table .lb-score{color:#f1c40f;font-weight:bold;text-align:left;}
-.lb-table .lb-date{opacity:0.35;font-size:11px;text-align:left;}
+/* Main center */
+.main-center{flex:1;padding:22px 16px 30px;display:flex;flex-direction:column;align-items:center;direction:rtl;}
+.greeting{font-size:22px;font-weight:700;margin-bottom:20px;text-align:center;}
+.greeting .name-hl{background:linear-gradient(135deg,#ff6b6b,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
-/* Level buttons */
-.level-pick-title{font-size:14px;opacity:0.55;text-align:center;margin-bottom:10px;}
-.level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;}
-.lvl-btn{background:rgba(255,255,255,0.07);border:2px solid rgba(255,255,255,0.12);border-radius:12px;color:#fff;padding:10px 4px;cursor:pointer;text-align:center;font-size:13px;line-height:1.4;transition:all 0.15s;}
-.lvl-btn:hover{background:rgba(255,255,255,0.14);}
-.lvl-btn.active{background:rgba(100,50,220,0.35);border-color:rgba(130,80,255,0.7);}
-.lvl-btn .lvl-icon{font-size:20px;display:block;margin-bottom:4px;}
-.lvl-btn .lvl-pts{font-size:11px;opacity:0.55;}
-.menu-start-btn{width:100%;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,#7b2ff7,#4a1bb5);color:#fff;font-size:20px;font-weight:bold;cursor:pointer;transition:opacity 0.2s;letter-spacing:1px;}
-.menu-start-btn:hover{opacity:0.88;}
+/* Quick break button */
+.break-btn{background:linear-gradient(135deg,#ff6b6b,#ffd93d);border:none;border-radius:50px;color:#111;font-size:17px;font-weight:800;padding:14px 34px;cursor:pointer;margin-bottom:28px;box-shadow:0 4px 24px rgba(255,107,107,0.4);transition:transform 0.15s,box-shadow 0.2s;animation:pulse-glow 2.2s infinite;}
+.break-btn:hover{transform:scale(1.05);box-shadow:0 8px 32px rgba(255,107,107,0.65);}
+@keyframes pulse-glow{0%,100%{box-shadow:0 4px 24px rgba(255,107,107,0.4);}50%{box-shadow:0 4px 36px rgba(255,107,107,0.75);}}
+
+/* Game cards */
+.cards-title{font-size:15px;font-weight:600;margin-bottom:14px;opacity:0.55;text-align:center;}
+.game-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:14px;width:100%;max-width:720px;}
+.game-card{border-radius:20px;padding:22px 14px;text-align:center;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;}
+.game-card::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background 0.2s;}
+.game-card:hover{transform:translateY(-7px);}
+.game-card:hover::after{background:rgba(255,255,255,0.04);}
+.card-icon{font-size:54px;display:block;margin-bottom:10px;line-height:1;}
+.card-name{font-size:15px;font-weight:800;margin-bottom:4px;}
+.card-desc{font-size:11px;opacity:0.6;line-height:1.4;}
+.gc-1{background:linear-gradient(145deg,#0d2a48,#0a4a7a);box-shadow:0 4px 22px rgba(93,173,226,0.2);}
+.gc-1:hover{box-shadow:0 8px 32px rgba(93,173,226,0.5);}
+.gc-2{background:linear-gradient(145deg,#200040,#4400a0);box-shadow:0 4px 22px rgba(160,50,255,0.2);}
+.gc-2:hover{box-shadow:0 8px 32px rgba(160,50,255,0.5);}
+.gc-3{background:linear-gradient(145deg,#300000,#6a0000);box-shadow:0 4px 22px rgba(200,0,0,0.2);}
+.gc-3:hover{box-shadow:0 8px 32px rgba(200,0,0,0.5);}
+.gc-4{background:linear-gradient(145deg,#002010,#004030);box-shadow:0 4px 22px rgba(0,200,100,0.2);}
+.gc-4:hover{box-shadow:0 8px 32px rgba(0,200,100,0.5);}
+.gc-5{background:linear-gradient(145deg,#001028,#003060);box-shadow:0 4px 22px rgba(0,150,255,0.2);}
+.gc-5:hover{box-shadow:0 8px 32px rgba(0,150,255,0.5);}
+
+/* ── GAME UI ── */
+#gameUI{display:none;flex-direction:column;align-items:center;padding-top:52px;min-height:100vh;}
+#gameUI.show{display:flex;}
+h1#gameTitle{font-size:20px;margin:8px 0 6px;transition:color 0.8s;}
+#hud{display:flex;gap:7px;margin-bottom:7px;font-size:13px;font-weight:bold;flex-wrap:wrap;justify-content:center;}
+.chip{background:rgba(255,255,255,0.08);padding:3px 12px;border-radius:20px;display:flex;align-items:center;gap:4px;}
+.chip-btn{cursor:pointer;transition:background 0.15s;}.chip-btn:hover{background:rgba(255,255,255,0.18);}
+canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;transition:border-color 1s,box-shadow 1s;}
+#game-wrap{display:grid;grid-template-areas:'.    up   .'' left mid  right''.    down .';grid-template-columns:56px auto 56px;grid-template-rows:56px auto 56px;gap:5px;align-items:center;justify-items:center;}
+#game-wrap canvas{grid-area:mid;}
+.db{width:48px;height:48px;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.2);border-radius:11px;color:white;font-size:20px;cursor:pointer;touch-action:manipulation;display:flex;align-items:center;justify-content:center;transition:background 0.1s,transform 0.08s;-webkit-tap-highlight-color:transparent;}
+.db:active{background:rgba(255,255,255,0.32);transform:scale(0.9);}
+#dbU{grid-area:up;}#dbD{grid-area:down;}#dbL{grid-area:left;}#dbR{grid-area:right;}
+#hint{margin:5px 0 0;font-size:11px;opacity:0.38;text-align:center;}
+
+/* In-game leaderboard */
+#gameLeaderboard{background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:10px 14px;margin-top:8px;width:100%;max-width:676px;}
+.glb-inner{display:flex;gap:12px;align-items:flex-start;}
+.glb-left{flex:1;}
+.glb-head{font-size:11px;opacity:0.45;text-align:center;margin-bottom:6px;letter-spacing:0.5px;}
+.glb-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.glb-row:last-child{border-bottom:none;}
+.glb-rank{width:22px;font-size:14px;}
+.glb-score{color:#f1c40f;font-weight:700;}
+.glb-right{display:flex;flex-direction:column;gap:6px;min-width:130px;}
+.glb-pb{background:rgba(255,255,255,0.05);border-radius:8px;padding:5px 10px;text-align:center;}
+.glb-pb-label{font-size:9px;opacity:0.45;margin-bottom:2px;}
+.glb-pb-val{font-size:15px;font-weight:700;color:#f1c40f;}
+
+/* ── OVERLAY ── */
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.86);align-items:center;justify-content:center;z-index:150;}
+#overlay.show{display:flex;}
+.modal{background:linear-gradient(135deg,#10102a,#1c1c3c);border:2px solid rgba(255,255,255,0.18);border-radius:22px;padding:36px 44px;text-align:center;max-width:420px;width:92%;position:relative;}
+.modal-title{font-size:26px;font-weight:800;margin-bottom:6px;}
+.modal-player{font-size:20px;font-weight:700;color:#ffd93d;margin-bottom:8px;display:none;}
+.modal-msg{margin-bottom:22px;opacity:0.7;font-size:15px;}
+.btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.modal button{padding:11px 24px;border:none;border-radius:10px;color:white;font-size:15px;font-weight:700;cursor:pointer;transition:opacity 0.2s,transform 0.12s;}
+.modal button:hover{opacity:0.85;transform:scale(1.05);}
+#btnMenu{background:rgba(255,255,255,0.14);}
+#btnNext{background:linear-gradient(135deg,#7b2ff7,#4a1bb5);display:none;}
+#btnReplay{background:linear-gradient(135deg,#ff6b6b,#ff8e53);}
+
+/* Confetti */
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:160;display:none;}
+
+/* ── BREAK MODAL ── */
+#breakModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);align-items:center;justify-content:center;z-index:180;}
+#breakModal.show{display:flex;}
+.break-inner{background:linear-gradient(135deg,#10102a,#250a1a);border:2px solid rgba(255,255,255,0.18);border-radius:24px;padding:32px;max-width:400px;width:92%;text-align:center;}
+.break-inner h2{font-size:22px;font-weight:800;margin-bottom:6px;}
+.break-timer{font-size:68px;font-weight:900;color:#ffd93d;margin:12px 0;font-family:monospace;letter-spacing:3px;}
+.break-msg{font-size:14px;opacity:0.65;margin-bottom:16px;min-height:20px;}
+.break-pick-title{font-size:12px;opacity:0.5;margin-bottom:8px;}
+.break-game-pick{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:18px;}
+.bgp-btn{background:rgba(255,255,255,0.07);border:2px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;padding:8px 2px;cursor:pointer;font-size:22px;transition:all 0.15s;}
+.bgp-btn:hover,.bgp-btn.sel{background:rgba(100,50,220,0.45);border-color:rgba(130,80,255,0.8);}
+.break-start-btn{width:100%;padding:13px;border:none;border-radius:12px;background:linear-gradient(135deg,#ff6b6b,#ff8e53);color:#fff;font-size:17px;font-weight:800;cursor:pointer;margin-bottom:10px;}
+.break-close-btn{background:none;border:1px solid rgba(255,255,255,0.2);border-radius:9px;color:rgba(255,255,255,0.6);padding:9px 22px;font-size:14px;cursor:pointer;}
+#breakTimeUp{display:none;}
+.extend-btn{background:linear-gradient(135deg,#6bcb77,#4a9a52);border:none;border-radius:10px;color:#fff;padding:11px 26px;font-size:15px;font-weight:700;cursor:pointer;margin:8px 0 12px;}
+
+/* ── SCORES PAGE ── */
+#scoresPage{background:#0d0d1a;}
+.scores-inner{max-width:580px;margin:0 auto;padding:28px 16px;}
+.page-title{font-size:26px;font-weight:800;margin-bottom:22px;text-align:center;}
+.sc-cards-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;}
+.sc-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:15px;text-align:center;}
+.sc-card .sc-label{font-size:12px;opacity:0.45;margin-bottom:6px;}
+.sc-card .sc-num{font-size:28px;font-weight:800;color:#f1c40f;}
+.sc-card .sc-who{font-size:12px;opacity:0.55;margin-top:4px;}
+.lb-wrap{background:rgba(255,255,255,0.03);border-radius:14px;overflow:hidden;}
+.lb-wrap table{width:100%;border-collapse:collapse;font-size:14px;}
+.lb-wrap tr:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.05);}
+.lb-wrap td{padding:9px 12px;}
+.td-rank{opacity:0.4;width:30px;font-size:16px;}
+.td-name{font-weight:600;}
+.td-score{color:#f1c40f;font-weight:700;text-align:left;}
+.td-date{opacity:0.3;font-size:11px;text-align:left;}
+
+/* ── ADVERT PAGE ── */
+#advertPage{background:#0d0d1a;}
+.advert-inner{max-width:620px;margin:0 auto;padding:36px 16px 48px;}
+.advert-hero{text-align:center;margin-bottom:36px;}
+.advert-hero h1{font-size:30px;font-weight:900;background:linear-gradient(135deg,#ff6b6b,#ffd93d,#4d96ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;}
+.advert-hero p{font-size:17px;line-height:1.9;opacity:0.8;}
+.stat-row{display:flex;gap:18px;justify-content:center;margin:22px 0;flex-wrap:wrap;}
+.adv-stat{background:rgba(255,255,255,0.06);border-radius:14px;padding:14px 22px;text-align:center;}
+.adv-stat .sn{font-size:30px;font-weight:900;color:#ffd93d;}
+.adv-stat .sl{font-size:12px;opacity:0.55;margin-top:2px;}
+.advert-form{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px;}
+.advert-form h2{font-size:20px;font-weight:700;margin-bottom:18px;text-align:center;}
+.ff{margin-bottom:14px;}
+.ff label{display:block;font-size:13px;opacity:0.55;margin-bottom:5px;}
+.ff input,.ff textarea{width:100%;padding:11px 14px;border-radius:10px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#fff;font-size:14px;direction:rtl;outline:none;transition:border-color 0.2s;font-family:inherit;}
+.ff input:focus,.ff textarea:focus{border-color:rgba(130,80,255,0.75);}
+.ff textarea{height:90px;resize:vertical;}
+.form-submit{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#7b2ff7,#4a1bb5);color:#fff;font-size:17px;font-weight:800;cursor:pointer;transition:opacity 0.2s;}
+.form-submit:hover{opacity:0.87;}
+.form-success{display:none;text-align:center;padding:16px;color:#6bcb77;font-size:16px;font-weight:700;margin-top:12px;}
+.advert-email{text-align:center;margin-top:20px;opacity:0.35;font-size:13px;}
 </style>
 </head>
 <body>
 
-<!-- ══ NAME ENTRY SCREEN ══ -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- ══ TOP NAV ══ -->
+<nav id="topNav">
+  <span class="nav-logo" onclick="goHome()">🎮 מצ'עמם לי</span>
+  <div class="nav-links">
+    <span class="nav-link active" id="nl-home" onclick="navTo('mainPage')">🏠 בית</span>
+    <span class="nav-link" id="nl-games" onclick="navTo('mainPage')">🎮 משחקים</span>
+    <span class="nav-link" id="nl-scores" onclick="navTo('scoresPage')">🏆 שיאים</span>
+    <span class="nav-link" id="nl-advert" onclick="navTo('advertPage')">📢 פרסם אצלנו</span>
+  </div>
+</nav>
+
+<!-- ══ NAME SCREEN ══ -->
 <div id="nameScreen">
   <div class="name-card">
-    <div class="big-title">🏆</div>
-    <div style="font-size:22px;font-weight:bold;margin-bottom:6px;">כובש השטחים</div>
-    <div class="sub">הכנס את שמך כדי לשמור את הניקוד שלך</div>
-    <input type="text" id="nameInput" placeholder="השם שלך..." maxlength="18"
+    <div class="logo-big">🎮</div>
+    <h1>מצ'עמם לי</h1>
+    <div class="sub">הפסקה קטנה — מגיעה לך!</div>
+    <div class="big-q">מה השם שלך?</div>
+    <input type="text" id="nameInput" placeholder="הכנס שם..." maxlength="18"
       onkeydown="if(event.key==='Enter')submitName()">
-    <button class="start-btn" onclick="submitName()">🎮 בואו נשחק!</button>
+    <button class="start-btn" onclick="submitName()">בואו נשחק! 🎮</button>
   </div>
 </div>
 
-<!-- ══ MAIN MENU SCREEN ══ -->
-<div id="menuScreen">
-  <div class="menu-inner">
-    <div class="menu-title">🏆 כובש השטחים</div>
-    <div class="menu-player">
-      שלום, <strong id="menuPlayerName">שחקן</strong>!
-      <button onclick="showNameScreen()">שנה שם</button>
-    </div>
-
-    <!-- Score cards -->
-    <div class="score-row">
-      <div class="score-card">
-        <div class="sc-label">🌟 שיא יומי</div>
-        <div class="sc-num" id="dailyNum">-</div>
-        <div class="sc-name" id="dailyWho"></div>
+<!-- ══ MAIN PAGE ══ -->
+<div id="mainPage" class="page active">
+  <div class="main-layout">
+    <!-- Fox ad (left) -->
+    <div class="ad-strip">
+      <div class="ad-banner ad-fox">
+        <div class="ad-brand">FOX</div>
+        <div class="ad-sale">SALE</div>
+        <div class="ad-tagline">מבצעי סוף עונה<br>עד 70% הנחה!</div>
+        <button class="ad-cta">לקנייה עכשיו ›</button>
       </div>
-      <div class="score-card">
-        <div class="sc-label">👑 שיא כל הזמנים</div>
-        <div class="sc-num" id="allTimeNum">-</div>
-        <div class="sc-name" id="allTimeWho"></div>
+      <div class="ad-label">פרסומת</div>
+    </div>
+
+    <!-- Center content -->
+    <div class="main-center">
+      <div class="greeting">שלום, <span class="name-hl" id="greetName">שחקן</span>! 👋</div>
+
+      <button class="break-btn" onclick="openBreakModal()">הפסקה מהירה ⏱️ 5 דקות</button>
+
+      <div class="cards-title">בחר משחק</div>
+      <div class="game-cards">
+        <div class="game-card gc-1" onclick="startFromCard(1)">
+          <span class="card-icon">⚡</span>
+          <div class="card-name">כובש שטחים</div>
+          <div class="card-desc">כבוש שטחים והתחמק מכדורים</div>
+        </div>
+        <div class="game-card gc-2" onclick="startFromCard(2)">
+          <span class="card-icon">🌌</span>
+          <div class="card-name">כובש החלל</div>
+          <div class="card-desc">שטחים בחלל מסתורי</div>
+        </div>
+        <div class="game-card gc-3" onclick="startFromCard(3)">
+          <span class="card-icon">🕷️</span>
+          <div class="card-name">ספיידרמן</div>
+          <div class="card-desc">עולם הקורים — שלב מתקדם</div>
+        </div>
+        <div class="game-card gc-4" onclick="startFromCard(4)">
+          <span class="card-icon">👾</span>
+          <div class="card-name">חלליות</div>
+          <div class="card-desc">שגר כדורים, השמד פולשים</div>
+        </div>
+        <div class="game-card gc-5" onclick="startFromCard(5)">
+          <span class="card-icon">🧜‍♀️</span>
+          <div class="card-name">בתולות הים</div>
+          <div class="card-desc">מנע נחיתה — הגן על החוף</div>
+        </div>
       </div>
     </div>
 
-    <!-- Top 5 leaderboard -->
-    <div class="lb-title">🏅 טבלת שיאים</div>
-    <table class="lb-table" id="lbTable">
-      <tr><td colspan="4" style="text-align:center;opacity:0.3;padding:10px">אין ניקוד עדיין — היה ראשון!</td></tr>
-    </table>
-
-    <!-- Level selector -->
-    <div class="level-pick-title">בחר שלב להתחלה:</div>
-    <div class="level-grid" id="levelGrid">
-      <button class="lvl-btn active" onclick="selectMenuLevel(1)">
-        <span class="lvl-icon">⭐</span>שלב 1<br><span class="lvl-pts">100 נק'</span>
-      </button>
-      <button class="lvl-btn" onclick="selectMenuLevel(2)">
-        <span class="lvl-icon">🚀</span>שלב 2<br><span class="lvl-pts">150 נק'</span>
-      </button>
-      <button class="lvl-btn" onclick="selectMenuLevel(3)">
-        <span class="lvl-icon">🕷️</span>שלב 3<br><span class="lvl-pts">200 נק'</span>
-      </button>
-      <button class="lvl-btn" onclick="selectMenuLevel(4)">
-        <span class="lvl-icon">👾</span>שלב 4<br><span class="lvl-pts">150 נק'</span>
-      </button>
-      <button class="lvl-btn" onclick="selectMenuLevel(5)">
-        <span class="lvl-icon">🧜‍♀️</span>שלב 5<br><span class="lvl-pts">200 נק'</span>
-      </button>
+    <!-- Renault ad (right) -->
+    <div class="ad-strip" style="direction:rtl">
+      <div class="ad-banner ad-renault">
+        <div class="ad-brand">RENAULT</div>
+        <div class="ad-sale">חדש!</div>
+        <div class="ad-tagline">רנו קליאו<br>החדשה<br>כבר כאן</div>
+        <button class="ad-cta">גלה עוד ›</button>
+      </div>
+      <div class="ad-label">פרסומת</div>
     </div>
-
-    <button class="menu-start-btn" onclick="startFromMenu()">התחל משחק! 🎮</button>
   </div>
 </div>
 
 <!-- ══ GAME UI ══ -->
-<h1 id="title" style="display:none">⚡ כובש השטחים</h1>
-<div id="hud" style="display:none">
-  <div class="chip">❤️ <span id="livesEl">3</span></div>
-  <div class="chip">⭐ <span id="scoreEl">0</span></div>
-  <div class="chip">📊 <span id="pctEl">0</span>%</div>
-  <div class="chip" id="levelChip">שלב 1</div>
-  <div class="chip">🎯 יעד: <span id="goalEl">60</span>%</div>
+<div id="gameUI">
+  <h1 id="gameTitle">🎮 מצ'עמם לי</h1>
+  <div id="hud">
+    <div class="chip">❤️ <span id="livesEl">3</span></div>
+    <div class="chip">⭐ <span id="scoreEl">0</span></div>
+    <div class="chip">📊 <span id="pctEl">0</span>%</div>
+    <div class="chip" id="levelChip">שלב 1</div>
+    <div class="chip">🎯 <span id="goalEl">60</span>%</div>
+    <div class="chip chip-btn" onclick="goToMenu()">📋 תפריט</div>
+  </div>
+  <div id="game-wrap">
+    <button class="db" id="dbU" onmousedown="dp('u')" ontouchstart="dp('u');event.preventDefault()">↑</button>
+    <button class="db" id="dbL" onmousedown="dp('r')" ontouchstart="dp('r');event.preventDefault()">→</button>
+    <canvas id="c"></canvas>
+    <button class="db" id="dbR" onmousedown="dp('l')" ontouchstart="dp('l');event.preventDefault()">←</button>
+    <button class="db" id="dbD" onmousedown="dp('d')" ontouchstart="dp('d');event.preventDefault()">↓</button>
+  </div>
+  <div id="hint"></div>
+  <div id="gameLeaderboard">
+    <div class="glb-inner">
+      <div class="glb-left">
+        <div class="glb-head">🏅 שיאי הסשן</div>
+        <div id="glbRows"><div style="text-align:center;opacity:0.3;font-size:11px;padding:4px">אין עדיין — שחק!</div></div>
+      </div>
+      <div class="glb-right">
+        <div class="glb-pb">
+          <div class="glb-pb-label">השיא שלך היום</div>
+          <div class="glb-pb-val" id="glbMyDaily">—</div>
+        </div>
+        <div class="glb-pb">
+          <div class="glb-pb-label">השיא שלך אי פעם</div>
+          <div class="glb-pb-val" id="glbMyAll">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div id="game-wrap" style="display:none">
-  <button class="db" id="dbU" onmousedown="dp('u')" ontouchstart="dp('u');event.preventDefault()">↑</button>
-  <button class="db" id="dbL" onmousedown="dp('r')" ontouchstart="dp('r');event.preventDefault()">→</button>
-  <canvas id="c"></canvas>
-  <button class="db" id="dbR" onmousedown="dp('l')" ontouchstart="dp('l');event.preventDefault()">←</button>
-  <button class="db" id="dbD" onmousedown="dp('d')" ontouchstart="dp('d');event.preventDefault()">↓</button>
-</div>
-<div id="hint" style="display:none"></div>
-
-<!-- Win/Lose overlay -->
+<!-- ══ WIN/LOSE OVERLAY ══ -->
 <div id="overlay">
   <div class="modal">
-    <h2 id="oTitle">-</h2>
-    <p id="oMsg">-</p>
+    <div class="modal-title" id="oTitle">-</div>
+    <div class="modal-player" id="oPlayer"></div>
+    <div class="modal-msg" id="oMsg">-</div>
     <div class="btn-row">
       <button id="btnNext" onclick="nextLevel()">שלב הבא</button>
+      <button id="btnReplay" onclick="replayLevel()">🔄 שחק שוב</button>
       <button id="btnMenu" onclick="goToMenu()">📋 תפריט</button>
     </div>
   </div>
 </div>
 
+<!-- ══ BREAK MODAL ══ -->
+<div id="breakModal">
+  <div class="break-inner">
+    <h2>⏱️ הפסקה מהירה</h2>
+    <div class="break-timer" id="breakTimer">5:00</div>
+    <div class="break-msg" id="breakMsg">בחר משחק והתחל!</div>
+    <div class="break-pick-title">בחר משחק להפסקה:</div>
+    <div class="break-game-pick">
+      <button class="bgp-btn sel" data-lv="1" onclick="pickBreakLv(1)">⚡</button>
+      <button class="bgp-btn" data-lv="2" onclick="pickBreakLv(2)">🌌</button>
+      <button class="bgp-btn" data-lv="3" onclick="pickBreakLv(3)">🕷️</button>
+      <button class="bgp-btn" data-lv="4" onclick="pickBreakLv(4)">👾</button>
+      <button class="bgp-btn" data-lv="5" onclick="pickBreakLv(5)">🧜‍♀️</button>
+    </div>
+    <button class="break-start-btn" id="brkStartBtn" onclick="launchBreakGame()">🎮 התחל הפסקה!</button>
+    <div id="breakTimeUp">
+      <div style="font-size:15px;font-weight:700;color:#ff6b6b;margin-bottom:10px;">הזמן נגמר! חזרה לעבודה 😄</div>
+      <button class="extend-btn" onclick="extendBreak()">+ עוד 2 דקות</button>
+    </div>
+    <button class="break-close-btn" onclick="closeBreakModal()">סגור</button>
+  </div>
+</div>
+
+<!-- ══ SCORES PAGE ══ -->
+<div id="scoresPage" class="page">
+  <div class="scores-inner">
+    <div class="page-title">🏆 לוח שיאים</div>
+    <div class="sc-cards-row">
+      <div class="sc-card">
+        <div class="sc-label">🌟 שיא יומי</div>
+        <div class="sc-num" id="spDailyNum">—</div>
+        <div class="sc-who" id="spDailyWho"></div>
+      </div>
+      <div class="sc-card">
+        <div class="sc-label">👑 שיא כל הזמנים</div>
+        <div class="sc-num" id="spAllNum">—</div>
+        <div class="sc-who" id="spAllWho"></div>
+      </div>
+    </div>
+    <div class="lb-wrap">
+      <table id="spTable">
+        <tr><td colspan="4" style="text-align:center;opacity:0.3;padding:18px">אין ניקוד עדיין — היה ראשון!</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADVERT PAGE ══ -->
+<div id="advertPage" class="page">
+  <div class="advert-inner">
+    <div class="advert-hero">
+      <h1>פרסם אצלנו 📢</h1>
+      <p>מצ'עמם לי מגיע לאלפי עובדים ישראלים ביום.<br>
+         רוצים שהמותג שלכם יהיה חלק מההפסקה שלהם?</p>
+      <div class="stat-row">
+        <div class="adv-stat"><div class="sn">5K+</div><div class="sl">שחקנים יומיים</div></div>
+        <div class="adv-stat"><div class="sn">3 דק'</div><div class="sl">שהייה ממוצעת</div></div>
+        <div class="adv-stat"><div class="sn">98%</div><div class="sl">גיל 25–45</div></div>
+      </div>
+    </div>
+    <div class="advert-form">
+      <h2>📩 צרו קשר</h2>
+      <div class="ff"><label>שם מלא</label><input type="text" id="af-name" placeholder="ישראל ישראלי"></div>
+      <div class="ff"><label>חברה</label><input type="text" id="af-company" placeholder="שם החברה"></div>
+      <div class="ff"><label>מייל</label><input type="email" id="af-email" placeholder="you@company.com" dir="ltr"></div>
+      <div class="ff"><label>הודעה</label><textarea id="af-msg" placeholder="ספרו לנו על הקמפיין שלכם..."></textarea></div>
+      <button class="form-submit" onclick="submitAdvert()">שלח פנייה 🚀</button>
+      <div class="form-success" id="advertOK">✅ תודה! נחזור אליכם בהקדם 🎉</div>
+    </div>
+    <div class="advert-email">או פנו ישירות: <span dir="ltr">ads@metzamem.li</span></div>
+  </div>
+</div>
+
 <script>
-// ── Constants ─────────────────────────────────────────────────────────────────
+// ── Constants ────────────────────────────────────────────────────────────────
 const W=52,H=38,CS=13;
 const WIN_PCT={1:0.60,2:0.75,3:0.75,4:1.0,5:1.0};
 const LEVEL_SCORES={1:100,2:150,3:200,4:150,5:200};
 const PLAYER_SPD=7,EMPTY=0,FILLED=1,TAIL=2,MAX_WEB=90,BALL_R=8;
 const canvas=document.getElementById('c');
-canvas.width=W*CS; canvas.height=H*CS;
+canvas.width=W*CS;canvas.height=H*CS;
 const ctx=canvas.getContext('2d');
 const CW=canvas.width,CH=canvas.height;
 const inB=(x,y)=>x>=0&&x<W&&y>=0&&y<H;
 
-// ── Score / Player ─────────────────────────────────────────────────────────────
+// ── Player / Score ───────────────────────────────────────────────────────────
 let playerName='';
 let currentScore=0;
-let menuLevel=1;
+let sessionScores=[];
 
 function getScores(){try{return JSON.parse(localStorage.getItem('kbs_scores')||'[]');}catch{return[];}}
 function persistScore(){
   if(currentScore<=0)return;
-  const all=getScores();
-  all.push({name:playerName,score:currentScore,date:new Date().toISOString()});
+  const entry={name:playerName,score:currentScore,date:new Date().toISOString()};
+  const all=getScores();all.push(entry);
+  sessionScores.push(entry);
   if(all.length>200)all.splice(0,all.length-200);
   localStorage.setItem('kbs_scores',JSON.stringify(all));
   currentScore=0;
 }
-function getDailyHigh(){const today=new Date().toDateString();return getScores().filter(s=>new Date(s.date).toDateString()===today).reduce((b,s)=>s.score>(b?.score||0)?s:b,null);}
+function getDailyHigh(){const t=new Date().toDateString();return getScores().filter(s=>new Date(s.date).toDateString()===t).reduce((b,s)=>s.score>(b?.score||0)?s:b,null);}
 function getAllTimeHigh(){return getScores().reduce((b,s)=>s.score>(b?.score||0)?s:b,null);}
 function getTopN(n){return getScores().sort((a,b)=>b.score-a.score).slice(0,n);}
-function fmtDate(iso){const d=new Date(iso);return`${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;}
+function getMyDailyBest(){const t=new Date().toDateString();return getScores().filter(s=>s.name===playerName&&new Date(s.date).toDateString()===t).reduce((b,s)=>s.score>b?s.score:b,0);}
+function getMyAllBest(){return getScores().filter(s=>s.name===playerName).reduce((b,s)=>s.score>b?s.score:b,0);}
+function getTopSession(n){return [...sessionScores].sort((a,b)=>b.score-a.score).slice(0,n);}
+function fmtDate(iso){const d=new Date(iso);return`${d.getDate()}/${d.getMonth()+1}`;}
 
-// ── Screen management ─────────────────────────────────────────────────────────
-function showNameScreen(){
-  document.getElementById('nameScreen').classList.add('show');
-  document.getElementById('menuScreen').classList.remove('show');
-  setTimeout(()=>document.getElementById('nameInput').focus(),100);
+// ── Navigation ───────────────────────────────────────────────────────────────
+const PAGE_NAV={mainPage:'nl-home',scoresPage:'nl-scores',advertPage:'nl-advert'};
+function navTo(pageId){
+  hideGame();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const p=document.getElementById(pageId);if(p)p.classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  const nl=document.getElementById(PAGE_NAV[pageId]||'nl-home');if(nl)nl.classList.add('active');
+  if(pageId==='scoresPage')refreshScoresPage();
 }
-function submitName(){
-  const v=document.getElementById('nameInput').value.trim();
-  if(!v)return;
-  playerName=v;
-  localStorage.setItem('kbs_name',playerName);
-  document.getElementById('nameScreen').classList.remove('show');
-  showMenu();
-}
-function showMenu(){
-  document.getElementById('title').style.display='none';
-  document.getElementById('hud').style.display='none';
-  document.getElementById('game-wrap').style.display='none';
-  document.getElementById('hint').style.display='none';
-  document.getElementById('overlay').classList.remove('show');
-  document.getElementById('btnNext').style.display='none';
+function hideGame(){
+  const g=document.getElementById('gameUI');g.style.display='none';g.classList.remove('show');
   if(rafId){cancelAnimationFrame(rafId);rafId=null;}
   running=false;
-  // Update menu
-  document.getElementById('menuPlayerName').textContent=playerName;
-  // Scores
-  const dh=getDailyHigh(),ah=getAllTimeHigh();
-  document.getElementById('dailyNum').textContent=dh?dh.score+' נק\'':'—';
-  document.getElementById('dailyWho').textContent=dh?'ע"י '+dh.name:'';
-  document.getElementById('allTimeNum').textContent=ah?ah.score+' נק\'':'—';
-  document.getElementById('allTimeWho').textContent=ah?'ע"י '+ah.name:'';
-  // Leaderboard
-  const top=getTopN(5);
-  const medals=['🥇','🥈','🥉','4.','5.'];
-  const tbody=document.getElementById('lbTable');
-  if(top.length===0){tbody.innerHTML='<tr><td colspan="4" style="text-align:center;opacity:0.3;padding:10px">אין ניקוד עדיין — היה ראשון!</td></tr>';}
-  else{tbody.innerHTML=top.map((s,i)=>`<tr><td class="rank">${medals[i]}</td><td>${s.name}</td><td class="lb-score">${s.score}</td><td class="lb-date">${fmtDate(s.date)}</td></tr>`).join('');}
-  // Highlight selected level
-  document.querySelectorAll('.lvl-btn').forEach((b,i)=>b.classList.toggle('active',i+1===menuLevel));
-  document.getElementById('menuScreen').classList.add('show');
 }
-function selectMenuLevel(n){menuLevel=n;document.querySelectorAll('.lvl-btn').forEach((b,i)=>b.classList.toggle('active',i+1===n));}
-function startFromMenu(){
-  document.getElementById('menuScreen').classList.remove('show');
-  document.getElementById('title').style.display='';
-  document.getElementById('hud').style.display='';
-  document.getElementById('game-wrap').style.display='';
-  document.getElementById('hint').style.display='';
-  currentScore=0;
-  lives=3;
-  startLevel(menuLevel);
+function goHome(){navTo('mainPage');}
+
+// ── Name screen ──────────────────────────────────────────────────────────────
+function showNameScreen(){document.getElementById('nameScreen').classList.add('show');setTimeout(()=>document.getElementById('nameInput').focus(),80);}
+function submitName(){
+  const v=document.getElementById('nameInput').value.trim();if(!v)return;
+  playerName=v;localStorage.setItem('kbs_name',playerName);
+  document.getElementById('nameScreen').classList.remove('show');
+  document.getElementById('greetName').textContent=playerName;
+  navTo('mainPage');
+}
+
+// ── Game start ───────────────────────────────────────────────────────────────
+function startFromCard(lvl){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  const g=document.getElementById('gameUI');g.style.display='flex';g.classList.add('show');
+  currentScore=0;lives=3;startLevel(lvl);
 }
 function goToMenu(){
-  persistScore();
-  showMenu();
+  persistScore();stopConfetti();
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('btnNext').style.display='none';
+  hideGame();navTo('mainPage');
 }
 
-// ── Themes ────────────────────────────────────────────────────────────────────
+// ── In-game leaderboard ──────────────────────────────────────────────────────
+function updateGameLb(){
+  const top=getTopSession(5);
+  const medals=['👑','🥈','🥉','4.','5.'];
+  const el=document.getElementById('glbRows');
+  if(!top.length){el.innerHTML='<div style="text-align:center;opacity:0.3;font-size:11px;padding:4px">אין עדיין</div>';}
+  else{el.innerHTML=top.map((s,i)=>`<div class="glb-row"><span class="glb-rank">${medals[i]}</span><span>${s.name}</span><span class="glb-score">${s.score}</span></div>`).join('');}
+  const md=getMyDailyBest(),ma=getMyAllBest();
+  document.getElementById('glbMyDaily').textContent=md||'—';
+  document.getElementById('glbMyAll').textContent=ma||'—';
+}
+
+// ── Scores page ──────────────────────────────────────────────────────────────
+function refreshScoresPage(){
+  const dh=getDailyHigh(),ah=getAllTimeHigh();
+  document.getElementById('spDailyNum').textContent=dh?dh.score+' נק\'':'—';
+  document.getElementById('spDailyWho').textContent=dh?'ע"י '+dh.name:'';
+  document.getElementById('spAllNum').textContent=ah?ah.score+' נק\'':'—';
+  document.getElementById('spAllWho').textContent=ah?'ע"י '+ah.name:'';
+  const top=getTopN(10),medals=['👑','🥈','🥉','4.','5.','6.','7.','8.','9.','10.'];
+  const tbl=document.getElementById('spTable');
+  tbl.innerHTML=top.length?top.map((s,i)=>`<tr><td class="td-rank">${medals[i]}</td><td class="td-name">${s.name}</td><td class="td-score">${s.score}</td><td class="td-date">${fmtDate(s.date)}</td></tr>`).join(''):'<tr><td colspan="4" style="text-align:center;opacity:0.3;padding:16px">אין ניקוד עדיין</td></tr>';
+}
+
+// ── Break modal ──────────────────────────────────────────────────────────────
+let brkInterval=null,brkSecs=0,brkLv=1;
+function openBreakModal(){
+  brkSecs=300;brkLv=1;
+  document.getElementById('breakTimer').textContent='5:00';
+  document.getElementById('breakMsg').textContent='בחר משחק והתחל!';
+  document.getElementById('breakTimeUp').style.display='none';
+  document.getElementById('brkStartBtn').style.display='block';
+  document.querySelectorAll('.bgp-btn').forEach(b=>b.classList.toggle('sel',+b.dataset.lv===1));
+  document.getElementById('breakModal').classList.add('show');
+}
+function closeBreakModal(){if(brkInterval){clearInterval(brkInterval);brkInterval=null;}document.getElementById('breakModal').classList.remove('show');}
+function pickBreakLv(lv){brkLv=lv;document.querySelectorAll('.bgp-btn').forEach(b=>b.classList.toggle('sel',+b.dataset.lv===lv));}
+function startBrkCountdown(){
+  if(brkInterval)clearInterval(brkInterval);
+  brkInterval=setInterval(()=>{
+    brkSecs--;
+    const m=Math.floor(brkSecs/60),s=brkSecs%60;
+    document.getElementById('breakTimer').textContent=`${m}:${s.toString().padStart(2,'0')}`;
+    if(brkSecs<=0){
+      clearInterval(brkInterval);brkInterval=null;
+      document.getElementById('breakTimeUp').style.display='block';
+      document.getElementById('breakMsg').textContent='';
+    }
+  },1000);
+}
+function launchBreakGame(){
+  document.getElementById('brkStartBtn').style.display='none';
+  document.getElementById('breakMsg').textContent='שחק! הזמן רץ…';
+  startBrkCountdown();
+  closeBreakModal();
+  startFromCard(brkLv);
+}
+function extendBreak(){
+  brkSecs=120;
+  document.getElementById('breakTimeUp').style.display='none';
+  document.getElementById('breakMsg').textContent='עוד 2 דקות — לך!';
+  // Reopen modal with timer running
+  document.getElementById('breakModal').classList.add('show');
+  startBrkCountdown();
+}
+
+// ── Advert form ──────────────────────────────────────────────────────────────
+function submitAdvert(){
+  const name=document.getElementById('af-name').value.trim();
+  const email=document.getElementById('af-email').value.trim();
+  if(!name||!email){alert('אנא מלא לפחות שם ומייל');return;}
+  document.getElementById('advertOK').style.display='block';
+  ['af-name','af-company','af-email','af-msg'].forEach(id=>{document.getElementById(id).value='';});
+  setTimeout(()=>document.getElementById('advertOK').style.display='none',5000);
+}
+
+// ── Confetti ─────────────────────────────────────────────────────────────────
+const confC=document.getElementById('confettiCanvas');
+const confX=confC.getContext('2d');
+let confParts=[],confOn=false,confRaf;
+function startConfetti(){
+  confC.width=window.innerWidth;confC.height=window.innerHeight;
+  confC.style.display='block';confOn=true;
+  confParts=Array.from({length:130},()=>({x:Math.random()*confC.width,y:-10-Math.random()*200,vx:(Math.random()-0.5)*4,vy:2.5+Math.random()*3.5,col:`hsl(${Math.random()*360},80%,60%)`,sz:5+Math.random()*7,rot:Math.random()*Math.PI*2,rs:(Math.random()-0.5)*0.15}));
+  animConf();
+}
+function animConf(){
+  if(!confOn)return;
+  confX.clearRect(0,0,confC.width,confC.height);
+  for(const p of confParts){p.x+=p.vx;p.y+=p.vy;p.rot+=p.rs;confX.save();confX.translate(p.x,p.y);confX.rotate(p.rot);confX.fillStyle=p.col;confX.fillRect(-p.sz/2,-p.sz/2,p.sz,p.sz);confX.restore();}
+  confParts=confParts.filter(p=>p.y<confC.height+20);
+  confRaf=requestAnimationFrame(animConf);
+}
+function stopConfetti(){confOn=false;if(confRaf)cancelAnimationFrame(confRaf);confC.style.display='none';}
+
+// ── Themes ───────────────────────────────────────────────────────────────────
 const THEMES={
-  1:{bodyBg:'#0d0d1a',emptyColor:'#141428',fillColor:'#1a4a7a',tailColor:'#5dade2',playerGlow:'#5dade2',ringColor:'rgba(93,173,226,0.45)',canvasBorder:'rgba(255,255,255,0.12)',canvasShadow:'none',ballSpd:0.09,spiders:false,aliens:false,ballDefs:[{x:8.5,y:9.5,dx:1.1,dy:0.9,c:['#e74c3c','#f5b7b1']},{x:W-10.5,y:15.5,dx:-0.9,dy:1.2,c:['#e74c3c','#f5b7b1']},{x:W/2,y:H-10.5,dx:1.0,dy:-1.0,c:['#e74c3c','#f5b7b1']},{x:20.5,y:25.5,dx:-1.2,dy:0.8,c:['#e74c3c','#f5b7b1']}],stars:false,title:'⚡ כובש השטחים',chip:'⭐ שלב 1',nextIcon:'🚀',nextMsg:'עכשיו לחלל!'},
-  2:{bodyBg:'#00000a',emptyColor:null,fillColor:'#3d0070',tailColor:'#cc44ff',playerGlow:'#cc44ff',ringColor:'rgba(180,50,255,0.55)',canvasBorder:'rgba(160,40,255,0.4)',canvasShadow:'0 0 30px rgba(140,0,255,0.3)',ballSpd:0.12,spiders:false,aliens:false,ballDefs:[{x:8.5,y:9.5,dx:1.1,dy:0.9,c:['#ff6b35','#ffb88a']},{x:W-10.5,y:15.5,dx:-0.9,dy:1.2,c:['#00b4d8','#90e0ef']},{x:W/2,y:H-10.5,dx:1.0,dy:-1.0,c:['#2ecc71','#a8e6cf']},{x:20.5,y:25.5,dx:-1.2,dy:0.8,c:['#f1c40f','#f9e79f']},{x:W-8.5,y:H-8.5,dx:-1.1,dy:-0.9,c:['#e91e8c','#ff80c0']}],stars:true,title:'🚀 כובש החלל',chip:'🌌 שלב 2',nextIcon:'🕷️',nextMsg:'עכשיו לעולם ספיידרמן!'},
-  3:{bodyBg:'#0d0003',emptyColor:null,fillColor:'#8b0000',tailColor:'#1a44cc',playerGlow:'#4488ff',ringColor:'rgba(200,0,0,0.6)',canvasBorder:'rgba(200,0,0,0.5)',canvasShadow:'0 0 30px rgba(200,0,0,0.35)',ballSpd:0.08,spiders:true,aliens:false,ballDefs:[{x:8.5,y:8.5,dx:1.0,dy:0.85},{x:W-9.5,y:9.5,dx:-0.9,dy:1.0},{x:9.5,y:H-9.5,dx:1.1,dy:-0.9},{x:W-9.5,y:H-9.5,dx:-1.0,dy:-1.0}],stars:false,title:'🕷️ ספיידרמן',chip:'🕸️ שלב 3',nextIcon:'👾',nextMsg:'עכשיו לחלליות!'},
-  4:{bodyBg:'#000510',emptyColor:null,fillColor:'#003820',tailColor:'#00ff88',playerGlow:'#00ff88',ringColor:'rgba(0,255,136,0.35)',canvasBorder:'rgba(0,200,100,0.4)',canvasShadow:'0 0 30px rgba(0,180,80,0.35)',ballSpd:0,spiders:false,aliens:true,ballDefs:[],stars:true,title:'👾 חלליות',chip:'👾 שלב 4',nextIcon:'🧜‍♀️',nextMsg:'עכשיו לבתולות הים!'},
-  5:{bodyBg:'#00080f',emptyColor:null,fillColor:'#002244',tailColor:'#00ccff',playerGlow:'#00ccff',ringColor:'rgba(0,200,255,0.35)',canvasBorder:'rgba(0,180,255,0.4)',canvasShadow:'0 0 30px rgba(0,150,255,0.35)',ballSpd:0,spiders:false,aliens:false,ballDefs:[],stars:false,title:'🧜‍♀️ בתולות הים',chip:'🧜‍♀️ שלב 5',nextIcon:null,nextMsg:null},
+  1:{bodyBg:'#0d0d1a',emptyColor:'#141428',fillColor:'#1a4a7a',tailColor:'#5dade2',playerGlow:'#5dade2',ringColor:'rgba(93,173,226,0.45)',canvasBorder:'rgba(255,255,255,0.12)',canvasShadow:'none',ballSpd:0.09,spiders:false,ballDefs:[{x:8.5,y:9.5,dx:1.1,dy:0.9,c:['#e74c3c','#f5b7b1']},{x:W-10.5,y:15.5,dx:-0.9,dy:1.2,c:['#e74c3c','#f5b7b1']},{x:W/2,y:H-10.5,dx:1.0,dy:-1.0,c:['#e74c3c','#f5b7b1']},{x:20.5,y:25.5,dx:-1.2,dy:0.8,c:['#e74c3c','#f5b7b1']}],stars:false,title:'⚡ כובש השטחים',chip:'⭐ שלב 1',nextIcon:'🚀',nextMsg:'עכשיו לחלל!'},
+  2:{bodyBg:'#00000a',emptyColor:null,fillColor:'#3d0070',tailColor:'#cc44ff',playerGlow:'#cc44ff',ringColor:'rgba(180,50,255,0.55)',canvasBorder:'rgba(160,40,255,0.4)',canvasShadow:'0 0 30px rgba(140,0,255,0.3)',ballSpd:0.12,spiders:false,ballDefs:[{x:8.5,y:9.5,dx:1.1,dy:0.9,c:['#ff6b35','#ffb88a']},{x:W-10.5,y:15.5,dx:-0.9,dy:1.2,c:['#00b4d8','#90e0ef']},{x:W/2,y:H-10.5,dx:1.0,dy:-1.0,c:['#2ecc71','#a8e6cf']},{x:20.5,y:25.5,dx:-1.2,dy:0.8,c:['#f1c40f','#f9e79f']},{x:W-8.5,y:H-8.5,dx:-1.1,dy:-0.9,c:['#e91e8c','#ff80c0']}],stars:true,title:'🚀 כובש החלל',chip:'🌌 שלב 2',nextIcon:'🕷️',nextMsg:'עכשיו לעולם ספיידרמן!'},
+  3:{bodyBg:'#0d0003',emptyColor:null,fillColor:'#8b0000',tailColor:'#1a44cc',playerGlow:'#4488ff',ringColor:'rgba(200,0,0,0.6)',canvasBorder:'rgba(200,0,0,0.5)',canvasShadow:'0 0 30px rgba(200,0,0,0.35)',ballSpd:0.08,spiders:true,ballDefs:[{x:8.5,y:8.5,dx:1.0,dy:0.85},{x:W-9.5,y:9.5,dx:-0.9,dy:1.0},{x:9.5,y:H-9.5,dx:1.1,dy:-0.9},{x:W-9.5,y:H-9.5,dx:-1.0,dy:-1.0}],stars:false,title:'🕷️ ספיידרמן',chip:'🕸️ שלב 3',nextIcon:'👾',nextMsg:'עכשיו לחלליות!'},
+  4:{bodyBg:'#000510',emptyColor:null,fillColor:'#003820',tailColor:'#00ff88',playerGlow:'#00ff88',ringColor:'rgba(0,255,136,0.35)',canvasBorder:'rgba(0,200,100,0.4)',canvasShadow:'0 0 30px rgba(0,180,80,0.35)',ballSpd:0,spiders:false,ballDefs:[],stars:true,title:'👾 חלליות',chip:'👾 שלב 4',nextIcon:'🧜‍♀️',nextMsg:'עכשיו לבתולות הים!'},
+  5:{bodyBg:'#00080f',emptyColor:null,fillColor:'#002244',tailColor:'#00ccff',playerGlow:'#00ccff',ringColor:'rgba(0,200,255,0.35)',canvasBorder:'rgba(0,180,255,0.4)',canvasShadow:'0 0 30px rgba(0,150,255,0.35)',ballSpd:0,spiders:false,ballDefs:[],stars:false,title:'🧜‍♀️ בתולות הים',chip:'🧜‍♀️ שלב 5',nextIcon:null,nextMsg:null},
 };
 
-// ── Shared state ──────────────────────────────────────────────────────────────
+// ── Shared state ─────────────────────────────────────────────────────────────
 let grid,player,balls,lives,running,rafId,frame,keys,level,theme,stars;
 let l4={};
 const isBreakout=()=>level===4||level===5;
@@ -284,7 +589,7 @@ function genStars(){stars=[];for(let i=0;i<130;i++)stars.push({px:Math.random()*
 function initGrid(){grid=Array.from({length:H},()=>new Uint8Array(W));for(let x=0;x<W;x++){grid[0][x]=FILLED;grid[H-1][x]=FILLED;}for(let y=0;y<H;y++){grid[y][0]=FILLED;grid[y][W-1]=FILLED;}}
 
 // ══════════════════════════════════════════════════════════════════════════════
-// BREAKOUT LEVELS (4 & 5)
+// BREAKOUT LEVELS 4 & 5
 // ══════════════════════════════════════════════════════════════════════════════
 const L4_PADDLE_Y=CH-32;
 const L4_AW=46,L4_AH=22;
@@ -301,13 +606,13 @@ function initL4(){
 function initL5(){
   const colStep=(CW-40)/8,startX=20+colStep/2;
   l4={paddle:{x:CW/2,w:86,h:12},balls:[{x:CW/2,y:L4_PADDLE_Y-6-BALL_R,dx:0,dy:0,stuck:true}],mermaids:[],powerups:[],bullets:[],hasGun:0,stickyNext:false};
-  for(let r=0;r<4;r++)for(let c=0;c<8;c++)l4.mermaids.push({x:startX+c*colStep,y:30+r*52,alive:true,row:r,spd:0.15+Math.random()*0.12});
+  for(let r=0;r<4;r++)for(let c=0;c<8;c++)l4.mermaids.push({x:startX+c*colStep,y:30+r*52,alive:true,row:r,spd:0.07+Math.random()*0.05});
 }
-function brkLaunchBall(b){const spd=4.4,ang=(Math.random()-0.5)*0.9-Math.PI/2;b.dx=spd*Math.cos(ang);b.dy=spd*Math.sin(ang);b.stuck=false;}
+function brkLaunch(b){const spd=4.4,ang=(Math.random()-0.5)*0.9-Math.PI/2;b.dx=spd*Math.cos(ang);b.dy=spd*Math.sin(ang);b.stuck=false;}
 function brkSpacePress(){
   if(!running){goToMenu();return;}
-  for(const b of l4.balls){if(b.stuck){brkLaunchBall(b);return;}}
-  if(l4.hasGun>0){l4.bullets.push({x:l4.paddle.x,y:L4_PADDLE_Y-l4.paddle.h/2-4,dy:-9});l4.hasGun--;}
+  for(const b of l4.balls){if(b.stuck){brkLaunch(b);return;}}
+  if(l4.hasGun>0){l4.bullets.push({x:l4.paddle.x,y:L4_PADDLE_Y-l4.paddle.h/2-4,dy:-5});l4.hasGun--;}
 }
 function dropPowerup(x,y){
   const r=Math.random();
@@ -317,7 +622,7 @@ function dropPowerup(x,y){
 }
 function brkDie(){
   lives--;
-  if(lives<=0){persistScore();running=false;showOverlay('נפלת! 💀','נגמרו הלבבות');return;}
+  if(lives<=0){persistScore();updateGameLb();running=false;showWL(false,'נפלת! 💀','נגמרו הלבבות');return;}
   l4.balls=[{x:l4.paddle.x,y:L4_PADDLE_Y-l4.paddle.h/2-BALL_R,dx:0,dy:0,stuck:true}];
   l4.stickyNext=false;l4.bullets=[];
 }
@@ -362,35 +667,38 @@ function updateL4(){
   if(l4.balls.length===0){brkDie();return;}
   updatePowerups();
   const alive=l4.aliens.filter(a=>a.alive).length;
-  if(alive===0){currentScore+=LEVEL_SCORES[4];updateHUD();persistScore();running=false;showOverlay('שלב 4 הושלם! 🏆👾','כבשת את הגלקסיה!');}
+  if(alive===0){
+    currentScore+=LEVEL_SCORES[4];updateHUD();persistScore();updateGameLb();running=false;
+    document.getElementById('btnNext').textContent=`שלב הבא 🧜‍♀️ (+${LEVEL_SCORES[5]} נק')`;
+    document.getElementById('btnNext').style.display='inline-block';
+    showWL(true,'שלב 4 הושלם! 🏆👾','כבשת את הגלקסיה — קדימה לבתולות הים!');
+  }
 }
 function updateL5(){
   const pd=l4.paddle;
   if(keys['ArrowLeft'])pd.x=Math.max(pd.w/2+14,pd.x-5.5);
   if(keys['ArrowRight'])pd.x=Math.min(CW-pd.w/2-14,pd.x+5.5);
-  // Descend
-  for(const m of l4.mermaids){if(!m.alive)continue;m.y+=m.spd;if(m.y>L5_LOSE_Y){persistScore();running=false;showOverlay('הפסדת! 🧜‍♀️','בתולת הים הגיעה לחוף!');return;}}
+  for(const m of l4.mermaids){if(!m.alive)continue;m.y+=m.spd;if(m.y>L5_LOSE_Y){persistScore();updateGameLb();running=false;showWL(false,'הפסדת! 🧜‍♀️','בתולת הים הגיעה לחוף!');return;}}
   moveBrkBalls((b)=>{
     for(const m of l4.mermaids){if(!m.alive)continue;if(Math.abs(b.x-m.x)<L5_MW/2&&Math.abs(b.y-m.y)<L5_MH/2){m.alive=false;b.dy=-Math.abs(b.dy);dropPowerup(m.x,m.y);break;}}
   });
   if(l4.balls.length===0){brkDie();return;}
-  // Bullets
   for(let bi=l4.bullets.length-1;bi>=0;bi--){
-    const b=l4.bullets[bi];b.y+=b.dy;if(b.y<10){l4.bullets.splice(bi,1);continue;}
+    const b=l4.bullets[bi];b.y+=b.dy;if(b.y<-20){l4.bullets.splice(bi,1);continue;}
     let hit=false;
     for(const m of l4.mermaids){if(!m.alive)continue;if(Math.abs(b.x-m.x)<L5_MW/2+4&&Math.abs(b.y-m.y)<L5_MH/2+4){m.alive=false;dropPowerup(m.x,m.y);hit=true;break;}}
     if(hit)l4.bullets.splice(bi,1);
   }
   updatePowerups();
   const alive=l4.mermaids.filter(m=>m.alive).length;
-  if(alive===0){currentScore+=LEVEL_SCORES[5];updateHUD();persistScore();running=false;showOverlay('ניצחת! 🏆🧜‍♀️','הגנת על החוף — אלוף האוקיינוס!');}
+  if(alive===0){currentScore+=LEVEL_SCORES[5];updateHUD();persistScore();updateGameLb();running=false;showWL(true,'ניצחת! 🏆🧜‍♀️','הגנת על החוף — אלוף האוקיינוס!');}
 }
 
 // ── Breakout drawing ──────────────────────────────────────────────────────────
 const ALIEN_PIX=[[2,0],[8,0],[3,1],[7,1],[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2],[1,3],[2,3],[4,3],[5,3],[6,3],[8,3],[9,3],[0,4],[1,4],[2,4],[3,4],[4,4],[5,4],[6,4],[7,4],[8,4],[9,4],[10,4],[0,5],[2,5],[3,5],[4,5],[5,5],[6,5],[7,5],[8,5],[10,5],[0,6],[2,6],[8,6],[10,6],[3,7],[4,7],[6,7],[7,7]];
-function drawAlienSprite(cx,cy,s,color){const ox=cx-5.5*s,oy=cy-4*s;ctx.shadowBlur=10;ctx.shadowColor=color;ctx.fillStyle=color;for(const[px,py]of ALIEN_PIX)ctx.fillRect(ox+px*s,oy+py*s,s,s);ctx.shadowBlur=0;}
+function drawAlien(cx,cy,s,col){const ox=cx-5.5*s,oy=cy-4*s;ctx.shadowBlur=10;ctx.shadowColor=col;ctx.fillStyle=col;for(const[px,py]of ALIEN_PIX)ctx.fillRect(ox+px*s,oy+py*s,s,s);ctx.shadowBlur=0;}
 function drawMermaid(cx,cy,row){
-  const s=0.7,hairCol=L5_COLORS[row]||'#ff88cc';
+  const s=0.7,hc=L5_COLORS[row]||'#ff88cc';
   ctx.save();ctx.translate(cx,cy);
   ctx.fillStyle='#00bbaa';ctx.shadowBlur=10;ctx.shadowColor='#00eedd';
   ctx.beginPath();ctx.moveTo(-9*s,6*s);ctx.lineTo(0,22*s);ctx.lineTo(9*s,6*s);ctx.closePath();ctx.fill();
@@ -398,22 +706,23 @@ function drawMermaid(cx,cy,row){
   ctx.beginPath();ctx.moveTo(6*s,17*s);ctx.lineTo(17*s,26*s);ctx.lineTo(1*s,21*s);ctx.closePath();ctx.fill();
   ctx.fillStyle='#3399cc';ctx.shadowBlur=0;ctx.beginPath();ctx.ellipse(0,2*s,7*s,9*s,0,0,Math.PI*2);ctx.fill();
   ctx.strokeStyle='#ffcc99';ctx.lineWidth=3*s;ctx.beginPath();ctx.moveTo(-7*s,-2*s);ctx.lineTo(-14*s,4*s);ctx.stroke();ctx.beginPath();ctx.moveTo(7*s,-2*s);ctx.lineTo(14*s,4*s);ctx.stroke();
-  ctx.fillStyle='#ffcc99';ctx.shadowBlur=6;ctx.shadowColor=hairCol;ctx.beginPath();ctx.arc(0,-10*s,9*s,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle=hairCol;ctx.beginPath();ctx.arc(0,-10*s,9*s,Math.PI,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(-8*s,-5*s,3.5*s,9*s,-0.3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(8*s,-5*s,3.5*s,9*s,0.3,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#ffcc99';ctx.shadowBlur=6;ctx.shadowColor=hc;ctx.beginPath();ctx.arc(0,-10*s,9*s,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=hc;ctx.beginPath();ctx.arc(0,-10*s,9*s,Math.PI,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(-8*s,-5*s,3.5*s,9*s,-0.3,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(8*s,-5*s,3.5*s,9*s,0.3,0,Math.PI*2);ctx.fill();
   ctx.shadowBlur=0;ctx.fillStyle='#222';ctx.beginPath();ctx.arc(-3*s,-11*s,1.5*s,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(3*s,-11*s,1.5*s,0,Math.PI*2);ctx.fill();
   ctx.fillStyle='white';ctx.beginPath();ctx.arc(-2.4*s,-11.5*s,0.6*s,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(3.6*s,-11.5*s,0.6*s,0,Math.PI*2);ctx.fill();
   ctx.restore();ctx.shadowBlur=0;
 }
-function drawBrkPaddle(){
+function drawPaddle(){
   const pd=l4.paddle,pw=pd.w,ph=pd.h,px=pd.x-pw/2,py=L4_PADDLE_Y-ph/2;
   const col=l4.stickyNext?'#00ddff':level===5?'#00aaff':'#00ff88';
   ctx.shadowBlur=16;ctx.shadowColor=col;ctx.fillStyle=col;
-  if(ctx.roundRect)ctx.roundRect(px,py,pw,ph,5);else ctx.rect(px,py,pw,ph);
-  ctx.fill();
+  if(ctx.roundRect)ctx.roundRect(px,py,pw,ph,5);else ctx.rect(px,py,pw,ph);ctx.fill();
   if(l4.stickyNext){ctx.fillStyle='rgba(0,0,0,0.3)';ctx.beginPath();if(ctx.roundRect)ctx.roundRect(px+4,py+2,pw-8,ph-4,3);else ctx.rect(px+4,py+2,pw-8,ph-4);ctx.fill();ctx.fillStyle='#00ddff';ctx.font='bold 8px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.shadowBlur=0;ctx.fillText('דבק',pd.x,L4_PADDLE_Y);}
   ctx.shadowBlur=0;
 }
-function drawBrkBalls(){
+function drawBalls(){
   for(const b of l4.balls){
     const col=b.stuck?(l4.stickyNext?'#00ddff':'#aaffcc'):'#ffffff';
     ctx.shadowBlur=18;ctx.shadowColor=col;ctx.fillStyle=col;ctx.beginPath();ctx.arc(b.x,b.y,BALL_R,0,Math.PI*2);ctx.fill();
@@ -421,13 +730,13 @@ function drawBrkBalls(){
     if(b.stuck){ctx.strokeStyle=l4.stickyNext?'#00ddff':'rgba(0,255,200,0.5)';ctx.lineWidth=1.5;ctx.setLineDash([3,3]);ctx.beginPath();ctx.arc(b.x,b.y,BALL_R+4,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);}
   }
 }
-function drawBrkPowerups(){
+function drawPowerups(){
   ctx.font='bold 14px "Segoe UI",Arial';ctx.textAlign='center';ctx.textBaseline='middle';
   for(const p of l4.powerups){const col=p.type==='gun'?'#ff4444':p.type==='sticky'?'#00ddff':'#44ff44';ctx.shadowBlur=14;ctx.shadowColor=col;ctx.fillStyle=col;ctx.beginPath();ctx.arc(p.x,p.y,13,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#000';ctx.fillText(p.type==='gun'?'ר':p.type==='sticky'?'ד':'+',p.x,p.y+1);}
 }
-function drawBrkBullets(){for(const b of l4.bullets){ctx.shadowBlur=14;ctx.shadowColor='#ff4444';ctx.fillStyle='#ff8844';ctx.beginPath();ctx.ellipse(b.x,b.y,4,8,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}}
-function drawGunHud(){if(!l4.hasGun)return;ctx.fillStyle='rgba(255,80,80,0.9)';ctx.font='bold 12px Arial';ctx.textAlign='right';ctx.textBaseline='top';ctx.fillText(`🔫 ×${l4.hasGun}`,CW-16,20);}
-function drawBrkProgress(tot,dead){ctx.fillStyle='rgba(0,255,136,0.3)';ctx.fillRect(14,14,(CW-28)*(dead/tot),3);}
+function drawBullets(){for(const b of l4.bullets){ctx.shadowBlur=14;ctx.shadowColor='#ff4444';ctx.fillStyle='#ff8844';ctx.beginPath();ctx.ellipse(b.x,b.y,4,8,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}}
+function drawGunHUD(){if(!l4.hasGun)return;ctx.fillStyle='rgba(255,80,80,0.9)';ctx.font='bold 12px Arial';ctx.textAlign='right';ctx.textBaseline='top';ctx.fillText(`🔫 ×${l4.hasGun}`,CW-16,20);}
+function drawBrkProg(tot,dead){ctx.fillStyle='rgba(0,255,136,0.3)';ctx.fillRect(14,14,(CW-28)*(dead/tot),3);}
 function drawBrkHint(){if(l4.balls.some(b=>b.stuck)&&running){const c=level===5?'rgba(0,200,255,0.7)':'rgba(0,255,136,0.7)';ctx.fillStyle=c;ctx.font='12px Arial';ctx.textAlign='center';ctx.textBaseline='top';ctx.fillText('לחץ Space לשחרור',CW/2,CH-16);}}
 
 function drawL4(){
@@ -436,10 +745,10 @@ function drawL4(){
   neb(CW*.3,CH*.35,CW*.42,'rgba(0,55,25,0.20)');neb(CW*.72,CH*.6,CW*.32,'rgba(0,25,55,0.16)');
   for(const s of stars){s.phase+=s.spd;const a=(0.2+0.8*(0.5+0.5*Math.sin(s.phase))).toFixed(2);ctx.fillStyle=`rgba(255,255,255,${a})`;ctx.beginPath();ctx.arc(s.px,s.py,s.r,0,Math.PI*2);ctx.fill();}
   ctx.strokeStyle='rgba(0,255,136,0.2)';ctx.lineWidth=1.5;ctx.strokeRect(14,14,CW-28,CH-28);
-  const alienS=Math.min((L4_AW-4)/11,(L4_AH-2)/8);
-  for(const a of l4.aliens)if(a.alive)drawAlienSprite(a.x,a.y,alienS,L4_ALIEN_COLORS[a.row]);
-  drawBrkPowerups();drawBrkPaddle();drawBrkBalls();drawGunHud();
-  const tot=l4.aliens.length,dead=l4.aliens.filter(a=>!a.alive).length;drawBrkProgress(tot,dead);drawBrkHint();
+  const as=Math.min((L4_AW-4)/11,(L4_AH-2)/8);
+  for(const a of l4.aliens)if(a.alive)drawAlien(a.x,a.y,as,L4_ALIEN_COLORS[a.row]);
+  drawPowerups();drawPaddle();drawBalls();drawGunHUD();
+  const tot=l4.aliens.length,dead=l4.aliens.filter(a=>!a.alive).length;drawBrkProg(tot,dead);drawBrkHint();
 }
 function drawL5(){
   ctx.fillStyle='#00080f';ctx.fillRect(0,0,CW,CH);
@@ -451,7 +760,7 @@ function drawL5(){
   for(const m of l4.mermaids)if(m.alive)drawMermaid(m.x,m.y,m.row);
   const tot=l4.mermaids.length,dead=l4.mermaids.filter(m=>!m.alive).length;
   ctx.fillStyle='rgba(0,200,255,0.3)';ctx.fillRect(14,14,(CW-28)*(dead/tot),3);
-  drawBrkPowerups();drawBrkBullets();drawBrkPaddle();drawBrkBalls();drawGunHud();drawBrkHint();
+  drawPowerups();drawBullets();drawPaddle();drawBalls();drawGunHUD();drawBrkHint();
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -478,7 +787,7 @@ function die(){
   if(player.blink>0)return;
   for(const[tx,ty]of player.tail)if(grid[ty][tx]===TAIL)grid[ty][tx]=EMPTY;
   player.tail=[];player.hasTail=false;lives--;
-  if(lives<=0){persistScore();running=false;showOverlay('נפלת! 💀',`הגעת ל-${Math.round(filledPct()*100)}% — נגמרו הלבבות`);return;}
+  if(lives<=0){persistScore();updateGameLb();running=false;showWL(false,'נפלת! 💀',`הגעת ל-${Math.round(filledPct()*100)}% — נגמרו הלבבות`);return;}
   player.x=W>>1;player.y=0;player.dx=0;player.dy=0;player.blink=150;
 }
 function movePlayer(){
@@ -494,13 +803,13 @@ function movePlayer(){
     if(player.hasTail){
       claimTerritory();const pct=filledPct();
       if(pct>=WIN_PCT[level]){
-        currentScore+=LEVEL_SCORES[level];updateHUD();
-        running=false;
+        currentScore+=LEVEL_SCORES[level];updateHUD();running=false;
         if(level<5){
-          document.getElementById('btnNext').textContent=`שלב הבא ${theme.nextIcon} (+${LEVEL_SCORES[level+1]} נק')`;
+          const ni=THEMES[level+1]?.chip?.split(' ')[0]||'➡️';
+          document.getElementById('btnNext').textContent=`שלב הבא ${ni} (+${LEVEL_SCORES[level+1]} נק')`;
           document.getElementById('btnNext').style.display='inline-block';
-          showOverlay(`שלב ${level} הושלם! ✨ +${LEVEL_SCORES[level]} נק'`,theme.nextMsg);
-        }else{persistScore();showOverlay('ניצחת! 🏆','כבשת את כל השטחים — אלוף על!');}
+          showWL(true,`שלב ${level} הושלם! ✨ +${LEVEL_SCORES[level]} נק'`,THEMES[level].nextMsg);
+        }else{persistScore();updateGameLb();showWL(true,'ניצחת! 🏆','כבשת את כל השטחים — אלוף על!');}
       }
     }
   }else{grid[ny][nx]=TAIL;player.tail.push([nx,ny]);player.hasTail=true;}
@@ -519,40 +828,66 @@ function checkCollisions(){
   for(const b of balls){if(Math.abs(b.x-player.x)<0.85&&Math.abs(b.y-player.y)<0.85){die();return;}for(const[tx,ty]of player.tail)if(Math.abs(b.x-tx)<0.85&&Math.abs(b.y-ty)<0.85){die();return;}}
   if(theme.spiders&&player.hasTail){const ws=new Set();for(const b of balls)for(const tp of b.trail)ws.add((tp.px/CS|0)+(tp.py/CS|0)*W);for(const[tx,ty]of player.tail)if(ws.has(tx+ty*W)){die();return;}}
 }
-// Xonix draw helpers
 function drawWebBg(){ctx.fillStyle='#0d0003';ctx.fillRect(0,0,CW,CH);const cx=CW/2,cy=CH/2,maxR=Math.sqrt(cx*cx+cy*cy)+20;ctx.strokeStyle='rgba(160,0,0,0.10)';ctx.lineWidth=0.6;for(let a=0;a<Math.PI*2;a+=Math.PI/9){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*maxR,cy+Math.sin(a)*maxR);ctx.stroke();}for(let r=35;r<maxR;r+=35){ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();}}
 function drawSpider(bx,by){const br=CS/2+1;ctx.shadowBlur=16;ctx.shadowColor='#cc0000';ctx.fillStyle='#cc0000';ctx.beginPath();ctx.arc(bx,by,br,0,Math.PI*2);ctx.fill();ctx.strokeStyle='rgba(0,0,0,0.65)';ctx.lineWidth=0.8;for(let a=0;a<Math.PI*2;a+=Math.PI/5){ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(bx+Math.cos(a)*br,by+Math.sin(a)*br);ctx.stroke();}ctx.beginPath();ctx.arc(bx,by,br*0.5,0,Math.PI*2);ctx.stroke();ctx.shadowBlur=0;ctx.fillStyle='white';ctx.save();ctx.translate(bx-br*.30,by-br*.08);ctx.rotate(-0.38);ctx.beginPath();ctx.ellipse(0,0,br*.30,br*.17,0,0,Math.PI*2);ctx.fill();ctx.restore();ctx.save();ctx.translate(bx+br*.30,by-br*.08);ctx.rotate(0.38);ctx.beginPath();ctx.ellipse(0,0,br*.30,br*.17,0,0,Math.PI*2);ctx.fill();ctx.restore();ctx.shadowBlur=0;}
 function drawWebTrail(trail){if(trail.length<2)return;ctx.strokeStyle='rgba(230,230,230,0.45)';ctx.lineWidth=1.0;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(trail[0].px,trail[0].py);for(let i=1;i<trail.length;i++)ctx.lineTo(trail[i].px,trail[i].py);ctx.stroke();}
 function drawStarfield(bgColor,nebulas){ctx.fillStyle=bgColor;ctx.fillRect(0,0,CW,CH);for(const[cx,cy,cr,col]of nebulas){const g=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);g.addColorStop(0,col);g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,CW,CH);}for(const s of stars){s.phase+=s.spd;const a=(0.25+0.75*(0.5+0.5*Math.sin(s.phase))).toFixed(2);ctx.fillStyle=`rgba(255,255,255,${a})`;ctx.beginPath();ctx.arc(s.px,s.py,s.r,0,Math.PI*2);ctx.fill();}}
 function drawFillGlow(gc,ec){ctx.strokeStyle=ec;ctx.lineWidth=1;for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(grid[y][x]!==FILLED)continue;const he=(inB(x-1,y)&&grid[y][x-1]===EMPTY)||(inB(x+1,y)&&grid[y][x+1]===EMPTY)||(inB(x,y-1)&&grid[y-1]?.[x]===EMPTY)||(inB(x,y+1)&&grid[y+1]?.[x]===EMPTY);if(he){ctx.shadowBlur=6;ctx.shadowColor=gc;ctx.strokeRect(x*CS+.5,y*CS+.5,CS-1,CS-1);ctx.shadowBlur=0;}}}
 function draw(){
-  if(theme.spiders){drawWebBg();for(const b of balls)if(b.trail)drawWebTrail(b.trail);for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(grid[y][x]===EMPTY)continue;ctx.fillStyle=grid[y][x]===FILLED?theme.fillColor:theme.tailColor;ctx.fillRect(x*CS,y*CS,CS,CS);}ctx.strokeStyle='rgba(200,50,50,0.25)';ctx.lineWidth=1;for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(grid[y][x]!==FILLED)continue;const he=(inB(x-1,y)&&grid[y][x-1]===EMPTY)||(inB(x+1,y)&&grid[y][x+1]===EMPTY)||(inB(x,y-1)&&grid[y-1]?.[x]===EMPTY)||(inB(x,y+1)&&grid[y+1]?.[x]===EMPTY);if(he){ctx.shadowBlur=5;ctx.shadowColor='#ff2222';ctx.strokeRect(x*CS+.5,y*CS+.5,CS-1,CS-1);ctx.shadowBlur=0;}}}
-  else if(theme.stars){drawStarfield('#00000a',[[CW*.25,CH*.35,CW*.38,'rgba(90,0,140,0.18)'],[CW*.75,CH*.65,CW*.32,'rgba(0,40,120,0.14)'],[CW*.55,CH*.2,CW*.25,'rgba(120,0,80,0.10)']]);for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(grid[y][x]===EMPTY)continue;ctx.fillStyle=grid[y][x]===FILLED?theme.fillColor:theme.tailColor;ctx.fillRect(x*CS,y*CS,CS,CS);}drawFillGlow('#cc44ff','rgba(180,80,255,0.18)');}
-  else{for(let y=0;y<H;y++)for(let x=0;x<W;x++){ctx.fillStyle=grid[y][x]===FILLED?theme.fillColor:grid[y][x]===TAIL?theme.tailColor:theme.emptyColor;ctx.fillRect(x*CS,y*CS,CS,CS);}ctx.strokeStyle='rgba(255,255,255,0.03)';ctx.lineWidth=0.5;for(let i=0;i<=W;i++){ctx.beginPath();ctx.moveTo(i*CS,0);ctx.lineTo(i*CS,H*CS);ctx.stroke();}for(let i=0;i<=H;i++){ctx.beginPath();ctx.moveTo(0,i*CS);ctx.lineTo(W*CS,i*CS);ctx.stroke();}}
+  if(theme.spiders){
+    drawWebBg();for(const b of balls)if(b.trail)drawWebTrail(b.trail);
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(grid[y][x]===EMPTY)continue;ctx.fillStyle=grid[y][x]===FILLED?theme.fillColor:theme.tailColor;ctx.fillRect(x*CS,y*CS,CS,CS);}
+    ctx.strokeStyle='rgba(200,50,50,0.25)';ctx.lineWidth=1;for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(grid[y][x]!==FILLED)continue;const he=(inB(x-1,y)&&grid[y][x-1]===EMPTY)||(inB(x+1,y)&&grid[y][x+1]===EMPTY)||(inB(x,y-1)&&grid[y-1]?.[x]===EMPTY)||(inB(x,y+1)&&grid[y+1]?.[x]===EMPTY);if(he){ctx.shadowBlur=5;ctx.shadowColor='#ff2222';ctx.strokeRect(x*CS+.5,y*CS+.5,CS-1,CS-1);ctx.shadowBlur=0;}}
+  }else if(theme.stars){
+    drawStarfield('#00000a',[[CW*.25,CH*.35,CW*.38,'rgba(90,0,140,0.18)'],[CW*.75,CH*.65,CW*.32,'rgba(0,40,120,0.14)'],[CW*.55,CH*.2,CW*.25,'rgba(120,0,80,0.10)']]);
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(grid[y][x]===EMPTY)continue;ctx.fillStyle=grid[y][x]===FILLED?theme.fillColor:theme.tailColor;ctx.fillRect(x*CS,y*CS,CS,CS);}drawFillGlow('#cc44ff','rgba(180,80,255,0.18)');
+  }else{
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){ctx.fillStyle=grid[y][x]===FILLED?theme.fillColor:grid[y][x]===TAIL?theme.tailColor:theme.emptyColor;ctx.fillRect(x*CS,y*CS,CS,CS);}
+    ctx.strokeStyle='rgba(255,255,255,0.03)';ctx.lineWidth=0.5;
+    for(let i=0;i<=W;i++){ctx.beginPath();ctx.moveTo(i*CS,0);ctx.lineTo(i*CS,H*CS);ctx.stroke();}
+    for(let i=0;i<=H;i++){ctx.beginPath();ctx.moveTo(0,i*CS);ctx.lineTo(W*CS,i*CS);ctx.stroke();}
+  }
   ctx.strokeStyle=theme.ringColor;ctx.lineWidth=1.5;ctx.strokeRect(CS+1,CS+1,(W-2)*CS-2,(H-2)*CS-2);
   ctx.fillStyle=theme.tailColor+'55';ctx.fillRect(CS,CS,(W-2)*CS*filledPct(),3);
-  if(player.blink===0||(frame>>2)&1){const px=player.x*CS+CS/2,py=player.y*CS+CS/2,r=CS/2-1;ctx.shadowBlur=16;ctx.shadowColor=theme.playerGlow;ctx.fillStyle='#ffffff';ctx.beginPath();ctx.arc(px,py,r,0,Math.PI*2);ctx.fill();ctx.fillStyle=theme.playerGlow;ctx.beginPath();ctx.arc(px,py,r-3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}
-  for(const b of balls){const bx=b.x*CS+CS/2,by=b.y*CS+CS/2,br=CS/2;if(theme.spiders){drawSpider(bx,by);}else{ctx.shadowBlur=14;ctx.shadowColor=b.c[0];ctx.fillStyle=b.c[0];ctx.beginPath();ctx.arc(bx,by,br,0,Math.PI*2);ctx.fill();ctx.fillStyle=b.c[1];ctx.beginPath();ctx.arc(bx-br*.3,by-br*.3,br*.35,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}}
+  if(player.blink===0||(frame>>2)&1){
+    const px=player.x*CS+CS/2,py=player.y*CS+CS/2,r=CS/2-1;
+    ctx.shadowBlur=16;ctx.shadowColor=theme.playerGlow;ctx.fillStyle='#ffffff';ctx.beginPath();ctx.arc(px,py,r,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=theme.playerGlow;ctx.beginPath();ctx.arc(px,py,r-3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+  }
+  for(const b of balls){
+    const bx=b.x*CS+CS/2,by=b.y*CS+CS/2,br=CS/2;
+    if(theme.spiders){drawSpider(bx,by);}
+    else{ctx.shadowBlur=14;ctx.shadowColor=b.c[0];ctx.fillStyle=b.c[0];ctx.beginPath();ctx.arc(bx,by,br,0,Math.PI*2);ctx.fill();ctx.fillStyle=b.c[1];ctx.beginPath();ctx.arc(bx-br*.3,by-br*.3,br*.35,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}
+  }
 }
 
 // ── Start level ───────────────────────────────────────────────────────────────
 function startLevel(lvl){
   level=lvl;theme=THEMES[lvl];frame=0;running=true;keys={};
+  document.getElementById('btnNext').style.display='none';
   if(lvl===4){initL4();genStars();document.getElementById('hint').textContent='חצים לזוז · Space — שחרר/ירי · ד=דבק · +=כדור נוסף · ר=רקטה';}
   else if(lvl===5){initL5();document.getElementById('hint').textContent='חצים לזוז · Space — שחרר/ירי · ד=דבק · +=כדור נוסף · ר=רקטה';}
   else{initGrid();player={x:W>>1,y:0,dx:0,dy:0,tail:[],hasTail:false,blink:0};const spd=theme.ballSpd;balls=theme.ballDefs.map(d=>({x:d.x,y:d.y,dx:spd*d.dx,dy:spd*d.dy,c:d.c??['#e74c3c','#f5b7b1'],trail:theme.spiders?[]:null}));if(theme.stars)genStars();else stars=[];document.getElementById('hint').textContent='חצי מקלדת לזוז · סגור שטח — כבוש!';}
-  document.body.style.background=theme.bodyBg;canvas.style.borderColor=theme.canvasBorder;canvas.style.boxShadow=theme.canvasShadow;
-  document.getElementById('title').textContent=theme.title;document.getElementById('levelChip').textContent=theme.chip;
+  document.body.style.background=theme.bodyBg;
+  canvas.style.borderColor=theme.canvasBorder;canvas.style.boxShadow=theme.canvasShadow;
+  document.getElementById('gameTitle').textContent=theme.title;
+  document.getElementById('levelChip').textContent=theme.chip;
   const gp=WIN_PCT[lvl];document.getElementById('goalEl').textContent=gp===1.0?'100':Math.round(gp*100);
-  updateHUD();if(rafId)cancelAnimationFrame(rafId);rafId=requestAnimationFrame(loop);
+  updateHUD();updateGameLb();
+  if(rafId)cancelAnimationFrame(rafId);rafId=requestAnimationFrame(loop);
 }
 function nextLevel(){
   document.getElementById('overlay').classList.remove('show');
   document.getElementById('btnNext').style.display='none';
-  startLevel(level+1);
+  stopConfetti();startLevel(level+1);
+}
+function replayLevel(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('btnNext').style.display='none';
+  stopConfetti();currentScore=0;lives=3;startLevel(level);
 }
 
-// ── Game loop ─────────────────────────────────────────────────────────────────
+// ── Game loop ──────────────────────────────────────────────────────────────────
 function loop(){
   if(!running){if(level===4)drawL4();else if(level===5)drawL5();else draw();return;}
   frame++;
@@ -560,9 +895,19 @@ function loop(){
   else{if(player.blink>0)player.blink--;if(frame%PLAYER_SPD===0)movePlayer();for(const b of balls)moveBall(b);checkCollisions();draw();}
   updateHUD();rafId=requestAnimationFrame(loop);
 }
-function showOverlay(t,m){document.getElementById('oTitle').textContent=t;document.getElementById('oMsg').textContent=m;document.getElementById('overlay').classList.add('show');}
 
-// ── Input ─────────────────────────────────────────────────────────────────────
+// ── Overlay ───────────────────────────────────────────────────────────────────
+function showWL(isWin,title,msg){
+  document.getElementById('oTitle').textContent=title;
+  document.getElementById('oMsg').textContent=msg;
+  const pl=document.getElementById('oPlayer');
+  if(isWin&&playerName){pl.style.display='block';pl.textContent=`כל הכבוד, ${playerName}! 🎉`;}
+  else pl.style.display='none';
+  document.getElementById('overlay').classList.add('show');
+  if(isWin)startConfetti();else stopConfetti();
+}
+
+// ── Input ──────────────────────────────────────────────────────────────────────
 window.addEventListener('keydown',e=>{
   keys[e.key]=true;
   if(e.key===' '){e.preventDefault();if(isBreakout())brkSpacePress();}
@@ -578,10 +923,10 @@ let tx0,ty0;
 canvas.addEventListener('touchstart',e=>{tx0=e.touches[0].clientX;ty0=e.touches[0].clientY;e.preventDefault();},{passive:false});
 canvas.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx0,dy2=e.changedTouches[0].clientY-ty0;if(Math.abs(dx)<8&&Math.abs(dy2)<8){if(isBreakout())brkSpacePress();return;}if(Math.abs(dx)>Math.abs(dy2))dp(dx>0?'r':'l');else dp(dy2>0?'d':'u');e.preventDefault();},{passive:false});
 
-// ── Boot ──────────────────────────────────────────────────────────────────────
+// ── Boot ───────────────────────────────────────────────────────────────────────
 playerName=localStorage.getItem('kbs_name')||'';
 if(!playerName){showNameScreen();}
-else{showMenu();}
+else{document.getElementById('greetName').textContent=playerName;navTo('mainPage');}
 </script>
 </body>
 </html>
