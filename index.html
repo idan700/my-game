@@ -442,6 +442,128 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 #minuteToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 #minuteToast.time-up{background:linear-gradient(135deg,#ff6b6b,#e74c3c);box-shadow:0 4px 22px rgba(231,76,60,0.65);}
 
+/* ── CASINO 0-30 (Game 10) ── */
+#game10UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 35%,#0d3d1a 0%,#061a0a 60%,#020b04 100%);flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow-y:auto;overflow-x:hidden;}
+#game10UI.show{display:flex;}
+.g10-wrap{position:relative;display:flex;flex-direction:column;align-items:center;width:100%;max-width:480px;padding:8px 10px 20px;gap:8px;flex-shrink:0;}
+.g10-header{width:100%;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.g10-title{font-size:20px;font-weight:900;background:linear-gradient(135deg,#f5d050,#ffd600,#fff176,#f9a825);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;filter:drop-shadow(0 0 8px rgba(245,208,80,0.5));}
+.g10-coins-hud{background:linear-gradient(135deg,#2a1800,#4a2800);border:2px solid rgba(255,214,0,0.4);color:#ffd93d;font-size:15px;font-weight:900;padding:5px 13px;border-radius:20px;letter-spacing:0.5px;box-shadow:0 0 14px rgba(255,180,0,0.2);}
+.g10-back-btn{background:none;border:1px solid rgba(255,215,0,0.25);color:rgba(255,215,0,0.55);padding:6px 13px;border-radius:10px;font-size:13px;cursor:pointer;transition:all 0.2s;}
+.g10-back-btn:hover{border-color:rgba(255,215,0,0.65);color:#ffd93d;}
+/* Result area */
+.g10-result-area{width:100%;display:flex;align-items:center;justify-content:space-around;gap:10px;padding:6px 0 4px;background:rgba(0,0,0,0.25);border-radius:16px;border:1px solid rgba(255,215,0,0.1);}
+.g10-result-info{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.g10-result-label{font-size:12px;color:rgba(255,215,0,0.65);font-weight:700;letter-spacing:0.5px;text-align:center;min-height:16px;}
+.g10-round-info{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.5px;}
+/* Ball */
+.g10-ball{width:74px;height:74px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#ddd,#999);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#111;box-shadow:0 8px 28px rgba(0,0,0,0.7),inset 0 3px 8px rgba(255,255,255,0.7),inset 0 -2px 5px rgba(0,0,0,0.3);border:3px solid rgba(255,255,255,0.35);font-family:monospace;transition:background 0.3s,box-shadow 0.3s;}
+.g10-ball.g10-spin{animation:g10Spin 0.08s linear infinite;}
+.g10-ball.g10-win{background:radial-gradient(circle at 35% 30%,#fffde7,#ffd700,#b8860b);box-shadow:0 0 50px rgba(255,215,0,1),0 8px 28px rgba(0,0,0,0.4),inset 0 3px 8px rgba(255,255,255,0.9);}
+.g10-ball[data-color="red"]{color:#c0000a;text-shadow:0 0 8px rgba(200,0,10,0.4);}
+.g10-ball[data-color="black"]{color:#222;text-shadow:none;}
+.g10-ball[data-color="green"]{color:#1a6b1a;text-shadow:0 0 8px rgba(30,120,30,0.4);}
+.g10-ball.g10-lose{background:radial-gradient(circle at 35% 30%,#ffcccc,#e53935,#7b0000);color:#fff;box-shadow:0 0 24px rgba(200,0,0,0.6),0 8px 28px rgba(0,0,0,0.5);}
+@keyframes g10Spin{0%{transform:rotate(-12deg) scale(0.93);}50%{transform:rotate(12deg) scale(1.06);}100%{transform:rotate(-12deg) scale(0.93);}}
+/* Big coin counter */
+.g10-coins-counter{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.g10-coins-big{font-size:56px;font-weight:900;color:#ffd93d;font-family:monospace;line-height:1;text-shadow:0 0 24px rgba(255,215,0,0.55);transition:color 0.25s;}
+.g10-coins-big.g10-c-down{color:#ff6b6b;text-shadow:0 0 24px rgba(255,80,80,0.7);animation:g10CoinBump 0.4s ease;}
+.g10-coins-big.g10-c-up{color:#6bcb77;text-shadow:0 0 24px rgba(100,210,80,0.7);animation:g10CoinBump 0.4s ease;}
+@keyframes g10CoinBump{0%{transform:scale(1);}35%{transform:scale(1.28);}100%{transform:scale(1);}}
+.g10-coins-label{font-size:12px;color:rgba(255,215,0,0.5);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.g10-coins-delta{font-size:15px;font-weight:900;min-height:20px;letter-spacing:0.5px;transition:opacity 0.3s;}
+/* Table */
+.g10-table{width:100%;display:flex;flex-direction:column;gap:4px;direction:ltr;}
+.g10-zero-row{display:flex;justify-content:center;margin-bottom:2px;}
+.g10-nums-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
+.g10-cell{border-radius:10px;padding:7px 4px 5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;transition:transform 0.1s,box-shadow 0.15s;user-select:none;-webkit-tap-highlight-color:transparent;min-height:54px;gap:4px;}
+.g10-cell:active{transform:scale(0.91);}
+.g10-cell-num{font-size:16px;font-weight:900;line-height:1;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.6);}
+.g10-zero-mult{font-size:10px;font-weight:800;color:#ffd93d;background:rgba(255,180,0,0.18);border-radius:5px;padding:1px 4px;letter-spacing:0.3px;}
+/* Color side bet */
+.g10-color-bet-row{width:100%;display:flex;flex-direction:column;align-items:center;gap:6px;padding:7px 0 3px;border-top:1px solid rgba(255,215,0,0.1);}
+.g10-color-bet-label{font-size:11px;color:rgba(255,215,0,0.55);font-weight:700;letter-spacing:0.5px;}
+.g10-color-bet-btns{display:flex;gap:10px;}
+.g10-col-btn{border:2px solid rgba(255,255,255,0.14);border-radius:12px;background:rgba(255,255,255,0.05);color:#fff;font-size:14px;font-weight:800;padding:8px 20px;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:6px;letter-spacing:0.3px;}
+.g10-col-btn:active{transform:scale(0.93);}
+.g10-col-btn:disabled{opacity:0.32;cursor:not-allowed;pointer-events:none;}
+.g10-col-red.sel{background:rgba(210,50,50,0.3);border-color:#e05555;box-shadow:0 0 14px rgba(220,50,50,0.5);}
+.g10-col-blk.sel{background:rgba(120,120,120,0.28);border-color:#c0c0c0;box-shadow:0 0 14px rgba(200,200,200,0.3);}
+.g10-col-result-win{animation:g10ColWin 0.5s ease;border-color:#6bcb77 !important;background:rgba(107,203,119,0.28) !important;box-shadow:0 0 18px rgba(107,203,119,0.55) !important;}
+.g10-col-result-lose{opacity:0.4;}
+@keyframes g10ColWin{0%{transform:scale(1);}45%{transform:scale(1.15);}100%{transform:scale(1);}}
+/* Color dot on each cell */
+.g10-cell-color-dot{width:7px;height:7px;border-radius:50%;position:absolute;top:4px;left:5px;opacity:0.7;}
+.g10-cell-trophy{position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:20px;line-height:1;pointer-events:none;z-index:3;animation:g10TrophyIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);}
+.g10-col-wrap{display:flex;align-items:center;gap:6px;}
+.g10-col-trophy{font-size:22px;line-height:1;animation:g10TrophyIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);}
+@keyframes g10TrophyIn{0%{transform:scale(0) rotate(-15deg);opacity:0;}70%{transform:scale(1.25) rotate(5deg);}100%{transform:scale(1) rotate(0);opacity:1;}}
+.g10-cell-color-dot.red{background:#e05555;}
+.g10-cell-color-dot.black{background:#aaa;}
+.g10-cell-color-dot.green{background:#4caf50;}
+/* Outer layout: history + main side by side */
+.g10-outer-wrap{display:flex;flex-direction:row;align-items:flex-start;gap:8px;width:100%;max-width:556px;padding:0 4px;}
+.g10-outer-wrap>.g10-wrap{flex:1;min-width:0;max-width:none;padding:8px 8px 20px;}
+/* History panel */
+.g10-history{width:62px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:5px;max-height:calc(100vh - 70px);overflow-y:auto;scrollbar-width:none;padding:6px 0;position:sticky;top:0;}
+.g10-history::-webkit-scrollbar{display:none;}
+.g10-hist-label{font-size:9px;color:rgba(255,215,0,0.42);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;text-align:center;line-height:1.4;margin-bottom:2px;}
+.g10-hist-entry{width:56px;border-radius:10px;padding:6px 3px 5px;display:flex;flex-direction:column;align-items:center;gap:0;flex-shrink:0;box-sizing:border-box;background:rgba(255,255,255,0.05);border-top:3px solid transparent;animation:g10HistPop 0.38s ease;}
+.g10-hist-entry.win{border-top:3px solid #6bcb77;background:rgba(107,203,119,0.07);}
+@keyframes g10HistPop{0%{transform:scale(0.65);opacity:0;}65%{transform:scale(1.12);}100%{transform:scale(1);opacity:1;}}
+.g10-hist-num{font-size:20px;font-weight:900;line-height:1;background:none;padding:0;border-radius:0;}
+.g10-hist-num.clr-red{color:#e05555;}
+.g10-hist-num.clr-black{color:#c8c8c8;}
+.g10-hist-num.clr-green{color:#4caf50;}
+.g10-cell-coins{display:flex;gap:2px;min-height:10px;justify-content:center;align-items:center;flex-wrap:wrap;}
+.g10-coin-pip{width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#fffde7,#ffd700,#f9a825);box-shadow:0 1px 4px rgba(0,0,0,0.5),0 0 6px rgba(255,214,0,0.6);border:1px solid rgba(255,230,0,0.9);}
+/* Zero cell */
+.g10-cell-zero{background:linear-gradient(145deg,#0a7040,#1a9a58);border:2px solid #2ecc71;box-shadow:0 3px 12px rgba(0,200,80,0.25);min-width:88px;}
+.g10-cell-zero:hover{box-shadow:0 3px 22px rgba(0,220,90,0.55);transform:scale(1.04);}
+/* Red (odd) */
+.g10-cell-red{background:linear-gradient(145deg,#6a0808,#a01414);border:2px solid rgba(180,30,30,0.45);box-shadow:0 2px 8px rgba(160,0,0,0.2);}
+.g10-cell-red:hover{box-shadow:0 2px 18px rgba(200,40,40,0.6);transform:scale(1.04);}
+/* Black (even) */
+.g10-cell-black{background:linear-gradient(145deg,#181818,#2a2a2a);border:2px solid rgba(255,255,255,0.12);box-shadow:0 2px 8px rgba(0,0,0,0.4);}
+.g10-cell-black:hover{box-shadow:0 2px 16px rgba(255,255,255,0.18);transform:scale(1.04);}
+/* Active bet */
+.g10-cell.has-bet{border-color:rgba(255,214,0,0.85) !important;box-shadow:0 0 18px rgba(255,214,0,0.5) !important;}
+/* Winner glow */
+.g10-cell.g10-winner{border-color:#ffd700 !important;animation:g10WinCell 0.5s ease-in-out infinite alternate;}
+@keyframes g10WinCell{from{box-shadow:0 0 10px rgba(255,214,0,0.5);}to{box-shadow:0 0 36px rgba(255,214,0,1),0 0 60px rgba(255,180,0,0.5);}}
+.g10-cell.g10-loser{opacity:0.3;transform:scale(0.95) !important;}
+/* Controls */
+.g10-controls{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:2px 0;}
+.g10-bet-info{display:flex;flex-direction:column;align-items:flex-start;gap:3px;}
+.g10-bet-label{font-size:12px;color:rgba(255,215,0,0.65);font-weight:700;letter-spacing:0.5px;}
+.g10-bet-pips{display:flex;gap:4px;}
+.g10-bet-pip{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,214,0,0.4);background:transparent;transition:all 0.2s;}
+.g10-bet-pip.on{background:radial-gradient(circle,#fffde7,#ffd700);border-color:#ffd700;box-shadow:0 0 8px rgba(255,214,0,0.8);}
+.g10-clear-btn{background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.18);border-radius:12px;color:rgba(255,255,255,0.65);font-size:13px;font-weight:700;padding:9px 15px;cursor:pointer;transition:background 0.15s;}
+.g10-clear-btn:hover{background:rgba(255,255,255,0.14);}
+.g10-spin-btn{background:linear-gradient(135deg,#f5d050,#f9a825,#ffd600);border:none;border-radius:50px;color:#1a0800;font-size:16px;font-weight:900;padding:11px 26px;cursor:pointer;box-shadow:0 4px 18px rgba(245,208,80,0.5);transition:transform 0.12s;letter-spacing:0.5px;animation:g10BtnGlow 2s ease-in-out infinite;}
+.g10-spin-btn:hover:not(:disabled){transform:scale(1.06);}
+.g10-spin-btn:disabled{opacity:0.28;cursor:not-allowed;animation:none;}
+@keyframes g10BtnGlow{0%,100%{box-shadow:0 4px 18px rgba(245,208,80,0.5);}50%{box-shadow:0 4px 32px rgba(255,214,0,0.95);}}
+/* Toast */
+.g10-toast{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.75);background:linear-gradient(145deg,#1a0d00,#2d1800);border:2.5px solid rgba(255,214,0,0.7);border-radius:22px;padding:20px 34px;text-align:center;opacity:0;pointer-events:none;z-index:20;transition:opacity 0.25s,transform 0.25s;white-space:nowrap;}
+.g10-toast.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.g10-toast-emoji{font-size:50px;display:block;margin-bottom:8px;line-height:1;}
+.g10-toast-text{font-size:22px;font-weight:900;color:#ffd93d;letter-spacing:0.5px;}
+.g10-toast-sub{font-size:13px;color:rgba(255,255,255,0.65);margin-top:5px;}
+/* Overlays */
+.g10-overlay{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:24px 20px;z-index:8;background:rgba(2,10,4,0.92);backdrop-filter:blur(6px);border-radius:inherit;}
+.g10-overlay.show{display:flex;}
+.g10-ov-title{font-size:34px;font-weight:900;background:linear-gradient(135deg,#f5d050,#ffd600,#fff176);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;}
+.g10-ov-sub{font-size:13px;opacity:0.68;max-width:300px;line-height:1.65;}
+.g10-ov-rules{background:rgba(255,215,0,0.07);border:1px solid rgba(255,215,0,0.18);border-radius:14px;padding:11px 18px;font-size:12px;color:rgba(255,215,0,0.72);text-align:right;direction:rtl;line-height:1.9;max-width:280px;}
+.g10-ov-btn{background:linear-gradient(135deg,#f5d050,#f9a825);border:none;border-radius:50px;color:#1a0800;font-size:17px;font-weight:900;padding:13px 40px;cursor:pointer;box-shadow:0 6px 24px rgba(245,208,80,0.5);animation:g9Pulse 2s ease-in-out infinite;letter-spacing:0.5px;margin-top:4px;}
+.g10-ov-btn:hover{transform:scale(1.05);}
+/* Card color */
+.gc-10{background:linear-gradient(145deg,#051a10,#0d4025);box-shadow:0 4px 22px rgba(0,200,100,0.18);}
+.gc-10:hover{box-shadow:0 8px 32px rgba(0,200,100,0.45);}
+
 /* ══ MOBILE RESPONSIVE ══ */
 @media (max-width:650px){
   /* Hide side ad strips */
@@ -499,6 +621,20 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   .g9-rules-grid{font-size:11px;gap:4px 12px;}
   .g9-ov-title{font-size:28px;}
   .g9-start-btn{font-size:16px;padding:11px 32px;}
+
+  /* Game 10 */
+  .g10-outer-wrap{gap:4px;padding:0 2px;max-width:100%;}
+  .g10-outer-wrap>.g10-wrap{padding:6px 5px 14px;}
+  .g10-history{width:48px;gap:4px;}
+  .g10-hist-entry{width:44px;padding:5px 2px 4px;}
+  .g10-hist-num{font-size:17px;}
+  .g10-hist-label{font-size:8px;}
+  .g10-cell{min-height:46px;}
+  .g10-cell-num{font-size:14px;}
+  .g10-ball{width:62px;height:62px;font-size:22px;}
+  .g10-title{font-size:17px;}
+  .g10-spin-btn{font-size:14px;padding:10px 20px;}
+  .g10-ov-title{font-size:26px;}
 }
 </style>
 </head>
@@ -672,6 +808,15 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
             <span class="card-icon">🥙</span>
             <div class="card-name">מלך הפלאפל</div>
             <div class="card-desc">תפוס פלאפלים לתוך הפיתה — היה המלך!</div>
+          </div>
+        </div>
+        <!-- Row: screen 10 -->
+        <div class="cards-row-soon" style="margin-top:4px;">
+          <div class="game-card gc-10" onclick="startFromCard(10)" style="cursor:pointer;">
+            <div class="card-num-badge">10</div>
+            <span class="card-icon">🎰</span>
+            <div class="card-name">קזינו 0-30</div>
+            <div class="card-desc">שים מטבעות על מספרים — נחש נכון וקבל ×9! (0 = ×12)</div>
           </div>
         </div>
       </div>
@@ -915,6 +1060,110 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   </div>
 </div>
 
+<!-- ══ GAME 10 — CASINO 0-30 ══ -->
+<div id="game10UI">
+  <div class="g10-outer-wrap">
+  <!-- History panel (newest on top) -->
+  <div class="g10-history" id="g10History">
+    <div class="g10-hist-label">📜<br>היסטוריה</div>
+  </div>
+  <div class="g10-wrap">
+    <!-- Header -->
+    <div class="g10-header">
+      <div class="g10-coins-hud">🪙 <span id="g10CoinsEl">40</span></div>
+      <div class="g10-title">🎰 CASINO 0-30</div>
+      <button class="g10-back-btn" onclick="g10ExitToMenu()">⬅ חזור</button>
+    </div>
+
+    <!-- Spinning ball + big coin counter -->
+    <div class="g10-result-area">
+      <div class="g10-result-info">
+        <div class="g10-result-label" id="g10Label">בחר מספרים ולחץ סובב!</div>
+        <div class="g10-ball" id="g10Ball">?</div>
+        <div class="g10-round-info" id="g10RoundInfo">סיבוב 0</div>
+      </div>
+      <div class="g10-coins-counter">
+        <div class="g10-coins-label">🪙 מטבעות</div>
+        <div class="g10-coins-big" id="g10BigCoins">40</div>
+        <div class="g10-coins-delta" id="g10CoinsDelta" style="opacity:0"></div>
+      </div>
+    </div>
+
+    <!-- Betting table -->
+    <div class="g10-table">
+      <!-- Zero -->
+      <div class="g10-zero-row">
+        <div class="g10-cell g10-cell-zero" id="g10cell0" onclick="g10Click(0)">
+          <div class="g10-cell-color-dot green"></div>
+          <span class="g10-cell-num">0</span>
+          <span class="g10-zero-mult">×12 🎯</span>
+          <div class="g10-cell-coins" id="g10coins0"></div>
+        </div>
+      </div>
+      <!-- 1-20 generated by JS -->
+      <div class="g10-nums-grid" id="g10Grid"></div>
+    </div>
+
+    <!-- Color side bet -->
+    <div class="g10-color-bet-row" id="g10ColorBetRow">
+      <div class="g10-color-bet-label">🎨 הימור צדדי — 5 🪙 על צבע:</div>
+      <div class="g10-color-bet-btns">
+        <div class="g10-col-wrap" id="g10ColWrapRed">
+          <button class="g10-col-btn g10-col-red" id="g10BetRed" onclick="g10ToggleColor('red')">🔴 אדום</button>
+        </div>
+        <div class="g10-col-wrap" id="g10ColWrapBlack">
+          <button class="g10-col-btn g10-col-blk" id="g10BetBlack" onclick="g10ToggleColor('black')">⚫ שחור</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="g10-controls">
+      <div class="g10-bet-info">
+        <div class="g10-bet-label">הימור: <span id="g10BetEl">0</span>/3 מטבעות</div>
+        <div class="g10-bet-pips">
+          <div class="g10-bet-pip" id="g10pip0"></div>
+          <div class="g10-bet-pip" id="g10pip1"></div>
+          <div class="g10-bet-pip" id="g10pip2"></div>
+        </div>
+      </div>
+      <button class="g10-clear-btn" onclick="g10ClearBets()">🗑️ נקה</button>
+      <button class="g10-spin-btn" id="g10SpinBtn" onclick="g10Spin()" disabled>🎲 סובב!</button>
+    </div>
+
+    <!-- Pop-up toast (win/lose message) -->
+    <div class="g10-toast" id="g10Toast">
+      <span class="g10-toast-emoji" id="g10ToastEmoji">🎉</span>
+      <div class="g10-toast-text" id="g10ToastText"></div>
+      <div class="g10-toast-sub" id="g10ToastSub"></div>
+    </div>
+
+    <!-- Start screen overlay -->
+    <div class="g10-overlay show" id="g10StartScreen">
+      <div class="g10-ov-title">🎰 קזינו 0-30</div>
+      <div style="font-size:52px">🪙</div>
+      <div class="g10-ov-sub">יש לך 40 מטבעות. בכל סיבוב שים עד 3 מטבעות על מספרים בין 0 ל-30. הכה נכון — קבל ×9 חזרה! (על 0: ×12 🎯)</div>
+      <div class="g10-ov-rules">
+        <div>🟢 לחץ מספר ← הוסף מטבע (עד 3 כולל)</div>
+        <div>🔄 לחץ שוב על מספר ← הסר מטבע</div>
+        <div>🎲 הסיכוי לנחש נכון: 1 מתוך 21</div>
+        <div>🏆 פיצוי: ×9 — כל מטבע על המספר הנכון</div>
+      </div>
+      <button class="g10-ov-btn" onclick="g10StartPlay()">🃏 התחל לשחק!</button>
+    </div>
+
+    <!-- Game over screen overlay -->
+    <div class="g10-overlay" id="g10OverScreen">
+      <div style="font-size:64px" id="g10OverEmoji">💸</div>
+      <div class="g10-ov-title" id="g10OverTitle">נגמרו המטבעות!</div>
+      <div class="g10-ov-sub" id="g10OverSub"></div>
+      <button class="g10-ov-btn" onclick="g10StartPlay()">🔄 שחק שוב</button>
+      <button class="g10-back-btn" style="margin-top:6px" onclick="g10ExitToMenu()">⬅ חזור לתפריט</button>
+    </div>
+  </div><!-- end g10-wrap -->
+  </div><!-- end g10-outer-wrap -->
+</div>
+
 <!-- ══ WIN/LOSE OVERLAY ══ -->
 <div id="overlay">
   <div class="modal">
@@ -1058,6 +1307,7 @@ function hideGame(){
   document.getElementById('g7Celebrate').classList.remove('show');
   g8ExitToMenu&&g8ExitToMenu(true);
   g9ExitToMenu&&g9ExitToMenu(true);
+  g10ExitToMenu&&g10ExitToMenu(true);
 }
 function goHome(){navTo('mainPage');}
 
@@ -1078,6 +1328,7 @@ function startFromCard(lvl){
   if(lvl===7){startGame7();return;}
   if(lvl===8){startGame8();return;}
   if(lvl===9){startGame9();return;}
+  if(lvl===10){startGame10();return;}
   const g=document.getElementById('gameUI');g.style.display='flex';g.classList.add('show');
   currentScore=0;lives=3;startLevel(lvl);
 }
@@ -3123,6 +3374,351 @@ function g9ExitToMenu(silent){
   g9El('game9UI').classList.remove('show');
   g9El('g9StartScreen').classList.remove('show');
   g9El('g9OverScreen').classList.remove('show');
+  if(!silent)navTo('mainPage');
+}
+
+// ── Game 10: Casino 0-30 ─────────────────────────────────────────────────────
+let g10={coins:40,bets:{},totalBet:0,spinning:false,round:0,active:false,built:false,history:[],colorBet:null};
+function g10El(id){return document.getElementById(id);}
+
+function g10AddHistory(round,result,won,mult,resultColor){
+  const clr=resultColor||g10NumColor(result);
+  g10.history.unshift({round,result,won,mult,clr});
+  const hist=g10El('g10History');
+  if(!hist)return;
+  const entry=document.createElement('div');
+  entry.className='g10-hist-entry '+(won?'win':'lose');
+  entry.innerHTML='<div class="g10-hist-num clr-'+clr+'">'+result+'</div>';
+  // Insert right after the title label
+  const label=hist.querySelector('.g10-hist-label');
+  if(label){hist.insertBefore(entry,label.nextSibling);}
+  else{hist.prepend(entry);}
+}
+
+function g10ClearHistory(){
+  g10.history=[];
+  const hist=g10El('g10History');
+  if(!hist)return;
+  hist.querySelectorAll('.g10-hist-entry').forEach(e=>e.remove());
+}
+
+// Color helper: 0=green, odd=red, even=black
+function g10NumColor(n){return n===0?'green':n%2===1?'red':'black';}
+
+function g10ToggleColor(color){
+  if(g10.spinning||!g10.active)return;
+  if(g10.colorBet===color){g10.colorBet=null;}
+  else{
+    if(g10.coins<5){g10FlashLimit();return;}
+    g10.colorBet=color;
+  }
+  g10UpdateColorBetUI();
+}
+
+function g10UpdateColorBetUI(){
+  const rb=g10El('g10BetRed'),bb=g10El('g10BetBlack');
+  if(!rb||!bb)return;
+  rb.classList.toggle('sel',g10.colorBet==='red');
+  bb.classList.toggle('sel',g10.colorBet==='black');
+  const canAfford=g10.coins>=5;
+  rb.disabled=g10.spinning||(!canAfford&&g10.colorBet!=='red');
+  bb.disabled=g10.spinning||(!canAfford&&g10.colorBet!=='black');
+}
+
+function g10HighlightColorResult(resultColor,colorWon){
+  if(resultColor==='green')return; // 0 is neither red nor black
+  const btnId=resultColor==='red'?'g10BetRed':'g10BetBlack';
+  const wrapId=resultColor==='red'?'g10ColWrapRed':'g10ColWrapBlack';
+  const el=g10El(btnId);
+  const wrap=g10El(wrapId);
+  // Green glow only if user bet on this color and won
+  if(el&&colorWon)el.classList.add('g10-col-result-win');
+  // Trophy always shows on the result color
+  if(wrap&&!g10El('g10ColorTrophyEl')){
+    const t=document.createElement('span');
+    t.className='g10-col-trophy';t.id='g10ColorTrophyEl';t.textContent='🏆';
+    wrap.appendChild(t);
+  }
+}
+
+function g10ResetColorBetHighlight(){
+  ['g10BetRed','g10BetBlack'].forEach(id=>{
+    const el=g10El(id);
+    if(el)el.classList.remove('g10-col-result-win','g10-col-result-lose');
+  });
+  // Trophy span is removed only when next spin starts
+}
+
+function startGame10(){
+  // Build number grid once
+  if(!g10.built){
+    const grid=g10El('g10Grid');
+    for(let n=1;n<=30;n++){
+      const isOdd=n%2===1;
+      const cell=document.createElement('div');
+      cell.className='g10-cell '+(isOdd?'g10-cell-red':'g10-cell-black');
+      cell.id='g10cell'+n;
+      cell.innerHTML='<div class="g10-cell-color-dot '+(isOdd?'red':'black')+'"></div><span class="g10-cell-num">'+n+'</span><div class="g10-cell-coins" id="g10coins'+n+'"></div>';
+      cell.addEventListener('click',()=>g10Click(n));
+      grid.appendChild(cell);
+    }
+    g10.built=true;
+  }
+  g10El('game10UI').classList.add('show');
+  g10El('g10StartScreen').classList.add('show');
+  g10El('g10OverScreen').classList.remove('show');
+  g10.active=false;
+}
+
+function g10StartPlay(){
+  g10El('g10StartScreen').classList.remove('show');
+  g10El('g10OverScreen').classList.remove('show');
+  g10.coins=40;g10.bets={};g10.totalBet=0;g10.spinning=false;g10.round=0;g10.active=true;g10.colorBet=null;
+  const ot=g10El('g10TrophyEl');if(ot){ot.parentElement.style.paddingRight='';ot.remove();}
+  const oct=g10El('g10ColorTrophyEl');if(oct)oct.remove();
+  g10ResetColorBetHighlight();
+  g10ClearHistory();
+  g10UpdateColorBetUI();
+  const ball=g10El('g10Ball');
+  ball.textContent='?';ball.className='g10-ball';
+  g10El('g10Label').textContent='בחר מספרים ולחץ סובב!';
+  g10El('g10RoundInfo').textContent='סיבוב 0';
+  // Clear all highlights
+  for(let n=0;n<=30;n++){const c=g10El('g10cell'+n);if(c)c.classList.remove('g10-winner','g10-loser');}
+  // Reset big counter (no animation on fresh start)
+  const bigEl=g10El('g10BigCoins');
+  if(bigEl){bigEl.textContent='40';bigEl.className='g10-coins-big';}
+  const deltaEl=g10El('g10CoinsDelta');
+  if(deltaEl){deltaEl.style.opacity='0';deltaEl.textContent='';}
+  g10UpdateUI();
+}
+
+function g10Click(num){
+  if(g10.spinning||!g10.active)return;
+  const cur=g10.bets[num]||0;
+  if(cur===0){
+    // Add coin if budget allows
+    if(g10.totalBet>=3){g10FlashLimit();return;}
+    g10.bets[num]=1;g10.totalBet++;
+  } else if(cur<3&&g10.totalBet<3){
+    // Add another coin
+    g10.bets[num]=cur+1;g10.totalBet++;
+  } else {
+    // Remove all coins from this number
+    g10.totalBet-=cur;g10.bets[num]=0;
+  }
+  g10UpdateUI();
+}
+
+function g10ClearBets(){
+  if(g10.spinning)return;
+  g10.bets={};g10.totalBet=0;
+  g10.colorBet=null;
+  const oldTrophy=g10El('g10TrophyEl');if(oldTrophy){oldTrophy.parentElement.style.paddingRight='';oldTrophy.remove();}
+  g10UpdateColorBetUI();
+  g10UpdateUI();
+}
+
+function g10FlashLimit(){
+  const el=g10El('g10BetEl');
+  el.style.color='#ff4444';el.style.fontWeight='900';
+  setTimeout(()=>{el.style.color='';el.style.fontWeight='';},500);
+}
+
+// Animate the big coin counter (dir: 'down'|'up'|'' for neutral)
+function g10AnimateCoins(newVal,dir,delta){
+  const bigEl=g10El('g10BigCoins');
+  const deltaEl=g10El('g10CoinsDelta');
+  if(!bigEl)return;
+  bigEl.className='g10-coins-big'+(dir?' g10-c-'+dir:'');
+  bigEl.textContent=newVal;
+  g10El('g10CoinsEl').textContent=newVal;
+  if(deltaEl&&delta!==undefined){
+    deltaEl.textContent=(delta>0?'+':'')+delta;
+    deltaEl.style.color=delta>0?'#6bcb77':'#ff6b6b';
+    deltaEl.style.opacity='1';
+    clearTimeout(deltaEl._t);
+    deltaEl._t=setTimeout(()=>deltaEl.style.opacity='0',1600);
+  }
+}
+
+function g10UpdateUI(){
+  g10El('g10CoinsEl').textContent=g10.coins;
+  // Keep big counter synced (no animation during bet placement)
+  const bigEl=g10El('g10BigCoins');
+  if(bigEl&&bigEl.textContent!==String(g10.coins)&&!g10.spinning)bigEl.textContent=g10.coins;
+  g10El('g10BetEl').textContent=g10.totalBet;
+  // Bet pips
+  for(let i=0;i<3;i++){
+    const p=g10El('g10pip'+i);
+    if(p)p.classList.toggle('on',i<g10.totalBet);
+  }
+  // Cell bet display
+  for(let n=0;n<=30;n++){
+    const cell=g10El('g10cell'+n);
+    const coinsEl=g10El('g10coins'+n);
+    if(!cell||!coinsEl)continue;
+    const cnt=g10.bets[n]||0;
+    cell.classList.toggle('has-bet',cnt>0);
+    coinsEl.innerHTML='';
+    for(let i=0;i<cnt;i++){
+      const pip=document.createElement('div');
+      pip.className='g10-coin-pip';
+      coinsEl.appendChild(pip);
+    }
+  }
+  const spinBtn=g10El('g10SpinBtn');
+  if(spinBtn)spinBtn.disabled=(g10.totalBet===0||g10.spinning);
+  g10UpdateColorBetUI();
+}
+
+function g10Spin(){
+  if(g10.spinning||g10.totalBet===0||!g10.active)return;
+  // Remove previous round trophy markers
+  const oldTrophy=g10El('g10TrophyEl');
+  if(oldTrophy){oldTrophy.parentElement.style.paddingRight='';oldTrophy.remove();}
+  const oldColorTrophy=g10El('g10ColorTrophyEl');if(oldColorTrophy)oldColorTrophy.remove();
+  g10ResetColorBetHighlight();
+  g10.spinning=true;
+  g10.round++;
+  g10El('g10RoundInfo').textContent='סיבוב '+g10.round;
+
+  // Deduct main bet + color side bet upfront
+  const spent=g10.totalBet;
+  let colorSpent=g10.colorBet?5:0;
+  // Guard: can't afford color bet
+  if(g10.colorBet&&g10.coins<spent+colorSpent){g10.colorBet=null;colorSpent=0;g10UpdateColorBetUI();}
+  const totalDeducted=spent+colorSpent;
+  g10.coins-=totalDeducted;
+  g10AnimateCoins(g10.coins,'down',-totalDeducted);
+
+  // Determine result before animation
+  const result=Math.floor(Math.random()*31);
+
+  // Animate ball spinning with deceleration
+  const ball=g10El('g10Ball');
+  ball.dataset.color='';
+  ball.className='g10-ball g10-spin';
+  g10El('g10Label').textContent='מסתובב... 🎲';
+  g10El('g10SpinBtn').disabled=true;
+
+  // Tick speeds: fast → slow
+  const schedule=[55,55,60,65,70,80,95,110,130,155,180,210,240];
+  let tick=0;
+  const totalTicks=schedule.length+8;
+
+  function nextTick(){
+    if(tick<totalTicks){
+      ball.textContent=Math.floor(Math.random()*31);
+      const delay=tick<schedule.length?schedule[tick]:schedule[schedule.length-1];
+      tick++;
+      setTimeout(nextTick,delay);
+    } else {
+      // ── Land on result ──
+      ball.textContent=result;
+      ball.className='g10-ball';
+      ball.dataset.color=g10NumColor(result);
+      // Show trophy on result cell (right side, number stays visible)
+      const trophyCell=g10El('g10cell'+result);
+      if(trophyCell){
+        const t=document.createElement('div');t.className='g10-cell-trophy';t.id='g10TrophyEl';t.textContent='🏆';
+        trophyCell.appendChild(t);
+        trophyCell.style.paddingRight='26px';
+      }
+
+      // Resolve main number bet
+      const wonCoins=g10.bets[result]||0;
+      let mainWon=false,colorWon=false,mainMult=0,totalGain=0;
+      if(wonCoins>0){
+        mainMult=result===0?12:9;
+        totalGain+=wonCoins*mainMult;
+        mainWon=true;
+      }
+
+      // Resolve color side bet
+      const resultColor=g10NumColor(result);
+      const savedColorBet=g10.colorBet; // save before clear
+      if(savedColorBet&&resultColor===savedColorBet){totalGain+=10;colorWon=true;}
+
+      // Apply gains
+      if(totalGain>0)g10.coins+=totalGain;
+
+      // Build display texts
+      const cIcon=savedColorBet==='red'?'🔴':'⚫';
+      let labelText,toastEmoji,toastTitle,toastSub;
+      if(mainWon&&colorWon){
+        labelText='🎊 יצא '+result+' — כפול!';
+        toastEmoji='🎊';toastTitle='כפול! מספר + צבע!';
+        toastSub='מספר ×'+mainMult+': +'+(wonCoins*mainMult)+' 🪙   '+cIcon+' צבע: +10 🪙   סה"כ: +'+totalGain+' 🪙';
+      } else if(mainWon){
+        labelText='🎉 יצא '+result+'!';
+        toastEmoji='🎉';toastTitle='ניצחת! +'+(wonCoins*mainMult)+' 🪙';
+        toastSub='מספר '+result+' — '+wonCoins+(wonCoins===1?' מטבע':' מטבעות')+' × '+mainMult+' = '+(wonCoins*mainMult)+(colorSpent>0?'   '+cIcon+' צבע שגוי':'');
+      } else if(colorWon){
+        labelText=(resultColor==='red'?'🔴':'⚫')+' יצא '+result+' — צבע נכון!';
+        toastEmoji='😌';toastTitle=cIcon+' צבע נכון! +10 🪙';
+        toastSub='מספר '+result+(spent>0?'   מספר שגוי (-'+spent+' 🪙)':'');
+      } else {
+        labelText='😬 יצא '+result;
+        toastEmoji='😬';toastTitle='יצא '+result;
+        toastSub='לא פגעת — הפסדת '+(totalDeducted===1?'מטבע אחד':totalDeducted+' מטבעות');
+      }
+
+      ball.className='g10-ball '+(mainWon||colorWon?'g10-win':'g10-lose');
+      g10El('g10Label').textContent=labelText;
+      if(totalGain>0)g10AnimateCoins(g10.coins,'up',+totalGain);
+
+      // Highlight cells
+      for(let n=0;n<=30;n++){
+        const c=g10El('g10cell'+n);if(!c)continue;
+        if(n===result&&mainWon){c.classList.add('g10-winner');}
+        else if((g10.bets[n]||0)>0){c.classList.add('g10-loser');}
+      }
+
+      // Highlight color bet button result (always show which color came up)
+      g10HighlightColorResult(resultColor,colorWon);
+
+      g10ShowToast(toastEmoji,toastTitle,toastSub);
+      g10AddHistory(g10.round,result,mainWon||colorWon,mainMult,resultColor);
+
+      // After showing result, reset or game over
+      setTimeout(()=>{
+        g10HideToast();
+        g10ResetColorBetHighlight();
+        for(let n=0;n<=30;n++){
+          const c=g10El('g10cell'+n);
+          if(c)c.classList.remove('g10-winner','g10-loser');
+        }
+        if(g10.coins<=0){
+          g10El('g10OverEmoji').textContent='💸';
+          g10El('g10OverTitle').textContent='נגמרו המטבעות!';
+          g10El('g10OverSub').textContent='שיחקת '+g10.round+' סיבובים — אין יותר מטבעות!';
+          g10El('g10OverScreen').classList.add('show');
+          g10.active=false;
+        } else {
+          g10.spinning=false;
+          ball.className='g10-ball';ball.textContent='?';
+          g10El('g10Label').textContent='🪙 '+g10.coins+' מטבעות — בחר שוב!';
+          const bc=g10El('g10BigCoins');if(bc)bc.className='g10-coins-big';
+          g10UpdateUI();
+        }
+      },2400);
+    }
+  }
+  nextTick();
+}
+
+function g10ShowToast(emoji,text,sub){
+  g10El('g10ToastEmoji').textContent=emoji;
+  g10El('g10ToastText').textContent=text;
+  g10El('g10ToastSub').textContent=sub;
+  g10El('g10Toast').classList.add('show');
+}
+function g10HideToast(){g10El('g10Toast').classList.remove('show');}
+
+function g10ExitToMenu(silent){
+  g10.spinning=false;g10.active=false;
+  g10El('game10UI').classList.remove('show');
   if(!silent)navTo('mainPage');
 }
 
