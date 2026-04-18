@@ -347,7 +347,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 </nav>
 
 <!-- ══ NAME SCREEN ══ -->
-<div id="nameScreen">
+<div id="nameScreen" class="show">
   <!-- Floating background emojis -->
   <div class="ns-float" style="top:7%;left:9%;font-size:44px;animation-delay:0s">🎮</div>
   <div class="ns-float" style="top:14%;right:11%;font-size:34px;animation-delay:1.1s">⚡</div>
@@ -363,7 +363,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   <div class="ns-card">
     <span class="ns-logo">🎮</span>
     <div class="ns-title">מצ'עמם לי</div>
-    <div class="ns-tagline">מותר לך להשתעמם טיפה..<br>כנסו פנימה לעולם שכולו כיף 🎉</div>
+    <div class="ns-tagline">מותר לכם להצ'טעמם טיפה. גם אם זה בעבודה 😏<br>שחקו במלא משחקים שאולי יגרמו לכם להצ'טעמם פחות..</div>
     <div class="ns-label">מה השם שלך?</div>
     <input class="ns-input" type="text" id="nameInput" placeholder="הכנס שם..." maxlength="18"
       onkeydown="if(event.key==='Enter')submitName()">
@@ -646,7 +646,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
       <a class="form-submit" href="mailto:goldsharon@gmail.com" style="display:block;text-align:center;text-decoration:none;">📩 שלחו מייל ל־goldsharon@gmail.com</a>
     </div>
     <div class="advert-email">לחיצה על הכפתור תפתח את תוכנת המייל שלכם ישירות</div>
-    <div class="advert-email" style="margin-top:14px;font-size:13px;opacity:0.7;line-height:1.7;">😅 נראה לכם יש לי כסף לזה?<br>אם בא לכם לפרסם או לשלוח לי פידבק — תרגישו חופשי לשלוח מייל גם אם לא ישירות מפה..</div>
+    <div class="advert-email" style="margin-top:14px;font-size:13px;opacity:0.7;line-height:1.7;">אם בא לכם לשלוח לי פידבק — תרגישו חופשי לשלוח לי מייל 😊</div>
   </div>
 </div>
 
@@ -1775,8 +1775,14 @@ if(!CanvasRenderingContext2D.prototype.roundRect){
 
 // ── Boot ───────────────────────────────────────────────────────────────────────
 playerName=localStorage.getItem('kbs_name')||'';
-if(!playerName){showNameScreen();}
-else{document.getElementById('greetName').textContent=playerName;navTo('mainPage');}
+// Always show name screen — pre-fill if returning user
+const _saved=playerName;
+showNameScreen();
+if(_saved){
+  const _inp=document.getElementById('nameInput');
+  _inp.value=_saved;
+  _inp.select();
+}
 </script>
 </body>
 </html>
