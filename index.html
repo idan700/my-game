@@ -200,9 +200,140 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 .glb-rank{width:22px;font-size:14px;}
 .glb-score{color:#f1c40f;font-weight:700;}
 .glb-right{display:flex;flex-direction:column;gap:6px;min-width:130px;}
+
+/* ── SIX SEVEN (Game 7) — CASINO ── */
+#game7UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,#0d3d14 0%,#061e0a 55%,#020d04 100%);flex-direction:column;align-items:center;z-index:90;padding:62px 12px 28px;overflow-y:auto;}
+#game7UI.show{display:flex;}
+.g7-casino-header{width:100%;max-width:560px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.g7-casino-title{font-size:26px;font-weight:900;letter-spacing:3px;background:linear-gradient(135deg,#f5d050,#ffd600,#fff176,#f9a825);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 10px rgba(245,208,80,0.5));animation:g7TitleGlow 2.5s ease-in-out infinite alternate;}
+@keyframes g7TitleGlow{from{filter:drop-shadow(0 0 6px rgba(245,208,80,0.35));}to{filter:drop-shadow(0 0 20px rgba(255,214,0,0.8));}}
+.g7-target-row{width:100%;max-width:560px;display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.g7-target-side{flex:1;}
+.g7-target-label{font-size:10px;color:rgba(255,215,0,0.65);text-align:center;margin-bottom:4px;letter-spacing:0.5px;font-weight:700;text-transform:uppercase;}
+.g7-prog-bar{height:10px;border-radius:5px;background:rgba(0,0,0,0.5);border:1px solid rgba(255,215,0,0.15);overflow:hidden;}
+.g7-prog-fill-plr{height:100%;background:linear-gradient(90deg,#2e7d32,#66bb6a,#a5d6a7);border-radius:5px;width:0%;transition:width 0.6s cubic-bezier(.4,0,.2,1);}
+.g7-prog-fill-cpu{height:100%;background:linear-gradient(90deg,#b71c1c,#e53935,#ef9a9a);border-radius:5px;width:0%;transition:width 0.6s cubic-bezier(.4,0,.2,1);}
+.g7-vs-badge{background:linear-gradient(135deg,#f5d050,#f9a825);color:#1a0800;font-size:12px;font-weight:900;padding:5px 11px;border-radius:20px;letter-spacing:2px;flex-shrink:0;box-shadow:0 2px 10px rgba(245,208,80,0.4);}
+.g7-arena{width:100%;max-width:560px;display:flex;gap:10px;margin-bottom:12px;}
+.g7-panel{flex:1;border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;border:2px solid;position:relative;overflow:hidden;}
+.g7-panel::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.012) 14px,rgba(255,255,255,0.012) 28px);pointer-events:none;}
+.g7-panel-plr{background:linear-gradient(160deg,#0a2c0f,#051408);border-color:rgba(76,175,80,0.4);}
+.g7-panel-cpu{background:linear-gradient(160deg,#2c0a0a,#140505);border-color:rgba(244,67,54,0.4);}
+.g7-panel.winner{box-shadow:0 0 40px rgba(255,215,0,0.6);border-color:rgba(255,215,0,0.8) !important;animation:g7WinPop 0.55s ease;}
+@keyframes g7WinPop{0%{transform:scale(1);}35%{transform:scale(1.05);}100%{transform:scale(1);}}
+.g7-robot-art{font-size:52px;line-height:1;filter:drop-shadow(0 0 10px rgba(244,67,54,0.6));}
+.g7-player-art{font-size:52px;line-height:1;filter:drop-shadow(0 0 10px rgba(76,175,80,0.6));}
+.g7-panel-name{font-size:13px;font-weight:800;letter-spacing:0.5px;text-align:center;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 4px;}
+.g7-panel-name-plr{color:#81c784;}
+.g7-panel-name-cpu{color:#e57373;}
+.g7-score-chip{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;border:3px solid;box-shadow:0 4px 16px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.25);position:relative;}
+.g7-score-chip::before{content:'';position:absolute;inset:4px;border-radius:50%;border:1.5px dashed rgba(255,255,255,0.22);}
+.g7-sc-plr{background:radial-gradient(circle,#2e7d32,#1b5e20);border-color:#4caf50;color:#e8f5e9;}
+.g7-sc-cpu{background:radial-gradient(circle,#b71c1c,#7f0000);border-color:#f44336;color:#ffebee;}
+.g7-dice-row{display:flex;gap:8px;justify-content:center;}
+.g7-die{width:58px;height:58px;background:linear-gradient(145deg,#f5f5f5,#ddd);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;font-family:'Segoe UI',Arial,sans-serif;color:#1a1a1a;box-shadow:0 5px 18px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.9);line-height:1;border:2px solid #bbb;}
+.g7-die.rolling{animation:g7DieRoll 0.07s linear infinite;}
+@keyframes g7DieRoll{0%{transform:rotate(-14deg) scale(1.08);}50%{transform:rotate(14deg) scale(0.92);}100%{transform:rotate(-14deg) scale(1.08);}}
+.g7-sum-badge{font-size:15px;font-weight:900;padding:4px 14px;border-radius:20px;background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.1);min-height:28px;display:flex;align-items:center;justify-content:center;min-width:80px;letter-spacing:0.5px;color:rgba(255,255,255,0.72);}
+.g7-sum-badge.special-sum,.g7-sum-badge.special-7{background:linear-gradient(135deg,#f57f17,#ffd600) !important;color:#1a0800 !important;border-color:#ffd600 !important;font-size:17px;animation:g7SumPulse 0.45s ease-in-out infinite alternate;}
+.g7-sum-badge.special-6{background:linear-gradient(135deg,#1565c0,#42a5f5) !important;color:#fff !important;border-color:#42a5f5 !important;font-size:17px;animation:g7SumPulse 0.45s ease-in-out infinite alternate;}
+@keyframes g7SumPulse{from{box-shadow:0 0 10px rgba(255,214,0,0.6);}to{box-shadow:0 0 28px rgba(255,214,0,1);}}
+.g7-mini-chips{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;min-height:26px;align-items:center;max-width:140px;}
+.g7-mini-chip{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;border:1.5px solid;box-shadow:0 2px 5px rgba(0,0,0,0.4);}
+.g7-mc-6-plr{background:linear-gradient(145deg,#1b5e20,#388e3c);border-color:#66bb6a;color:#c8f5ca;}
+.g7-mc-7-plr{background:linear-gradient(145deg,#f57f17,#ffa000);border-color:#ffd600;color:#3e2000;}
+.g7-mc-6-cpu{background:linear-gradient(145deg,#7f0000,#c62828);border-color:#ef9a9a;color:#ffcdd2;}
+.g7-mc-7-cpu{background:linear-gradient(145deg,#e65100,#f57c00);border-color:#ffcc02;color:#3e1500;}
+.g7-chips-label{font-size:9px;color:rgba(255,215,0,0.45);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.g7-result-msg{width:100%;max-width:560px;text-align:center;font-size:16px;font-weight:800;min-height:24px;padding:2px 0;letter-spacing:0.3px;}
+.g7-result-msg.win{color:#81c784;}
+.g7-result-msg.lose{color:#e57373;}
+.g7-result-msg.tie{color:#ffd93d;}
+.g7-roll-btn{background:linear-gradient(135deg,#f5d050,#f9a825,#ffd600);border:none;border-radius:50px;color:#1a0800;font-size:20px;font-weight:900;padding:15px 52px;cursor:pointer;box-shadow:0 6px 28px rgba(245,208,80,0.45);transition:transform 0.15s;animation:g7BtnGlow 2s ease-in-out infinite;letter-spacing:1px;margin-top:4px;}
+.g7-roll-btn:hover:not(:disabled){transform:scale(1.07);}
+.g7-roll-btn:disabled{opacity:0.28;cursor:not-allowed;animation:none;}
+/* Bet row */
+.g7-bet-row{display:flex;align-items:center;gap:7px;width:100%;max-width:560px;justify-content:center;flex-wrap:wrap;margin:6px 0 2px;}
+.g7-bet-label{font-size:11px;color:rgba(255,215,0,0.55);font-weight:700;letter-spacing:1px;text-transform:uppercase;width:100%;text-align:center;margin-bottom:2px;}
+.g7-bet-btn{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.15);border-radius:14px;color:rgba(255,255,255,0.62);font-size:13px;font-weight:800;padding:9px 16px;cursor:pointer;text-align:center;line-height:1.35;transition:all 0.18s;min-width:88px;direction:rtl;}
+.g7-bet-btn:hover:not(:disabled){background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.28);}
+.g7-bet-btn:disabled{opacity:0.25;cursor:not-allowed;}
+.g7-bet-btn.active-7{background:linear-gradient(135deg,#f57f17,#ffd600) !important;color:#1a0800 !important;border-color:#ffd600 !important;box-shadow:0 0 18px rgba(255,214,0,0.55);transform:scale(1.06);}
+.g7-bet-btn.active-6{background:linear-gradient(135deg,#1565c0,#42a5f5) !important;color:#fff !important;border-color:#42a5f5 !important;box-shadow:0 0 18px rgba(66,165,245,0.55);transform:scale(1.06);}
+.g7-bet-btn.active-none{background:rgba(255,255,255,0.14) !important;border-color:rgba(255,255,255,0.4) !important;color:#fff !important;}
+.g7-rules-hint{width:100%;max-width:560px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,215,0,0.12);border-radius:14px;padding:10px 16px;margin-top:10px;display:flex;flex-direction:column;gap:5px;direction:rtl;}
+.g7-rules-hint span{font-size:12px;color:rgba(255,255,255,0.62);line-height:1.5;}
+.g7-rules-hint b{color:rgba(255,215,0,0.85);font-weight:800;}
+@keyframes g7BtnGlow{0%,100%{box-shadow:0 6px 28px rgba(245,208,80,0.45);}50%{box-shadow:0 6px 44px rgba(255,214,0,0.85);}}
+.g7-back-btn{background:none;border:1px solid rgba(255,215,0,0.22);border-radius:10px;color:rgba(255,215,0,0.48);padding:8px 20px;font-size:13px;cursor:pointer;transition:all 0.2s;}
+.g7-back-btn:hover{border-color:rgba(255,215,0,0.6);color:#ffd93d;}
+#g7Celebrate{display:none;position:fixed;inset:0;align-items:center;justify-content:center;z-index:98;pointer-events:none;flex-direction:column;gap:10px;}
+#g7Celebrate.show{display:flex;}
+.g7-celeb-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.58);animation:g7CelebBd 2.5s ease forwards;}
+@keyframes g7CelebBd{0%{opacity:0;}15%{opacity:1;}75%{opacity:1;}100%{opacity:0;}}
+.g7-celeb-num{font-size:130px;font-weight:900;line-height:1;position:relative;z-index:2;filter:drop-shadow(0 0 50px rgba(255,215,0,0.95));animation:g7CelebNum 2.5s ease forwards;}
+@keyframes g7CelebNum{0%{transform:scale(0.2) rotate(-20deg);opacity:0;}18%{transform:scale(1.2) rotate(4deg);opacity:1;}35%{transform:scale(0.95) rotate(-1deg);opacity:1;}70%{transform:scale(1) rotate(0);opacity:1;}100%{transform:scale(1.5);opacity:0;}}
+.g7-celeb-text{font-size:28px;font-weight:900;color:#ffd93d;text-shadow:0 0 30px rgba(255,215,0,0.9),0 0 60px rgba(255,215,0,0.5);position:relative;z-index:2;letter-spacing:2px;animation:g7CelebTxt 2.5s ease forwards;}
+@keyframes g7CelebTxt{0%,15%{opacity:0;transform:translateY(22px);}30%{opacity:1;transform:translateY(0);}72%{opacity:1;}100%{opacity:0;}}
+#g7GameOver{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;z-index:96;flex-direction:column;gap:14px;text-align:center;padding:20px;}
+#g7GameOver.show{display:flex;}
+.g7-go-emoji{font-size:84px;animation:nsBob 2s ease-in-out infinite;}
+.g7-go-title{font-size:38px;font-weight:900;}
+.g7-go-sub{font-size:15px;opacity:0.65;}
+.g7-go-play-btn{background:linear-gradient(135deg,#f5d050,#f9a825);border:none;border-radius:50px;color:#1a0800;font-size:18px;font-weight:900;padding:15px 44px;cursor:pointer;margin-top:8px;box-shadow:0 4px 20px rgba(245,208,80,0.45);}
 .glb-pb{background:rgba(255,255,255,0.05);border-radius:8px;padding:5px 10px;text-align:center;}
 .glb-pb-label{font-size:9px;opacity:0.45;margin-bottom:2px;}
 .glb-pb-val{font-size:15px;font-weight:700;color:#f1c40f;}
+
+/* ── JUMP OVER THE BOSS (Game 8) ── */
+#game8UI{display:none;position:fixed;inset:0;background:#e8eeff;flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow:hidden;}
+#game8UI.show{display:flex;}
+.g8-wrap{position:relative;display:flex;flex-direction:column;align-items:center;width:100%;height:100%;max-width:500px;margin:0 auto;}
+.g8-hud{width:100%;display:flex;align-items:center;justify-content:space-between;padding:5px 10px 3px;flex-shrink:0;gap:6px;}
+.g8-hud-chip{background:rgba(30,60,180,0.12);border:1px solid rgba(30,60,180,0.2);padding:5px 13px;border-radius:20px;font-size:13px;font-weight:800;color:#1a237e;white-space:nowrap;cursor:default;}
+.g8-hud-chip.clickable{cursor:pointer;transition:background 0.15s;}.g8-hud-chip.clickable:hover{background:rgba(30,60,180,0.22);}
+.g8-score-chip{background:linear-gradient(135deg,#ff6b00,#ffd93d) !important;color:#1a0800 !important;font-size:17px !important;font-weight:900 !important;border:none !important;box-shadow:0 0 14px rgba(255,180,0,0.45);}
+#g8Canvas{display:block;border-radius:12px;box-shadow:0 8px 32px rgba(30,60,180,0.18);width:100%;max-width:500px;touch-action:none;}
+.g8-overlay{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(230,236,255,0.92);backdrop-filter:blur(6px);border-radius:12px;z-index:5;padding:20px;text-align:center;direction:rtl;}
+.g8-overlay.show{display:flex;}
+.g8-title{font-size:30px;font-weight:900;color:#1a237e;letter-spacing:1px;}
+.g8-sub{font-size:14px;color:#3949ab;max-width:280px;line-height:1.6;}
+.g8-rules{display:flex;flex-direction:column;gap:5px;font-size:13px;color:#283593;background:rgba(255,255,255,0.7);border-radius:12px;padding:10px 18px;max-width:280px;}
+.g8-rules span{line-height:1.6;}
+.g8-start-btn{background:linear-gradient(135deg,#1565c0,#42a5f5);border:none;border-radius:50px;color:#fff;font-size:18px;font-weight:900;padding:13px 40px;cursor:pointer;box-shadow:0 6px 22px rgba(21,101,192,0.45);transition:transform 0.15s;letter-spacing:1px;}
+.g8-start-btn:hover{transform:scale(1.05);}
+.g8-ctrl{font-size:11px;color:#7986cb;margin-top:2px;}
+.g8-over-emoji{font-size:64px;}
+.g8-over-score{font-size:24px;font-weight:900;color:#1a237e;}
+.g8-back-btn{background:rgba(255,255,255,0.7);border:1.5px solid #90caf9;border-radius:50px;color:#1565c0;font-size:14px;font-weight:700;padding:9px 26px;cursor:pointer;}
+.g8-jump-btn{background:linear-gradient(135deg,#1565c0,#42a5f5);border:none;border-radius:50px;color:#fff;font-size:16px;font-weight:900;padding:13px 44px;cursor:pointer;box-shadow:0 6px 22px rgba(21,101,192,0.5);margin-top:10px;flex-shrink:0;}
+
+/* ── FALAFEL KING (Game 9) ── */
+#game9UI{display:none;position:fixed;inset:0;background:#1a0800;align-items:center;justify-content:flex-start;z-index:90;padding-top:52px;overflow:hidden;}
+#game9UI.show{display:flex;}
+.g9-wrap{position:relative;display:flex;flex-direction:column;align-items:center;width:100%;height:100%;max-width:460px;margin:0 auto;}
+.g9-hud{width:100%;display:flex;align-items:center;justify-content:space-between;padding:6px 10px 4px;flex-shrink:0;gap:5px;}
+.g9-hud-chip{background:rgba(255,255,255,0.1);padding:5px 10px;border-radius:20px;font-size:13px;font-weight:700;color:#fff;white-space:nowrap;cursor:default;}
+.g9-hud-chip.clickable{cursor:pointer;transition:background 0.15s;}.g9-hud-chip.clickable:hover{background:rgba(255,255,255,0.2);}
+.g9-hearts-chip{font-size:16px;letter-spacing:1px;}
+.g9-score-chip{background:linear-gradient(135deg,#ff6b00,#ffd93d) !important;color:#1a0800 !important;font-size:20px !important;font-weight:900 !important;padding:7px 18px !important;border-radius:24px !important;box-shadow:0 0 16px rgba(255,180,0,0.55),0 2px 8px rgba(0,0,0,0.4);animation:g9ScoreGlow 1.8s ease-in-out infinite;letter-spacing:0.5px;}
+@keyframes g9ScoreGlow{0%,100%{box-shadow:0 0 16px rgba(255,180,0,0.55),0 2px 8px rgba(0,0,0,0.4);}50%{box-shadow:0 0 32px rgba(255,220,0,0.85),0 2px 8px rgba(0,0,0,0.4);}}
+#g9Canvas{display:block;flex:1;width:100%;border-radius:0 0 8px 8px;}
+.g9-toast{position:absolute;top:54px;left:50%;transform:translateX(-50%) translateY(-8px);background:linear-gradient(135deg,#ff6b35,#ffd93d);color:#1a0800;font-size:14px;font-weight:900;padding:9px 22px;border-radius:30px;white-space:nowrap;opacity:0;transition:opacity 0.25s,transform 0.25s;z-index:6;pointer-events:none;box-shadow:0 4px 18px rgba(255,107,53,0.55);}
+.g9-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.g9-overlay{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:24px 20px;z-index:5;background:rgba(10,4,0,0.86);backdrop-filter:blur(5px);}
+.g9-overlay.show{display:flex;}
+.g9-ov-title{font-size:38px;font-weight:900;background:linear-gradient(135deg,#ffd93d,#ff6b35,#ff2200);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 10px rgba(255,107,53,0.5));letter-spacing:2px;}
+.g9-ov-sub{font-size:13px;opacity:0.72;max-width:300px;line-height:1.6;}
+.g9-rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 18px;font-size:12px;opacity:0.82;max-width:280px;text-align:right;direction:rtl;}
+.g9-start-btn{background:linear-gradient(135deg,#ff6b35,#ffd93d);border:none;border-radius:50px;color:#1a0800;font-size:19px;font-weight:900;padding:13px 42px;cursor:pointer;box-shadow:0 6px 24px rgba(255,107,53,0.5);animation:g9Pulse 2s ease-in-out infinite;letter-spacing:1px;margin-top:4px;}
+@keyframes g9Pulse{0%,100%{box-shadow:0 6px 24px rgba(255,107,53,0.5);}50%{box-shadow:0 6px 38px rgba(255,217,61,0.75);}}
+.g9-start-btn:hover{transform:scale(1.05);}
+.g9-back-btn2{background:none;border:1px solid rgba(255,255,255,0.22);border-radius:10px;color:rgba(255,255,255,0.58);padding:8px 20px;font-size:13px;cursor:pointer;transition:all 0.2s;}
+.g9-back-btn2:hover{border-color:rgba(255,255,255,0.5);color:#fff;}
+.g9-ov-emoji{font-size:68px;animation:nsBob 2s ease-in-out infinite;}
+.g9-ov-score{font-size:22px;font-weight:900;color:#ffd93d;}
+.g9-ov-grade{font-size:14px;opacity:0.65;margin-top:2px;}
 
 /* ── OVERLAY ── */
 #overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.86);align-items:center;justify-content:center;z-index:150;}
@@ -465,26 +596,23 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
         <!-- Coming soon -->
         <div class="soon-divider">✦ &nbsp; בקרוב על המסך &nbsp; ✦</div>
         <div class="cards-row-soon">
-          <div class="game-card gc-7" style="cursor:default;">
+          <div class="game-card gc-7" onclick="startFromCard(7)" style="cursor:pointer;">
             <div class="card-num-badge">7</div>
-            <div class="card-soon-overlay"><span class="soon-tag">⏳ בקרוב</span></div>
-            <span class="card-icon">🫏</span>
-            <div class="card-name">חמור קופץ</div>
-            <div class="card-desc">קפוץ מעל מכשולים ואל תיפול!</div>
+            <span class="card-icon">🎲</span>
+            <div class="card-name">Six Seven</div>
+            <div class="card-desc">זרוק קוביות, הגע ראשון ל-50!</div>
           </div>
-          <div class="game-card gc-8" style="cursor:default;">
+          <div class="game-card gc-8" onclick="startFromCard(8)" style="cursor:pointer;">
             <div class="card-num-badge">8</div>
-            <div class="card-soon-overlay"><span class="soon-tag">⏳ בקרוב</span></div>
-            <span class="card-icon">🏊</span>
-            <div class="card-name">קפיצה לבריכה</div>
-            <div class="card-desc">כוון את הקפיצה — אל תחטיא!</div>
+            <span class="card-icon">🦸</span>
+            <div class="card-name">קפוץ מעל הבוס</div>
+            <div class="card-desc">קפוץ מעל הבוס לפני שהוא תופס אותך!</div>
           </div>
-          <div class="game-card gc-9" style="cursor:default;">
+          <div class="game-card gc-9" onclick="startFromCard(9)" style="cursor:pointer;">
             <div class="card-num-badge">9</div>
-            <div class="card-soon-overlay"><span class="soon-tag">⏳ בקרוב</span></div>
             <span class="card-icon">🥙</span>
-            <div class="card-name">מלך השווארמה</div>
-            <div class="card-desc">הכן שווארמות לפני שנגמר הזמן!</div>
+            <div class="card-name">מלך הפלאפל</div>
+            <div class="card-desc">תפוס פלאפלים לתוך הפיתה — היה המלך!</div>
           </div>
         </div>
       </div>
@@ -558,6 +686,172 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
       <div id="glbRows"></div>
       <div id="glbMyDaily"></div>
       <div id="glbMyAll"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GAME 7 — SIX SEVEN CASINO ══ -->
+<div id="game7UI">
+  <!-- Casino header -->
+  <div class="g7-casino-header">
+    <div class="g7-casino-title">🎰 SIX &amp; SEVEN</div>
+    <button class="g7-back-btn" onclick="g7Back()">⬅ חזור</button>
+  </div>
+  <!-- Progress bars -->
+  <div class="g7-target-row">
+    <div class="g7-target-side">
+      <div class="g7-target-label" id="g7PlrLabel">שחקן — 0 / 50</div>
+      <div class="g7-prog-bar"><div class="g7-prog-fill-plr" id="g7PlrBar"></div></div>
+    </div>
+    <div class="g7-vs-badge">VS</div>
+    <div class="g7-target-side">
+      <div class="g7-target-label" id="g7CpuLabel">מחשב — 0 / 50</div>
+      <div class="g7-prog-bar"><div class="g7-prog-fill-cpu" id="g7CpuBar"></div></div>
+    </div>
+  </div>
+  <!-- Arena: player LEFT, robot RIGHT -->
+  <div class="g7-arena">
+    <!-- Player panel (left) -->
+    <div class="g7-panel g7-panel-plr" id="g7PlrZone">
+      <div class="g7-player-art">😎</div>
+      <div class="g7-panel-name g7-panel-name-plr" id="g7PlrName">שחקן</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+        <div style="font-size:9px;color:rgba(129,199,132,0.6);font-weight:700;letter-spacing:0.8px;">ניקוד מצטבר</div>
+        <div class="g7-score-chip g7-sc-plr" id="g7PlrScore">0</div>
+      </div>
+      <div class="g7-sum-badge" id="g7PlrSum">—</div>
+      <div class="g7-dice-row">
+        <div class="g7-die" id="g7PD1">?</div>
+        <div class="g7-die" id="g7PD2">?</div>
+      </div>
+    </div>
+    <!-- Robot panel (right) -->
+    <div class="g7-panel g7-panel-cpu" id="g7CpuZone">
+      <div class="g7-robot-art">🤖</div>
+      <div class="g7-panel-name g7-panel-name-cpu">רובוט</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+        <div style="font-size:9px;color:rgba(229,115,115,0.6);font-weight:700;letter-spacing:0.8px;">ניקוד מצטבר</div>
+        <div class="g7-score-chip g7-sc-cpu" id="g7CpuScore">0</div>
+      </div>
+      <div class="g7-sum-badge" id="g7CpuSum">—</div>
+      <div class="g7-dice-row">
+        <div class="g7-die" id="g7CD1">?</div>
+        <div class="g7-die" id="g7CD2">?</div>
+      </div>
+    </div>
+  </div>
+  <!-- Hidden chip holders (JS still writes to them, just not shown) -->
+  <div id="g7PlrChips" style="display:none"></div>
+  <div id="g7CpuChips" style="display:none"></div>
+  <!-- Result message -->
+  <div class="g7-result-msg" id="g7ResultMsg">זרוק קוביות כדי להתחיל! 🎲</div>
+  <!-- Bet row -->
+  <div class="g7-bet-row" id="g7BetRow">
+    <div class="g7-bet-label">💰 הימור לסיבוב הקרוב</div>
+    <button class="g7-bet-btn" id="g7Bet7" onclick="g7SetBet(7)">🎲 הימור על 7<br><small>×4 = +28 / −7</small></button>
+    <button class="g7-bet-btn" id="g7Bet6" onclick="g7SetBet(6)">🎲 הימור על 6<br><small>×3 = +18 / −6</small></button>
+    <button class="g7-bet-btn active-none" id="g7BetNone" onclick="g7SetBet(null)">🚫 בלי הימור<br><small>סיכון נמוך</small></button>
+  </div>
+  <!-- Roll button -->
+  <button class="g7-roll-btn" id="g7RollBtn" onclick="g7Roll()">🎲 זרוק קוביות!</button>
+  <div class="g7-rules-hint">
+    <span>🚫 <b>בלי הימור</b> — אם יצא 7 מקבלים +7, אם יצא 6 מקבלים +6, אחרת אין שינוי</span>
+    <span>🔵 <b>הימור על 6</b> — יצא 6? מקבלים +18 | לא יצא? מפסידים −6</span>
+    <span>🟡 <b>הימור על 7</b> — יצא 7? מקבלים +28 | לא יצא? מפסידים −7</span>
+  </div>
+</div>
+
+<!-- Game 7 — Celebration overlay -->
+<div id="g7Celebrate">
+  <div class="g7-celeb-backdrop"></div>
+  <div class="g7-celeb-num" id="g7CelebNum">7</div>
+  <div class="g7-celeb-text" id="g7CelebText">ניצחת את הסיבוב! 🎉</div>
+</div>
+
+<!-- Game 7 — Game Over -->
+<div id="g7GameOver">
+  <div class="g7-go-emoji" id="g7GoEmoji">🏆</div>
+  <div class="g7-go-title" id="g7GoTitle">ניצחת!</div>
+  <div class="g7-go-sub" id="g7GoSub"></div>
+  <button class="g7-go-play-btn" onclick="g7Restart()">🎲 שחק שוב</button>
+  <button class="g7-back-btn" onclick="g7Back()" style="margin-top:0">⬅ חזור לתפריט</button>
+</div>
+
+<!-- ══ GAME 8 — JUMP OVER THE BOSS ══ -->
+<div id="game8UI">
+  <div class="g8-wrap">
+    <div class="g8-hud">
+      <div class="g8-hud-chip g8-score-chip">⭐ <span id="g8Score">0</span></div>
+      <div class="g8-hud-chip clickable" onclick="g8ExitToMenu()">📋 תפריט</div>
+    </div>
+    <canvas id="g8Canvas"></canvas>
+    <!-- Start screen -->
+    <div class="g8-overlay show" id="g8StartScreen">
+      <div class="g8-title">🦸 קפוץ מעל הבוס</div>
+      <div class="g8-sub">הדמות רצה קדימה — קפוץ מעל הבוס לפני שהוא תופס אותך!</div>
+      <div class="g8-rules">
+        <span>🦅 קפיצה מעל הבוס = +1 נקודה</span>
+        <span>🎯 פגיעה בראש הבוס = +2 נקודות</span>
+        <span>💥 הבוס פגע בך = Game Over</span>
+        <span>👺 בוס אדום יורה חיצים — קפוץ מעליהם!</span>
+        <span>👿 בוס מעופף עולה למעלה — עבור מתחתיו!</span>
+        <span>⚡ עם הזמן הבוס מואץ!</span>
+      </div>
+      <button class="g8-start-btn" onclick="g8StartPlay()">🎮 התחל משחק!</button>
+      <div class="g8-ctrl">מקש רווח / לחץ על כפתור הקפיצה למטה</div>
+    </div>
+    <!-- Game Over screen -->
+    <div class="g8-overlay" id="g8OverScreen">
+      <div class="g8-over-emoji" id="g8OverEmoji">💥</div>
+      <div class="g8-title">הבוס תפס אותך!</div>
+      <div class="g8-over-score" id="g8OverScore">ניקוד: 0</div>
+      <div class="g8-sub" id="g8OverMsg"></div>
+      <button class="g8-start-btn" onclick="g8StartPlay()">🔄 שחק שוב</button>
+      <button class="g8-back-btn" onclick="g8ExitToMenu()">⬅ חזור לתפריט</button>
+    </div>
+    <button class="g8-jump-btn" id="g8JumpBtn" onclick="g8Jump()">⬆️ קפוץ!</button>
+  </div>
+</div>
+
+<!-- ══ GAME 9 — FALAFEL KING ══ -->
+<div id="game9UI">
+  <div class="g9-wrap">
+    <!-- HUD -->
+    <div class="g9-hud">
+      <div class="g9-hud-chip g9-hearts-chip" id="g9Hearts">❤️❤️❤️</div>
+      <div class="g9-hud-chip g9-score-chip">⭐ <span id="g9Score">0</span></div>
+      <div class="g9-hud-chip">⏱️ <span id="g9Timer">30</span>ש׳</div>
+      <div class="g9-hud-chip clickable" onclick="g9ExitToMenu()">📋 תפריט</div>
+    </div>
+    <!-- Canvas -->
+    <canvas id="g9Canvas"></canvas>
+    <!-- Toast -->
+    <div class="g9-toast" id="g9Toast"></div>
+    <!-- Start screen -->
+    <div class="g9-overlay show" id="g9StartScreen">
+      <div class="g9-ov-title">🥙 מלך הפלאפל</div>
+      <div class="g9-ov-sub">תפוס פלאפלים ומעדנים בתוך הפיתה — הימנע מהדברים הגרועים!</div>
+      <div style="background:linear-gradient(135deg,#ff6b00,#ffd93d);color:#1a0800;font-weight:900;font-size:14px;border-radius:12px;padding:8px 18px;margin:6px 0 10px;letter-spacing:0.5px;">🎯 משימת על: הגע ל-90 נקודות תוך 30 שניות!</div>
+      <div class="g9-rules-grid">
+        <span>🧆 פלאפל = +5 נק'</span>
+        <span>🍟 צ'יפס = +3 נק'</span>
+        <span>🥗 סלט = +2 נק'</span>
+        <span>🫙 טחינה = +2 נק'</span>
+        <span>🌶️ פלפל חריף = -5 נק'</span>
+        <span>🧅 בצל שרוף = -5 נק'</span>
+        <span>💩 קקי = -5 נק'</span>
+        <span>🏹 חץ בצל = -4 נק'</span>
+      </div>
+      <button class="g9-start-btn" onclick="g9StartPlay()">🥙 התחל!</button>
+    </div>
+    <!-- Game Over screen -->
+    <div class="g9-overlay" id="g9OverScreen">
+      <div class="g9-ov-emoji" id="g9OverEmoji">🏆</div>
+      <div class="g9-ov-title" id="g9OverTitle">מלך הפלאפל!</div>
+      <div class="g9-ov-score" id="g9OverScore"></div>
+      <div class="g9-ov-grade" id="g9OverGrade"></div>
+      <button class="g9-start-btn" onclick="g9StartPlay()">🔄 שחק שוב</button>
+      <button class="g9-back-btn2" onclick="g9ExitToMenu()">⬅ חזור לתפריט</button>
     </div>
   </div>
 </div>
@@ -699,6 +993,11 @@ function hideGame(){
   const g=document.getElementById('gameUI');g.style.display='none';g.classList.remove('show');
   if(rafId){cancelAnimationFrame(rafId);rafId=null;}
   running=false;
+  document.getElementById('game7UI').classList.remove('show');
+  document.getElementById('g7GameOver').classList.remove('show');
+  document.getElementById('g7Celebrate').classList.remove('show');
+  g8ExitToMenu&&g8ExitToMenu(true);
+  g9ExitToMenu&&g9ExitToMenu(true);
 }
 function goHome(){navTo('mainPage');}
 
@@ -716,6 +1015,9 @@ function submitName(){
 function startFromCard(lvl){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  if(lvl===7){startGame7();return;}
+  if(lvl===8){startGame8();return;}
+  if(lvl===9){startGame9();return;}
   const g=document.getElementById('gameUI');g.style.display='flex';g.classList.add('show');
   currentScore=0;lives=3;startLevel(lvl);
 }
@@ -1771,6 +2073,978 @@ if(!CanvasRenderingContext2D.prototype.roundRect){
   CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,r){
     this.beginPath();this.moveTo(x+r,y);this.lineTo(x+w-r,y);this.arcTo(x+w,y,x+w,y+r,r);this.lineTo(x+w,y+h-r);this.arcTo(x+w,y+h,x+w-r,y+h,r);this.lineTo(x+r,y+h);this.arcTo(x,y+h,x,y+h-r,r);this.lineTo(x,y+r);this.arcTo(x,y,x+r,y,r);this.closePath();return this;
   };
+}
+
+// ── Game 7: Six Seven — Casino ───────────────────────────────────────────────
+let g7={cpu:0,plr:0,rolling:false,over:false,plrChips:[],cpuChips:[]};
+
+function g7RenderMiniChips(chips,elId,side){
+  const el=document.getElementById(elId);
+  if(!chips.length){el.innerHTML='<span style="opacity:0.2;font-size:10px">—</span>';return;}
+  const show=chips.slice(-8);
+  let html=show.map(v=>`<div class="g7-mini-chip g7-mc-${v}-${side}">${v}</div>`).join('');
+  if(chips.length>8)html+=`<div class="g7-mini-chip" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.55);font-size:9px">+${chips.length-8}</div>`;
+  el.innerHTML=html;
+}
+
+function startGame7(){
+  document.getElementById('game7UI').classList.add('show');
+  g7Restart();
+}
+
+function g7SetBet(val){
+  g7.playerBet=val;
+  document.getElementById('g7Bet7').className='g7-bet-btn'+(val===7?' active-7':'');
+  document.getElementById('g7Bet6').className='g7-bet-btn'+(val===6?' active-6':'');
+  document.getElementById('g7BetNone').className='g7-bet-btn'+(val===null?' active-none':'');
+}
+function g7SetBetBtnsDisabled(dis){
+  ['g7Bet7','g7Bet6','g7BetNone'].forEach(id=>{document.getElementById(id).disabled=dis;});
+}
+
+function g7Restart(){
+  g7={cpu:0,plr:0,rolling:false,over:false,plrChips:[],cpuChips:[],playerBet:null};
+  g7SetBet(null);
+  const pname=playerName||'שחקן';
+  document.getElementById('g7PlrName').textContent=pname;
+  document.getElementById('g7PlrLabel').textContent=pname+' — 0 / 50';
+  document.getElementById('g7CpuLabel').textContent='מחשב — 0 / 50';
+  document.getElementById('g7PlrScore').textContent='0';
+  document.getElementById('g7CpuScore').textContent='0';
+  ['g7CpuBar','g7PlrBar'].forEach(id=>document.getElementById(id).style.width='0%');
+  ['g7CD1','g7CD2','g7PD1','g7PD2'].forEach(id=>document.getElementById(id).textContent='?');
+  const ps=document.getElementById('g7PlrSum'),cs=document.getElementById('g7CpuSum');
+  ps.textContent='—';ps.className='g7-sum-badge';
+  cs.textContent='—';cs.className='g7-sum-badge';
+  ['g7PlrChips','g7CpuChips'].forEach(id=>{document.getElementById(id).innerHTML='<span style="opacity:0.2;font-size:10px">—</span>';});
+  const msg=document.getElementById('g7ResultMsg');
+  msg.textContent='זרוק קוביות כדי להתחיל! 🎲';msg.className='g7-result-msg';
+  document.getElementById('g7RollBtn').disabled=false;
+  g7SetBetBtnsDisabled(false);
+  document.getElementById('g7GameOver').classList.remove('show');
+  document.getElementById('g7Celebrate').classList.remove('show');
+  document.getElementById('g7CpuZone').classList.remove('winner');
+  document.getElementById('g7PlrZone').classList.remove('winner');
+}
+
+function g7Roll(){
+  if(g7.rolling||g7.over)return;
+  g7.rolling=true;
+  document.getElementById('g7RollBtn').disabled=true;
+  g7SetBetBtnsDisabled(true);
+  document.getElementById('g7CpuZone').classList.remove('winner');
+  document.getElementById('g7PlrZone').classList.remove('winner');
+  document.getElementById('g7PlrSum').className='g7-sum-badge';
+  document.getElementById('g7CpuSum').className='g7-sum-badge';
+  const ids=['g7CD1','g7CD2','g7PD1','g7PD2'];
+  ids.forEach(id=>document.getElementById(id).classList.add('rolling'));
+  let f=0;
+  const iv=setInterval(()=>{
+    ids.forEach(id=>document.getElementById(id).textContent=Math.ceil(Math.random()*6));
+    if(++f>=18){clearInterval(iv);g7Resolve();}
+  },55);
+}
+
+function g7ShowCelebration(sumVal,isPlr){
+  const el=document.getElementById('g7Celebrate');
+  document.getElementById('g7CelebNum').textContent=sumVal;
+  document.getElementById('g7CelebText').textContent=isPlr?'ניצחת את הסיבוב! 🎉':'הרובוט ניצח! 🤖';
+  el.classList.remove('show');
+  void el.offsetWidth;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2500);
+}
+
+function g7Resolve(){
+  const pd1=Math.ceil(Math.random()*6),pd2=Math.ceil(Math.random()*6);
+  const cd1=Math.ceil(Math.random()*6),cd2=Math.ceil(Math.random()*6);
+  ['g7CD1','g7CD2','g7PD1','g7PD2'].forEach(id=>document.getElementById(id).classList.remove('rolling'));
+  document.getElementById('g7CD1').textContent=cd1;document.getElementById('g7CD2').textContent=cd2;
+  document.getElementById('g7PD1').textContent=pd1;document.getElementById('g7PD2').textContent=pd2;
+  const ps=pd1+pd2,cs=cd1+cd2;
+  const pSumEl=document.getElementById('g7PlrSum');
+  const cSumEl=document.getElementById('g7CpuSum');
+  pSumEl.textContent='סכום: '+ps;
+  cSumEl.textContent='סכום: '+cs;
+  pSumEl.className='g7-sum-badge'+(ps===7?' special-7':ps===6?' special-6':'');
+  cSumEl.className='g7-sum-badge'+(cs===7?' special-7':cs===6?' special-6':'');
+  const msg=document.getElementById('g7ResultMsg');
+  let hasCeleb=false;
+  const bet=g7.playerBet; // null | 6 | 7
+
+  // ── PLAYER SCORING (bet-based) ─────────────────────────────
+  let plrGain=0,plrMsgText='',plrMsgClass='g7-result-msg tie';
+  if(bet===7){
+    if(ps===7){
+      plrGain=28;
+      plrMsgText="🎰 הימרת על 7 וקיבלת 7! ×4 = +28 ז'טונים! 💰";
+      plrMsgClass='g7-result-msg win';
+      document.getElementById('g7PlrZone').classList.add('winner');
+      setTimeout(()=>g7ShowCelebration(28,true),220);hasCeleb=true;
+    }else{
+      plrGain=-7;
+      plrMsgText=`💸 הימרת על 7 אבל יצא ${ps}... −7 ז'טונים`;
+      plrMsgClass='g7-result-msg lose';
+    }
+  }else if(bet===6){
+    if(ps===6){
+      plrGain=18;
+      plrMsgText="🎰 הימרת על 6 וקיבלת 6! ×3 = +18 ז'טונים! 💰";
+      plrMsgClass='g7-result-msg win';
+      document.getElementById('g7PlrZone').classList.add('winner');
+      setTimeout(()=>g7ShowCelebration(18,true),220);hasCeleb=true;
+    }else{
+      plrGain=-6;
+      plrMsgText=`💸 הימרת על 6 אבל יצא ${ps}... −6 ז'טונים`;
+      plrMsgClass='g7-result-msg lose';
+    }
+  }else{
+    // No bet — conservative play
+    if(ps===7){
+      plrGain=7;
+      plrMsgText="🎲 הבאת 7! +7 ז'טונים (הימר כדי לקבל ×4!)";
+      plrMsgClass='g7-result-msg win';
+      document.getElementById('g7PlrZone').classList.add('winner');
+      setTimeout(()=>g7ShowCelebration(7,true),220);hasCeleb=true;
+    }else if(ps===6){
+      plrGain=6;
+      plrMsgText="🎲 הבאת 6! +6 ז'טונים (הימר כדי לקבל ×3!)";
+      plrMsgClass='g7-result-msg win';
+      document.getElementById('g7PlrZone').classList.add('winner');
+      setTimeout(()=>g7ShowCelebration(6,true),220);hasCeleb=true;
+    }else{
+      plrGain=0;
+      plrMsgText="😶 לא יצא 6 או 7 — אין ז'טונים";
+      plrMsgClass='g7-result-msg tie';
+    }
+  }
+  g7.plr+=plrGain;
+  if(plrGain>0)g7.plrChips.push(plrGain);
+
+  // ── CPU SCORING (no betting, old rules) ────────────────────
+  let cpuGain=0,cpuLine='';
+  if(cs===7){cpuGain=7;document.getElementById('g7CpuZone').classList.add('winner');cpuLine=" | 🤖 רובוט +7";}
+  else if(cs===6){cpuGain=6;document.getElementById('g7CpuZone').classList.add('winner');cpuLine=" | 🤖 רובוט +6";}
+  else{cpuLine=" | 🤖 רובוט +0";}
+  g7.cpu+=cpuGain;
+  if(cpuGain>0)g7.cpuChips.push(cpuGain);
+
+  msg.textContent=plrMsgText+cpuLine;
+  msg.className=plrMsgClass;
+
+  // Reset bet for next round
+  g7.playerBet=null;
+  g7SetBet(null);
+
+  // ── DISPLAY ────────────────────────────────────────────────
+  document.getElementById('g7PlrScore').textContent=g7.plr;
+  document.getElementById('g7CpuScore').textContent=g7.cpu;
+  document.getElementById('g7PlrBar').style.width=Math.max(0,Math.min(100,g7.plr/50*100))+'%';
+  document.getElementById('g7CpuBar').style.width=Math.min(100,g7.cpu/50*100)+'%';
+  const pname=playerName||'שחקן';
+  document.getElementById('g7PlrLabel').textContent=pname+' — '+g7.plr+' / 50';
+  document.getElementById('g7CpuLabel').textContent='מחשב — '+g7.cpu+' / 50';
+  g7RenderMiniChips(g7.plrChips,'g7PlrChips','plr');
+  g7RenderMiniChips(g7.cpuChips,'g7CpuChips','cpu');
+
+  const celebDelay=hasCeleb?2600:700;
+  if(g7.plr>=50||g7.cpu>=50){
+    g7.over=true;
+    setTimeout(()=>{
+      const won=g7.plr>=50;
+      document.getElementById('g7GoEmoji').textContent=won?'🏆':'🤖';
+      document.getElementById('g7GoTitle').textContent=won?'ניצחת! 🎉':'הרובוט ניצח 🤖';
+      document.getElementById('g7GoSub').textContent=won
+        ?`הגעת ל-${g7.plr} ז'טונים — כל הכבוד, ${pname}!`
+        :`הרובוט הגיע ל-${g7.cpu} ז'טונים. נסה שוב!`;
+      document.getElementById('g7GameOver').classList.add('show');
+    },celebDelay);
+  }else{
+    setTimeout(()=>{
+      g7.rolling=false;
+      document.getElementById('g7RollBtn').disabled=false;
+      g7SetBetBtnsDisabled(false);
+    },celebDelay);
+  }
+}
+
+function g7Back(){
+  document.getElementById('game7UI').classList.remove('show');
+  document.getElementById('g7GameOver').classList.remove('show');
+  document.getElementById('g7Celebrate').classList.remove('show');
+  navTo('mainPage');
+}
+
+// ── Game 8: Jump Over The Boss ───────────────────────────────────────────────
+const G8_BOSSES=[
+  {emoji:'👔',h:52,name:'מנהל',         w:6},
+  {emoji:'👨‍💼',h:76,name:'בוס גבוה',    w:5},
+  {emoji:'🦹',h:40,name:'בוס קטן',      w:5},
+  {emoji:'😤',h:62,name:'בוס כועס',     w:6},
+  {emoji:'🤵',h:82,name:'בוס מחויט',    w:4},
+  {emoji:'👺',h:56,name:'בוס אדום',     w:14,canThrow:true},
+  {emoji:'👿',h:52,name:'בוס מעופף',    w:14,canFly:true},
+];
+function g8PickBoss(){
+  const tot=G8_BOSSES.reduce((s,b)=>s+b.w,0);
+  let r=Math.random()*tot;
+  for(const b of G8_BOSSES){r-=b.w;if(r<=0)return b;}
+  return G8_BOSSES[0];
+}
+const G8_WIN_MSGS=[
+  'יפה, דילגת עליו! 🙌','נהדר! 🏅','כל הכבוד! 👏','מעולה! 💪','ברח ממנו! 😄'
+];
+const G8_HEAD_MSGS=[
+  'בול על הראש! 🎯','פגיעה מדויקת! 💥 +2','אחלה קפיצה! 🎯','HEADSHOT! 🤩'
+];
+const G8_OVER_MSGS=[
+  'הבוס תפס אותך! 😱','לא הספקת לקפוץ! 😬','הבוס ניצח הפעם... 😤','נסה שוב! 💪'
+];
+
+let g8={running:false,score:0,frame:0,speed:3.8,
+  player:{x:0,y:0,vy:0,onGround:true,walkPhase:0},
+  boss:null,nextBossCd:90,headBounced:false,
+  arrows:[],floats:[],msg:'',msgTimer:0,raf:null,cw:400,ch:300};
+
+function g8El(id){return document.getElementById(id);}
+
+function startGame8(){
+  const cnv=g8El('g8Canvas');
+  g8.cw=Math.min(window.innerWidth,500);
+  g8.ch=Math.max(240,Math.min(window.innerHeight-120,320));
+  cnv.width=g8.cw;cnv.height=g8.ch;
+  g8El('game8UI').classList.add('show');
+  g8El('g8StartScreen').classList.add('show');
+  g8El('g8OverScreen').classList.remove('show');
+  g8.running=false;
+  // Draw idle preview
+  const gnd=g8.ch-58;
+  g8.player={x:g8.cw*0.22,y:gnd,vy:0,onGround:true,walkPhase:0};
+  const ctx=cnv.getContext('2d');
+  g8DrawBg(ctx,g8.cw,g8.ch,0,3.8);
+  g8DrawPlayer(ctx,g8.player,gnd);
+  ctx.textAlign='center';ctx.textBaseline='bottom';
+  ctx.font=`58px serif`;ctx.fillText('👔',g8.cw*0.72,gnd);
+}
+
+function g8StartPlay(){
+  g8El('g8StartScreen').classList.remove('show');
+  g8El('g8OverScreen').classList.remove('show');
+  const gnd=g8.ch-58;
+  g8.running=true;g8.score=0;g8.frame=0;g8.speed=3.8;
+  g8.player={x:g8.cw*0.22,y:gnd,vy:0,onGround:true,walkPhase:0};
+  g8.boss=null;g8.nextBossCd=90;g8.headBounced=false;
+  g8.arrows=[];g8.floats=[];g8.msg='';g8.msgTimer=0;
+  g8El('g8Score').textContent='0';
+  g8SetupInput();
+  if(g8.raf)cancelAnimationFrame(g8.raf);
+  g8Loop();
+}
+
+function g8SetupInput(){
+  if(window._g8kd)document.removeEventListener('keydown',window._g8kd);
+  window._g8kd=e=>{if((e.code==='Space'||e.key===' '||e.code==='ArrowUp'||e.key==='ArrowUp')&&g8.running){e.preventDefault();g8Jump();}};
+  document.addEventListener('keydown',window._g8kd);
+  const cnv=g8El('g8Canvas');
+  cnv.ontouchstart=e=>{e.preventDefault();g8Jump();};
+  cnv.onclick=()=>g8Jump();
+}
+function g8TeardownInput(){
+  if(window._g8kd)document.removeEventListener('keydown',window._g8kd);
+}
+
+function g8Jump(){
+  if(!g8.running)return;
+  if(g8.player.onGround){g8.player.vy=-13;g8.player.onGround=false;g8.headBounced=false;}
+}
+
+function g8Loop(){
+  if(!g8.running)return;
+  g8Update();g8Render();
+  g8.raf=requestAnimationFrame(g8Loop);
+}
+
+function g8Update(){
+  const gnd=g8.ch-58;
+  const p=g8.player;
+  // Gravity
+  if(!p.onGround){p.vy+=0.55;p.y+=p.vy;if(p.y>=gnd){p.y=gnd;p.vy=0;p.onGround=true;}}
+  p.walkPhase+=0.14;
+  // Speed ramp
+  if(g8.frame>0&&g8.frame%240===0)g8.speed=Math.min(g8.speed+0.35,10.5);
+  // Spawn boss
+  if(!g8.boss){
+    g8.nextBossCd--;
+    if(g8.nextBossCd<=0){
+      const t=g8PickBoss();
+      g8.boss={x:g8.cw+50,type:t,h:t.h,w:40,scored:false};
+      g8.nextBossCd=Math.max(48,Math.round(110-g8.score*4));
+    }
+  }
+  // Update boss + collision
+  if(g8.boss){
+    const b=g8.boss;
+    b.x-=g8.speed;
+    // Flying boss: animate vertical position
+    if(b.type.canFly){
+      if(!b.flyState){b.flyState='ground';b.flyTimer=60+Math.floor(Math.random()*35);b.by=gnd;b.byTarget=gnd;}
+      if(b.flyState==='ground'){
+        b.flyTimer--;
+        if(b.flyTimer<=0&&b.x<g8.cw*0.8&&b.x>p.x+55){
+          b.flyState='rising';b.byTarget=gnd-72;
+          g8.msg='⬇️ עבור מתחתיו! 🏃';g8.msgTimer=80;
+        }
+      }
+      // Smooth lerp toward target
+      b.by=b.by+(b.byTarget-b.by)*0.10;
+    }
+    const bossByBottom=b.type.canFly?b.by:gnd; // animated bottom y
+    const PW=28,PH=44;
+    const px1=p.x-PW/2,px2=p.x+PW/2;
+    const py1=p.y-PH,py2=p.y;
+    const bx1=b.x-b.w/2,bx2=b.x+b.w/2;
+    const bTop=bossByBottom-b.h;
+    const xOvlp=px2>bx1+5&&px1<bx2-5;
+    if(xOvlp&&!b.scored){
+      // Headbounce: player falling onto top of boss
+      if(p.vy>=0&&py2>=bTop-8&&py2<=bTop+16&&py1<bTop-4){
+        p.vy=-10;p.y=bTop-2;p.onGround=false;
+        g8.headBounced=true;
+      }
+      // Body hit — only when boss overlaps player vertically
+      else if(py2>bTop+14&&py1<bossByBottom){
+        g8EndGame();return;
+      }
+    }
+    // Boss passed player — award points
+    if(!b.scored&&b.x<p.x-PW/2-8){
+      b.scored=true;
+      const pts=g8.headBounced?2:1;
+      g8.score+=pts;g8El('g8Score').textContent=g8.score;
+      const msg=pts===2?G8_HEAD_MSGS[Math.floor(Math.random()*G8_HEAD_MSGS.length)]:G8_WIN_MSGS[Math.floor(Math.random()*G8_WIN_MSGS.length)];
+      g8.floats.push({x:p.x+10,y:p.y-55,text:(pts===2?'🎯 ':'✅ ')+'+'+pts,alpha:1,vy:-1.8,big:pts===2});
+      g8.msg=msg;g8.msgTimer=80;
+      g8.headBounced=false;
+    }
+    // Arrow throwing (👺 only)
+    if(b.type.canThrow){
+      if(b.throwCd===undefined)b.throwCd=90;
+      b.throwCd--;
+      if(b.throwCd===28){g8.msg='⚠️ חץ בדרך! קפוץ!';g8.msgTimer=55;}
+      if(b.throwCd<=0&&b.x<g8.cw-30&&b.x>p.x+50){
+        // Aim directly at player's current position
+        const fireX=b.x-18, fireY=gnd-b.h*0.55;
+        const tdx=p.x-fireX, tdy=p.y-22-fireY; // aim at player torso
+        const dist=Math.sqrt(tdx*tdx+tdy*tdy)||1;
+        const spd=7;
+        g8.arrows.push({x:fireX,y:fireY,dx:(tdx/dist)*spd,dy:(tdy/dist)*spd,angle:Math.atan2(tdy,tdx)});
+        b.throwCd=100+Math.floor(Math.random()*60);
+      }
+    }
+    if(b.x<-80)g8.boss=null;
+  }
+  // Update arrows
+  for(let i=g8.arrows.length-1;i>=0;i--){
+    const a=g8.arrows[i];
+    a.x+=a.dx; a.y+=a.dy;
+    const PW=26,PH=44;
+    // Hitbox around arrow tip
+    if(Math.abs(a.x-p.x)<PW/2+8&&Math.abs(a.y-(p.y-22))<PH/2){
+      g8EndGame();return;
+    }
+    if(a.x<-30||a.y>g8.ch+20||a.y<-20)g8.arrows.splice(i,1);
+  }
+  // Float texts
+  for(let i=g8.floats.length-1;i>=0;i--){
+    const f=g8.floats[i];f.y+=f.vy;f.alpha-=0.022;
+    if(f.alpha<=0)g8.floats.splice(i,1);
+  }
+  if(g8.msgTimer>0)g8.msgTimer--;
+  g8.frame++;
+}
+
+function g8Render(){
+  const ctx=g8El('g8Canvas').getContext('2d');
+  const cw=g8.cw,ch=g8.ch,gnd=ch-58;
+  g8DrawBg(ctx,cw,ch,g8.frame,g8.speed);
+  // Boss
+  if(g8.boss){
+    const b=g8.boss;
+    const bBot=b.type.canFly?b.by:gnd; // animated bottom
+    const bMidY=bBot-b.h/2;
+    const isFlying=b.type.canFly&&b.by<gnd-20;
+    ctx.textAlign='center';ctx.textBaseline='bottom';
+    const sz=Math.max(32,Math.round(b.h*0.96));
+    ctx.font=`${sz}px serif`;
+    // Glow — purple when flying, orange when ground
+    const glowCol=isFlying?'rgba(160,0,255,0.35)':'rgba(255,60,0,0.25)';
+    const grd=ctx.createRadialGradient(b.x,bMidY,4,b.x,bMidY,b.h*0.75);
+    grd.addColorStop(0,glowCol);grd.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=grd;ctx.beginPath();ctx.arc(b.x,bMidY,b.h*0.75,0,Math.PI*2);ctx.fill();
+    // Shadow on ground when flying
+    if(isFlying){
+      const shadowAlpha=Math.max(0,0.35*(1-(gnd-b.by)/75));
+      ctx.fillStyle=`rgba(0,0,0,${shadowAlpha})`;
+      ctx.beginPath();ctx.ellipse(b.x,gnd-2,18,5,0,0,Math.PI*2);ctx.fill();
+    }
+    ctx.fillStyle='#000';ctx.fillText(b.type.emoji,b.x,bBot);
+    // Flying wings shimmer
+    if(isFlying){
+      const wf=Math.sin(g8.frame*0.25)*4;
+      ctx.font=`${Math.round(sz*0.55)}px serif`;
+      ctx.fillText('🪽',b.x-sz*0.55,bBot-b.h*0.6+wf);
+      ctx.fillText('🪽',b.x+sz*0.55,bBot-b.h*0.6-wf);
+      // "עבור מתחתי" label
+      ctx.font='bold 11px sans-serif';ctx.fillStyle='rgba(140,0,255,0.75)';
+      ctx.fillText('↓ עבור מתחתי ↓',b.x,bBot-b.h-6);
+    }
+    // Height indicator line
+    if(!isFlying)ctx.fillStyle='rgba(255,80,0,0.4)';
+    else ctx.fillStyle='rgba(140,0,255,0.25)';
+    ctx.fillRect(b.x-1,bBot-b.h,2,b.h);
+    // Throwing warning flash on 👺
+    if(b.type.canThrow&&b.throwCd!==undefined&&b.throwCd>0&&b.throwCd<30){
+      if(Math.sin(g8.frame*0.4)>0){
+        ctx.textAlign='center';ctx.textBaseline='bottom';
+        ctx.font='bold 18px sans-serif';ctx.fillStyle='#ff1100';
+        ctx.fillText('⚠️',b.x,bBot-b.h-4);
+      }
+    }
+  }
+  // Arrows — rotated to match actual aim direction
+  for(const a of g8.arrows){
+    ctx.save();
+    ctx.translate(a.x,a.y);
+    ctx.rotate(a.angle); // rotate so tip always points toward target
+    // Glow
+    const aGrd=ctx.createRadialGradient(0,0,0,0,0,20);
+    aGrd.addColorStop(0,'rgba(255,80,0,0.55)');aGrd.addColorStop(1,'rgba(255,80,0,0)');
+    ctx.fillStyle=aGrd;ctx.beginPath();ctx.arc(0,0,20,0,Math.PI*2);ctx.fill();
+    // Shaft (pointing in +x direction before rotation)
+    ctx.strokeStyle='#bb3300';ctx.lineWidth=4;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(-22,0);ctx.lineTo(8,0);ctx.stroke();
+    // Arrowhead at the front (tip at +x)
+    ctx.fillStyle='#ff2200';
+    ctx.beginPath();ctx.moveTo(8,0);ctx.lineTo(-4,7);ctx.lineTo(-4,-7);ctx.closePath();ctx.fill();
+    // Feathers at the back
+    ctx.strokeStyle='#ff9900';ctx.lineWidth=2.5;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(-18,-2);ctx.lineTo(-26,-8);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-18,2);ctx.lineTo(-26,8);ctx.stroke();
+    ctx.restore();
+  }
+  // Player
+  g8DrawPlayer(ctx,g8.player,gnd);
+  // Message banner
+  if(g8.msgTimer>0){
+    const a=Math.min(1,g8.msgTimer/20);
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='bold 15px sans-serif';
+    ctx.fillStyle=`rgba(21,101,192,${a})`;
+    ctx.shadowColor='rgba(255,255,255,0.9)';ctx.shadowBlur=6;
+    ctx.fillText(g8.msg,cw/2,gnd-38);
+    ctx.shadowBlur=0;
+  }
+  // Float texts (+1 / +2)
+  for(const f of g8.floats){
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font=`bold ${f.big?24:17}px sans-serif`;
+    ctx.strokeStyle=`rgba(255,255,255,${f.alpha})`;ctx.lineWidth=3;
+    ctx.fillStyle=f.big?`rgba(255,100,0,${f.alpha})`:`rgba(30,160,60,${f.alpha})`;
+    ctx.strokeText(f.text,f.x,f.y);ctx.fillText(f.text,f.x,f.y);
+  }
+  // Score HUD on canvas
+  ctx.textAlign='right';ctx.textBaseline='top';
+  ctx.font='bold 13px sans-serif';
+  ctx.fillStyle='rgba(26,35,126,0.7)';
+  ctx.fillText('⚡ מהירות: '+(g8.speed.toFixed(1))+'x',cw-10,10);
+}
+
+function g8DrawBg(ctx,cw,ch,frame,spd){
+  // Sky / office wall
+  const bg=ctx.createLinearGradient(0,0,0,ch);
+  bg.addColorStop(0,'#dce8ff');bg.addColorStop(0.7,'#eef4ff');bg.addColorStop(1,'#c8d8f0');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,cw,ch);
+  // Ceiling strip
+  ctx.fillStyle='#b8ccea';ctx.fillRect(0,0,cw,18);
+  // Ceiling lights
+  const lightX=(-(frame*spd*0.3)%120+120)%120;
+  for(let x=lightX-60;x<cw+120;x+=120){
+    const lg=ctx.createRadialGradient(x,9,0,x,9,60);
+    lg.addColorStop(0,'rgba(255,240,200,0.55)');lg.addColorStop(1,'rgba(255,240,200,0)');
+    ctx.fillStyle=lg;ctx.fillRect(x-60,0,120,80);
+    ctx.fillStyle='#e8e8e8';ctx.fillRect(x-16,2,32,10);
+  }
+  // Wall vertical lines (doors/panels)
+  const gnd=ch-58;
+  const panelOff=(-(frame*spd*0.15)%160+160)%160;
+  ctx.strokeStyle='rgba(160,180,220,0.35)';ctx.lineWidth=1.2;
+  for(let x=panelOff-80;x<cw+160;x+=160){
+    ctx.beginPath();ctx.moveTo(x,18);ctx.lineTo(x,gnd);ctx.stroke();
+    // Door frame
+    if(Math.sin(x*0.05)>0.3){
+      ctx.strokeStyle='rgba(140,165,210,0.25)';ctx.lineWidth=1;
+      ctx.strokeRect(x+8,gnd-90,44,88);
+      ctx.strokeStyle='rgba(160,180,220,0.35)';ctx.lineWidth=1.2;
+    }
+  }
+  // Floor
+  ctx.fillStyle='#a8b8d8';ctx.fillRect(0,gnd,cw,ch-gnd);
+  // Floor tiles
+  const tileW=64;const toff=(-(frame*spd)%tileW+tileW)%tileW;
+  ctx.strokeStyle='rgba(130,150,200,0.5)';ctx.lineWidth=1;
+  for(let x=toff-tileW;x<cw+tileW;x+=tileW){
+    ctx.beginPath();ctx.moveTo(x,gnd);ctx.lineTo(x,ch);ctx.stroke();
+  }
+  ctx.beginPath();ctx.moveTo(0,gnd);ctx.lineTo(cw,gnd);ctx.strokeStyle='rgba(80,100,160,0.5)';ctx.stroke();
+  // Baseboard
+  ctx.fillStyle='#8898c0';ctx.fillRect(0,gnd,cw,4);
+}
+
+function g8DrawPlayer(ctx,p,gnd){
+  ctx.save();ctx.translate(p.x,p.y);
+  const ph=p.walkPhase,onG=p.onGround;
+  const legA=onG?Math.sin(ph)*14:0;
+  const armA=onG?Math.sin(ph+Math.PI)*11:12;
+  // Shadow
+  ctx.fillStyle='rgba(0,0,100,0.1)';
+  ctx.beginPath();ctx.ellipse(0,0,13,4,0,0,Math.PI*2);ctx.fill();
+  // Legs
+  ctx.strokeStyle='#0d47a1';ctx.lineWidth=7;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(-5,-14);ctx.lineTo(-5+legA*0.9,0);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(5,-14);ctx.lineTo(5-legA*0.9,0);ctx.stroke();
+  // Shoes
+  ctx.fillStyle='#1a237e';
+  ctx.beginPath();ctx.ellipse(-5+legA*0.9,0,6,3.5,0,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(5-legA*0.9,0,6,3.5,0,0,Math.PI*2);ctx.fill();
+  // Body (shirt)
+  ctx.fillStyle='#1976d2';ctx.beginPath();
+  ctx.roundRect?ctx.roundRect(-11,-38,22,24,4):ctx.rect(-11,-38,22,24);
+  ctx.fill();
+  // Collar / tie
+  ctx.fillStyle='#e53935';
+  ctx.beginPath();ctx.moveTo(-3,-38);ctx.lineTo(0,-30);ctx.lineTo(3,-38);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#b71c1c';
+  ctx.beginPath();ctx.moveTo(-1,-30);ctx.lineTo(0,-20);ctx.lineTo(1,-30);ctx.closePath();ctx.fill();
+  // Arms
+  ctx.strokeStyle='#1565c0';ctx.lineWidth=6;ctx.lineCap='round';
+  // Left arm
+  ctx.beginPath();ctx.moveTo(-11,-32);
+  ctx.quadraticCurveTo(-20,-30+armA*0.3,-20+armA*0.6,-22+Math.abs(armA)*0.2);ctx.stroke();
+  // Right arm
+  ctx.beginPath();ctx.moveTo(11,-32);
+  ctx.quadraticCurveTo(20,-30-armA*0.3,20-armA*0.6,-22+Math.abs(armA)*0.2);ctx.stroke();
+  // Head
+  ctx.fillStyle='#ffcc80';ctx.beginPath();ctx.arc(0,-48,12,0,Math.PI*2);ctx.fill();
+  // Hair
+  ctx.fillStyle='#5d4037';ctx.beginPath();ctx.arc(0,-56,7,Math.PI,Math.PI*2);ctx.fill();
+  // Eyes
+  ctx.fillStyle='#333';
+  ctx.beginPath();ctx.arc(-4,-49,1.8,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(4,-49,1.8,0,Math.PI*2);ctx.fill();
+  // Smile
+  ctx.strokeStyle='#5d3a1a';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.arc(0,-46,4,0.15,Math.PI-0.15);ctx.stroke();
+  ctx.restore();
+}
+
+function g8EndGame(){
+  g8.running=false;
+  if(g8.raf){cancelAnimationFrame(g8.raf);g8.raf=null;}
+  g8TeardownInput();
+  // Crash flash on canvas
+  const ctx=g8El('g8Canvas').getContext('2d');
+  ctx.fillStyle='rgba(255,50,0,0.3)';ctx.fillRect(0,0,g8.cw,g8.ch);
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='56px serif';
+  ctx.fillText('💥',g8.player.x,g8.player.y-25);
+  const msg=G8_OVER_MSGS[Math.floor(Math.random()*G8_OVER_MSGS.length)];
+  g8El('g8OverMsg').textContent=msg;
+  g8El('g8OverScore').textContent='ניקוד: '+g8.score+(g8.score>=10?' 🏆':g8.score>=5?' ⭐':'');
+  setTimeout(()=>g8El('g8OverScreen').classList.add('show'),500);
+}
+
+function g8ExitToMenu(silent){
+  g8.running=false;
+  if(g8.raf){cancelAnimationFrame(g8.raf);g8.raf=null;}
+  g8TeardownInput();
+  g8El('game8UI').classList.remove('show');
+  if(!silent)navTo('mainPage');
+}
+
+// ── Game 9: Falafel King ─────────────────────────────────────────────────────
+const G9_ITEMS=[
+  {emoji:'🧆',pts:5, good:true, heart:false,w:38,spdMult:1.38},  // fast
+  {emoji:'🍟',pts:3, good:true, heart:false,w:20,spdMult:0.95},  // medium
+  {emoji:'🥗',pts:2, good:true, heart:false,w:16,spdMult:0.48},  // slow
+  {emoji:'🫙',pts:2, good:true, heart:false,w:16,spdMult:0.82},  // medium
+  {emoji:'🌶️',pts:-5,good:false,heart:false,w:14,spdMult:0.7},   // -5 pts
+  {emoji:'🧅',pts:-5,good:false,heart:false,w:10,spdMult:0.58,isOnion:true}, // -5 pts, shoots arrows
+  {emoji:'💩',pts:-5,good:false,heart:false,w:8, spdMult:0.88},  // -5 pts
+];
+const G9_TOASTS={
+  '🧆':['איזה פלאפליסט! 🎉','פלאפל זהב! ✨','ישר לפיתה! 🥙','מלך הפלאפל! 👑'],
+  '🍟':["צ'יפס מהמם! 🍟","כרישה לא, זה צ'יפס! 👌",'קריספי! 🤌'],
+  '🥗':['ירוק זה בריא! 🥗','סלט מגניב! 🌿','איזה טריות! 🫡'],
+  '🫙':['טחינה עלאאא! 🫙','אתה טחינאי! 💪','שמן זית ביתי! ✨'],
+  '🌶️':['אוי חריף! 🔥','זה שורף! 😤','לא בפיתה שלי!'],
+  '🧅':['בצל שרוף! 😭','איזה ריח! 👃','למה?! 😩','חץ בצל! 🧅💀'],
+  '_onionArrow':['חץ בצל! -4 נקודות 😵','הבצל פגע! 🧅 -4 נק\'','אוי, חץ בצל בנשמה! 😬'],
+  '💩':['אוי, זה נפל על הרצפה! 😱','5 שניות כלל? לא! ❌','השתמשת ב-5 שניות כלל? 😬'],
+};
+let g9={running:false,score:0,lives:0,timeLeft:30,
+  pita:{x:200,w:108,speed:7},
+  items:[],onionArrows:[],frame:0,spawnCd:40,spawnRate:72,
+  baseSpeed:2.6,particles:[],timerInt:null,pitaShake:0,
+  cw:400,ch:480,keys:{}};
+let g9Raf=null;
+
+function g9El(id){return document.getElementById(id);}
+function g9Cnv(){return g9El('g9Canvas');}
+function g9Ctx2d(){return g9Cnv().getContext('2d');}
+
+function g9WeightedPick(){
+  let total=G9_ITEMS.reduce((s,i)=>s+i.w,0),r=Math.random()*total;
+  for(const it of G9_ITEMS){r-=it.w;if(r<=0)return it;}
+  return G9_ITEMS[0];
+}
+
+function g9ShowToast(emoji,fallback){
+  const arr=G9_TOASTS[emoji];
+  const msg=arr?arr[Math.floor(Math.random()*arr.length)]:fallback;
+  const el=g9El('g9Toast');
+  el.textContent=msg;el.classList.remove('show');
+  void el.offsetWidth;el.classList.add('show');
+  clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2200);
+}
+
+function g9UpdateHearts(){
+  let h='';for(let i=0;i<3;i++)h+=i<g9.lives?'❤️':'🖤';
+  g9El('g9Hearts').textContent=h;
+}
+
+function startGame9(){
+  const cnv=g9Cnv();
+  g9.cw=Math.min(window.innerWidth,460);
+  g9.ch=Math.max(320,Math.min(window.innerHeight-52-52,520));
+  cnv.width=g9.cw;cnv.height=g9.ch;
+  g9.pita.x=g9.cw/2;
+  g9El('game9UI').classList.add('show');
+  g9El('g9StartScreen').classList.add('show');
+  g9El('g9OverScreen').classList.remove('show');
+  g9.running=false;
+  g9DrawBackground();
+}
+
+function g9StartPlay(){
+  g9El('g9StartScreen').classList.remove('show');
+  g9El('g9OverScreen').classList.remove('show');
+  g9.score=0;g9.lives=0;g9.timeLeft=30;
+  g9.items=[];g9.onionArrows=[];g9.particles=[];g9.frame=0;g9.pitaShake=0;
+  g9.spawnCd=40;g9.spawnRate=72;g9.baseSpeed=2.6;
+  g9.pita.x=g9.cw/2;g9.keys={};g9.running=true;
+  g9El('g9Score').textContent='0';
+  g9El('g9Timer').textContent='30';
+  g9El('g9Hearts').style.display='none';
+  if(g9.timerInt)clearInterval(g9.timerInt);
+  g9.timerInt=setInterval(()=>{
+    if(!g9.running)return;
+    g9.timeLeft--;
+    g9El('g9Timer').textContent=g9.timeLeft;
+    g9.baseSpeed+=0.10;
+    g9.spawnRate=Math.max(32,g9.spawnRate-1.4);
+    if(g9.timeLeft<=0)g9EndGame(false);
+  },1000);
+  g9SetupInput();
+  if(g9Raf)cancelAnimationFrame(g9Raf);
+  g9GameLoop();
+}
+
+function g9SetupInput(){
+  if(window._g9kd)document.removeEventListener('keydown',window._g9kd);
+  if(window._g9ku)document.removeEventListener('keyup',window._g9ku);
+  window._g9kd=e=>{g9.keys[e.key]=true;};
+  window._g9ku=e=>{g9.keys[e.key]=false;};
+  document.addEventListener('keydown',window._g9kd);
+  document.addEventListener('keyup',window._g9ku);
+  const cnv=g9Cnv();
+  cnv.ontouchmove=e=>{e.preventDefault();const r=cnv.getBoundingClientRect();g9.pita.x=((e.touches[0].clientX-r.left)/r.width)*g9.cw;};
+  cnv.ontouchstart=e=>{e.preventDefault();const r=cnv.getBoundingClientRect();g9.pita.x=((e.touches[0].clientX-r.left)/r.width)*g9.cw;};
+  cnv.onmousemove=e=>{const r=cnv.getBoundingClientRect();g9.pita.x=((e.clientX-r.left)/r.width)*g9.cw;};
+}
+
+function g9TeardownInput(){
+  if(window._g9kd)document.removeEventListener('keydown',window._g9kd);
+  if(window._g9ku)document.removeEventListener('keyup',window._g9ku);
+  const cnv=g9Cnv();cnv.ontouchmove=null;cnv.ontouchstart=null;cnv.onmousemove=null;
+}
+
+function g9GameLoop(){
+  if(!g9.running)return;
+  g9Update9();g9Draw9();
+  g9Raf=requestAnimationFrame(g9GameLoop);
+}
+
+function g9Update9(){
+  const cw=g9.cw,ch=g9.ch,hw=g9.pita.w/2;
+  // Move pita with keys
+  if(g9.keys['ArrowLeft']||g9.keys['a']||g9.keys['A'])
+    g9.pita.x=Math.max(hw,g9.pita.x-g9.pita.speed);
+  if(g9.keys['ArrowRight']||g9.keys['d']||g9.keys['D'])
+    g9.pita.x=Math.min(cw-hw,g9.pita.x+g9.pita.speed);
+  g9.pita.x=Math.max(hw,Math.min(cw-hw,g9.pita.x));
+  // Spawn
+  g9.spawnCd--;
+  if(g9.spawnCd<=0){
+    g9.spawnCd=Math.round(g9.spawnRate+(Math.random()-0.5)*18);
+    const type=g9WeightedPick();
+    const spd=(g9.baseSpeed+(Math.random()-0.5)*0.7)*type.spdMult;
+    g9.items.push({type,x:28+Math.random()*(cw-56),y:-36,speed:spd,
+      wobble:Math.random()*Math.PI*2,wobbleSpd:(Math.random()-0.5)*0.035,arrowCd:80});
+  }
+  // Update items
+  const pitaY=ch-44,pitaHW=g9.pita.w/2+12;
+  for(let i=g9.items.length-1;i>=0;i--){
+    const it=g9.items[i];
+    it.y+=it.speed;it.wobble+=it.wobbleSpd;
+    it.x+=Math.sin(it.wobble)*0.4;
+    // Onion shoots arrows
+    if(it.type.isOnion&&it.y>0&&it.y<ch-60){
+      it.arrowCd--;
+      if(it.arrowCd<=0){
+        it.arrowCd=95+Math.floor(Math.random()*30);
+        // Random downward direction (angle between 60° and 120° from horizontal = mostly downward)
+        const randAngle=(Math.PI*0.28)+(Math.random()*Math.PI*0.44);
+        const spd=5.0;
+        g9.onionArrows.push({x:it.x,y:it.y,dx:Math.cos(randAngle)*spd*(Math.random()<0.5?1:-1),dy:Math.abs(Math.sin(randAngle))*spd,angle:randAngle});
+      }
+    }
+    // Catch check
+    if(it.y>=pitaY-14&&it.y<=pitaY+22&&Math.abs(it.x-g9.pita.x)<pitaHW){
+      g9.items.splice(i,1);
+      if(it.type.good){
+        g9.score+=it.type.pts;
+        g9El('g9Score').textContent=g9.score;
+        for(let p=0;p<10;p++)g9.particles.push({x:it.x,y:pitaY,vx:(Math.random()-0.5)*6,vy:-2.5-Math.random()*4,alpha:1,r:3+Math.random()*3,col:`hsl(${30+Math.random()*50},90%,65%)`});
+        g9ShowToast(it.type.emoji,'');
+        if(g9.score>=90){g9EndGame(true);return;}
+      }else{
+        g9.score=Math.max(0,g9.score-5);
+        g9El('g9Score').textContent=g9.score;
+        g9.pitaShake=20;
+        g9ShowToast(it.type.emoji,'אוי! 😱');
+        for(let p=0;p<6;p++)g9.particles.push({x:it.x,y:pitaY,vx:(Math.random()-0.5)*5,vy:-1.5-Math.random()*3,alpha:1,r:3,col:'#ff4422'});
+      }
+      continue;
+    }
+    if(it.y>ch+30)g9.items.splice(i,1);
+  }
+  // Update onion arrows
+  for(let i=g9.onionArrows.length-1;i>=0;i--){
+    const a=g9.onionArrows[i];
+    a.x+=a.dx;a.y+=a.dy;
+    // Hit pita
+    if(a.y>=pitaY-18&&a.y<=pitaY+20&&Math.abs(a.x-g9.pita.x)<pitaHW){
+      g9.onionArrows.splice(i,1);
+      g9.score=Math.max(0,g9.score-4);
+      g9El('g9Score').textContent=g9.score;
+      g9.pitaShake=20;
+      const arr=G9_TOASTS['_onionArrow'];
+      const el=g9El('g9Toast');
+      el.textContent=arr[Math.floor(Math.random()*arr.length)];
+      el.classList.remove('show');void el.offsetWidth;el.classList.add('show');
+      clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2200);
+      for(let p=0;p<8;p++)g9.particles.push({x:a.x,y:a.y,vx:(Math.random()-0.5)*5,vy:-1.5-Math.random()*3,alpha:1,r:3,col:'#ff8800'});
+      continue;
+    }
+    if(a.y>ch+20||a.x<-20||a.x>cw+20)g9.onionArrows.splice(i,1);
+  }
+  // Particles
+  for(let p=g9.particles.length-1;p>=0;p--){
+    const pt=g9.particles[p];
+    pt.x+=pt.vx;pt.y+=pt.vy;pt.vy+=0.18;pt.alpha-=0.035;
+    if(pt.alpha<=0)g9.particles.splice(p,1);
+  }
+  if(g9.pitaShake>0)g9.pitaShake--;
+  g9.frame++;
+}
+
+function g9DrawBackground(){
+  const ctx=g9Ctx2d(),cw=g9.cw,ch=g9.ch;
+  // Sky / stall background
+  const bg=ctx.createLinearGradient(0,0,0,ch);
+  bg.addColorStop(0,'#0d0500');bg.addColorStop(0.55,'#2a1000');bg.addColorStop(1,'#1a0800');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,cw,ch);
+  // Decorative stall awning strips
+  const stripeW=cw/8;
+  for(let s=0;s<8;s++){
+    ctx.fillStyle=s%2===0?'rgba(200,30,0,0.18)':'rgba(255,160,0,0.1)';
+    ctx.fillRect(s*stripeW,0,stripeW,28);
+  }
+  // Counter surface at bottom
+  const counter=ctx.createLinearGradient(0,ch-28,0,ch);
+  counter.addColorStop(0,'#5c2e00');counter.addColorStop(1,'#3a1a00');
+  ctx.fillStyle=counter;ctx.fillRect(0,ch-28,cw,28);
+  ctx.fillStyle='rgba(255,180,60,0.15)';ctx.fillRect(0,ch-30,cw,4);
+}
+
+function g9Draw9(){
+  const ctx=g9Ctx2d(),cw=g9.cw,ch=g9.ch;
+  g9DrawBackground();
+  // Falling items
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  for(const it of g9.items){
+    ctx.save();
+    const isOnion=it.type.isOnion;
+    const haloR=isOnion?42:30;
+    // Glow halo
+    if(it.type.good){
+      const grd=ctx.createRadialGradient(it.x,it.y,4,it.x,it.y,haloR);
+      grd.addColorStop(0,'rgba(255,220,60,0.4)');grd.addColorStop(1,'rgba(255,220,60,0)');
+      ctx.fillStyle=grd;ctx.beginPath();ctx.arc(it.x,it.y,haloR,0,Math.PI*2);ctx.fill();
+    }else{
+      const grd=ctx.createRadialGradient(it.x,it.y,4,it.x,it.y,haloR);
+      grd.addColorStop(0,isOnion?'rgba(255,100,0,0.5)':'rgba(255,40,0,0.35)');
+      grd.addColorStop(1,'rgba(255,40,0,0)');
+      ctx.fillStyle=grd;ctx.beginPath();ctx.arc(it.x,it.y,haloR,0,Math.PI*2);ctx.fill();
+    }
+    // Emoji — onion is bigger and has a pulsing red ring
+    const emojiSize=isOnion?58:46;
+    if(isOnion){
+      // Pulsing danger ring
+      const pulse=0.5+0.5*Math.sin(g9.frame*0.18);
+      ctx.strokeStyle=`rgba(255,80,0,${0.4+pulse*0.5})`;
+      ctx.lineWidth=3+pulse*2;
+      ctx.beginPath();ctx.arc(it.x,it.y,32+pulse*4,0,Math.PI*2);ctx.stroke();
+    }
+    ctx.font=emojiSize+'px serif';
+    ctx.fillText(it.type.emoji,it.x,it.y);
+    // Labels
+    if(it.type.good&&it.type.pts>0){
+      ctx.font='bold 13px sans-serif';ctx.fillStyle='#ffd93d';
+      ctx.shadowColor='rgba(0,0,0,0.8)';ctx.shadowBlur=4;
+      ctx.fillText('+'+it.type.pts+' נק\'',it.x,it.y-(emojiSize/2+10));
+      ctx.shadowBlur=0;
+    }else if(!it.type.good){
+      ctx.font=`bold ${isOnion?13:12}px sans-serif`;
+      ctx.fillStyle=isOnion?'#ff6600':'#ff4422';
+      ctx.shadowColor='rgba(0,0,0,0.9)';ctx.shadowBlur=5;
+      ctx.fillText(isOnion?'⚠️ מסוכן! יורה עליך!':'⚠️ היזהר!',it.x,it.y-(emojiSize/2+10));
+      ctx.shadowBlur=0;
+    }
+    ctx.restore();
+  }
+  // Onion arrows
+  for(const a of g9.onionArrows){
+    ctx.save();
+    ctx.translate(a.x,a.y);
+    ctx.rotate(a.angle);
+    // Arrow shaft
+    ctx.strokeStyle='#ff8800';ctx.lineWidth=3;
+    ctx.shadowColor='rgba(255,100,0,0.8)';ctx.shadowBlur=6;
+    ctx.beginPath();ctx.moveTo(-18,0);ctx.lineTo(10,0);ctx.stroke();
+    // Arrowhead
+    ctx.fillStyle='#ffcc00';
+    ctx.shadowBlur=8;
+    ctx.beginPath();ctx.moveTo(18,0);ctx.lineTo(8,-6);ctx.lineTo(8,6);ctx.closePath();ctx.fill();
+    // Onion mini emoji on tail
+    ctx.shadowBlur=0;ctx.font='11px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('🧅',-22,0);
+    ctx.restore();
+  }
+  // Particles
+  for(const pt of g9.particles){
+    ctx.save();ctx.globalAlpha=pt.alpha;
+    ctx.fillStyle=pt.col;
+    ctx.beginPath();ctx.arc(pt.x,pt.y,pt.r,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+  }
+  // Pita — shake on hit
+  const shakeOff=g9.pitaShake>0?Math.sin(g9.frame*1.8)*(g9.pitaShake*0.55):0;
+  g9DrawPita9(ctx,g9.pita.x+shakeOff,ch-44,g9.pita.w);
+  // ── Mission super-bar (BELOW pita, in counter area) ──
+  const mBarH=18,mPct=Math.min(1,g9.score/90);
+  const mBarY=ch-27; // inside the brown counter strip
+  // Background track
+  ctx.fillStyle='rgba(0,0,0,0.45)';
+  ctx.beginPath();if(ctx.roundRect)ctx.roundRect(8,mBarY,cw-16,mBarH,5);else ctx.rect(8,mBarY,cw-16,mBarH);ctx.fill();
+  // Fill gradient
+  if(mPct>0){
+    const mg=ctx.createLinearGradient(8,0,(cw-16)*mPct+8,0);
+    mg.addColorStop(0,'#ff6b00');mg.addColorStop(0.5,'#ffd93d');mg.addColorStop(1,'#6bcb77');
+    ctx.fillStyle=mg;
+    ctx.beginPath();if(ctx.roundRect)ctx.roundRect(8,mBarY,(cw-16)*mPct,mBarH,5);else ctx.rect(8,mBarY,(cw-16)*mPct,mBarH);ctx.fill();
+  }
+  // Label
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font='bold 11px sans-serif';
+  ctx.fillStyle='rgba(255,255,255,0.92)';
+  ctx.shadowColor='rgba(0,0,0,0.9)';ctx.shadowBlur=4;
+  ctx.fillText(`🎯 ${g9.score} / 90 נקודות`,cw/2,mBarY+mBarH/2);
+  ctx.shadowBlur=0;
+  // Trophy flag at end
+  ctx.font='13px serif';ctx.fillText('🏆',cw-18,mBarY+mBarH/2);
+
+  // Time bar at very bottom
+  const pct=g9.timeLeft/30;
+  ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fillRect(0,ch-6,cw,6);
+  const tg=ctx.createLinearGradient(0,0,cw*pct,0);
+  tg.addColorStop(0,'#ff4422');tg.addColorStop(1,'#ffd93d');
+  ctx.fillStyle=tg;ctx.fillRect(0,ch-6,cw*pct,6);
+}
+
+function g9DrawPita9(ctx,cx,cy,pw){
+  const ph=30;
+  ctx.save();
+  // Shadow
+  ctx.shadowColor='rgba(0,0,0,0.6)';ctx.shadowBlur=12;
+  // Pita body
+  const pg=ctx.createLinearGradient(cx,cy-ph/2,cx,cy+ph/2);
+  pg.addColorStop(0,'#f5deb3');pg.addColorStop(0.45,'#d4a055');pg.addColorStop(1,'#b8843c');
+  ctx.fillStyle=pg;
+  ctx.beginPath();
+  ctx.ellipse(cx,cy,pw/2,ph/2,0,0,Math.PI*2);
+  ctx.fill();
+  ctx.shadowBlur=0;
+  // Sesame dots
+  ctx.fillStyle='rgba(100,55,10,0.4)';
+  const dots=[[0,-6],[12,-4],[-10,-3],[5,2],[-6,4],[14,0],[-14,2]];
+  for(const[dx,dy]of dots){ctx.beginPath();ctx.arc(cx+dx,cy+dy,2.2,0,Math.PI*2);ctx.fill();}
+  // Opening highlight
+  ctx.fillStyle='rgba(80,40,0,0.22)';
+  ctx.beginPath();ctx.ellipse(cx,cy-4,pw/2-14,ph/2-8,0,0,Math.PI*2);ctx.fill();
+  // Rim shine
+  ctx.strokeStyle='rgba(255,230,170,0.35)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.ellipse(cx,cy,pw/2,ph/2,0,0,Math.PI*2);ctx.stroke();
+  ctx.restore();
+}
+
+function g9EndGame(won){
+  g9.running=false;
+  if(g9.timerInt){clearInterval(g9.timerInt);g9.timerInt=null;}
+  if(g9Raf){cancelAnimationFrame(g9Raf);g9Raf=null;}
+  g9TeardownInput();
+  const s=g9.score;
+  let emoji,title,grade;
+  if(won){
+    emoji='👑';title='מלך הפלאפל! 👑';grade='הגעת ל-90 — הדוכן שלך על הגג! 🥙🔥';
+  }else{
+    emoji='⏰';title='נגמר הזמן!';grade='הגעת ל-'+s+' מתוך 90 — נסה שוב! 💪';
+  }
+  g9El('g9OverEmoji').textContent=emoji;
+  g9El('g9OverTitle').textContent=title;
+  g9El('g9OverScore').textContent='ניקוד: '+s+' / 90 נקודות';
+  g9El('g9OverGrade').textContent=grade;
+  g9El('g9OverScreen').classList.add('show');
+}
+
+function g9ExitToMenu(silent){
+  g9.running=false;
+  if(g9.timerInt){clearInterval(g9.timerInt);g9.timerInt=null;}
+  if(g9Raf){cancelAnimationFrame(g9Raf);g9Raf=null;}
+  g9TeardownInput();
+  g9El('game9UI').classList.remove('show');
+  g9El('g9StartScreen').classList.remove('show');
+  g9El('g9OverScreen').classList.remove('show');
+  if(!silent)navTo('mainPage');
 }
 
 // ── Boot ───────────────────────────────────────────────────────────────────────
