@@ -1308,9 +1308,8 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
     </div>
   </div>
 
-  <!-- Cabinet + Lever row -->
+  <!-- Cabinet + Lever -->
   <div class="g11-cabinet-wrap">
-    <div class="g11-cabinet-row">
 
       <!-- Machine cabinet -->
       <div class="g11-cabinet">
@@ -1339,19 +1338,18 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
           </div>
         </div>
 
+        <!-- Lever below reels, centered -->
+        <div class="g11-lever-mount">
+          <div class="g11-lever-wrap" id="g11LeverWrap" onclick="g11PullLever()">
+            <div class="g11-lever-ball"></div>
+            <div class="g11-lever-arm"></div>
+            <div class="g11-lever-base"></div>
+          </div>
+        </div>
+
         <!-- Win banner -->
         <div class="g11-win-banner" id="g11WinBanner"></div>
       </div>
-
-      <!-- Lever mount -->
-      <div class="g11-lever-mount">
-        <div class="g11-lever-wrap" id="g11LeverWrap" onclick="g11PullLever()">
-          <div class="g11-lever-ball"></div>
-          <div class="g11-lever-arm"></div>
-          <div class="g11-lever-base"></div>
-        </div>
-      </div>
-    </div>
 
     <!-- Streak badge -->
     <div class="g11-streak-badge" id="g11StreakBadge">
