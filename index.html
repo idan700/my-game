@@ -460,10 +460,8 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 .g10-ball{width:74px;height:74px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#ddd,#999);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#111;box-shadow:0 8px 28px rgba(0,0,0,0.7),inset 0 3px 8px rgba(255,255,255,0.7),inset 0 -2px 5px rgba(0,0,0,0.3);border:3px solid rgba(255,255,255,0.35);font-family:monospace;transition:background 0.3s,box-shadow 0.3s;}
 .g10-ball.g10-spin{animation:g10Spin 0.08s linear infinite;}
 .g10-ball.g10-win{background:radial-gradient(circle at 35% 30%,#fffde7,#ffd700,#b8860b);box-shadow:0 0 50px rgba(255,215,0,1),0 8px 28px rgba(0,0,0,0.4),inset 0 3px 8px rgba(255,255,255,0.9);}
-.g10-ball[data-color="red"]{color:#c0000a;text-shadow:0 0 8px rgba(200,0,10,0.4);}
-.g10-ball[data-color="black"]{color:#222;text-shadow:none;}
-.g10-ball[data-color="green"]{color:#1a6b1a;text-shadow:0 0 8px rgba(30,120,30,0.4);}
-.g10-ball.g10-lose{background:radial-gradient(circle at 35% 30%,#ffcccc,#e53935,#7b0000);color:#fff;box-shadow:0 0 24px rgba(200,0,0,0.6),0 8px 28px rgba(0,0,0,0.5);}
+.g10-ball.g10-lose{background:radial-gradient(circle at 35% 30%,#ccc,#aaa,#777);box-shadow:0 4px 14px rgba(0,0,0,0.5),inset 0 2px 6px rgba(255,255,255,0.5);}
+/* number color — applied via inline style in JS for guaranteed specificity */
 @keyframes g10Spin{0%{transform:rotate(-12deg) scale(0.93);}50%{transform:rotate(12deg) scale(1.06);}100%{transform:rotate(-12deg) scale(0.93);}}
 /* Big coin counter */
 .g10-coins-counter{display:flex;flex-direction:column;align-items:center;gap:3px;}
@@ -635,7 +633,116 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   .g10-title{font-size:17px;}
   .g10-spin-btn{font-size:14px;padding:10px 20px;}
   .g10-ov-title{font-size:26px;}
+
+  /* Game 11 */
+  .g11-machine{width:100%;max-width:380px;}
+  .g11-reels-row{gap:8px;}
+  .g11-reel{width:90px;height:90px;font-size:50px;}
+  .g11-spin-btn{font-size:16px;padding:13px 28px;}
+  .g11-stats-panel{max-width:100%;padding:14px 12px;}
+  .g11-stat-row{font-size:12px;}
+  .g11-sym-row{font-size:12px;}
+  .g11-last-row{gap:4px;}
+  .g11-last-item{width:36px;height:36px;font-size:18px;}
 }
+
+/* ══ GAME 11 — Lucky Slots ══ */
+.gc-11{background:linear-gradient(145deg,#1a0033,#3d006b);box-shadow:0 4px 22px rgba(180,50,255,0.25);}
+.gc-11:hover{box-shadow:0 8px 32px rgba(180,50,255,0.55);}
+
+#game11UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,#260050 0%,#0e001e 50%,#050010 100%);flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow-y:auto;overflow-x:hidden;}
+#game11UI.show{display:flex;}
+
+/* Credit display */
+.g11-credit-wrap{width:100%;max-width:480px;padding:10px 14px 0;box-sizing:border-box;}
+.g11-credit-display{background:#000;border:3px solid #333;border-radius:10px;padding:8px 18px;display:flex;align-items:center;justify-content:center;gap:4px;box-shadow:inset 0 3px 10px rgba(0,0,0,0.8),0 0 18px rgba(0,220,80,0.12);}
+.g11-credit-dollar{font-size:32px;font-weight:900;color:#00cc44;font-family:'Courier New',monospace;text-shadow:0 0 10px rgba(0,255,68,0.7),0 0 22px rgba(0,255,68,0.4);line-height:1;}
+.g11-credit-num{font-size:62px;font-weight:900;color:#00ff55;font-family:'Courier New',monospace;text-shadow:0 0 14px rgba(0,255,68,0.9),0 0 30px rgba(0,255,68,0.5),0 0 50px rgba(0,255,68,0.2);line-height:1;min-width:3ch;text-align:left;transition:color 0.2s;}
+.g11-credit-num.flash{animation:g11CreditFlash 0.18s ease-in-out 4;}
+@keyframes g11CreditFlash{0%,100%{color:#00ff55;}50%{color:#ffff00;text-shadow:0 0 20px rgba(255,255,0,1),0 0 40px rgba(255,255,0,0.7);}}
+.g11-credit-label{font-size:10px;letter-spacing:3px;color:rgba(0,255,68,0.35);text-align:center;margin-top:3px;font-family:'Courier New',monospace;text-transform:uppercase;}
+
+/* Machine cabinet */
+.g11-cabinet-wrap{width:100%;max-width:480px;padding:8px 12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.g11-cabinet-row{display:flex;align-items:center;gap:0;width:100%;}
+.g11-cabinet{flex:1;background:linear-gradient(180deg,#1e0048 0%,#110028 100%);border-top:3px solid #9900ee;border-left:3px solid #7700cc;border-bottom:3px solid #440088;border-right:2px solid #330066;border-radius:16px 0 0 16px;padding:14px 12px 14px 14px;box-shadow:0 0 30px rgba(150,0,255,0.25),inset 0 0 20px rgba(0,0,0,0.5);}
+
+/* Win-line highlight bar on cabinet */
+.g11-win-line{height:3px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.7),transparent);margin-bottom:10px;border-radius:2px;opacity:0;transition:opacity 0.3s;}
+.g11-win-line.active{opacity:1;}
+
+/* Reels */
+.g11-reels-row{display:flex;justify-content:center;gap:8px;margin-bottom:10px;}
+.g11-reel{width:110px;height:152px;overflow:hidden;border-radius:10px;background:#000;border:2px solid rgba(255,255,255,0.12);position:relative;box-shadow:inset 0 0 20px rgba(0,0,0,0.8);}
+/* Gradient masks top/bottom to simulate reel depth */
+.g11-reel::before,.g11-reel::after{content:'';position:absolute;left:0;right:0;height:38%;z-index:2;pointer-events:none;}
+.g11-reel::before{top:0;background:linear-gradient(to bottom,rgba(10,0,28,0.92) 0%,transparent 100%);}
+.g11-reel::after{bottom:0;background:linear-gradient(to top,rgba(10,0,28,0.92) 0%,transparent 100%);}
+/* Center highlight line */
+.g11-reel-hl{position:absolute;left:0;right:0;top:calc(50% - 1px);height:2px;background:rgba(255,215,0,0.25);z-index:3;pointer-events:none;}
+.g11-reel-inner{display:flex;flex-direction:column;align-items:center;will-change:transform;}
+.g11-reel-sym{width:110px;height:152px;display:flex;align-items:center;justify-content:center;font-size:72px;line-height:1;flex-shrink:0;position:relative;}
+.g11-reel.win-glow{box-shadow:0 0 0 3px #ffd700,0 0 20px rgba(255,215,0,0.7),inset 0 0 12px rgba(255,215,0,0.1)!important;}
+
+/* Win banner */
+.g11-win-banner{min-height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;padding:0 10px;font-size:16px;font-weight:900;letter-spacing:0.5px;text-align:center;transition:all 0.3s;}
+.g11-win-banner.visible{background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.2);}
+.g11-win-banner.jackpot{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,80,0,0.15));border:2px solid #ffd700;animation:g11JackpotGlow 0.5s ease-in-out infinite alternate;}
+@keyframes g11JackpotGlow{from{box-shadow:0 0 10px rgba(255,215,0,0.4);}to{box-shadow:0 0 28px rgba(255,215,0,0.95),0 0 50px rgba(255,150,0,0.5);}}
+
+/* Lever */
+.g11-lever-mount{width:52px;background:linear-gradient(180deg,#1e0048,#110028);border-top:3px solid #7700cc;border-right:3px solid #9900ee;border-bottom:3px solid #440088;border-left:1px solid #220044;border-radius:0 16px 16px 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:16px;box-shadow:0 0 20px rgba(150,0,255,0.15);}
+.g11-lever-wrap{display:flex;flex-direction:column;align-items:center;cursor:pointer;transform-origin:50% 100%;-webkit-tap-highlight-color:transparent;}
+.g11-lever-wrap.pulling{animation:g11LeverPull 0.55s cubic-bezier(0.25,0.46,0.45,0.94);}
+@keyframes g11LeverPull{0%{transform:rotate(0deg);}30%{transform:rotate(36deg);}60%{transform:rotate(36deg);}82%{transform:rotate(-7deg);}100%{transform:rotate(0deg);}}
+.g11-lever-ball{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 32%,#ff8888,#cc0000 55%,#880000);box-shadow:0 4px 14px rgba(200,0,0,0.7),inset -3px -3px 6px rgba(0,0,0,0.5);margin-bottom:0;position:relative;z-index:2;}
+.g11-lever-ball::after{content:'';position:absolute;top:5px;left:7px;width:8px;height:5px;border-radius:50%;background:rgba(255,200,200,0.55);transform:rotate(-30deg);}
+.g11-lever-arm{width:9px;height:80px;background:linear-gradient(90deg,#666,#ddd 40%,#aaa 60%,#555);border-radius:4px;box-shadow:2px 0 5px rgba(0,0,0,0.5);}
+.g11-lever-base{width:30px;height:16px;background:linear-gradient(180deg,#888,#555);border-radius:6px;box-shadow:0 3px 8px rgba(0,0,0,0.6);}
+.g11-lever-disabled{opacity:0.35;pointer-events:none;}
+
+/* Streak badge */
+.g11-streak-badge{display:none;align-items:center;gap:5px;background:linear-gradient(135deg,rgba(255,100,0,0.22),rgba(255,200,0,0.12));border:1.5px solid rgba(255,150,0,0.5);border-radius:50px;padding:5px 14px;font-size:14px;font-weight:800;color:#ffb347;animation:g11StreakGlow 0.9s ease-in-out infinite alternate;}
+.g11-streak-badge.show{display:flex;}
+@keyframes g11StreakGlow{from{box-shadow:0 0 6px rgba(255,120,0,0.3);}to{box-shadow:0 0 18px rgba(255,200,0,0.75);}}
+
+/* Info chips */
+.g11-info-row{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
+.g11-chip{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.11);border-radius:18px;padding:4px 12px;font-size:12px;font-weight:600;}
+.g11-chip strong{color:#ffd93d;}
+
+/* Buttons row */
+.g11-btn-row{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
+.g11-sub-btn{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);border-radius:18px;color:#fff;font-size:13px;font-weight:700;padding:7px 16px;cursor:pointer;transition:background 0.15s;}
+.g11-sub-btn:hover{background:rgba(255,255,255,0.15);}
+
+/* Last spins row */
+.g11-last-label{font-size:11px;opacity:0.4;margin-bottom:5px;text-align:center;letter-spacing:0.5px;}
+.g11-last-row{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;}
+.g11-last-item{width:38px;height:38px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;animation:g11HistPop 0.3s ease;}
+.g11-last-item.win-item{border-color:rgba(100,255,120,0.45);background:rgba(100,255,120,0.07);}
+.g11-last-item.jackpot-item{border-color:#ffd700;background:rgba(255,215,0,0.12);animation:g11HistPop 0.3s ease,g11JackpotGlow 1s ease-in-out infinite alternate;}
+@keyframes g11HistPop{from{transform:scale(0.4);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+/* Game 11 overlays */
+.g11-overlay{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(30,0,70,0.97),rgba(5,0,18,0.99));display:none;flex-direction:column;align-items:center;justify-content:center;z-index:200;padding:20px;}
+.g11-overlay.show{display:flex;}
+.g11-ov-emoji{font-size:72px;margin-bottom:12px;animation:nsBob 2s ease-in-out infinite;}
+.g11-ov-title{font-size:30px;font-weight:900;margin-bottom:6px;background:linear-gradient(135deg,#ff6bff,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.g11-ov-sub{font-size:14px;opacity:0.65;margin-bottom:22px;text-align:center;line-height:1.8;white-space:pre-line;}
+.g11-ov-btn{background:linear-gradient(135deg,#cc00ff,#8800bb);border:none;border-radius:50px;color:#fff;font-size:17px;font-weight:900;padding:13px 40px;cursor:pointer;box-shadow:0 6px 24px rgba(180,0,255,0.5);animation:g9Pulse 2s ease-in-out infinite;letter-spacing:0.5px;margin-top:4px;}
+.g11-ov-btn:hover{transform:scale(1.05);}
+.g11-back-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:50px;color:#fff;font-size:14px;font-weight:700;padding:10px 28px;cursor:pointer;margin-top:8px;}
+.g11-back-btn:hover{background:rgba(255,255,255,0.15);}
+
+/* Game 11 paytable */
+.g11-paytable{width:100%;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:10px 14px;box-sizing:border-box;}
+.g11-paytable-title{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35);text-align:center;margin-bottom:8px;text-transform:uppercase;}
+.g11-pay-row{display:flex;align-items:center;gap:4px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.g11-pay-row:last-child{border-bottom:none;}
+.g11-pay-syms{font-size:17px;letter-spacing:0;min-width:58px;}
+.g11-pay-name{font-size:11px;color:rgba(255,255,255,0.45);flex:1;}
+.g11-pay-amt{font-size:15px;font-weight:900;min-width:36px;text-align:left;}
 </style>
 </head>
 <body>
@@ -788,8 +895,6 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
             <div class="card-desc">ירי ומתחמק מכדורי ממתקים</div>
           </div>
         </div>
-        <!-- Coming soon -->
-        <div class="soon-divider">✦ &nbsp; בקרוב על המסך &nbsp; ✦</div>
         <div class="cards-row-soon">
           <div class="game-card gc-7" onclick="startFromCard(7)" style="cursor:pointer;">
             <div class="card-num-badge">7</div>
@@ -810,13 +915,19 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
             <div class="card-desc">תפוס פלאפלים לתוך הפיתה — היה המלך!</div>
           </div>
         </div>
-        <!-- Row: screen 10 -->
+        <!-- Row: screens 10-11 -->
         <div class="cards-row-soon" style="margin-top:4px;">
           <div class="game-card gc-10" onclick="startFromCard(10)" style="cursor:pointer;">
             <div class="card-num-badge">10</div>
-            <span class="card-icon">🎰</span>
+            <span class="card-icon"><svg viewBox="0 0 60 60" width="54" height="54" style="display:block;margin:0 auto 10px" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="29" fill="#7a5c10"/><path d="M30 30 L30 2 A28 28 0 0 1 44 5.75 Z" fill="#238823"/><path d="M30 30 L44 5.75 A28 28 0 0 1 54.25 16 Z" fill="#cc0000"/><path d="M30 30 L54.25 16 A28 28 0 0 1 58 30 Z" fill="#111"/><path d="M30 30 L58 30 A28 28 0 0 1 54.25 44 Z" fill="#cc0000"/><path d="M30 30 L54.25 44 A28 28 0 0 1 44 54.25 Z" fill="#111"/><path d="M30 30 L44 54.25 A28 28 0 0 1 30 58 Z" fill="#cc0000"/><path d="M30 30 L30 58 A28 28 0 0 1 16 54.25 Z" fill="#111"/><path d="M30 30 L16 54.25 A28 28 0 0 1 5.75 44 Z" fill="#cc0000"/><path d="M30 30 L5.75 44 A28 28 0 0 1 2 30 Z" fill="#111"/><path d="M30 30 L2 30 A28 28 0 0 1 5.75 16 Z" fill="#cc0000"/><path d="M30 30 L5.75 16 A28 28 0 0 1 16 5.75 Z" fill="#111"/><path d="M30 30 L16 5.75 A28 28 0 0 1 30 2 Z" fill="#cc0000"/><circle cx="30" cy="30" r="28" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.7"/><circle cx="30" cy="30" r="8" fill="#1a1a1a" stroke="#aaa" stroke-width="1"/><circle cx="30" cy="30" r="3.5" fill="#ddd"/></svg></span>
             <div class="card-name">קזינו 0-30</div>
             <div class="card-desc">שים מטבעות על מספרים — נחש נכון וקבל ×9! (0 = ×12)</div>
+          </div>
+          <div class="game-card gc-11" onclick="startFromCard(11)" style="cursor:pointer;">
+            <div class="card-num-badge">11</div>
+            <span class="card-icon">🎰</span>
+            <div class="card-name">Lucky Slots</div>
+            <div class="card-desc">3 תפוחי מזל — סובב וזכה בג'קפוט!</div>
           </div>
         </div>
       </div>
@@ -1079,7 +1190,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
     <div class="g10-result-area">
       <div class="g10-result-info">
         <div class="g10-result-label" id="g10Label">בחר מספרים ולחץ סובב!</div>
-        <div class="g10-ball" id="g10Ball">?</div>
+        <div class="g10-ball" id="g10Ball"></div>
         <div class="g10-round-info" id="g10RoundInfo">סיבוב 0</div>
       </div>
       <div class="g10-coins-counter">
@@ -1164,6 +1275,117 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   </div><!-- end g10-outer-wrap -->
 </div>
 
+<!-- ══ GAME 11 — Lucky Slots ══ -->
+<div id="game11UI">
+
+  <!-- Start screen overlay -->
+  <div class="g11-overlay show" id="g11StartScreen">
+    <div class="g11-ov-emoji">🎰</div>
+    <div class="g11-ov-title">Lucky Slots</div>
+    <div class="g11-ov-sub">3 גלגלים • $1 לסיבוב • מתחיל ב-$50<br>🍒🍋⭐7️⃣🐷🪷<br>משוך את הידית וסובב!</div>
+    <button class="g11-ov-btn" onclick="g11StartPlay()">🎰 בואו נסובב!</button>
+    <button class="g11-back-btn" onclick="g11ExitToMenu()">⬅ חזור לתפריט</button>
+  </div>
+
+  <!-- Credit display (big $ balance) -->
+  <div class="g11-credit-wrap">
+    <div class="g11-credit-display">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:2px;">
+          <span class="g11-credit-dollar">$</span>
+          <span class="g11-credit-num" id="g11BalanceEl">50</span>
+        </div>
+        <div class="g11-credit-label">CREDITS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabinet + Lever row -->
+  <div class="g11-cabinet-wrap">
+    <div class="g11-cabinet-row">
+
+      <!-- Machine cabinet -->
+      <div class="g11-cabinet">
+        <!-- Win-line bar -->
+        <div class="g11-win-line" id="g11WinLine"></div>
+
+        <!-- Reels -->
+        <div class="g11-reels-row">
+          <div class="g11-reel" id="g11Reel0">
+            <div class="g11-reel-hl"></div>
+            <div class="g11-reel-inner" id="g11ReelInner0">
+              <div class="g11-reel-sym">🎰</div>
+            </div>
+          </div>
+          <div class="g11-reel" id="g11Reel1">
+            <div class="g11-reel-hl"></div>
+            <div class="g11-reel-inner" id="g11ReelInner1">
+              <div class="g11-reel-sym">🎰</div>
+            </div>
+          </div>
+          <div class="g11-reel" id="g11Reel2">
+            <div class="g11-reel-hl"></div>
+            <div class="g11-reel-inner" id="g11ReelInner2">
+              <div class="g11-reel-sym">🎰</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Win banner -->
+        <div class="g11-win-banner" id="g11WinBanner"></div>
+      </div>
+
+      <!-- Lever mount -->
+      <div class="g11-lever-mount">
+        <div class="g11-lever-wrap" id="g11LeverWrap" onclick="g11PullLever()">
+          <div class="g11-lever-ball"></div>
+          <div class="g11-lever-arm"></div>
+          <div class="g11-lever-base"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Streak badge -->
+    <div class="g11-streak-badge" id="g11StreakBadge">
+      🔥 <span id="g11StreakText">רצף 2!</span>
+    </div>
+
+    <!-- Info chips -->
+    <div class="g11-info-row">
+      <div class="g11-chip">סיבובים <strong id="g11SpinsEl">0</strong></div>
+      <div class="g11-chip">זכיות <strong id="g11WinsEl">0</strong></div>
+      <div class="g11-chip">ג'קפוטים <strong id="g11JackpotEl">0</strong></div>
+    </div>
+
+    <!-- Paytable -->
+    <div class="g11-paytable">
+      <div class="g11-paytable-title">טבלת זכיות</div>
+      <div class="g11-pay-row"><span class="g11-pay-syms">7️⃣7️⃣7️⃣</span><span class="g11-pay-name">MEGA JACKPOT</span><span class="g11-pay-amt" style="color:#ffd700">$200</span></div>
+      <div class="g11-pay-row"><span class="g11-pay-syms">🪷🪷🪷</span><span class="g11-pay-name">Golden Buddha</span><span class="g11-pay-amt" style="color:#b8f0c8">$80</span></div>
+      <div class="g11-pay-row"><span class="g11-pay-syms">🐷🐷🐷</span><span class="g11-pay-name">Pig Bonus</span><span class="g11-pay-amt" style="color:#ffb347">$60</span></div>
+      <div class="g11-pay-row"><span class="g11-pay-syms">⭐⭐⭐</span><span class="g11-pay-name">Star Blast</span><span class="g11-pay-amt" style="color:#4d96ff">$40</span></div>
+      <div class="g11-pay-row"><span class="g11-pay-syms">🍋🍋🍋</span><span class="g11-pay-name">Lemon Rush</span><span class="g11-pay-amt" style="color:#ffd93d">$15</span></div>
+      <div class="g11-pay-row"><span class="g11-pay-syms">🍒🍒🍒</span><span class="g11-pay-name">Cherry Pop</span><span class="g11-pay-amt" style="color:#ff8888">$5</span></div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="g11-btn-row">
+      <button class="g11-sub-btn" onclick="g11Restart()">🔄 התחל מחדש</button>
+      <button class="g11-sub-btn" onclick="g11ExitToMenu()">⬅ תפריט</button>
+    </div>
+
+  </div>
+
+  <!-- Game over overlay -->
+  <div class="g11-overlay" id="g11OverScreen">
+    <div class="g11-ov-emoji" id="g11OverEmoji">💸</div>
+    <div class="g11-ov-title" id="g11OverTitle">נגמר הכסף!</div>
+    <div class="g11-ov-sub" id="g11OverSub"></div>
+    <button class="g11-ov-btn" onclick="g11StartPlay()">🔄 שחק שוב</button>
+    <button class="g11-back-btn" onclick="g11ExitToMenu()">⬅ חזור לתפריט</button>
+  </div>
+</div>
+
 <!-- ══ WIN/LOSE OVERLAY ══ -->
 <div id="overlay">
   <div class="modal">
@@ -1185,13 +1407,18 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
     <div class="break-timer" id="breakTimer" style="display:none">5:00</div>
     <div class="break-msg" id="breakMsg">בחר משחק והתחל!</div>
     <div class="break-pick-title">בחר משחק להפסקה:</div>
-    <div class="break-game-pick" style="grid-template-columns:repeat(6,1fr)">
+    <div class="break-game-pick" style="display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-bottom:18px;">
       <button class="bgp-btn sel" data-lv="1" onclick="pickBreakLv(1)" title="כובש שטחים">⚡</button>
       <button class="bgp-btn" data-lv="2" onclick="pickBreakLv(2)" title="כובש החלל">🌌</button>
       <button class="bgp-btn" data-lv="3" onclick="pickBreakLv(3)" title="ספיידרמן">🕷️</button>
       <button class="bgp-btn" data-lv="4" onclick="pickBreakLv(4)" title="חלליות">👾</button>
       <button class="bgp-btn" data-lv="5" onclick="pickBreakLv(5)" title="בתולות הים">🧜‍♀️</button>
       <button class="bgp-btn" data-lv="6" onclick="pickBreakLv(6)" title="מרשמלו">🍡</button>
+      <button class="bgp-btn" data-lv="7" onclick="pickBreakLv(7)" title="Six Seven">🎲</button>
+      <button class="bgp-btn" data-lv="8" onclick="pickBreakLv(8)" title="קפוץ מעל הבוס">🦸</button>
+      <button class="bgp-btn" data-lv="9" onclick="pickBreakLv(9)" title="מלך הפלאפל">🥙</button>
+      <button class="bgp-btn" data-lv="10" onclick="pickBreakLv(10)" title="קזינו 0-30"><svg viewBox="0 0 60 60" width="22" height="22" style="vertical-align:middle" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="29" fill="#7a5c10"/><path d="M30 30 L30 2 A28 28 0 0 1 44 5.75 Z" fill="#238823"/><path d="M30 30 L44 5.75 A28 28 0 0 1 54.25 16 Z" fill="#cc0000"/><path d="M30 30 L54.25 16 A28 28 0 0 1 58 30 Z" fill="#111"/><path d="M30 30 L58 30 A28 28 0 0 1 54.25 44 Z" fill="#cc0000"/><path d="M30 30 L54.25 44 A28 28 0 0 1 44 54.25 Z" fill="#111"/><path d="M30 30 L44 54.25 A28 28 0 0 1 30 58 Z" fill="#cc0000"/><path d="M30 30 L30 58 A28 28 0 0 1 16 54.25 Z" fill="#111"/><path d="M30 30 L16 54.25 A28 28 0 0 1 5.75 44 Z" fill="#cc0000"/><path d="M30 30 L5.75 44 A28 28 0 0 1 2 30 Z" fill="#111"/><path d="M30 30 L2 30 A28 28 0 0 1 5.75 16 Z" fill="#cc0000"/><path d="M30 30 L5.75 16 A28 28 0 0 1 16 5.75 Z" fill="#111"/><path d="M30 30 L16 5.75 A28 28 0 0 1 30 2 Z" fill="#cc0000"/><circle cx="30" cy="30" r="8" fill="#1a1a1a"/><circle cx="30" cy="30" r="3.5" fill="#ddd"/></svg></button>
+      <button class="bgp-btn" data-lv="11" onclick="pickBreakLv(11)" title="Lucky Slots">🎰</button>
     </div>
     <button class="break-start-btn" id="brkStartBtn" onclick="launchBreakGame()">🎮 התחל הפסקה!</button>
     <div id="breakTimeUp">
@@ -1308,6 +1535,7 @@ function hideGame(){
   g8ExitToMenu&&g8ExitToMenu(true);
   g9ExitToMenu&&g9ExitToMenu(true);
   g10ExitToMenu&&g10ExitToMenu(true);
+  g11ExitToMenu&&g11ExitToMenu(true);
 }
 function goHome(){navTo('mainPage');}
 
@@ -1329,6 +1557,7 @@ function startFromCard(lvl){
   if(lvl===8){startGame8();return;}
   if(lvl===9){startGame9();return;}
   if(lvl===10){startGame10();return;}
+  if(lvl===11){startGame11();return;}
   const g=document.getElementById('gameUI');g.style.display='flex';g.classList.add('show');
   currentScore=0;lives=3;startLevel(lvl);
 }
@@ -3404,6 +3633,11 @@ function g10ClearHistory(){
 
 // Color helper: 0=green, odd=red, even=black
 function g10NumColor(n){return n===0?'green':n%2===1?'red':'black';}
+// CSS color values matching roulette table
+function g10NumCssColor(n){return n===0?'#4caf50':n%2===1?'#e04040':'#d0d0d0';}
+// Roulette wheel SVG for idle ball state
+const G10_IDLE_SVG='<svg viewBox="0 0 60 60" width="34" height="34" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="29" fill="#7a5c10"/><path d="M30 30 L30 2 A28 28 0 0 1 44 5.75 Z" fill="#238823"/><path d="M30 30 L44 5.75 A28 28 0 0 1 54.25 16 Z" fill="#cc0000"/><path d="M30 30 L54.25 16 A28 28 0 0 1 58 30 Z" fill="#111"/><path d="M30 30 L58 30 A28 28 0 0 1 54.25 44 Z" fill="#cc0000"/><path d="M30 30 L54.25 44 A28 28 0 0 1 44 54.25 Z" fill="#111"/><path d="M30 30 L44 54.25 A28 28 0 0 1 30 58 Z" fill="#cc0000"/><path d="M30 30 L30 58 A28 28 0 0 1 16 54.25 Z" fill="#111"/><path d="M30 30 L16 54.25 A28 28 0 0 1 5.75 44 Z" fill="#cc0000"/><path d="M30 30 L5.75 44 A28 28 0 0 1 2 30 Z" fill="#111"/><path d="M30 30 L2 30 A28 28 0 0 1 5.75 16 Z" fill="#cc0000"/><path d="M30 30 L5.75 16 A28 28 0 0 1 16 5.75 Z" fill="#111"/><path d="M30 30 L16 5.75 A28 28 0 0 1 30 2 Z" fill="#cc0000"/><circle cx="30" cy="30" r="28" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.7"/><circle cx="30" cy="30" r="8" fill="#1a1a1a" stroke="#aaa" stroke-width="1"/><circle cx="30" cy="30" r="3.5" fill="#ddd"/></svg>';
+function g10SetBallIdle(ball){ball.innerHTML=G10_IDLE_SVG;ball.style.color='';ball.dataset.color='';}
 
 function g10ToggleColor(color){
   if(g10.spinning||!g10.active)return;
@@ -3468,6 +3702,7 @@ function startGame10(){
   g10El('g10StartScreen').classList.add('show');
   g10El('g10OverScreen').classList.remove('show');
   g10.active=false;
+  const _b=g10El('g10Ball');if(_b){_b.className='g10-ball';g10SetBallIdle(_b);}
 }
 
 function g10StartPlay(){
@@ -3480,7 +3715,7 @@ function g10StartPlay(){
   g10ClearHistory();
   g10UpdateColorBetUI();
   const ball=g10El('g10Ball');
-  ball.textContent='?';ball.className='g10-ball';
+  ball.className='g10-ball';g10SetBallIdle(ball);
   g10El('g10Label').textContent='בחר מספרים ולחץ סובב!';
   g10El('g10RoundInfo').textContent='סיבוב 0';
   // Clear all highlights
@@ -3618,6 +3853,7 @@ function g10Spin(){
       ball.textContent=result;
       ball.className='g10-ball';
       ball.dataset.color=g10NumColor(result);
+      ball.style.color=g10NumCssColor(result);
       // Show trophy on result cell (right side, number stays visible)
       const trophyCell=g10El('g10cell'+result);
       if(trophyCell){
@@ -3665,6 +3901,7 @@ function g10Spin(){
       }
 
       ball.className='g10-ball '+(mainWon||colorWon?'g10-win':'g10-lose');
+      ball.style.color=g10NumCssColor(result); // keep number color after win/lose class applied
       g10El('g10Label').textContent=labelText;
       if(totalGain>0)g10AnimateCoins(g10.coins,'up',+totalGain);
 
@@ -3697,7 +3934,7 @@ function g10Spin(){
           g10.active=false;
         } else {
           g10.spinning=false;
-          ball.className='g10-ball';ball.textContent='?';
+          ball.className='g10-ball';g10SetBallIdle(ball);
           g10El('g10Label').textContent='🪙 '+g10.coins+' מטבעות — בחר שוב!';
           const bc=g10El('g10BigCoins');if(bc)bc.className='g10-coins-big';
           g10UpdateUI();
@@ -3720,6 +3957,257 @@ function g10ExitToMenu(silent){
   g10.spinning=false;g10.active=false;
   g10El('game10UI').classList.remove('show');
   if(!silent)navTo('mainPage');
+}
+
+// ══ GAME 11 — Lucky Slots ═══════════════════════════════════════════════════
+
+const G11_SYMBOLS=[
+  {sym:'🍒',name:'cherry',weight:20},
+  {sym:'🍋',name:'lemon', weight:14},
+  {sym:'⭐',name:'star',  weight:10},
+  {sym:'7️⃣',name:'seven', weight:20},
+  {sym:'🐷',name:'pig',   weight:18},
+  {sym:'🪷',name:'lotus', weight:18},
+];
+const G11_WINS={
+  cherry:{label:'Cherry Pop 🍒🍒🍒',   payout:5,   color:'#ff8888'},
+  lemon: {label:'Lemon Rush 🍋🍋🍋',   payout:15,  color:'#ffd93d'},
+  star:  {label:'Star Blast ⭐⭐⭐',    payout:40,  color:'#4d96ff'},
+  seven: {label:'🎉 MEGA JACKPOT 7️⃣7️⃣7️⃣',payout:200,color:'#ffd700',jackpot:true},
+  pig:   {label:'Pig Bonus 🐷🐷🐷',    payout:60,  color:'#ffb347'},
+  lotus: {label:'Golden Buddha 🪷🪷🪷', payout:80,  color:'#b8f0c8'},
+};
+const G11_SYM_H=152; // matches CSS .g11-reel-sym height
+const G11_N_RAND=16; // random symbols before result in strip
+
+let g11={
+  balance:50,spins:0,wins:0,losses:0,
+  totalWon:0,jackpots:0,streak:0,bestStreak:0,
+  lastSpins:[],spinning:false,active:false,bestBalance:50,
+};
+
+function g11El(id){return document.getElementById(id);}
+
+function g11WeightedRandom(){
+  let total=G11_SYMBOLS.reduce((s,x)=>s+x.weight,0);
+  let r=Math.random()*total;
+  for(const s of G11_SYMBOLS){r-=s.weight;if(r<=0)return s;}
+  return G11_SYMBOLS[G11_SYMBOLS.length-1];
+}
+
+function g11SaveStats(){
+  try{
+    localStorage.setItem('g11_best_balance',Math.max(g11.bestBalance,g11.balance));
+    localStorage.setItem('g11_jackpots',g11.jackpots);
+    localStorage.setItem('g11_best_streak',g11.bestStreak);
+  }catch(e){}
+}
+function g11LoadStats(){
+  try{
+    g11.bestBalance=parseInt(localStorage.getItem('g11_best_balance')||'50');
+    g11.jackpots=parseInt(localStorage.getItem('g11_jackpots')||'0');
+    g11.bestStreak=parseInt(localStorage.getItem('g11_best_streak')||'0');
+  }catch(e){}
+}
+
+/* ── Reel strip animation ──
+   Strip layout (top→bottom): [RESULT, rand×N_RAND]
+   Start: translateY = -(N_RAND * SYM_H) → shows bottom of strip (random sym)
+   End:   translateY = 0                  → shows top of strip (RESULT)
+   Motion: strip moves DOWN = symbols fall from above = real slot feel */
+function g11BuildStrip(innerEl, resultSym){
+  const syms=[resultSym];
+  for(let i=0;i<G11_N_RAND;i++) syms.push(G11_SYMBOLS[Math.floor(Math.random()*G11_SYMBOLS.length)].sym);
+  innerEl.innerHTML='';
+  syms.forEach(s=>{
+    const d=document.createElement('div');d.className='g11-reel-sym';d.textContent=s;innerEl.appendChild(d);
+  });
+  innerEl.style.transform=`translateY(${-(G11_N_RAND*G11_SYM_H)}px)`;
+}
+
+function g11AnimateReel(innerEl, duration, onDone){
+  const startY=-(G11_N_RAND*G11_SYM_H);
+  const endY=0;
+  const t0=performance.now();
+  // Use strong ease-out so it starts fast and decelerates dramatically
+  function easeOut(t){return 1-Math.pow(1-t,3.5);}
+  function frame(now){
+    const p=Math.min((now-t0)/duration,1);
+    innerEl.style.transform=`translateY(${startY+(endY-startY)*easeOut(p)}px)`;
+    if(p<1)requestAnimationFrame(frame);
+    else{innerEl.style.transform=`translateY(${endY}px)`;if(onDone)onDone();}
+  }
+  requestAnimationFrame(frame);
+}
+
+/* Lever pull */
+function g11PullLever(){
+  if(g11.spinning||g11.balance<1||!g11.active)return;
+  const lev=g11El('g11LeverWrap');
+  if(!lev)return;
+  lev.classList.remove('pulling');
+  void lev.offsetWidth; // reflow to restart animation
+  lev.classList.add('pulling');
+  setTimeout(()=>lev.classList.remove('pulling'),600);
+  g11Spin();
+}
+
+function g11SetLeverEnabled(on){
+  const lev=g11El('g11LeverWrap');
+  if(!lev)return;
+  if(on)lev.classList.remove('g11-lever-disabled');
+  else lev.classList.add('g11-lever-disabled');
+}
+
+function g11UpdateUI(){
+  const b=g11El('g11BalanceEl');if(b)b.textContent=g11.balance;
+  const s=g11El('g11SpinsEl');if(s)s.textContent=g11.spins;
+  const w=g11El('g11WinsEl');if(w)w.textContent=g11.wins;
+  const j=g11El('g11JackpotEl');if(j)j.textContent=g11.jackpots;
+  g11SetLeverEnabled(!g11.spinning&&g11.balance>=1&&g11.active);
+  // streak
+  const sb=g11El('g11StreakBadge');
+  if(sb){
+    if(g11.streak>=2){sb.classList.add('show');const st=g11El('g11StreakText');if(st)st.textContent='רצף '+g11.streak+'! 🔥';}
+    else sb.classList.remove('show');
+  }
+  // last spins
+  const lr=g11El('g11LastRow');
+  if(lr){
+    lr.innerHTML='';
+    g11.lastSpins.slice(0,10).forEach(spin=>{
+      const d=document.createElement('div');
+      d.className='g11-last-item'+(spin.jackpot?' jackpot-item':spin.won?' win-item':'');
+      d.title=spin.label||'';
+      d.textContent=spin.sym; // result symbol only
+      lr.appendChild(d);
+    });
+  }
+}
+
+function g11Spin(){
+  if(g11.spinning||g11.balance<1||!g11.active)return;
+  g11.spinning=true;
+  g11SetLeverEnabled(false);
+  g11.balance--;g11.spins++;
+
+  // Clear win banner & win-line
+  const wb=g11El('g11WinBanner');
+  if(wb){wb.textContent='';wb.className='g11-win-banner';wb.style.color='';}
+  const wl=g11El('g11WinLine');if(wl)wl.classList.remove('active');
+
+  // Clear reel glow
+  [0,1,2].forEach(i=>{const r=g11El('g11Reel'+i);if(r)r.classList.remove('win-glow');});
+
+  // Update balance display immediately
+  const b=g11El('g11BalanceEl');if(b)b.textContent=g11.balance;
+
+  // Pick results
+  const results=[g11WeightedRandom(),g11WeightedRandom(),g11WeightedRandom()];
+
+  // Build strips and animate — staggered, different durations
+  const durations=[1400,2000,2700]; // reel 0 fastest, reel 2 slowest
+  let doneCnt=0;
+  results.forEach((res,i)=>{
+    const inner=g11El('g11ReelInner'+i);
+    if(!inner)return;
+    g11BuildStrip(inner,res.sym);
+    setTimeout(()=>{
+      g11AnimateReel(inner,durations[i],()=>{
+        doneCnt++;
+        if(doneCnt===3) g11Resolve(results);
+      });
+    },i*120); // slight stagger in start too
+  });
+}
+
+function g11Resolve(results){
+  const syms=results.map(r=>r.sym);
+  const names=results.map(r=>r.name);
+  let won=false,wonAmt=0,comboKey=null,isJackpot=false,winLabel='';
+
+  if(names[0]===names[1]&&names[1]===names[2]){
+    comboKey=names[0];
+    const combo=G11_WINS[comboKey];
+    if(combo){won=true;wonAmt=combo.payout;isJackpot=!!combo.jackpot;winLabel=combo.label;}
+  }
+
+  const wb=g11El('g11WinBanner');
+  const wl=g11El('g11WinLine');
+
+  if(won){
+    g11.wins++;g11.totalWon+=wonAmt;g11.balance+=wonAmt;
+    g11.streak++;if(g11.streak>g11.bestStreak)g11.bestStreak=g11.streak;
+    if(isJackpot)g11.jackpots++;
+    // Glow reels
+    [0,1,2].forEach(i=>{const r=g11El('g11Reel'+i);if(r)r.classList.add('win-glow');});
+    if(wl)wl.classList.add('active');
+    if(wb){wb.textContent='🎉 '+winLabel+' +$'+wonAmt;wb.className='g11-win-banner visible'+(isJackpot?' jackpot':'');wb.style.color=G11_WINS[comboKey]?.color||'#fff';}
+    // Credit flash
+    const b=g11El('g11BalanceEl');
+    if(b){b.classList.remove('flash');void b.offsetWidth;b.classList.add('flash');setTimeout(()=>b.classList.remove('flash'),900);}
+    if(isJackpot){startConfetti();setTimeout(stopConfetti,5000);}
+  } else {
+    g11.losses++;g11.streak=0;
+    if(wb){wb.textContent='אין זכייה — נסה שוב!';wb.className='g11-win-banner visible';wb.style.color='rgba(255,255,255,0.35)';}
+  }
+
+  g11.lastSpins.unshift({sym:syms[1],won,label:winLabel,jackpot:isJackpot}); // show middle reel sym
+  if(g11.lastSpins.length>10)g11.lastSpins.pop();
+  if(g11.balance>g11.bestBalance)g11.bestBalance=g11.balance;
+  g11SaveStats();
+  g11.spinning=false;
+  g11UpdateUI();
+
+  if(g11.balance<=0){
+    setTimeout(()=>{
+      const ov=g11El('g11OverScreen');
+      g11El('g11OverEmoji').textContent='💸';
+      g11El('g11OverTitle').textContent='נגמר הכסף!';
+      g11El('g11OverSub').textContent='סיבובים: '+g11.spins+'\nשיא רצף: '+g11.bestStreak+'\nג\'קפוטים: '+g11.jackpots;
+      if(ov)ov.classList.add('show');
+    },1400);
+  }
+}
+
+function g11ResetReels(){
+  [0,1,2].forEach(i=>{
+    const inner=g11El('g11ReelInner'+i);
+    const reel=g11El('g11Reel'+i);
+    if(inner){inner.innerHTML='<div class="g11-reel-sym">🎰</div>';inner.style.transform='translateY(0)';}
+    if(reel)reel.classList.remove('win-glow');
+  });
+}
+
+function g11StartPlay(){
+  g11.balance=50;g11.spins=0;g11.wins=0;g11.losses=0;
+  g11.totalWon=0;g11.streak=0;g11.lastSpins=[];g11.spinning=false;g11.active=true;
+  const ss=g11El('g11StartScreen');if(ss)ss.classList.remove('show');
+  const ov=g11El('g11OverScreen');if(ov)ov.classList.remove('show');
+  const wb=g11El('g11WinBanner');if(wb){wb.textContent='';wb.className='g11-win-banner';}
+  const wl=g11El('g11WinLine');if(wl)wl.classList.remove('active');
+  g11ResetReels();
+  g11UpdateUI();
+}
+
+function g11Restart(){
+  // Full reset including persisted records
+  g11.jackpots=0;g11.bestBalance=50;g11.bestStreak=0;
+  g11SaveStats();
+  g11StartPlay();
+}
+
+function g11ExitToMenu(silent){
+  g11.spinning=false;g11.active=false;
+  g11El('game11UI').classList.remove('show');
+  if(!silent)navTo('mainPage');
+}
+
+function startGame11(){
+  g11LoadStats();
+  g11El('game11UI').classList.add('show');
+  const ss=g11El('g11StartScreen');if(ss)ss.classList.add('show');
+  const ov=g11El('g11OverScreen');if(ov)ov.classList.remove('show');
 }
 
 // ── Boot ───────────────────────────────────────────────────────────────────────
