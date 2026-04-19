@@ -635,15 +635,23 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   .g10-ov-title{font-size:26px;}
 
   /* Game 11 */
-  .g11-machine{width:100%;max-width:380px;}
-  .g11-reels-row{gap:8px;}
-  .g11-reel{width:90px;height:90px;font-size:50px;}
-  .g11-spin-btn{font-size:16px;padding:13px 28px;}
-  .g11-stats-panel{max-width:100%;padding:14px 12px;}
-  .g11-stat-row{font-size:12px;}
-  .g11-sym-row{font-size:12px;}
-  .g11-last-row{gap:4px;}
-  .g11-last-item{width:36px;height:36px;font-size:18px;}
+  .g11-credit-wrap{padding:6px 10px 0;}
+  .g11-credit-num{font-size:46px;}
+  .g11-credit-dollar{font-size:24px;}
+  .g11-cabinet-wrap{padding:6px 8px;}
+  .g11-cabinet{padding:10px 6px 10px 10px;}
+  .g11-reels-row{gap:6px;margin-bottom:8px;}
+  .g11-reel{width:88px;height:118px;}
+  .g11-reel-sym{width:88px;height:118px;font-size:62px;}
+  .g11-lever-mount{width:44px;padding-top:12px;}
+  .g11-lever-ball{width:26px;height:26px;}
+  .g11-lever-arm{height:64px;width:8px;}
+  .g11-lever-base{width:26px;height:13px;}
+  .g11-win-banner{font-size:13px;}
+  .g11-paytable{padding:8px 10px;}
+  .g11-pay-syms{font-size:15px;min-width:50px;}
+  .g11-pay-name{font-size:10px;}
+  .g11-pay-amt{font-size:13px;}
 }
 
 /* ══ GAME 11 — Lucky Slots ══ */
@@ -4016,17 +4024,25 @@ function g11LoadStats(){
    End:   translateY = 0                  → shows top of strip (RESULT)
    Motion: strip moves DOWN = symbols fall from above = real slot feel */
 function g11BuildStrip(innerEl, resultSym){
+  // Read actual reel window height from DOM so it works on any screen size
+  const symH=innerEl.parentElement.offsetHeight||G11_SYM_H;
+  innerEl._symH=symH;
   const syms=[resultSym];
   for(let i=0;i<G11_N_RAND;i++) syms.push(G11_SYMBOLS[Math.floor(Math.random()*G11_SYMBOLS.length)].sym);
   innerEl.innerHTML='';
   syms.forEach(s=>{
-    const d=document.createElement('div');d.className='g11-reel-sym';d.textContent=s;innerEl.appendChild(d);
+    const d=document.createElement('div');
+    d.className='g11-reel-sym';
+    d.style.height=symH+'px'; // match symbol height to reel window
+    d.textContent=s;
+    innerEl.appendChild(d);
   });
-  innerEl.style.transform=`translateY(${-(G11_N_RAND*G11_SYM_H)}px)`;
+  innerEl.style.transform=`translateY(${-(G11_N_RAND*symH)}px)`;
 }
 
 function g11AnimateReel(innerEl, duration, onDone){
-  const startY=-(G11_N_RAND*G11_SYM_H);
+  const symH=innerEl._symH||G11_SYM_H;
+  const startY=-(G11_N_RAND*symH);
   const endY=0;
   const t0=performance.now();
   // Use strong ease-out so it starts fast and decelerates dramatically
