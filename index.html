@@ -659,6 +659,56 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 .gc-11:hover{box-shadow:0 8px 32px rgba(180,50,255,0.55);}
 .gc-12{background:linear-gradient(145deg,#001233,#003a8c);box-shadow:0 4px 22px rgba(50,150,255,0.25);}
 .gc-12:hover{box-shadow:0 8px 32px rgba(50,150,255,0.55);}
+.gc-13{background:linear-gradient(145deg,#0d2000,#1a5200);box-shadow:0 4px 22px rgba(50,200,80,0.22);}
+.gc-13:hover{box-shadow:0 8px 32px rgba(50,200,80,0.5);}
+
+/* ══ GAME 13 — Capitals Quiz ══ */
+#game13UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,#0a2200 0%,#041200 55%,#010800 100%);flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow-y:auto;overflow-x:hidden;}
+#game13UI.show{display:flex;}
+.g13-wrap{width:100%;max-width:520px;padding:16px 16px 30px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.g13-header{width:100%;display:flex;align-items:center;justify-content:space-between;}
+.g13-score-chip{font-size:15px;font-weight:800;color:#6bcb77;background:rgba(107,203,119,0.1);border:1px solid rgba(107,203,119,0.25);border-radius:20px;padding:4px 12px;}
+.g13-q-count{font-size:12px;opacity:0.38;letter-spacing:0.5px;}
+.g13-progress-bar{width:100%;height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;}
+.g13-progress-fill{height:100%;background:linear-gradient(90deg,#1a7a30,#6bcb77);border-radius:3px;transition:width 0.4s;}
+.g13-question{width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(107,203,119,0.2);border-radius:20px;padding:22px 18px;text-align:center;box-shadow:0 0 30px rgba(26,120,48,0.1);}
+.g13-q-label{font-size:11px;letter-spacing:2px;color:rgba(107,203,119,0.4);margin-bottom:10px;text-transform:uppercase;}
+.g13-flag{font-size:38px;display:block;margin-bottom:8px;}
+.g13-country{font-size:22px;font-weight:900;color:#fff;line-height:1.3;}
+.g13-options{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.g13-opt{border:2px solid rgba(255,255,255,0.15);border-radius:14px;background:rgba(255,255,255,0.05);color:#fff;font-size:14px;font-weight:800;padding:16px 10px;cursor:pointer;transition:all 0.15s;position:relative;-webkit-tap-highlight-color:transparent;direction:rtl;}
+.g13-opt:hover:not(:disabled){background:rgba(107,203,119,0.12);border-color:rgba(107,203,119,0.5);transform:translateY(-2px);}
+.g13-opt:disabled{cursor:default;}
+.g13-opt-letter{position:absolute;top:6px;right:9px;font-size:10px;opacity:0.35;font-weight:700;}
+.g13-opt.correct{background:rgba(107,203,119,0.2);border-color:#6bcb77;box-shadow:0 0 18px rgba(107,203,119,0.35);}
+.g13-opt.wrong{background:rgba(255,80,80,0.18);border-color:#ff5555;opacity:0.75;}
+.g13-feedback{width:100%;min-height:54px;border-radius:14px;padding:12px 16px;text-align:center;display:none;flex-direction:column;align-items:center;gap:3px;}
+.g13-feedback.show{display:flex;}
+.g13-feedback.fb-correct{background:rgba(107,203,119,0.1);border:1.5px solid rgba(107,203,119,0.3);}
+.g13-feedback.fb-wrong{background:rgba(255,80,80,0.1);border:1.5px solid rgba(255,80,80,0.3);}
+.g13-fb-emoji{font-size:20px;}
+.g13-fb-text{font-size:15px;font-weight:800;}
+.g13-fb-detail{font-size:12px;opacity:0.55;}
+.g13-next-btn{background:linear-gradient(135deg,#1a7a30,#6bcb77);border:none;border-radius:50px;color:#fff;font-size:16px;font-weight:900;padding:13px 50px;cursor:pointer;display:none;box-shadow:0 6px 22px rgba(107,203,119,0.4);letter-spacing:0.5px;transition:transform 0.15s;}
+.g13-next-btn.show{display:block;}
+.g13-next-btn:hover{transform:scale(1.04);}
+.g13-final{width:100%;max-width:520px;padding:30px 20px;box-sizing:border-box;display:none;flex-direction:column;align-items:center;gap:16px;text-align:center;}
+.g13-final.show{display:flex;}
+.g13-final-emoji{font-size:72px;animation:nsBob 2.5s ease-in-out infinite;}
+.g13-final-title{font-size:26px;font-weight:900;background:linear-gradient(135deg,#6bcb77,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.g13-final-score{font-size:60px;font-weight:900;color:#ffd93d;text-shadow:0 0 24px rgba(255,220,60,0.6);font-family:'Courier New',monospace;}
+.g13-final-grade{font-size:16px;font-weight:800;padding:8px 20px;border-radius:50px;border:2px solid;margin-top:2px;}
+.g13-final-sub{font-size:13px;opacity:0.5;line-height:1.8;white-space:pre-line;}
+.g13-btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:4px;}
+.g13-restart-btn{background:linear-gradient(135deg,#1a7a30,#6bcb77);border:none;border-radius:50px;color:#fff;font-size:15px;font-weight:900;padding:12px 32px;cursor:pointer;box-shadow:0 6px 20px rgba(107,203,119,0.4);transition:transform 0.15s;}
+.g13-restart-btn:hover{transform:scale(1.04);}
+.g13-back-btn{background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.18);border-radius:50px;color:#fff;font-size:14px;font-weight:700;padding:11px 24px;cursor:pointer;transition:background 0.15s;}
+.g13-back-btn:hover{background:rgba(255,255,255,0.16);}
+@media(max-width:480px){
+  .g13-country{font-size:18px;}
+  .g13-opt{font-size:12px;padding:13px 8px;}
+  .g13-final-score{font-size:48px;}
+}
 
 /* ══ GAME 12 — IATA Quiz ══ */
 #game12UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,#001a4d 0%,#000d2a 55%,#000510 100%);flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow-y:auto;overflow-x:hidden;}
@@ -992,6 +1042,12 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
             <span class="card-icon">✈️</span>
             <div class="card-name">IATA קוד</div>
             <div class="card-desc">100 שאלות על קודי שדות תעופה בעולם</div>
+          </div>
+          <div class="game-card gc-13" onclick="startFromCard(13)" style="cursor:pointer;">
+            <div class="card-num-badge">13</div>
+            <span class="card-icon">🌍</span>
+            <div class="card-name">בירות העולם</div>
+            <div class="card-desc">100 שאלות על בירות מדינות העולם</div>
           </div>
         </div>
       </div>
@@ -1490,6 +1546,46 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   </div>
 </div>
 
+<!-- ══ GAME 13 — Capitals Quiz ══ -->
+<div id="game13UI">
+  <div class="g13-wrap" id="g13QuizWrap">
+    <div class="g13-header">
+      <div class="g13-score-chip">✅ <span id="g13ScoreEl">0</span></div>
+      <div class="g13-q-count" id="g13QLabel">שאלה 1 מתוך 100</div>
+    </div>
+    <div class="g13-progress-bar"><div class="g13-progress-fill" id="g13ProgressFill" style="width:0%"></div></div>
+    <div class="g13-question">
+      <div class="g13-q-label">מה בירת המדינה?</div>
+      <span class="g13-flag" id="g13FlagEl">🌍</span>
+      <div class="g13-country" id="g13CountryEl">ישראל</div>
+    </div>
+    <div class="g13-options">
+      <button class="g13-opt" id="g13OptA" onclick="g13Answer(0)"><span class="g13-opt-letter">A</span><span id="g13OptAText">ירושלים</span></button>
+      <button class="g13-opt" id="g13OptB" onclick="g13Answer(1)"><span class="g13-opt-letter">B</span><span id="g13OptBText">לונדון</span></button>
+      <button class="g13-opt" id="g13OptC" onclick="g13Answer(2)"><span class="g13-opt-letter">C</span><span id="g13OptCText">פריז</span></button>
+      <button class="g13-opt" id="g13OptD" onclick="g13Answer(3)"><span class="g13-opt-letter">D</span><span id="g13OptDText">ברלין</span></button>
+    </div>
+    <div class="g13-feedback" id="g13Feedback">
+      <div class="g13-fb-emoji" id="g13FbEmoji">✅</div>
+      <div class="g13-fb-text" id="g13FbText">נכון!</div>
+      <div class="g13-fb-detail" id="g13FbDetail"></div>
+    </div>
+    <button class="g13-next-btn" id="g13NextBtn" onclick="g13Next()">הבא ›</button>
+    <button class="g13-back-btn" onclick="g13ExitToMenu()" style="margin-top:4px;font-size:12px;padding:7px 18px;opacity:0.5;">⬅ תפריט</button>
+  </div>
+  <div class="g13-final" id="g13Final">
+    <div class="g13-final-emoji" id="g13FinalEmoji">🏆</div>
+    <div class="g13-final-title">סיימת את החידון!</div>
+    <div class="g13-final-score" id="g13FinalScore">0/100</div>
+    <div class="g13-final-grade" id="g13FinalGrade"></div>
+    <div class="g13-final-sub" id="g13FinalSub"></div>
+    <div class="g13-btn-row">
+      <button class="g13-restart-btn" onclick="g13StartGame()">🔄 שחק שוב</button>
+      <button class="g13-back-btn" onclick="g13ExitToMenu()">⬅ תפריט</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ WIN/LOSE OVERLAY ══ -->
 <div id="overlay">
   <div class="modal">
@@ -1524,6 +1620,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
       <button class="bgp-btn" data-lv="10" onclick="pickBreakLv(10)" title="קזינו 0-30"><svg viewBox="0 0 60 60" width="22" height="22" style="vertical-align:middle" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="29" fill="#7a5c10"/><path d="M30 30 L30 2 A28 28 0 0 1 44 5.75 Z" fill="#238823"/><path d="M30 30 L44 5.75 A28 28 0 0 1 54.25 16 Z" fill="#cc0000"/><path d="M30 30 L54.25 16 A28 28 0 0 1 58 30 Z" fill="#111"/><path d="M30 30 L58 30 A28 28 0 0 1 54.25 44 Z" fill="#cc0000"/><path d="M30 30 L54.25 44 A28 28 0 0 1 44 54.25 Z" fill="#111"/><path d="M30 30 L44 54.25 A28 28 0 0 1 30 58 Z" fill="#cc0000"/><path d="M30 30 L30 58 A28 28 0 0 1 16 54.25 Z" fill="#111"/><path d="M30 30 L16 54.25 A28 28 0 0 1 5.75 44 Z" fill="#cc0000"/><path d="M30 30 L5.75 44 A28 28 0 0 1 2 30 Z" fill="#111"/><path d="M30 30 L2 30 A28 28 0 0 1 5.75 16 Z" fill="#cc0000"/><path d="M30 30 L5.75 16 A28 28 0 0 1 16 5.75 Z" fill="#111"/><path d="M30 30 L16 5.75 A28 28 0 0 1 30 2 Z" fill="#cc0000"/><circle cx="30" cy="30" r="8" fill="#1a1a1a"/><circle cx="30" cy="30" r="3.5" fill="#ddd"/></svg></button>
       <button class="bgp-btn" data-lv="11" onclick="pickBreakLv(11)" title="Lucky Slots">🎰</button>
       <button class="bgp-btn" data-lv="12" onclick="pickBreakLv(12)" title="IATA קוד">✈️</button>
+      <button class="bgp-btn" data-lv="13" onclick="pickBreakLv(13)" title="בירות העולם">🌍</button>
     </div>
     <button class="break-start-btn" id="brkStartBtn" onclick="launchBreakGame()">🎮 התחל הפסקה!</button>
     <div id="breakTimeUp">
@@ -1642,6 +1739,7 @@ function hideGame(){
   g10ExitToMenu&&g10ExitToMenu(true);
   g11ExitToMenu&&g11ExitToMenu(true);
   g12ExitToMenu&&g12ExitToMenu(true);
+  g13ExitToMenu&&g13ExitToMenu(true);
 }
 function goHome(){navTo('mainPage');}
 
@@ -1665,6 +1763,7 @@ function startFromCard(lvl){
   if(lvl===10){startGame10();return;}
   if(lvl===11){startGame11();return;}
   if(lvl===12){startGame12();return;}
+  if(lvl===13){startGame13();return;}
   const g=document.getElementById('gameUI');g.style.display='flex';g.classList.add('show');
   currentScore=0;lives=3;startLevel(lvl);
 }
@@ -4482,6 +4581,177 @@ function g12ExitToMenu(silent){
 function startGame12(){
   g12El('game12UI').classList.add('show');
   g12StartGame();
+}
+
+// ══ GAME 13 — World Capitals Quiz ═══════════════════════════════════════════
+const G13_COUNTRIES=[
+  ['ישראל','ירושלים','🇮🇱'],['ארצות הברית','וושינגטון די.סי.','🇺🇸'],['קנדה','אוטווה','🇨🇦'],
+  ['מקסיקו','מקסיקו סיטי','🇲🇽'],['ברזיל','ברזיליה','🇧🇷'],['ארגנטינה','בואנוס איירס','🇦🇷'],
+  ['צ\'ילה','סנטיאגו','🇨🇱'],['פרו','לימה','🇵🇪'],['קולומביה','בוגוטה','🇨🇴'],['ונצואלה','קראקס','🇻🇪'],
+  ['בריטניה','לונדון','🇬🇧'],['אירלנד','דבלין','🇮🇪'],['צרפת','פריז','🇫🇷'],['גרמניה','ברלין','🇩🇪'],
+  ['איטליה','רומא','🇮🇹'],['ספרד','מדריד','🇪🇸'],['פורטוגל','ליסבון','🇵🇹'],['הולנד','אמסטרדם','🇳🇱'],
+  ['בלגיה','בריסל','🇧🇪'],['שוויץ','ברן','🇨🇭'],['אוסטריה','וינה','🇦🇹'],['פולין','ורשה','🇵🇱'],
+  ['צ\'כיה','פראג','🇨🇿'],['סלובקיה','ברטיסלבה','🇸🇰'],['הונגריה','בודפשט','🇭🇺'],
+  ['רומניה','בוקרשט','🇷🇴'],['בולגריה','סופיה','🇧🇬'],['יוון','אתונה','🇬🇷'],
+  ['קרואטיה','זאגרב','🇭🇷'],['סרביה','בלגרד','🇷🇸'],['סלובניה','לובליאנה','🇸🇮'],
+  ['בוסניה והרצגובינה','סרייבו','🇧🇦'],['מונטנגרו','פודגוריצה','🇲🇪'],['אלבניה','טירנה','🇦🇱'],
+  ['צפון מקדוניה','סקופיה','🇲🇰'],['נורבגיה','אוסלו','🇳🇴'],['שוודיה','סטוקהולם','🇸🇪'],
+  ['פינלנד','הלסינקי','🇫🇮'],['דנמרק','קופנהגן','🇩🇰'],['איסלנד','רייקיאוויק','🇮🇸'],
+  ['אסטוניה','טאלין','🇪🇪'],['לטביה','ריגה','🇱🇻'],['ליטא','וילנה','🇱🇹'],
+  ['אוקראינה','קייב','🇺🇦'],['בלארוס','מינסק','🇧🇾'],['מולדובה','קישינב','🇲🇩'],
+  ['רוסיה','מוסקבה','🇷🇺'],['טורקיה','אנקרה','🇹🇷'],['קפריסין','ניקוסיה','🇨🇾'],['מלטה','ולטה','🇲🇹'],
+  ['גאורגיה','טביליסי','🇬🇪'],['ארמניה','ירוואן','🇦🇲'],['אזרבייג\'אן','באקו','🇦🇿'],
+  ['איראן','טהרן','🇮🇷'],['עיראק','בגדד','🇮🇶'],['סוריה','דמשק','🇸🇾'],['לבנון','ביירות','🇱🇧'],
+  ['ירדן','עמאן','🇯🇴'],['ערב הסעודית','ריאד','🇸🇦'],['איחוד האמירויות','אבו דאבי','🇦🇪'],
+  ['קטר','דוחא','🇶🇦'],['כווית','כווית סיטי','🇰🇼'],['בחריין','מנאמה','🇧🇭'],
+  ['עומאן','מוסקט','🇴🇲'],['תימן','צנעא','🇾🇪'],['אפגניסטן','קאבול','🇦🇫'],
+  ['פקיסטן','איסלאמאבאד','🇵🇰'],['הודו','ניו דלהי','🇮🇳'],['נפאל','קטמנדו','🇳🇵'],
+  ['בנגלדש','דאקה','🇧🇩'],['סרי לנקה','קולומבו','🇱🇰'],['מלדיביים','מאלה','🇲🇻'],
+  ['סין','בייג\'ינג','🇨🇳'],['יפן','טוקיו','🇯🇵'],['קוריאה הדרומית','סיאול','🇰🇷'],
+  ['קוריאה הצפונית','פיונגיאנג','🇰🇵'],['מונגוליה','אולן בטור','🇲🇳'],
+  ['טאיוואן','טאיפיי','🇹🇼'],['וייטנאם','האנוי','🇻🇳'],['תאילנד','בנגקוק','🇹🇭'],
+  ['קמבודיה','פנום פן','🇰🇭'],['לאוס','ויינטיאן','🇱🇦'],['מיאנמר','נייפידאו','🇲🇲'],
+  ['מלזיה','קואלה לומפור','🇲🇾'],['סינגפור','סינגפור','🇸🇬'],['אינדונזיה','ג\'קרטה','🇮🇩'],
+  ['פיליפינים','מנילה','🇵🇭'],['אוסטרליה','קנברה','🇦🇺'],['ניו זילנד','וולינגטון','🇳🇿'],
+  ['פפואה גינאה החדשה','פורט מורסבי','🇵🇬'],['דרום אפריקה','פרטוריה','🇿🇦'],
+  ['מצרים','קהיר','🇪🇬'],['מרוקו','רבאט','🇲🇦'],['אלג\'יריה','אלג\'יר','🇩🇿'],
+  ['תוניסיה','תוניס','🇹🇳'],['לוב','טריפולי','🇱🇾'],['סודן','חרטום','🇸🇩'],
+  ['אתיופיה','אדיס אבבה','🇪🇹'],['קניה','ניירובי','🇰🇪'],['טנזניה','דודומה','🇹🇿'],
+  ['אוגנדה','קמפלה','🇺🇬'],['רואנדה','קיגאלי','🇷🇼'],['בורונדי','גיטגה','🇧🇮'],
+  ['גאנה','אקרה','🇬🇭'],['ניגריה','אבוג\'ה','🇳🇬'],['קמרון','יאונדה','🇨🇲'],
+  ['סנגל','דקר','🇸🇳'],['חוף השנהב','ימוסוקרו','🇨🇮'],['מלאווי','לילונגווה','🇲🇼'],
+  ['זמביה','לוסקה','🇿🇲'],['זימבבואה','הררה','🇿🇼'],['נמיביה','וינדהוק','🇳🇦'],
+  ['בוטסואנה','גאבורון','🇧🇼'],['מוזמביק','מאפוטו','🇲🇿'],['אנגולה','לואנדה','🇦🇴'],
+  ['מדגסקר','אנטננריבו','🇲🇬'],['מאוריציוס','פורט לואי','🇲🇺'],['סיישל','ויקטוריה','🇸🇨'],
+  ['קומורו','מורוני','🇰🇲'],['קייפ ורדה','פראיה','🇨🇻'],['קוסטה ריקה','סן חוזה','🇨🇷'],
+  ['פנמה','פנמה סיטי','🇵🇦'],['קובה','הוואנה','🇨🇺'],
+  ['הרפובליקה הדומיניקנית','סנטו דומינגו','🇩🇴'],['האיטי','פורט או פרנס','🇭🇹'],
+  ['ג\'מייקה','קינגסטון','🇯🇲'],['בהאמה','נסאו','🇧🇸'],
+  ['טרינידד וטובגו','פורט אוף ספיין','🇹🇹'],['ברבדוס','ברידג\'טאון','🇧🇧']
+];
+
+let g13={questions:[],current:0,score:0,answered:false,active:false};
+
+function g13El(id){return document.getElementById(id);}
+
+function g13Shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function g13BuildQuestions(){
+  let pool=g13Shuffle(G13_COUNTRIES).slice(0,100);
+  // Prevent consecutive duplicate correct answers
+  for(let i=1;i<pool.length;i++){
+    if(pool[i][1]===pool[i-1][1]){
+      for(let j=i+1;j<pool.length;j++){
+        if(pool[j][1]!==pool[i-1][1]){[pool[i],pool[j]]=[pool[j],pool[i]];break;}
+      }
+    }
+  }
+  return pool.map(([country,capital,flag])=>{
+    const others=G13_COUNTRIES.filter(c=>c[1]!==capital);
+    const wrongs=g13Shuffle(others).slice(0,3).map(c=>c[1]);
+    const options=g13Shuffle([capital,...wrongs]);
+    return {country,capital,flag,options,correctIdx:options.indexOf(capital)};
+  });
+}
+
+function g13StartGame(){
+  g13.questions=g13BuildQuestions();
+  g13.current=0;
+  g13.score=0;
+  g13.answered=false;
+  g13.active=true;
+  g13El('g13Final').classList.remove('show');
+  g13El('g13QuizWrap').style.display='flex';
+  g13ShowQuestion();
+}
+
+function g13ShowQuestion(){
+  const q=g13.questions[g13.current];
+  g13.answered=false;
+  const n=g13.current+1;
+  const total=g13.questions.length;
+  g13El('g13QLabel').textContent='שאלה '+n+' מתוך '+total;
+  g13El('g13ScoreEl').textContent=g13.score;
+  g13El('g13ProgressFill').style.width=(((n-1)/total)*100)+'%';
+  g13El('g13FlagEl').textContent=q.flag;
+  g13El('g13CountryEl').textContent=q.country;
+  const optIds=['g13OptA','g13OptB','g13OptC','g13OptD'];
+  const txtIds=['g13OptAText','g13OptBText','g13OptCText','g13OptDText'];
+  optIds.forEach((id,i)=>{
+    const btn=g13El(id);
+    btn.disabled=false;
+    btn.className='g13-opt';
+    g13El(txtIds[i]).textContent=q.options[i];
+  });
+  g13El('g13Feedback').className='g13-feedback';
+  g13El('g13NextBtn').className='g13-next-btn';
+}
+
+function g13Answer(idx){
+  if(g13.answered)return;
+  g13.answered=true;
+  const q=g13.questions[g13.current];
+  const correct=idx===q.correctIdx;
+  if(correct)g13.score++;
+  const optIds=['g13OptA','g13OptB','g13OptC','g13OptD'];
+  optIds.forEach((id,i)=>{
+    const btn=g13El(id);
+    btn.disabled=true;
+    if(i===q.correctIdx)btn.classList.add('correct');
+    else if(i===idx&&!correct)btn.classList.add('wrong');
+  });
+  const okE=['✅','🎉','🌟','💡','👏'];
+  const badE=['❌','😅','🤔','📚','💸'];
+  const fb=g13El('g13Feedback');
+  fb.className='g13-feedback show '+(correct?'fb-correct':'fb-wrong');
+  g13El('g13FbEmoji').textContent=correct?okE[Math.floor(Math.random()*okE.length)]:badE[Math.floor(Math.random()*badE.length)];
+  g13El('g13FbText').textContent=correct?'נכון מאוד! 🎯':'לא נכון...';
+  g13El('g13FbDetail').textContent=correct?(q.flag+' '+q.capital+' — בירת '+q.country):('הבירה הנכונה היא '+q.capital+' '+q.flag);
+  g13El('g13ScoreEl').textContent=g13.score;
+  g13El('g13NextBtn').className='g13-next-btn show';
+}
+
+function g13Next(){
+  g13.current++;
+  if(g13.current>=g13.questions.length){g13ShowFinal();}
+  else{g13ShowQuestion();}
+}
+
+function g13ShowFinal(){
+  g13El('g13QuizWrap').style.display='none';
+  g13El('g13Final').classList.add('show');
+  const s=g13.score,t=g13.questions.length;
+  const pct=Math.round(s/t*100);
+  g13El('g13FinalScore').textContent=s+'/'+t;
+  let emoji,grade,gradeColor,sub;
+  if(pct>=90){emoji='🏆';grade='גיאוגרף מקצועי!';gradeColor='#ffd700';sub='ציון: '+pct+'%\nידע גיאוגרפי מרשים — כבוד!';}
+  else if(pct>=75){emoji='🌍';grade='חובב גיאוגרפיה!';gradeColor='#6bcb77';sub='ציון: '+pct+'%\nתוצאה מצוינת — כמעט מומחה!';}
+  else if(pct>=60){emoji='🗺️';grade='נוסע מנוסה!';gradeColor='#4fc3f7';sub='ציון: '+pct+'%\nתוצאה טובה — המשך לחקור!';}
+  else if(pct>=40){emoji='✈️';grade='תייר מתחיל!';gradeColor='#ffd93d';sub='ציון: '+pct+'%\nיש מקום לשיפור — תנסה שוב!';}
+  else{emoji='📚';grade='זקוק לתרגול!';gradeColor='#ff8888';sub='ציון: '+pct+'%\nלמד קצת גיאוגרפיה ונסה שוב!';}
+  g13El('g13FinalEmoji').textContent=emoji;
+  const gradeEl=g13El('g13FinalGrade');
+  gradeEl.textContent=grade;
+  gradeEl.style.color=gradeColor;
+  gradeEl.style.borderColor=gradeColor;
+  gradeEl.style.background='rgba(255,255,255,0.04)';
+  g13El('g13FinalSub').textContent=sub;
+  g13El('g13ProgressFill').style.width='100%';
+}
+
+function g13ExitToMenu(silent){
+  g13.active=false;
+  g13El('game13UI').classList.remove('show');
+  if(!silent)navTo('mainPage');
+}
+
+function startGame13(){
+  g13El('game13UI').classList.add('show');
+  g13StartGame();
 }
 
 // ── Boot ───────────────────────────────────────────────────────────────────────
