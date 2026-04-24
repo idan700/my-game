@@ -643,7 +643,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   .g11-reels-row{gap:6px;margin-bottom:8px;}
   .g11-reel{width:88px;height:118px;}
   .g11-reel-sym{width:88px;height:118px;font-size:62px;}
-  .g11-lever-mount{width:44px;padding-top:12px;}
+  .g11-lever-mount{padding:8px 0 2px;}
   .g11-lever-ball{width:26px;height:26px;}
   .g11-lever-arm{height:64px;width:8px;}
   .g11-lever-base{width:26px;height:13px;}
@@ -657,6 +657,56 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 /* ══ GAME 11 — Lucky Slots ══ */
 .gc-11{background:linear-gradient(145deg,#1a0033,#3d006b);box-shadow:0 4px 22px rgba(180,50,255,0.25);}
 .gc-11:hover{box-shadow:0 8px 32px rgba(180,50,255,0.55);}
+.gc-12{background:linear-gradient(145deg,#001233,#003a8c);box-shadow:0 4px 22px rgba(50,150,255,0.25);}
+.gc-12:hover{box-shadow:0 8px 32px rgba(50,150,255,0.55);}
+
+/* ══ GAME 12 — IATA Quiz ══ */
+#game12UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,#001a4d 0%,#000d2a 55%,#000510 100%);flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow-y:auto;overflow-x:hidden;}
+#game12UI.show{display:flex;}
+.g12-wrap{width:100%;max-width:520px;padding:16px 16px 30px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.g12-header{width:100%;display:flex;align-items:center;justify-content:space-between;}
+.g12-score-chip{font-size:15px;font-weight:800;color:#4fc3f7;background:rgba(79,195,247,0.1);border:1px solid rgba(79,195,247,0.25);border-radius:20px;padding:4px 12px;}
+.g12-q-count{font-size:12px;opacity:0.38;letter-spacing:0.5px;}
+.g12-progress-bar{width:100%;height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;}
+.g12-progress-fill{height:100%;background:linear-gradient(90deg,#1565c0,#4fc3f7);border-radius:3px;transition:width 0.4s;}
+.g12-question{width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(79,195,247,0.2);border-radius:20px;padding:22px 18px;text-align:center;box-shadow:0 0 30px rgba(21,101,192,0.1);}
+.g12-q-label{font-size:11px;letter-spacing:2px;color:rgba(79,195,247,0.4);margin-bottom:10px;text-transform:uppercase;}
+.g12-city-plane{font-size:32px;display:block;margin-bottom:6px;}
+.g12-city{font-size:22px;font-weight:900;color:#fff;line-height:1.3;}
+.g12-options{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.g12-opt{border:2px solid rgba(255,255,255,0.15);border-radius:14px;background:rgba(255,255,255,0.05);color:#fff;font-size:20px;font-weight:900;padding:18px 10px;cursor:pointer;transition:all 0.15s;letter-spacing:2px;position:relative;-webkit-tap-highlight-color:transparent;font-family:'Courier New',monospace;}
+.g12-opt:hover:not(:disabled){background:rgba(79,195,247,0.12);border-color:rgba(79,195,247,0.5);transform:translateY(-2px);}
+.g12-opt:disabled{cursor:default;}
+.g12-opt-letter{position:absolute;top:6px;right:9px;font-size:10px;opacity:0.35;font-weight:700;font-family:'Segoe UI',Arial,sans-serif;letter-spacing:0;}
+.g12-opt.correct{background:rgba(107,203,119,0.2);border-color:#6bcb77;box-shadow:0 0 18px rgba(107,203,119,0.35);}
+.g12-opt.wrong{background:rgba(255,80,80,0.18);border-color:#ff5555;opacity:0.75;}
+.g12-feedback{width:100%;min-height:54px;border-radius:14px;padding:12px 16px;text-align:center;display:none;flex-direction:column;align-items:center;gap:3px;}
+.g12-feedback.show{display:flex;}
+.g12-feedback.fb-correct{background:rgba(107,203,119,0.1);border:1.5px solid rgba(107,203,119,0.3);}
+.g12-feedback.fb-wrong{background:rgba(255,80,80,0.1);border:1.5px solid rgba(255,80,80,0.3);}
+.g12-fb-emoji{font-size:20px;}
+.g12-fb-text{font-size:15px;font-weight:800;}
+.g12-fb-detail{font-size:11px;opacity:0.5;font-family:'Courier New',monospace;letter-spacing:1px;}
+.g12-next-btn{background:linear-gradient(135deg,#1565c0,#4fc3f7);border:none;border-radius:50px;color:#fff;font-size:16px;font-weight:900;padding:13px 50px;cursor:pointer;display:none;box-shadow:0 6px 22px rgba(79,195,247,0.4);letter-spacing:0.5px;transition:transform 0.15s;}
+.g12-next-btn.show{display:block;}
+.g12-next-btn:hover{transform:scale(1.04);}
+.g12-final{width:100%;max-width:520px;padding:30px 20px;box-sizing:border-box;display:none;flex-direction:column;align-items:center;gap:16px;text-align:center;}
+.g12-final.show{display:flex;}
+.g12-final-emoji{font-size:72px;animation:nsBob 2.5s ease-in-out infinite;}
+.g12-final-title{font-size:26px;font-weight:900;background:linear-gradient(135deg,#4fc3f7,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.g12-final-score{font-size:60px;font-weight:900;color:#ffd93d;text-shadow:0 0 24px rgba(255,220,60,0.6);font-family:'Courier New',monospace;}
+.g12-final-grade{font-size:16px;font-weight:800;padding:8px 20px;border-radius:50px;border:2px solid;margin-top:2px;}
+.g12-final-sub{font-size:13px;opacity:0.5;line-height:1.8;white-space:pre-line;}
+.g12-btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:4px;}
+.g12-restart-btn{background:linear-gradient(135deg,#1565c0,#4fc3f7);border:none;border-radius:50px;color:#fff;font-size:15px;font-weight:900;padding:12px 32px;cursor:pointer;box-shadow:0 6px 20px rgba(79,195,247,0.4);transition:transform 0.15s;}
+.g12-restart-btn:hover{transform:scale(1.04);}
+.g12-back-btn{background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.18);border-radius:50px;color:#fff;font-size:14px;font-weight:700;padding:11px 24px;cursor:pointer;transition:background 0.15s;}
+.g12-back-btn:hover{background:rgba(255,255,255,0.16);}
+@media(max-width:480px){
+  .g12-city{font-size:18px;}
+  .g12-opt{font-size:16px;padding:14px 8px;}
+  .g12-final-score{font-size:48px;}
+}
 
 #game11UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,#260050 0%,#0e001e 50%,#050010 100%);flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow-y:auto;overflow-x:hidden;}
 #game11UI.show{display:flex;}
@@ -673,7 +723,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 /* Machine cabinet */
 .g11-cabinet-wrap{width:100%;max-width:480px;padding:8px 12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:10px;}
 .g11-cabinet-row{display:flex;align-items:center;gap:0;width:100%;}
-.g11-cabinet{flex:1;background:linear-gradient(180deg,#1e0048 0%,#110028 100%);border-top:3px solid #9900ee;border-left:3px solid #7700cc;border-bottom:3px solid #440088;border-right:2px solid #330066;border-radius:16px 0 0 16px;padding:14px 12px 14px 14px;box-shadow:0 0 30px rgba(150,0,255,0.25),inset 0 0 20px rgba(0,0,0,0.5);}
+.g11-cabinet{width:100%;background:linear-gradient(180deg,#1e0048 0%,#110028 100%);border:3px solid #7700cc;border-radius:16px;padding:14px 12px 14px 14px;box-shadow:0 0 30px rgba(150,0,255,0.25),inset 0 0 20px rgba(0,0,0,0.5);}
 
 /* Win-line highlight bar on cabinet */
 .g11-win-line{height:3px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.7),transparent);margin-bottom:10px;border-radius:2px;opacity:0;transition:opacity 0.3s;}
@@ -699,7 +749,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 @keyframes g11JackpotGlow{from{box-shadow:0 0 10px rgba(255,215,0,0.4);}to{box-shadow:0 0 28px rgba(255,215,0,0.95),0 0 50px rgba(255,150,0,0.5);}}
 
 /* Lever */
-.g11-lever-mount{width:52px;background:linear-gradient(180deg,#1e0048,#110028);border-top:3px solid #7700cc;border-right:3px solid #9900ee;border-bottom:3px solid #440088;border-left:1px solid #220044;border-radius:0 16px 16px 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:16px;box-shadow:0 0 20px rgba(150,0,255,0.15);}
+.g11-lever-mount{width:100%;display:flex;justify-content:center;align-items:center;padding:12px 0 4px;background:transparent;border:none;}
 .g11-lever-wrap{display:flex;flex-direction:column;align-items:center;cursor:pointer;transform-origin:50% 100%;-webkit-tap-highlight-color:transparent;}
 .g11-lever-wrap.pulling{animation:g11LeverPull 0.55s cubic-bezier(0.25,0.46,0.45,0.94);}
 @keyframes g11LeverPull{0%{transform:rotate(0deg);}30%{transform:rotate(36deg);}60%{transform:rotate(36deg);}82%{transform:rotate(-7deg);}100%{transform:rotate(0deg);}}
@@ -936,6 +986,12 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
             <span class="card-icon">🎰</span>
             <div class="card-name">Lucky Slots</div>
             <div class="card-desc">3 תפוחי מזל — סובב וזכה בג'קפוט!</div>
+          </div>
+          <div class="game-card gc-12" onclick="startFromCard(12)" style="cursor:pointer;">
+            <div class="card-num-badge">12</div>
+            <span class="card-icon">✈️</span>
+            <div class="card-name">IATA קוד</div>
+            <div class="card-desc">100 שאלות על קודי שדות תעופה בעולם</div>
           </div>
         </div>
       </div>
@@ -1392,6 +1448,48 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   </div>
 </div>
 
+<!-- ══ GAME 12 — IATA Quiz ══ -->
+<div id="game12UI">
+  <!-- Quiz screen -->
+  <div class="g12-wrap" id="g12QuizWrap">
+    <div class="g12-header">
+      <div class="g12-score-chip">✅ <span id="g12ScoreEl">0</span></div>
+      <div class="g12-q-count" id="g12QLabel">שאלה 1 מתוך 100</div>
+    </div>
+    <div class="g12-progress-bar"><div class="g12-progress-fill" id="g12ProgressFill" style="width:0%"></div></div>
+    <div class="g12-question">
+      <div class="g12-q-label">מה הקוד IATA של שדה התעופה?</div>
+      <span class="g12-city-plane">✈️</span>
+      <div class="g12-city" id="g12CityEl">תל אביב</div>
+    </div>
+    <div class="g12-options">
+      <button class="g12-opt" id="g12OptA" onclick="g12Answer(0)"><span class="g12-opt-letter">A</span><span id="g12OptAText">TLV</span></button>
+      <button class="g12-opt" id="g12OptB" onclick="g12Answer(1)"><span class="g12-opt-letter">B</span><span id="g12OptBText">JFK</span></button>
+      <button class="g12-opt" id="g12OptC" onclick="g12Answer(2)"><span class="g12-opt-letter">C</span><span id="g12OptCText">LHR</span></button>
+      <button class="g12-opt" id="g12OptD" onclick="g12Answer(3)"><span class="g12-opt-letter">D</span><span id="g12OptDText">CDG</span></button>
+    </div>
+    <div class="g12-feedback" id="g12Feedback">
+      <div class="g12-fb-emoji" id="g12FbEmoji">✅</div>
+      <div class="g12-fb-text" id="g12FbText">נכון!</div>
+      <div class="g12-fb-detail" id="g12FbDetail"></div>
+    </div>
+    <button class="g12-next-btn" id="g12NextBtn" onclick="g12Next()">הבא ›</button>
+    <button class="g12-back-btn" onclick="g12ExitToMenu()" style="margin-top:4px;font-size:12px;padding:7px 18px;opacity:0.5;">⬅ תפריט</button>
+  </div>
+  <!-- Final screen -->
+  <div class="g12-final" id="g12Final">
+    <div class="g12-final-emoji" id="g12FinalEmoji">🏆</div>
+    <div class="g12-final-title">סיימת את החידון!</div>
+    <div class="g12-final-score" id="g12FinalScore">0/100</div>
+    <div class="g12-final-grade" id="g12FinalGrade"></div>
+    <div class="g12-final-sub" id="g12FinalSub"></div>
+    <div class="g12-btn-row">
+      <button class="g12-restart-btn" onclick="g12StartGame()">🔄 שחק שוב</button>
+      <button class="g12-back-btn" onclick="g12ExitToMenu()">⬅ תפריט</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ WIN/LOSE OVERLAY ══ -->
 <div id="overlay">
   <div class="modal">
@@ -1425,6 +1523,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
       <button class="bgp-btn" data-lv="9" onclick="pickBreakLv(9)" title="מלך הפלאפל">🥙</button>
       <button class="bgp-btn" data-lv="10" onclick="pickBreakLv(10)" title="קזינו 0-30"><svg viewBox="0 0 60 60" width="22" height="22" style="vertical-align:middle" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="29" fill="#7a5c10"/><path d="M30 30 L30 2 A28 28 0 0 1 44 5.75 Z" fill="#238823"/><path d="M30 30 L44 5.75 A28 28 0 0 1 54.25 16 Z" fill="#cc0000"/><path d="M30 30 L54.25 16 A28 28 0 0 1 58 30 Z" fill="#111"/><path d="M30 30 L58 30 A28 28 0 0 1 54.25 44 Z" fill="#cc0000"/><path d="M30 30 L54.25 44 A28 28 0 0 1 44 54.25 Z" fill="#111"/><path d="M30 30 L44 54.25 A28 28 0 0 1 30 58 Z" fill="#cc0000"/><path d="M30 30 L30 58 A28 28 0 0 1 16 54.25 Z" fill="#111"/><path d="M30 30 L16 54.25 A28 28 0 0 1 5.75 44 Z" fill="#cc0000"/><path d="M30 30 L5.75 44 A28 28 0 0 1 2 30 Z" fill="#111"/><path d="M30 30 L2 30 A28 28 0 0 1 5.75 16 Z" fill="#cc0000"/><path d="M30 30 L5.75 16 A28 28 0 0 1 16 5.75 Z" fill="#111"/><path d="M30 30 L16 5.75 A28 28 0 0 1 30 2 Z" fill="#cc0000"/><circle cx="30" cy="30" r="8" fill="#1a1a1a"/><circle cx="30" cy="30" r="3.5" fill="#ddd"/></svg></button>
       <button class="bgp-btn" data-lv="11" onclick="pickBreakLv(11)" title="Lucky Slots">🎰</button>
+      <button class="bgp-btn" data-lv="12" onclick="pickBreakLv(12)" title="IATA קוד">✈️</button>
     </div>
     <button class="break-start-btn" id="brkStartBtn" onclick="launchBreakGame()">🎮 התחל הפסקה!</button>
     <div id="breakTimeUp">
@@ -1542,6 +1641,7 @@ function hideGame(){
   g9ExitToMenu&&g9ExitToMenu(true);
   g10ExitToMenu&&g10ExitToMenu(true);
   g11ExitToMenu&&g11ExitToMenu(true);
+  g12ExitToMenu&&g12ExitToMenu(true);
 }
 function goHome(){navTo('mainPage');}
 
@@ -1564,6 +1664,7 @@ function startFromCard(lvl){
   if(lvl===9){startGame9();return;}
   if(lvl===10){startGame10();return;}
   if(lvl===11){startGame11();return;}
+  if(lvl===12){startGame12();return;}
   const g=document.getElementById('gameUI');g.style.display='flex';g.classList.add('show');
   currentScore=0;lives=3;startLevel(lvl);
 }
@@ -4222,6 +4323,165 @@ function startGame11(){
   g11El('game11UI').classList.add('show');
   const ss=g11El('g11StartScreen');if(ss)ss.classList.add('show');
   const ov=g11El('g11OverScreen');if(ov)ov.classList.remove('show');
+}
+
+// ══ GAME 12 — IATA Airport Quiz ══════════════════════════════════════════════
+const G12_AIRPORTS=[
+  ['תל אביב','TLV'],['ניו יורק (JFK)','JFK'],['לוס אנג\'לס','LAX'],['לונדון (היתרו)','LHR'],
+  ['פריז','CDG'],['פרנקפורט','FRA'],['דובאי','DXB'],['סינגפור','SIN'],
+  ['הונג קונג','HKG'],['טוקיו (נריטה)','NRT'],['שיקגו','ORD'],['אטלנטה','ATL'],
+  ['אמסטרדם','AMS'],['בנגקוק','BKK'],['סידני','SYD'],['מקסיקו סיטי','MEX'],
+  ['סאו פאולו','GRU'],['בואנוס איירס','EZE'],['טורונטו','YYZ'],['סיאול (אינצ\'ון)','ICN'],
+  ['בייג\'ינג','PEK'],['שנגחאי (פודונג)','PVG'],['ברצלונה','BCN'],['מדריד','MAD'],
+  ['רומא','FCO'],['מילאנו','MXP'],['ציריך','ZRH'],['וינה','VIE'],
+  ['בריסל','BRU'],['קופנהגן','CPH'],['סטוקהולם','ARN'],['הלסינקי','HEL'],
+  ['אוסלו','OSL'],['מנצ\'סטר','MAN'],['דבלין','DUB'],['איסטנבול','IST'],
+  ['מינכן','MUC'],['ליסבון','LIS'],['אתונה','ATH'],['ורשה','WAW'],
+  ['פראג','PRG'],['בודפשט','BUD'],['מוסקבה','SVO'],['קהיר','CAI'],
+  ['יוהנסבורג','JNB'],['קייפטאון','CPT'],['ניירובי','NBO'],['אדיס אבבה','ADD'],
+  ['לאגוס','LOS'],['ניו דלהי','DEL'],['מומביי','BOM'],['בנגלור','BLR'],
+  ['קראצ\'י','KHI'],['דאקה','DAC'],['קולומבו','CMB'],['קטמנדו','KTM'],
+  ['יאנגון','RGN'],['הו צ\'י מין','SGN'],['האנוי','HAN'],['קואלה לומפור','KUL'],
+  ['ג\'קרטה','CGK'],['מנילה','MNL'],['טאיפיי','TPE'],['אוסקה (קנסאי)','KIX'],
+  ['טוקיו (האנדה)','HND'],['מלבורן','MEL'],['בריסבן','BNE'],['פרת','PER'],
+  ['אוקלנד','AKL'],['הונולולו','HNL'],['סיאטל','SEA'],['סן פרנסיסקו','SFO'],
+  ['לאס וגאס','LAS'],['דנבר','DEN'],['דאלאס','DFW'],['יוסטון','IAH'],
+  ['מיאמי','MIA'],['אורלנדו','MCO'],['בוסטון','BOS'],['ניוארק','EWR'],
+  ['ואשינגטון (דאלס)','IAD'],['ונקובר','YVR'],['מונטריאול','YUL'],['לונדון (גטוויק)','LGW'],
+  ['בירמינגהם','BHX'],['המבורג','HAM'],['דיסלדורף','DUS'],['פורטו','OPO'],
+  ['מלטה','MLA'],['לרנקה','LCA'],['טביליסי','TBS'],['ירוואן','EVN'],
+  ['אלמאטי','ALA'],['טשקנט','TAS'],['בחריין','BAH'],['כווית','KWI'],
+  ['דוחה','DOH'],['אבו דאבי','AUH'],['מסקט','MCT'],['עמאן','AMM'],
+  ['ביירות','BEY'],['ריאד','RUH'],['ג\'דה','JED'],['קייב','KBP'],
+  ['קזבלנקה','CMN'],['אנקרה','ESB'],['שארם אל-שייח','SSH'],['הררה','HRE'],
+  ['לוסקה','LUN'],['דאר א-סלאם','DAR'],['אקרה','ACC'],['דקר','DKR'],
+  ['אביג\'אן','ABJ'],['מאוריציוס','MRU'],['תוניס','TUN'],['טריפולי','TIP'],
+  ['אלג\'יר','ALG'],['קיגאלי','KGL'],['אנטנריבו','TNR'],['לואנדה','LAD']
+];
+
+let g12={questions:[],current:0,score:0,answered:false,active:false};
+
+function g12El(id){return document.getElementById(id);}
+
+function g12Shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function g12BuildQuestions(){
+  // Shuffle and pick 100 from 120
+  let pool=g12Shuffle(G12_AIRPORTS).slice(0,100);
+  // Prevent consecutive identical correct answers
+  for(let i=1;i<pool.length;i++){
+    if(pool[i][1]===pool[i-1][1]){
+      for(let j=i+1;j<pool.length;j++){
+        if(pool[j][1]!==pool[i-1][1]){[pool[i],pool[j]]=[pool[j],pool[i]];break;}
+      }
+    }
+  }
+  return pool.map(([city,code])=>{
+    const others=G12_AIRPORTS.filter(a=>a[1]!==code);
+    const wrongs=g12Shuffle(others).slice(0,3).map(a=>a[1]);
+    const options=g12Shuffle([code,...wrongs]);
+    return {city,code,options,correctIdx:options.indexOf(code)};
+  });
+}
+
+function g12StartGame(){
+  g12.questions=g12BuildQuestions();
+  g12.current=0;
+  g12.score=0;
+  g12.answered=false;
+  g12.active=true;
+  g12El('g12Final').classList.remove('show');
+  g12El('g12QuizWrap').style.display='flex';
+  g12ShowQuestion();
+}
+
+function g12ShowQuestion(){
+  const q=g12.questions[g12.current];
+  g12.answered=false;
+  const n=g12.current+1;
+  const total=g12.questions.length;
+  g12El('g12QLabel').textContent='שאלה '+n+' מתוך '+total;
+  g12El('g12ScoreEl').textContent=g12.score;
+  g12El('g12ProgressFill').style.width=(((n-1)/total)*100)+'%';
+  g12El('g12CityEl').textContent=q.city;
+  const optIds=['g12OptA','g12OptB','g12OptC','g12OptD'];
+  const txtIds=['g12OptAText','g12OptBText','g12OptCText','g12OptDText'];
+  optIds.forEach((id,i)=>{
+    const btn=g12El(id);
+    btn.disabled=false;
+    btn.className='g12-opt';
+    g12El(txtIds[i]).textContent=q.options[i];
+  });
+  g12El('g12Feedback').className='g12-feedback';
+  g12El('g12NextBtn').className='g12-next-btn';
+}
+
+function g12Answer(idx){
+  if(g12.answered)return;
+  g12.answered=true;
+  const q=g12.questions[g12.current];
+  const correct=idx===q.correctIdx;
+  if(correct)g12.score++;
+  const optIds=['g12OptA','g12OptB','g12OptC','g12OptD'];
+  optIds.forEach((id,i)=>{
+    const btn=g12El(id);
+    btn.disabled=true;
+    if(i===q.correctIdx)btn.classList.add('correct');
+    else if(i===idx&&!correct)btn.classList.add('wrong');
+  });
+  const okEmojis=['✅','🎉','💡','🌟','👏'];
+  const badEmojis=['❌','💸','😅','🤔','📚'];
+  const fb=g12El('g12Feedback');
+  fb.className='g12-feedback show '+(correct?'fb-correct':'fb-wrong');
+  g12El('g12FbEmoji').textContent=correct?okEmojis[Math.floor(Math.random()*okEmojis.length)]:badEmojis[Math.floor(Math.random()*badEmojis.length)];
+  g12El('g12FbText').textContent=correct?'נכון מאוד! 🎯':'לא נכון...';
+  g12El('g12FbDetail').textContent=correct?(q.code+' — '+q.city):('הקוד הנכון הוא '+q.code+' ('+q.city+')');
+  g12El('g12ScoreEl').textContent=g12.score;
+  g12El('g12NextBtn').className='g12-next-btn show';
+}
+
+function g12Next(){
+  g12.current++;
+  if(g12.current>=g12.questions.length){g12ShowFinal();}
+  else{g12ShowQuestion();}
+}
+
+function g12ShowFinal(){
+  g12El('g12QuizWrap').style.display='none';
+  const fin=g12El('g12Final');
+  fin.classList.add('show');
+  const s=g12.score,t=g12.questions.length;
+  const pct=Math.round(s/t*100);
+  g12El('g12FinalScore').textContent=s+'/'+t;
+  let emoji,grade,gradeColor,sub;
+  if(pct>=90){emoji='🏆';grade='מומחה שדות תעופה!';gradeColor='#ffd700';sub='ציון: '+pct+'%\nידע מרשים — אתה מומחה אמיתי!';}
+  else if(pct>=75){emoji='🎓';grade='טייס מנוסה!';gradeColor='#4fc3f7';sub='ציון: '+pct+'%\nתוצאה מצוינת — כמעט מומחה!';}
+  else if(pct>=60){emoji='✈️';grade='נוסע מיומן!';gradeColor='#6bcb77';sub='ציון: '+pct+'%\nתוצאה טובה — המשך לטוס!';}
+  else if(pct>=40){emoji='🗺️';grade='חוקר מתחיל!';gradeColor='#ffd93d';sub='ציון: '+pct+'%\nיש מקום לשיפור — תנסה שוב!';}
+  else{emoji='📚';grade='זקוק לתרגול!';gradeColor='#ff8888';sub='ציון: '+pct+'%\nלמד קצת ונסה שוב — אתה יכול!';}
+  g12El('g12FinalEmoji').textContent=emoji;
+  const gradeEl=g12El('g12FinalGrade');
+  gradeEl.textContent=grade;
+  gradeEl.style.color=gradeColor;
+  gradeEl.style.borderColor=gradeColor;
+  gradeEl.style.background='rgba(255,255,255,0.04)';
+  g12El('g12FinalSub').textContent=sub;
+  g12El('g12ProgressFill').style.width='100%';
+}
+
+function g12ExitToMenu(silent){
+  g12.active=false;
+  g12El('game12UI').classList.remove('show');
+  if(!silent)navTo('mainPage');
+}
+
+function startGame12(){
+  g12El('game12UI').classList.add('show');
+  g12StartGame();
 }
 
 // ── Boot ───────────────────────────────────────────────────────────────────────
