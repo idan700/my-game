@@ -36,6 +36,10 @@ body{background:#0d0d1a;font-family:'Segoe UI',Arial,sans-serif;color:#fff;direc
 .ns-input::placeholder{opacity:0.25;}
 .ns-btn{width:100%;padding:17px;border:none;border-radius:16px;background:linear-gradient(135deg,#ff6b6b,#ff8e53,#ffd93d);color:#111;font-size:19px;font-weight:900;cursor:pointer;letter-spacing:1px;transition:transform 0.15s,box-shadow 0.2s;box-shadow:0 6px 28px rgba(255,107,107,0.45);animation:nsBtnPulse 2.5s ease-in-out infinite;}
 .ns-btn:hover{transform:scale(1.04);box-shadow:0 10px 36px rgba(255,107,107,0.7);}
+.ns-ignisia-strip{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.09);display:flex;flex-direction:column;align-items:center;gap:10px;}
+.ns-ign-powered{font-size:11.5px;font-weight:700;letter-spacing:1.8px;color:#d090f0;opacity:0.7;text-transform:uppercase;}
+.ns-ign-btn{background:linear-gradient(135deg,#5c0080,#a020c0,#d040e8);color:#fff;border:none;border-radius:20px;padding:11px 28px;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:0.4px;transition:transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(160,32,192,0.45);}
+.ns-ign-btn:hover{transform:scale(1.05);box-shadow:0 8px 30px rgba(200,60,240,0.65);}
 @keyframes nsBtnPulse{0%,100%{box-shadow:0 6px 28px rgba(255,107,107,0.45);}50%{box-shadow:0 6px 38px rgba(255,217,61,0.65);}}
 
 /* ── MAIN PAGE ── */
@@ -47,30 +51,44 @@ body{background:#0d0d1a;font-family:'Segoe UI',Arial,sans-serif;color:#fff;direc
 .ad-banner{background:#f5f5ee;border-radius:12px;padding:0;text-align:center;border:2px solid #ccc;color:#222;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0;min-height:210px;overflow:hidden;}
 .ad-img{width:100%;height:88px;display:flex;align-items:center;justify-content:center;font-size:46px;flex-shrink:0;position:relative;overflow:hidden;letter-spacing:0;}
 .ad-img::before{content:'';position:absolute;inset:0;opacity:0.18;background:radial-gradient(ellipse at 50% 120%,#fff,transparent);}
-.ai-fox{background:linear-gradient(135deg,#7b0033,#c0392b,#e91e8c,#9b59b6);}
-.ai-job{background:linear-gradient(135deg,#0d1b4a,#1a5276,#2980b9);}
-.ai-zimmer{background:linear-gradient(135deg,#0a2010,#1a5c28,#4caf50,#a5d6a7);}
-.ai-renault{background:linear-gradient(135deg,#0d0d1a,#1c2833,#f39c12);}
-.ai-money{background:linear-gradient(135deg,#0a1f0a,#155724,#27ae60,#f9d835);}
-.ai-flight{background:linear-gradient(135deg,#001233,#0a3d8f,#4fc3f7,#b3e5fc);}
+/* Ignisia ad image backgrounds */
+.ai-ign-1{background:linear-gradient(135deg,#3d0a2a,#7b1560,#c2185b,#ff80ab);}
+.ai-ign-2{background:linear-gradient(135deg,#1a0038,#5c0a7a,#9c27b0,#e040fb);}
+.ai-ign-3{background:linear-gradient(135deg,#2a0a40,#6a1080,#ab47bc,#f8bbd9);}
+.ai-ign-4{background:linear-gradient(135deg,#380a1a,#8c1a50,#e91e63,#ff80ab);}
+.ai-ign-5{background:linear-gradient(135deg,#1a0030,#4a0070,#7b1fa2,#ce93d8);}
+.ai-ign-6{background:linear-gradient(135deg,#200a30,#6a0050,#c2185b,#f48fb1);}
+/* Ignisia ad base */
 .ad-body{padding:8px 10px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;}
 .ad-brand{font-size:20px;font-weight:900;letter-spacing:1px;}
 .ad-sale{font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px;color:#fff;margin:0 auto;}
 .ad-tagline{font-size:11px;font-weight:700;line-height:1.4;color:#333;}
-.ad-cta{border:none;border-radius:7px;padding:7px 12px;font-size:11px;font-weight:700;cursor:pointer;width:100%;color:#fff;}
-.ad-fox{border-color:#e74c3c;}.ad-fox .ad-brand{color:#e74c3c;}.ad-fox .ad-sale{background:#e74c3c;}.ad-fox .ad-cta{background:#e74c3c;}
-.ad-renault{border-color:#f39c12;}.ad-renault .ad-brand{color:#c0392b;font-size:16px;letter-spacing:2px;}.ad-renault .ad-sale{background:#f39c12;}.ad-renault .ad-cta{background:#f39c12;}
-.ad-flight{background:linear-gradient(160deg,#001f4d,#003a8c);border-color:#1a6fc4;color:#e8f4ff;}
-.ad-flight .ad-brand{color:#5bc4ff;font-size:22px;}
-.ad-flight .ad-sale{background:linear-gradient(135deg,#e74c3c,#ff6b35);font-size:10px;}
-.ad-flight .ad-tagline{color:#c8e8ff;font-size:11px;font-weight:700;line-height:1.5;}
-.ad-flight .ad-cta{background:linear-gradient(135deg,#1a6fc4,#5bc4ff);color:#fff;}
-.ad-zimmer{background:linear-gradient(160deg,#0d2010,#1a4020);border-color:#2d7a40;color:#e8ffe0;}
-.ad-zimmer .ad-brand{color:#6ddd88;font-size:22px;}
-.ad-zimmer .ad-sale{background:linear-gradient(135deg,#2d7a40,#6ddd88);font-size:10px;color:#002210;}
-.ad-zimmer .ad-tagline{color:#b8f0c8;font-size:11px;font-weight:700;line-height:1.5;}
-.ad-zimmer .ad-cta{background:linear-gradient(135deg,#2d7a40,#6ddd88);color:#001a0a;}
-.ad-label{font-size:9px;color:rgba(255,255,255,0.25);text-align:center;}
+.ad-cta{border:none;border-radius:7px;padding:7px 12px;font-size:11px;font-weight:700;cursor:pointer;width:100%;color:#fff;transition:opacity 0.15s;}
+.ad-cta:hover{opacity:0.85;}
+/* Ignisia brand style */
+.ad-ignisia{background:linear-gradient(160deg,#15001f,#250830);border-color:#a03080;color:#f5e0ff;}
+.ad-ignisia .ad-brand{color:#f09fd8;font-size:15px;letter-spacing:1.5px;font-weight:900;}
+.ad-ignisia .ad-sale{background:linear-gradient(135deg,#a0206a,#e91e63);font-size:9px;letter-spacing:0.3px;}
+.ad-ignisia .ad-tagline{color:#eecce8;font-size:10.5px;font-weight:600;line-height:1.55;direction:rtl;}
+.ad-ignisia .ad-cta{background:linear-gradient(135deg,#b5185e,#e91e63,#ff4081);font-size:11px;font-weight:800;letter-spacing:0.2px;padding:8px 12px;}
+/* ── IGNISIA LANDING OVERLAY ── */
+#ignisiaLanding{display:none;position:fixed;inset:0;background:linear-gradient(145deg,#0a0014 0%,#1a0030 45%,#0d0020 100%);z-index:500;overflow-y:auto;align-items:flex-start;justify-content:center;padding:0 16px 40px;}
+#ignisiaLanding.show{display:flex;}
+.ign-close{position:fixed;top:14px;right:14px;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,160,220,0.3);border-radius:50%;width:38px;height:38px;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background 0.15s;}
+.ign-close:hover{background:rgba(255,255,255,0.22);}
+.ign-wrap{max-width:520px;width:100%;text-align:center;padding:60px 4px 20px;direction:rtl;}
+.ign-glow{font-size:72px;animation:nsBob 3.2s ease-in-out infinite;display:block;margin-bottom:6px;}
+.ign-brand-name{font-size:32px;font-weight:900;background:linear-gradient(135deg,#ff80c8,#e040fb,#ff4081);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;margin-bottom:4px;}
+.ign-tagline-top{font-size:13px;color:rgba(255,200,240,0.55);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;}
+.ign-title{font-size:22px;font-weight:800;color:#fff;line-height:1.45;margin-bottom:14px;}
+.ign-subtitle{font-size:15px;color:rgba(255,220,245,0.78);line-height:1.75;margin-bottom:26px;}
+.ign-points{display:flex;flex-direction:column;gap:10px;margin-bottom:30px;text-align:right;}
+.ign-point{background:rgba(255,255,255,0.05);border:1px solid rgba(255,128,200,0.18);border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:13px;color:rgba(255,235,250,0.88);font-size:14px;font-weight:600;line-height:1.4;}
+.ign-point-icon{font-size:26px;flex-shrink:0;}
+.ign-cta-btn{background:linear-gradient(135deg,#b5185e,#e91e63,#ff4081);border:none;border-radius:50px;color:#fff;font-size:19px;font-weight:900;padding:17px 52px;cursor:pointer;box-shadow:0 8px 36px rgba(233,30,99,0.55);transition:transform 0.15s,box-shadow 0.15s;letter-spacing:0.5px;margin-bottom:12px;}
+.ign-cta-btn:hover{transform:scale(1.05);box-shadow:0 14px 44px rgba(233,30,99,0.75);}
+.ign-stars{font-size:22px;letter-spacing:6px;opacity:0.35;margin-top:6px;}
+.ad-label{font-size:9px;color:rgba(255,255,255,0.2);text-align:center;letter-spacing:0.5px;}
 
 /* Main center */
 .main-center{flex:1;padding:22px 16px 30px;display:flex;flex-direction:column;align-items:center;direction:rtl;}
@@ -396,40 +414,14 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 .td-score{color:#f1c40f;font-weight:700;text-align:left;}
 .td-date{opacity:0.3;font-size:11px;text-align:left;}
 
-/* ── ADVERT PAGE ── */
-#advertPage{background:#0d0d1a;}
-.advert-inner{max-width:620px;margin:0 auto;padding:36px 16px 48px;}
-.advert-hero{text-align:center;margin-bottom:36px;}
-.advert-hero h1{font-size:30px;font-weight:900;background:linear-gradient(135deg,#ff6b6b,#ffd93d,#4d96ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;}
-.advert-hero p{font-size:17px;line-height:1.9;opacity:0.8;}
-.stat-row{display:flex;gap:18px;justify-content:center;margin:22px 0;flex-wrap:wrap;}
-.adv-stat{background:rgba(255,255,255,0.06);border-radius:14px;padding:14px 22px;text-align:center;}
-.adv-stat .sn{font-size:30px;font-weight:900;color:#ffd93d;}
-.adv-stat .sl{font-size:12px;opacity:0.55;margin-top:2px;}
-.advert-form{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px;}
-.advert-form h2{font-size:20px;font-weight:700;margin-bottom:18px;text-align:center;}
-.ff{margin-bottom:14px;}
-.ff label{display:block;font-size:13px;opacity:0.55;margin-bottom:5px;}
-.ff input,.ff textarea{width:100%;padding:11px 14px;border-radius:10px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#fff;font-size:14px;direction:rtl;outline:none;transition:border-color 0.2s;font-family:inherit;}
-.ff input:focus,.ff textarea:focus{border-color:rgba(130,80,255,0.75);}
-.ff textarea{height:90px;resize:vertical;}
-.form-submit{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#7b2ff7,#4a1bb5);color:#fff;font-size:17px;font-weight:800;cursor:pointer;transition:opacity 0.2s;}
-.form-submit:hover{opacity:0.87;}
-.form-success{display:none;text-align:center;padding:16px;color:#6bcb77;font-size:16px;font-weight:700;margin-top:12px;}
-.advert-email{text-align:center;margin-top:20px;opacity:0.35;font-size:13px;}
+/* ── ADVERT PAGE (Ignisia redirect) ── */
+#advertPage{background:linear-gradient(145deg,#0a0014,#1a0030,#0d0020);}
+.advert-redir{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 52px);padding:30px 16px;text-align:center;direction:rtl;}
+.advert-redir-icon{font-size:70px;animation:nsBob 3s ease-in-out infinite;margin-bottom:10px;}
+.advert-redir-title{font-size:26px;font-weight:900;background:linear-gradient(135deg,#ff80c8,#e040fb,#ff4081);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;}
+.advert-redir-sub{font-size:15px;color:rgba(255,220,245,0.7);margin-bottom:24px;line-height:1.7;}
+.advert-redir-btn{background:linear-gradient(135deg,#b5185e,#e91e63,#ff4081);border:none;border-radius:50px;color:#fff;font-size:17px;font-weight:900;padding:15px 44px;cursor:pointer;box-shadow:0 8px 32px rgba(233,30,99,0.5);transition:transform 0.15s;}
 
-/* ── JOB ADS ── */
-.ad-job{border-color:#4a6fa5 !important;background:linear-gradient(145deg,#0a1628,#1a3a6b) !important;}
-.ad-job .ad-brand{color:#7b9fd4 !important;font-size:20px;}
-.ad-job .ad-sale{background:linear-gradient(135deg,#4a6fa5,#7b2ff7) !important;}
-.ad-job .ad-cta{background:linear-gradient(135deg,#4a6fa5,#7b2ff7) !important;}
-.ad-job .ad-tagline{color:#c5d8f0 !important;}
-
-.ad-freelance{border-color:#27ae60 !important;background:linear-gradient(145deg,#061a0e,#0d3d1e) !important;}
-.ad-freelance .ad-brand{color:#2ecc71 !important;font-size:20px;}
-.ad-freelance .ad-sale{background:linear-gradient(135deg,#27ae60,#1abc9c) !important;}
-.ad-freelance .ad-cta{background:linear-gradient(135deg,#27ae60,#1abc9c) !important;}
-.ad-freelance .ad-tagline{color:#a8e6c8 !important;}
 
 /* ── FLOATING BREAK TIMER ── */
 #breakFloat{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.88);border:2px solid rgba(255,215,0,0.6);border-radius:16px;padding:10px 22px;z-index:120;flex-direction:column;align-items:center;gap:3px;backdrop-filter:blur(8px);box-shadow:0 4px 24px rgba(0,0,0,0.6);}
@@ -585,6 +577,17 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   #game-wrap{grid-template-columns:42px auto 42px;grid-template-rows:42px auto 42px;gap:3px;max-width:100vw;}
   #game-wrap canvas{width:calc(100vw - 96px) !important;height:auto !important;touch-action:none;}
   .db{width:38px;height:38px;font-size:17px;border-radius:9px;}
+  /* Games 1–3 on mobile: full-width canvas, hide d-pad (drag controls player) */
+  #game-wrap.g1-touch{display:flex !important;justify-content:center;align-items:center;}
+  #game-wrap.g1-touch canvas{width:100vw !important;height:auto !important;touch-action:none;}
+  #game-wrap.g1-touch .db{display:none !important;}
+  #game-wrap.g1-touch #btnLeft,#game-wrap.g1-touch #btnRight,
+  #game-wrap.g1-touch #btnUp,#game-wrap.g1-touch #btnDown,
+  #game-wrap.g1-touch #btnCenter{display:none !important;}
+  /* Games 4–6 on mobile: full-width canvas, hide d-pad (drag on canvas controls paddle/ship) */
+  #game-wrap.g46-touch{display:flex !important;justify-content:center;align-items:center;}
+  #game-wrap.g46-touch canvas{width:100vw !important;height:auto !important;touch-action:none;}
+  #game-wrap.g46-touch .db{display:none !important;}
   #gameLeaderboard{display:none;}
   #hint{font-size:10px;padding:0 4px;}
   #hud{font-size:12px;gap:5px;}
@@ -741,10 +744,10 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 .g14-q-text{font-size:18px;font-weight:700;color:#fff;line-height:1.5;direction:rtl;}
 /* Options */
 .g14-opts{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.g14-opt{position:relative;border:2px solid rgba(100,130,255,0.35);border-radius:14px;background:linear-gradient(135deg,rgba(0,20,80,0.8),rgba(0,10,50,0.9));color:#fff;font-size:15px;font-weight:700;padding:14px 14px 14px 38px;cursor:pointer;transition:all 0.15s;text-align:right;direction:rtl;-webkit-tap-highlight-color:transparent;}
+.g14-opt{position:relative;border:2px solid rgba(100,130,255,0.35);border-radius:14px;background:linear-gradient(135deg,rgba(0,20,80,0.8),rgba(0,10,50,0.9));color:#fff;font-size:15px;font-weight:700;padding:14px 14px 14px 42px;cursor:pointer;transition:all 0.15s;text-align:right;direction:rtl;-webkit-tap-highlight-color:transparent;}
 .g14-opt:hover:not(:disabled){background:linear-gradient(135deg,rgba(0,40,140,0.9),rgba(0,20,90,0.9));border-color:rgba(180,210,255,0.7);transform:scale(1.02);}
 .g14-opt:disabled{cursor:default;}
-.g14-opt-letter{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:rgba(100,140,255,0.25);border:1.5px solid rgba(150,180,255,0.4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#9ab0ff;}
+.g14-opt-letter{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:rgba(100,140,255,0.25);border:1.5px solid rgba(150,180,255,0.4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#9ab0ff;flex-shrink:0;}
 .g14-opt.correct{background:linear-gradient(135deg,rgba(0,100,0,0.8),rgba(0,70,0,0.9))!important;border-color:#6bcb77!important;box-shadow:0 0 20px rgba(107,203,119,0.45);}
 .g14-opt.correct .g14-opt-letter{background:rgba(107,203,119,0.4);border-color:#6bcb77;color:#6bcb77;}
 .g14-opt.wrong{background:linear-gradient(135deg,rgba(120,0,0,0.8),rgba(80,0,0,0.9))!important;border-color:#ff5555!important;opacity:0.85;}
@@ -782,7 +785,8 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 .g14-start-btn:hover{transform:scale(1.05);}
 @media(max-width:500px){
   .g14-q-text{font-size:15px;}
-  .g14-opt{font-size:13px;padding:12px 10px 12px 32px;}
+  .g14-opt{font-size:13px;padding:12px 10px 12px 38px;}
+  .g14-opt-letter{left:8px;width:22px;height:22px;}
   .g14-ov-amount{font-size:40px;}
   .g14-ladder{grid-template-columns:repeat(5,1fr);}
   .g14-rung{font-size:9px;}
@@ -961,7 +965,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
     <span class="nav-link active" id="nl-home" onclick="navTo('mainPage')">🏠 בית</span>
     <span class="nav-link" id="nl-games" onclick="navTo('mainPage')">🎮 משחקים</span>
     <span class="nav-link" id="nl-scores" onclick="navTo('scoresPage')">🏆 שיאים</span>
-    <span class="nav-link" id="nl-advert" onclick="navTo('advertPage')">📢 פרסם אצלנו</span>
+    <span class="nav-link" id="nl-advert" onclick="openIgnisia()" style="color:#f09fd8;font-weight:800;">✨ בחסות Ignisia — גלה עוד</span>
   </div>
 </nav>
 
@@ -982,47 +986,51 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   <div class="ns-card">
     <span class="ns-logo">🎮</span>
     <div class="ns-title">מצ'עמם לי</div>
-    <div class="ns-tagline">מותר לכם להצ'טעמם טיפה. גם אם זה בעבודה 😏<br>שחקו במלא משחקים שאולי יגרמו לכם להצ'טעמם פחות..</div>
+    <div class="ns-tagline">משעמם? יאללה משחק 🎮<br>ואם כבר נהיה מעניין — קחו את זה רגע אחד קדימה 😉✨</div>
     <div class="ns-label">מה השם שלך?</div>
     <input class="ns-input" type="text" id="nameInput" placeholder="הכנס שם..." maxlength="18"
       onkeydown="if(event.key==='Enter')submitName()">
     <button class="ns-btn" onclick="submitName()">בואו נשחק! 🎮</button>
+    <div class="ns-ignisia-strip">
+      <div class="ns-ign-powered">Powered by Ignisia ✨</div>
+      <button class="ns-ign-btn" onclick="openIgnisia()">👉 קחו אותי ל-Ignisia</button>
+    </div>
   </div>
 </div>
 
 <!-- ══ MAIN PAGE ══ -->
 <div id="mainPage" class="page active">
   <div class="main-layout">
-    <!-- Fox ad (left) -->
+    <!-- Ignisia left ads -->
     <div class="ad-strip">
-      <div class="ad-banner ad-fox">
-        <div class="ad-img ai-fox">👗</div>
+      <div class="ad-banner ad-ignisia" onclick="openIgnisia()" style="cursor:pointer;">
+        <div class="ad-img ai-ign-1">🍽️</div>
         <div class="ad-body">
-          <div class="ad-brand">FOX</div>
-          <div class="ad-sale">SALE</div>
-          <div class="ad-tagline">מבצעי סוף עונה<br>עד 70% הנחה!</div>
-          <button class="ad-cta">לקנייה עכשיו ›</button>
+          <div class="ad-brand">✨ Ignisia</div>
+          <div class="ad-sale">NEW</div>
+          <div class="ad-tagline">רוצה לגלות מסעדות הכי שוות בעיר – וגם לשדרג את הדייט?</div>
+          <button class="ad-cta" onclick="openIgnisia();event.stopPropagation()">גלה את Ignisia ›</button>
         </div>
       </div>
-      <div class="ad-banner ad-job">
-        <div class="ad-img ai-job">🏢</div>
+      <div class="ad-banner ad-ignisia" onclick="openIgnisia()" style="cursor:pointer;">
+        <div class="ad-img ai-ign-2">💑</div>
         <div class="ad-body">
-          <div class="ad-brand">💼 משרות</div>
-          <div class="ad-sale" style="background:linear-gradient(135deg,#4a6fa5,#7b2ff7)">עבודה</div>
-          <div class="ad-tagline" style="color:#334;font-weight:700">מחפש עבודה?<br><span style="font-size:10px;font-weight:500">מצא משרות שמתאימות לך</span></div>
-          <button class="ad-cta" onclick="window.open('https://www.jobmaster.co.il','_blank')" style="background:linear-gradient(135deg,#4a6fa5,#7b2ff7)">מצא עבודה →</button>
+          <div class="ad-brand">✨ Ignisia</div>
+          <div class="ad-sale">דייט</div>
+          <div class="ad-tagline">רוצה דייט במסעדות הכי טובות – בלי לחשוב יותר מדי?</div>
+          <button class="ad-cta" onclick="openIgnisia();event.stopPropagation()">Ignisia תוביל אתכם ›</button>
         </div>
       </div>
-      <div class="ad-banner ad-zimmer">
-        <div class="ad-img ai-zimmer">🏔️</div>
+      <div class="ad-banner ad-ignisia" onclick="openIgnisia()" style="cursor:pointer;">
+        <div class="ad-img ai-ign-3">💬</div>
         <div class="ad-body">
-          <div class="ad-brand">🌲 צפון</div>
-          <div class="ad-sale">חופש עכשיו!</div>
-          <div class="ad-tagline">חייבים לברוח לצפון?<br>מצא צימר מושלם<br>בהרי הגליל!</div>
-          <button class="ad-cta" onclick="window.open('https://www.zimmer.co.il','_blank')">מצא צימר ›</button>
+          <div class="ad-brand">✨ Ignisia</div>
+          <div class="ad-sale">זוגיות</div>
+          <div class="ad-tagline">רוצה לתקשר יותר טוב בזוגיות?</div>
+          <button class="ad-cta" onclick="openIgnisia();event.stopPropagation()">נסה את Ignisia ›</button>
         </div>
       </div>
-      <div class="ad-label">פרסומת</div>
+      <div class="ad-label">✨ בחסות Ignisia</div>
     </div>
 
     <!-- Center content -->
@@ -1137,36 +1145,36 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
       </div>
     </div>
 
-    <!-- Right ad strip -->
+    <!-- Ignisia right ads -->
     <div class="ad-strip" style="direction:rtl">
-      <div class="ad-banner ad-renault">
-        <div class="ad-img ai-renault">🚗</div>
+      <div class="ad-banner ad-ignisia" onclick="openIgnisia()" style="cursor:pointer;">
+        <div class="ad-img ai-ign-4">🎁</div>
         <div class="ad-body">
-          <div class="ad-brand">RENAULT</div>
-          <div class="ad-sale">חדש!</div>
-          <div class="ad-tagline">רנו קליאו החדשה<br>כבר כאן</div>
-          <button class="ad-cta">גלה עוד ›</button>
+          <div class="ad-brand">✨ Ignisia</div>
+          <div class="ad-sale">הפתעה</div>
+          <div class="ad-tagline">בא לך להפתיע בלי לחשוב יותר מדי?</div>
+          <button class="ad-cta" onclick="openIgnisia();event.stopPropagation()">תן ל-Ignisia לעזור ›</button>
         </div>
       </div>
-      <div class="ad-banner ad-freelance">
-        <div class="ad-img ai-money">💵</div>
+      <div class="ad-banner ad-ignisia" onclick="openIgnisia()" style="cursor:pointer;">
+        <div class="ad-img ai-ign-5">💌</div>
         <div class="ad-body">
-          <div class="ad-brand">💰 הכנסה</div>
-          <div class="ad-sale" style="background:linear-gradient(135deg,#27ae60,#1abc9c)">פרילנס</div>
-          <div class="ad-tagline" style="color:#1a3d2a;font-weight:700">רוצה להרוויח יותר?<br><span style="font-size:10px;font-weight:500">עבודות מהבית</span></div>
-          <button class="ad-cta" onclick="window.open('https://www.fiverr.com','_blank')" style="background:linear-gradient(135deg,#27ae60,#1abc9c)">גלה עכשיו →</button>
+          <div class="ad-brand">✨ Ignisia</div>
+          <div class="ad-sale">חיבור</div>
+          <div class="ad-tagline">לפעמים הכל מתחיל בהודעה אחת</div>
+          <button class="ad-cta" onclick="openIgnisia();event.stopPropagation()">Ignisia עוזרת לך ›</button>
         </div>
       </div>
-      <div class="ad-banner ad-flight">
-        <div class="ad-img ai-flight">✈️</div>
+      <div class="ad-banner ad-ignisia" onclick="openIgnisia()" style="cursor:pointer;">
+        <div class="ad-img ai-ign-6">💏</div>
         <div class="ad-body">
-          <div class="ad-brand">✈️ טיסות</div>
-          <div class="ad-sale">דקה ה-90!</div>
-          <div class="ad-tagline">רוצים לטוס לחו"ל?<br>מחירים מטורפים<br>לנסיעות מחר!</div>
-          <button class="ad-cta" onclick="window.open('https://www.last1.co.il','_blank')">תפוס כרטיס ›</button>
+          <div class="ad-brand">✨ Ignisia</div>
+          <div class="ad-sale">זוגיות</div>
+          <div class="ad-tagline">רוצה להיות יותר מחובר לאשתך?</div>
+          <button class="ad-cta" onclick="openIgnisia();event.stopPropagation()">גלה את Ignisia ›</button>
         </div>
       </div>
-      <div class="ad-label">פרסומת</div>
+      <div class="ad-label">✨ בחסות Ignisia</div>
     </div>
   </div>
 </div>
@@ -1191,14 +1199,14 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   </div>
   <div id="hint"></div>
   <div id="gameLeaderboard">
-    <div class="game-ad-banner" onclick="window.open('https://www.last1.co.il','_blank')">
-      <div class="game-ad-visual">✈️</div>
+    <div class="game-ad-banner" style="background:linear-gradient(110deg,#15001f 0%,#2a0545 45%,#3d0a5e 100%);border-color:#a030c0;cursor:pointer;" onclick="openIgnisia()">
+      <div class="game-ad-visual" style="background:linear-gradient(135deg,#1a002e,#5c0090,#a030c0);font-size:38px;">✨</div>
       <div class="game-ad-body">
-        <div class="game-ad-tag">דקה ה-90!</div>
-        <div class="game-ad-title">רוצים לטוס לחו"ל? הזדמנות עכשיו!</div>
-        <div class="game-ad-sub">טיסות במחירי מציאה לנסיעות ספונטניות — בדקו לפני שנגמר</div>
+        <div class="game-ad-tag" style="background:linear-gradient(135deg,#7b00b5,#d040e8);">Ignisia</div>
+        <div class="game-ad-title" style="color:#f0c8ff;">ככה בונים רגעים אמיתיים יחד</div>
+        <div class="game-ad-sub" style="color:#c890e8;">הפלטפורמה שעוזרת לכם לגלות מקומות שווים וליצור זוגיות</div>
       </div>
-      <div class="game-ad-cta"><span>לכרטיסים ›</span></div>
+      <div class="game-ad-cta" style="background:linear-gradient(135deg,#5c0090,#c040e0);"><span style="background:#fff;color:#5c0090;">גלו עוד ›</span></div>
     </div>
     <!-- Hidden elements required by JS -->
     <div style="display:none">
@@ -1797,27 +1805,47 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 
 <!-- ══ ADVERT PAGE ══ -->
 <div id="advertPage" class="page">
-  <div class="advert-inner">
-    <div class="advert-hero">
-      <h1>פרסם אצלנו 📢</h1>
-      <p>מצ'עמם לי מגיע לאלפי עובדים ישראלים ביום.<br>
-         רוצים שהמותג שלכם יהיה חלק מההפסקה שלהם?</p>
-      <div class="stat-row">
-        <div class="adv-stat"><div class="sn">5K+</div><div class="sl">שחקנים יומיים</div></div>
-        <div class="adv-stat"><div class="sn">3 דק'</div><div class="sl">שהייה ממוצעת</div></div>
-        <div class="adv-stat"><div class="sn">98%</div><div class="sl">גיל 25–45</div></div>
+  <div class="advert-redir">
+    <div class="advert-redir-icon">✨</div>
+    <div class="advert-redir-title">Ignisia</div>
+    <div class="advert-redir-sub">It's all about creating real Moments</div>
+    <button class="advert-redir-btn" onclick="openIgnisia()">👉 ספר לי עוד</button>
+  </div>
+</div>
+
+<!-- ══ IGNISIA LANDING OVERLAY ══ -->
+<div id="ignisiaLanding">
+  <button class="ign-close" onclick="closeIgnisia()">✕</button>
+  <div class="ign-wrap">
+    <span class="ign-glow">✨</span>
+    <div class="ign-brand-name">Ignisia</div>
+    <div class="ign-tagline-top">It's all about creating real Moments</div>
+
+    <div class="ign-title">ככה בונים זוגיות - אבל לא רק...</div>
+    <div class="ign-subtitle">
+      הפלטפורמה החדשה שעוזרת לכם לגלות מקומות שווים
+      וליצור רגעים אמיתיים יחד
+    </div>
+
+    <div class="ign-points">
+      <div class="ign-point">
+        <span class="ign-point-icon">🤖</span>
+        <span>יוצרים הודעות חכמות לפי מצב רוח עם AI</span>
+      </div>
+      <div class="ign-point">
+        <span class="ign-point-icon">📍</span>
+        <span>מניעים לדייטים ומפגשים בלי מאמץ</span>
+      </div>
+      <div class="ign-point">
+        <span class="ign-point-icon">💬</span>
+        <span>שומרים על תקשורת גם בתוך השגרה</span>
       </div>
     </div>
-    <div class="advert-form">
-      <h2>📩 צרו קשר</h2>
-      <div class="ff"><label>שם מלא</label><input type="text" id="af-name" placeholder="ישראל ישראלי"></div>
-      <div class="ff"><label>חברה</label><input type="text" id="af-company" placeholder="שם החברה"></div>
-      <div class="ff"><label>מייל</label><input type="email" id="af-email" placeholder="you@company.com" dir="ltr"></div>
-      <div class="ff"><label>הודעה</label><textarea id="af-msg" placeholder="ספרו לנו על הקמפיין שלכם..."></textarea></div>
-      <a class="form-submit" href="mailto:goldsharon@gmail.com" style="display:block;text-align:center;text-decoration:none;">📩 שלחו מייל ל־goldsharon@gmail.com</a>
-    </div>
-    <div class="advert-email">לחיצה על הכפתור תפתח את תוכנת המייל שלכם ישירות</div>
-    <div class="advert-email" style="margin-top:14px;font-size:13px;opacity:0.7;line-height:1.7;">אם בא לכם לשלוח לי פידבק — תרגישו חופשי לשלוח לי מייל 😊</div>
+
+    <button class="ign-cta-btn" onclick="window.open('https://www.ignisiahub.com','_blank')">
+      👉 להכיר את Ignisia
+    </button>
+    <div class="ign-stars">♥ ♥ ♥</div>
   </div>
 </div>
 
@@ -1869,7 +1897,9 @@ function navTo(pageId){
 function hideGame(){
   const g=document.getElementById('gameUI');g.style.display='none';g.classList.remove('show');
   if(rafId){cancelAnimationFrame(rafId);rafId=null;}
-  canvas.ontouchmove=null;canvas.ontouchstart=null;
+  canvas.ontouchmove=null;canvas.ontouchstart=null;canvas.ontouchend=null;
+  document.getElementById('game-wrap').classList.remove('g1-touch');
+  document.getElementById('game-wrap').classList.remove('g46-touch');
   running=false;
   document.getElementById('game7UI').classList.remove('show');
   document.getElementById('g7GameOver').classList.remove('show');
@@ -1883,6 +1913,8 @@ function hideGame(){
   g14ExitToMenu&&g14ExitToMenu(true);
 }
 function goHome(){navTo('mainPage');}
+function openIgnisia(){document.getElementById('ignisiaLanding').classList.add('show');document.body.style.overflow='hidden';}
+function closeIgnisia(){document.getElementById('ignisiaLanding').classList.remove('show');document.body.style.overflow='';}
 
 // ── Name screen ──────────────────────────────────────────────────────────────
 function showNameScreen(){document.getElementById('nameScreen').classList.add('show');setTimeout(()=>document.getElementById('nameInput').focus(),80);}
@@ -2495,7 +2527,14 @@ function updateM6(){
   for(let i=m6.thrown.length-1;i>=0;i--){
     const t=m6.thrown[i];
     t.y+=t.dy; t.x+=t.dx; t.rot+=t.rotSpd;
-    if(t.y>CH+20){m6.thrown.splice(i,1);continue;}
+    if(t.y>CH+20){
+      // Missed by player → spawn a rising collectible pill at bottom
+      if(!t.big){
+        m6.pills=m6.pills||[];
+        m6.pills.push({x:t.x,y:CH-10,dy:-1.6,type:['sticky','multi','life'][Math.floor(Math.random()*3)],wobble:0,wobbleSpd:0.08,life:280});
+      }
+      m6.thrown.splice(i,1);continue;
+    }
     // Hit player
     const hitRadius=t.big?s.w/2+22:s.w/2+10;
     if(Math.abs(t.x-s.x)<hitRadius&&t.y>CH-60&&t.y<CH-6){
@@ -2505,10 +2544,27 @@ function updateM6(){
         showDisq('💥','מרשמלו ענק ריסק אותך!',()=>{
           showWL(false,'💥 מרשמלו ענק!','נמחקת ממש — מרשמלו ענק פגע בך!');});return;
       } else {
-        lives--;updateHUD();
-        m6.shipBlink=70;
-        if(lives<=0){persistScore();updateGameLb();running=false;showDisq('💔','נגמרו הלבבות!',()=>{showWL(false,'נפלת! 💀','המרשמלו ניצחו...');});return;}
+        // Small marshmallow caught by player → powerup!
+        m6.pills=m6.pills||[];
+        const pw=['sticky','multi','life'][Math.floor(Math.random()*3)];
+        if(pw==='life'){lives=Math.min(lives+1,5);updateHUD();showMinuteToast('❤️ מרשמלו מתנה! +1 לב');}
+        else{m6.powerType=pw;m6.powerTimer=360;showMinuteToast(pw==='sticky'?'🍬 כדור דבק תפסת!':'⚡ ×3 יריות לתפסת!');}
+        m6AddParticles(s.x,CH-30,t.col);
       }
+    }
+  }
+  // Rising collectible pills (from missed marshmallows)
+  m6.pills=m6.pills||[];
+  for(let i=m6.pills.length-1;i>=0;i--){
+    const p=m6.pills[i];
+    p.y+=p.dy; p.wobble+=p.wobbleSpd; p.life--;
+    if(p.y<-20||p.life<=0){m6.pills.splice(i,1);continue;}
+    // Collect
+    if(Math.abs(p.x-s.x)<s.w/2+16&&Math.abs(p.y-(CH-30))<26){
+      m6.pills.splice(i,1);
+      if(p.type==='life'){lives=Math.min(lives+1,5);updateHUD();showMinuteToast('❤️ לב בונוס! תפסת כדור!');}
+      else{m6.powerType=p.type;m6.powerTimer=360;showMinuteToast(p.type==='sticky'?'🍬 כדור דבק!':'⚡ ×3 יריות!');}
+      m6AddParticles(p.x,p.y,p.type==='life'?'#ff6b6b':'#ffd93d');
     }
   }
 
@@ -2781,6 +2837,26 @@ function drawM6(){
     ctx.shadowBlur=0;
   }
 
+  // Rising collectible pills (from missed/caught marshmallows)
+  for(const p of (m6.pills||[])){
+    ctx.save();
+    ctx.translate(p.x+Math.sin(p.wobble)*5,p.y);
+    const alpha=Math.min(1,p.life/40);
+    ctx.globalAlpha=alpha;
+    const pillCol=p.type==='life'?'#ff6b6b':p.type==='sticky'?'#00ffcc':'#ffd93d';
+    ctx.shadowBlur=18;ctx.shadowColor=pillCol;
+    // Pill capsule shape
+    ctx.fillStyle=pillCol;
+    ctx.beginPath();ctx.roundRect(-12,-8,24,16,8);ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.5)';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.roundRect(-12,-8,24,16,8);ctx.stroke();
+    // Icon inside
+    ctx.shadowBlur=0;ctx.fillStyle='rgba(0,0,0,0.7)';
+    ctx.font='bold 10px Arial';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(p.type==='life'?'❤️':p.type==='sticky'?'🍬':'⚡',0,1);
+    ctx.restore();ctx.shadowBlur=0;ctx.globalAlpha=1;
+  }
+
   // Particles
   for(const p of m6.particles){
     ctx.globalAlpha=p.life/22;
@@ -2842,12 +2918,40 @@ function startLevel(lvl){
   document.getElementById('btnNext').style.display='none';
   if(lvl===4){initL4();genStars();document.getElementById('hint').textContent='חצים לזוז · Space — שחרר/ירי · ד=דבק · +=כדור נוסף · ר=רקטה';}
   else if(lvl===5){initL5();document.getElementById('hint').textContent='חצים לזוז · Space — שחרר/ירי · ד=דבק · +=כדור נוסף · ר=רקטה';}
-  else if(lvl===6){initM6();document.getElementById('hint').textContent='⬅️ ➡️ לזוז · ירי אוטומטי · פאוור-אפ מגיע בהפתעה!';}
+  else if(lvl===6){initM6();document.getElementById('hint').textContent='⬅️ ➡️ לזוז · ירי אוטומטי · תפוס קפסולות לכוח! · ⚡ התחמק מברקים!';}
 
   else{initGrid();player={x:W>>1,y:0,dx:0,dy:0,tail:[],hasTail:false,blink:0};const spd=theme.ballSpd;balls=theme.ballDefs.map(d=>({x:d.x,y:d.y,dx:spd*d.dx,dy:spd*d.dy,c:d.c??['#e74c3c','#f5b7b1'],trail:theme.spiders?[]:null}));if(theme.stars)genStars();else stars=[];document.getElementById('hint').textContent='חצי מקלדת לזוז · סגור שטח — כבוש!';}
   // Touch drag: let finger control paddle / ship in levels 4-6
-  canvas.ontouchmove=null;canvas.ontouchstart=null;
+  canvas.ontouchmove=null;canvas.ontouchstart=null;canvas.ontouchend=null;
+  const _gw=document.getElementById('game-wrap');
+  if(lvl>=1&&lvl<=3){
+    _gw.classList.add('g1-touch');
+    let g1tx=0,g1ty=0;
+    canvas.ontouchstart=e=>{
+      e.preventDefault();
+      g1tx=e.touches[0].clientX;g1ty=e.touches[0].clientY;
+      keys['ArrowUp']=keys['ArrowDown']=keys['ArrowLeft']=keys['ArrowRight']=false;
+    };
+    canvas.ontouchmove=e=>{
+      e.preventDefault();
+      if(!running)return;
+      const t=e.touches[0],dx=t.clientX-g1tx,dy=t.clientY-g1ty;
+      if(Math.hypot(dx,dy)>=10){
+        keys['ArrowUp']=keys['ArrowDown']=keys['ArrowLeft']=keys['ArrowRight']=false;
+        if(Math.abs(dx)>=Math.abs(dy))keys[dx>0?'ArrowRight':'ArrowLeft']=true;
+        else keys[dy>0?'ArrowDown':'ArrowUp']=true;
+        g1tx=t.clientX;g1ty=t.clientY;
+      }
+    };
+    canvas.ontouchend=e=>{
+      e.preventDefault();
+      keys['ArrowUp']=keys['ArrowDown']=keys['ArrowLeft']=keys['ArrowRight']=false;
+    };
+  } else {
+    _gw.classList.remove('g1-touch');
+  }
   if(lvl>=4&&lvl<=6){
+    _gw.classList.add('g46-touch');
     const _mvPaddle=e=>{e.preventDefault();
       const r=canvas.getBoundingClientRect();
       const cx=((e.touches[0].clientX-r.left)/r.width)*CW;
@@ -2859,6 +2963,8 @@ function startLevel(lvl){
       if(isBreakout())brkSpacePress();
       _mvPaddle(e);
     };
+  } else {
+    _gw.classList.remove('g46-touch');
   }
 
   document.body.style.background=theme.bodyBg;
@@ -4899,115 +5005,115 @@ function startGame13(){
 // ══ GAME 14 — מי רוצה להיות מיליונר ════════════════════════════════════════
 // Questions: [שאלה, תשובה_נכונה, שגוי1, שגוי2, שגוי3]
 const G14_QS=[
-// L1 100₪ קל מאוד
-[["מה הסמל הכימי של זהב?","Au","Ag","Fe","Cu"],
- ["כמה רגליים יש לעכביש?","8","6","10","4"],
- ["מי ציירה את 'הלילה הכוכבי'?","ואן גוך","פיקאסו","מונה","דאלי"],
- ["מה בירת אוסטרליה?","קנברה","סידני","מלבורן","בריסביין"],
- ["מי היה הנשיא הראשון של ארצות הברית?","ג'ורג' וושינגטון","אברהם לינקולן","תומס ג'פרסון","ג'ון אדמס"],
- ["איזה גז מרכיב כ-78% מהאטמוספירה?","חנקן","חמצן","CO2","ארגון"]],
-// L2 200₪ קל מאוד
-[["באיזו שנה פרצה מלחמת העולם הראשונה?","1914","1918","1939","1905"],
+// L1 100₪ — טריוויה פשוטה לגמרי
+[["כמה שניות יש בדקה?","60","30","100","45"],
+ ["מה בירת ישראל?","ירושלים","תל אביב","חיפה","אילת"],
+ ["כמה ימים יש בשבוע?","7","5","6","8"],
+ ["מה צבע הדשא?","ירוק","כחול","אדום","צהוב"],
+ ["כמה רגליים יש לכלב?","4","2","6","8"],
+ ["מה נוסחת המים?","H₂O","CO₂","O₂","NaCl"]],
+// L2 200₪ — קל מאוד
+[["מה בירת צרפת?","פריז","רומא","לונדון","ברלין"],
+ ["באיזו שנה הוקמה מדינת ישראל?","1948","1947","1949","1952"],
  ["מה הפלנטה הגדולה ביותר במערכת השמש?","צדק","שבתאי","נפטון","אורנוס"],
- ["מי כתב את 'הנסיך הקטן'?","אנטואן דה סנט-אקזיפרי","ויקטור הוגו","ז'ול ורן","אלכסנדר דומא"],
- ["מה השם המדעי של האדם?","Homo sapiens","Homo erectus","Homo habilis","Pan troglodytes"],
- ["מי מחזיק בשיא העולם בריצת 100 מ'?","אוסיין בולט","מייקל ג'ונסון","קרל לואיס","פרד קרי"],
- ["מה הרכב הכימי של מים?","H₂O","CO₂","NaCl","H₂SO₄"]],
-// L3 300₪ קל מאוד
-[["מה מהירות האור בוואקום (בקירוב)?","~300,000 קמ\"ש","~150,000 קמ\"ש","~1,080,000 קמ\"ש","~30,000 קמ\"ש"],
- ["מי חיבר את 'סימפוניה מספר 9'?","לודוויג ואן בטהובן","וולפגנג מוצרט","יוהן בך","פרנץ שוברט"],
- ["מה מחלת הצפדינה נגרמת ממחסור ב?","ויטמין C","ויטמין D","ויטמין B12","ויטמין A"],
- ["כמה יסודות כימיים יש בטבלה המחזורית?","118","92","112","103"],
- ["מי כתב את 'מאה שנות בדידות'?","גבריאל גרסיה מרקס","ג'ורג' אורוול","מריו ורגס יוסה","פאולו קואלו"],
- ["איזה איבר בגוף האדם מייצר אינסולין?","לבלב","כבד","כליה","טחול"]],
-// L4 500₪ קל
-[["מה 'חוק בויל' בפיזיקה קובע?","נפח גז הפוך ללחץ בטמפרטורה קבועה","לחץ גז עולה עם טמפרטורה","אנרגיה שמורה במערכת סגורה","כוח שווה מסה כפול תאוצה"],
- ["כמה כרומוזומים יש בתא גוף אנושי?","46","23","44","48"],
- ["מה האי הגדול ביותר בעולם?","גרינלנד","ניו גינאה","בורנאו","מדגסקר"],
- ["מי כתב את 'האחים קרמזוב'?","פיודור דוסטויבסקי","לב טולסטוי","ניקולי גוגול","אנטון צ'כוב"],
- ["מה שמו הלטיני של היסוד כסף?","Argentum","Aurum","Plumbum","Ferrum"],
- ["כמה מדינות חברות ב-UN (2024)?","193","180","195","188"]],
-// L5 1,000₪ (בטחון) קל
-[["מה 'תאוריית הקוואנטום' של פלאנק קבעה?","אנרגיה נפלטת ביחידות בדידות","אור הוא גל בלבד","חלקיקים הם גלים","כוח אינרציה שמור"],
- ["מי פיתח את חיסון הפוליו?","ג'ונס סאלק","לואי פסטר","רוברט קוך","אלכסנדר פלמינג"],
- ["מה 'גבול קרמן' מגדיר?","קו 100 ק\"מ מהקרקע — תחילת החלל","גבול בין ים ליבשה","גבול בין שני לוחות טקטוניים","עומק מקסימלי של האוקיינוס"],
- ["מי ניצח בפרס נובל לפיזיקה ב-1921?","אלברט איינשטיין","נילס בוהר","ארנסט רדרפורד","מקס פלאנק"],
- ["כמה ספרות יש במספר 'גוגול' (googol)?","101 — 1 ואחריו 100 אפסים","100","1,000","10"],
- ["מה 'אפקט הגרינהאוס' גורם?","התחממות האטמוספירה מלכידת קרינה","קירור הקטבים","ייצור עודף חמצן","ספיגת קרינת UV מוגברת"]],
-// L6 2,000₪ בינוני
-[["מה 'תסמונת סטוקהולם' מתארת?","רגשות חיוביים של קורבן כלפי חוטפיו","פחד עמוק מכאב","טראומה פוסט-אירועית","התמכרות לסכנה"],
- ["מי פיתח את שפת התכנות C?","דניס ריצ'י","לינוס טורוואלדס","ביל גייטס","ג'יימס גוסלינג"],
- ["מה 'מבחן טיורינג' בודק?","האם מכונה יכולה לחקות שיחה אנושית","מהירות מחשב","אבטחת נתונים","יכולת עיבוד תמונה"],
- ["מה האפקט שגורם לשינוי תדר גל כשמקורו נע?","אפקט דופלר","אפקט פוטואלקטרי","אפקט קומפטון","אפקט זימן"],
- ["מה ה'תופעה' שבה אלקטרונים נפלטים מחומר חשוף לאור?","אפקט פוטואלקטרי","קרינת חום","זוהר ביולוגי","אפקט דופלר"],
- ["מה 'קבוע אבוגדרו' מייצג?","מספר חלקיקים במול — 6.02×10²³","מהירות אור","קבוע גרביטציה","קבוע פלאנק"]],
-// L7 4,000₪ בינוני
-[["מה 'פרדוקס פרמי' עוסק בו?","מדוע לא מצאנו חיים בחלל למרות הסבירות","סתירה במכניקת הקוואנטים","בעיה ביסודות המתמטיקה","מחסור בחומר כהה"],
- ["מי כתב את 'שם הוורד'?","אומברטו אקו","ג'ורג' אורוול","אלדוס הקסלי","ריי ברדבורי"],
- ["מה ה-'CRISPR-Cas9' מאפשר?","עריכה מדויקת של גנים ב-DNA","ייצור אנטיביוטיקה חדשה","שיבוט בעלי חיים","סריקת DNA לזיהוי"],
- ["מה 'אלגוריתם' הוא?","סדרת הוראות מוגדרת לפתרון בעיה","שפת תכנות","מעבד מחשב","בסיס נתונים"],
- ["מה קיבל אלפרד נובל עושרו ממנו?","המצאת הדינמיט","המצאת הטלגרף","תעשיית נפט","ייצור נשק"],
- ["מה ה'ניתוח הספקטרלי' מאפשר לגלות?","הרכב כימי של חומר מהאור שהוא פולט","טמפרטורת כוכב","מרחק גלקסיות","עוצמת שדה מגנטי"]],
-// L8 8,000₪ בינוני
-[["מי ניצח בפרס נובל לכלכלה ב-2002 על פסיכולוגיה כלכלית?","דניאל כהנמן","גארי בקר","מילטון פרידמן","פול קרוגמן"],
- ["מה ה-'Big-O notation' מציין?","מורכבות אלגוריתם כפונקציה של גודל קלט","גודל זיכרון נדרש","מהירות הרצה","שגיאת עיגול"],
- ["מה שמו הכימי של 'סוכר השולחן'?","סוכרוז","גלוקוז","פרוקטוז","לקטוז"],
- ["מה 'עקרון ארכימדס' קובע?","גוף בנוזל דוחה נוזל ששוקל כמוהו","נפח שמור בשינויי צורה","לחץ נוזל שווה בכל כיוון","זרימה שמרנית"],
- ["מה שמו של 'המספר i' במתמטיקה?","יחידה מדומה — √(-1)","אינסוף","אפס מדומה","קבוע אויילר"],
- ["מה 'כלל אוקאם' (Occam's Razor) קובע?","עדיף הסבר פשוט יותר כשהוא מספיק","כל טענה דורשת ראיה","פשטות שווה לאמת","חייבים לבדוק הכל"]],
+ ["מי היה ראש הממשלה הראשון של ישראל?","דוד בן גוריון","חיים ויצמן","משה שרת","לוי אשכול"],
+ ["כמה יבשות יש על כדור הארץ?","7","5","6","8"],
+ ["מה שם הכוכב שסביבו מסתובבת כדור הארץ?","השמש","הירח","נוגה","מאדים"]],
+// L3 300₪ — קל
+[["מה הארץ הגדולה ביותר בעולם בשטחה?","רוסיה","קנדה","סין","ארצות הברית"],
+ ["מה מין המשטר בישראל?","דמוקרטיה פרלמנטרית","מונרכיה חוקתית","רפובליקה נשיאותית","דיקטטורה"],
+ ["מי הייתה ראשת הממשלה הראשונה של ישראל?","גולדה מאיר","דליה איציק","ציפי לבני","תמר זנדברג"],
+ ["מה בירת גרמניה?","ברלין","מינכן","המבורג","פרנקפורט"],
+ ["באיזו שנה נפל חומת ברלין?","1989","1991","1985","1979"],
+ ["מה ה-UN?","האומות המאוחדות","האיחוד האירופי","ברית האטלנטי הצפוני","הבנק העולמי"]],
+// L4 500₪ — קל-בינוני
+[["מי חתם על הסכמי אוסלו מטעם ישראל?","יצחק רבין","שמעון פרס","אריאל שרון","אהוד ברק"],
+ ["מה ה-NATO?","ברית הגנה צבאית של מדינות המערב","ארגון הסחר העולמי","האיחוד האירופי","מועצת הביטחון"],
+ ["מה 'הסכם קמפ-דייוויד' (1978)?","הסכם שלום בין ישראל למצרים","הסכם שלום עם ירדן","הסכם עם הפלסטינאים","הסכם שביתת נשק"],
+ ["מה 'וטו' במועצת הביטחון?","סמכות 5 המעצמות הגדולות לבטל החלטה","הצבעת רוב","כינוס חירום","זכות ערר"],
+ ["מי אמר 'יש לי חלום' בנאומו הנודע?","מרטין לות'ר קינג","מלקולם אקס","אברהם לינקולן","ברק אובמה"],
+ ["מה בירת ארצות הברית?","וושינגטון די.סי.","ניו יורק","לוס אנג'לס","שיקגו"]],
+// L5 1,000₪ (עוגן ראשון) — בינוני
+[["מה 'הכרזת בלפור' (1917)?","הצהרת בריטניה לתמוך בהקמת בית לאומי יהודי בארץ ישראל","הסכם חלוקת פלסטין","הכרה בריטית במדינת ישראל","הצהרת מלחמה על תורכיה"],
+ ["באיזו שנה נחתם הסכם השלום בין ישראל לירדן?","1994","1979","1993","2000"],
+ ["מה 'האביב הערבי'?","גל מהפכות ומחאות ברחבי העולם הערבי (2010-2012)","כינוס השליטים הערבים","הסכם כלכלי","קמפיין נגד ישראל"],
+ ["מה 'הסכמי אברהם' (2020)?","הסכמי נורמליזציה בין ישראל לאיחוד האמירויות ובחריין","הסכמי שלום עם ירדן","הסכם עם ערב הסעודית","הסכם ג'נבה"],
+ ["מי כיהן כנשיא ארה\"ב בזמן מלחמת המפרץ הראשונה (1991)?","ג'ורג' בוש האב","ביל קלינטון","רונלד רייגן","ג'ימי קרטר"],
+ ["מה 'ברית ורשה'?","ברית צבאית של מדינות מזרח אירופה בראשות ברה\"מ","ברית כלכלית אירופית","הסכם שלום","ועידת מעצמות"]],
+// L6 2,000₪ — בינוני
+[["מה 'דוקטרינת טרומן' (1947)?","מדיניות אמריקאית לבלום התפשטות הקומוניזם","תוכנית שיחזור אירופה","הצהרה גרעינית","תוכנית ניו-דיל"],
+ ["מה 'תוכנית מרשל'?","סיוע כלכלי אמריקאי לשיחזור אירופה אחרי מלחמת עולם שנייה","תוכנית צבאית","הסכם סחר עם אסיה","תוכנית גרעינית"],
+ ["מה 'ועידת יאלטה' (1945)?","פגישת צ'רצ'יל, רוזוולט וסטלין לתכנון אירופה שאחרי המלחמה","ועידת שלום סופית","ייסוד נאט\"ו","חלוקת גרמניה"],
+ ["מי כיהן כמזכ\"ל ברה\"מ בזמן נפילת חומת ברלין?","מיכאיל גורבצ'וב","בוריס ילצין","ליאוניד ברז'נייב","ניקיטה חרושצ'וב"],
+ ["מה 'הסכם ורסאי' (1919)?","הסכם שסיים את מלחמת העולם הראשונה","הסכם שסיים מלחמת עולם שנייה","הסכם שיסד את האו\"ם","הסכם אי-תוקפנות"],
+ ["מה 'חוק יסוד: כבוד האדם וחירותו'?","חוק יסוד ישראלי המגן על זכויות האדם הבסיסיות","חוק השירות הצבאי","חוק הכנסת","חוק האזרחות"]],
+// L7 4,000₪ — בינוני-קשה
+[["מה 'עקרון הפרדת הרשויות' בדמוקרטיה?","הפרדה בין הרשות המחוקקת, המבצעת והשיפוטית","הפרדה בין ממשל מרכזי ומקומי","הפרדה בין צבא למשטרה","הפרדה בין דת ומדינה"],
+ ["מה 'סעיף 5' באמנת נאט\"ו?","תקיפת אחד מחברי הברית נחשבת לתקיפת כולם","חובת השתתפות בתקציב","איסור נשק גרעיני","הגדרת גבולות הברית"],
+ ["מה 'הדוקטרינה המונרואית' (1823)?","הכרזת ארה\"ב שאמריקה לא פתוחה לקולוניזציה אירופית","תוכנית כלכלית","ברית הגנה","מדיניות מלחמה קרה"],
+ ["מה 'הרס-הדדי מובטח' (MAD)?","שיגור גרעיני של צד ייתוצא בהשמדת שני הצדדים — עיקרון הרתעה","שיתוף פעולה צבאי","כלי נשק מדויקים","ברית הגנה"],
+ ["מה 'מרוץ החלל'?","תחרות פוליטית-טכנולוגית בין ארה\"ב לברה\"מ על כיבוש החלל","תוכנית קוסמית בין-לאומית","תחרות לוויינים מסחריים","פיתוח טילים בליסטיים"],
+ ["מה 'דיפלומטיית פינג-פונג' (1971)?","שימוש בטניס שולחן לפתיחת יחסים בין ארה\"ב לסין","שיטת משא ומתן","פינוי שגרירים","מדיניות סנקציות"]],
+// L8 8,000₪ — בינוני-קשה
+[["מה 'מסמכי פנטגון' (1971)?","דו\"חות סודיים שנחשפו ב-NY Times על מלחמת וייטנאם","תוכנית גרעינית","דו\"ח ריגול","תוכנית פיתוח נשק"],
+ ["מי ניסח את 'מדינת היהודים' (1896) — מסמך הבסיס של הציונות?","תיאודור הרצל","חיים ויצמן","מקס נורדאו","אחד-העם"],
+ ["מה 'מבצע יונתן' (אנטבה, 1976)?","חילוץ ישראלי של ערובות מחטפת מטוס בנמל התעופה בקמפלה","מבצע נגד חיזבאללה","פעולה נגד עיראק","מלחמת לבנון הראשונה"],
+ ["מה 'ועידת ברלין' (1884-1885)?","ועידת מעצמות אירופה לחלוקת אפריקה ביניהן","ועידת שלום","ועידת מדע","ייסוד הליגה הסוציאליסטית"],
+ ["מה 'Détente' (הרפיית מתחים) בין ארה\"ב לברה\"מ?","מדיניות ניקסון-קיסינג'ר לשיפור יחסים עם ברה\"מ וסין","מסע צבאי משותף","הסכם גרעיני","ברית הגנה"],
+ ["מה 'ניסוי מילגרם' (1961) גילה?","אנשים ממשיכים לציית לסמכות גם כשגורמים נזק לאחרים","כוח הלחץ החברתי","חוסר אמפתיה אנושית","כוח העדר"]],
 ];
 
 // L9–L15 נוספות
 const G14_QS2=[
-// L9 16,000₪ בינוני+
-[["מה 'תאוריית הקורדים' מציעה?","ממדים נסתרים מעבר לארבעת הידועים","כוח כבידה שלילי","אנרגיה כהה כחלקיק","אנטי-חומר כמנוע"],
- ["מי ניצח בנובל פיזיולוגיה 1962 על מבנה DNA?","ווטסון, קריק וווילקינס","לינוס פולינג","רוזלינד פרנקלין","ארוויד קארלסון"],
- ["מה 'דינמיקת ברנולי' מסבירה?","לחץ נוזל קטן ככל שמהירותו גדולה","צמיגות נוזלים","זרימה טורבולנטית","משוואת הגל"],
- ["מה שמה הכימי של האספירין?","חומצה אצטילסליצילית","פאראצטמול","איבופרופן","נפרוקסן"],
- ["מי חיבר את 'ביקורת התבונה הטהורה'?","עמנואל קאנט","ג'ון לוק","גוטפריד לייבניץ","בארוך ספינוזה"],
- ["מה 'אנומליה' הובילה לגילוי נפטון ב-1846?","חריגות מסלול אורנוס שלא הוסברו","כוכב שנעלם","כוח בלתי-מוסבר","ירח חדש של שבתאי"]],
-// L10 32,000₪ (בטחון) בינוני+
-[["מה 'על-מוליכות' (superconductivity) מאפיינת?","העברת חשמל ללא התנגדות בקור קיצוני","זרם חזק מאוד","שדה מגנטי חזק","טמפרטורת אפס מוחלט"],
- ["מה 'פרדוקס התאומים' ביחסות מתאר?","תאום שטס בחלל מזדקן לאט יותר מתאומו","גופים נוגעים ממשיכים","זמן מוחלט שמור","מסה קבועה תמיד"],
- ["מה 'תאוריה של הכל' (TOE) שואפת ל?","לאחד כוחות היסוד בטבע בתאוריה אחת","להסביר ביג-בנג","למדוד חומר כהה","לחשב גיל היקום"],
- ["מה 'עידוש כבידתי' גורם?","עיוות מסלול אור סביב מסה גדולה","דחיית גופים קלים","האצת זרמי אוויר","קיצור אורכי גל"],
- ["מי חיבר את 'פנומנולוגיה הרוח'?","גאורג וילהלם פרידריך הגל","קארל מארקס","פרידריך ניטשה","מרטין היידגר"],
- ["מה הוכחת 'המשפט הגדול של פרמה' ב-1995?","xⁿ+yⁿ=zⁿ אין פתרון שלם עבור n>2","פירוק ראשוני יחיד","אינסוף מספרים ראשוניים","תאוריית הקבוצות"]],
-// L11 64,000₪ קשה
-[["מה 'עקרון אי-הוודאות' של היידנברג קובע?","אין לדעת בדיוק גם מיקום וגם תנע חלקיק","אור נע במהירות קבועה","אנרגיה שמורה תמיד","חלקיקים הם גלים"],
- ["מה 'האנטרופיה' בתרמודינמיקה מודדת?","מדד לאי-סדר מערכת","אנרגיה פנימית","לחץ גז","מהירות תגובה"],
- ["מי גילה את 'קרינת הרקע הקוסמית' (CMB)?","פנזיאס וווילסון (1964)","אדווין האבל","ג'ורג' גמוב","פרד הויל"],
- ["מה 'כירליות' (chirality) מולקולרית?","מולקולה שאינה זהה לתמונת המראה שלה","חוזק קשר","מטען חשמלי","עצמת ספסורבציה"],
- ["מה ה'ספיר-וורף היפותזה' בבלשנות?","שפה שאדם מדבר מעצבת את חשיבתו","כל שפה קשורה לתרבות","שפות נגזרות משפה-אם","ילדים לומדים שפה דרך חיקוי"],
- ["מה היה שמו של המחשב שניצח לראשונה אלוף עולם בשחמט?","Deep Blue","AlphaZero","Stockfish","HAL 9000"]],
-// L12 125,000₪ קשה
-[["מה 'עקרון הסופרפוזיציה הקוואנטי' אומר?","חלקיק יכול להיות במצבים מרובים עד למדידה","אור הוא גל וחלקיק בו-זמנית","שני חלקיקים לא במצב זהה","חלקיק לא עובר מחסום אנרגיה"],
- ["מה 'חוק האבל' קובע?","גלקסיות מתרחקות מהר יותר ככל שהן רחוקות","כוכבים מתפוצצים בקצב קבוע","גלקסיות מסתובבות","גלקסיות מתנגשות"],
- ["מה 'ניסוי האפקט הפוטואלקטרי' של איינשטיין הוכיח?","אור מורכב מחבילות אנרגיה (פוטונים)","אור הוא גל בלבד","אלקטרונים חופשיים בכל חומר","פוטונים חסרי מסה"],
- ["מי ניצח בנובל לשלום 1993?","נלסון מנדלה ו-פ.ו. דה קלרק","מנחם בגין ואנואר סאדאת","ג'ימי קרטר","מדר תרזה"],
- ["מה 'בעיית P=NP' שואלת?","האם בעיות קשות לפתרון גם קשות לאימות?","האם כל אלגוריתם ניתן לשיפור","האם מחשב קוואנטי מהיר ממחשב רגיל","האם בינה מלאכותית תעלה על האדם"],
- ["מה 'תסמונת מינכהאוזן' (Munchausen) מתארת?","המצאת מחלות לקבלת תשומת-לב רפואית","פחד עמוק מרופאים","אמונה שגויה בבריאות","פחד ממחלות מדבקות"]],
-// L13 250,000₪ קשה מאוד
+// L9 16,000₪ — קשה
+[["מה 'תאוריית הסטביליזציה ההגמונית'?","סדר עולמי יציב תלוי בקיומה של מעצמה אחת דומיננטית","ברית של מדינות חזקות","מנגנון האו\"ם","דוקטרינה גרעינית"],
+ ["מה 'הסכם סייקס-פיקו' (1916)?","הסכם סודי בריטי-צרפתי לחלוקת המזרח התיכון","הסכם שלום מלחמת עולם ראשונה","הסכם לסיום קרבות עם תורכיה","ועידת שלום ירושלים"],
+ ["מה 'הדוקטרינה של ברז'נייב'?","זכות ברה\"מ להתערב במדינות קומוניסטיות שסטו מהקו","מדיניות Détente","הרחבת נאט\"ו","הסכם גרעיני"],
+ ["מה ה-'NPT' (Non-Proliferation Treaty)?","אמנה בין-לאומית לאי-הפצת נשק גרעיני","הסכם לאיסור נשק כימי","הסכם נשק קונבנציונלי","ברית גרעינית"],
+ ["מה 'עקרון ריאלפוליטיק'?","מדיניות חוץ המבוססת על אינטרסים מעשיים ולא ערכים מוסריים","אידיאליזם ליברלי","עקרון אי-התערבות","תיאוריה פנים-מדינתית"],
+ ["מה 'אפקט הדומינו' בתיאוריה גיאופוליטית?","נפילת מדינה לקומוניזם תגרור נפילת מדינות שכנות","ביטחון קיבוצי","ייצוב אזורי","תגובת שרשרת כלכלית"]],
+// L10 32,000₪ (עוגן שני) — קשה
+[["מה 'ועידת ברטון וודס' (1944) ייסדה?","את קרן המטבע הבינ\"ל (IMF) ואת הבנק העולמי","את האו\"ם","את נאט\"ו","את GATT/WTO"],
+ ["מי ניסח את תורת המשחקים המתמטית?","ג'ון פון נוימן ואוסקר מורגנשטרן (1944)","ג'ון נאש","קנת' ארו","פול סמואלסון"],
+ ["מה 'תאוריית לב היבשה' (Heartland Theory) של מקינדר?","מי שולט בלב יורסיה שולט בעולם — בסיס לגיאופוליטיקה","כוח ים עולה על כוח יבשה","מדינות חוף דומיננטיות","כוח אווירי מכריע"],
+ ["מה ה-'Responsibility to Protect' (R2P)?","עקרון שהקהילה הבינ\"ל אחראית להגן על אזרחים מפני פשעי מלחמה","זכות מדינה לסגירת גבולות","עקרון ריבונות מוחלטת","חובת הצבעה באו\"ם"],
+ ["מה 'הסכם סייקס-פיקו' הסתיר מהשריף חוסיין?","ששתי המעצמות ישלטו עצמן במזרח התיכון תוך שהבטיחו לו עצמאות ערבית","כי יוסד אישמאיל","מיקום הגבולות המדויקים","נוכחות ציונית עתידית"],
+ ["מה 'תאוריית ה-Democratic Peace'?","דמוקרטיות אינן נוטות להילחם זו בזו","דמוקרטיות יציבות יותר","ניגוד בין רוב למיעוט","בעיית ממשלות קואליציה"]],
+// L11 64,000₪ — קשה מאוד
+[["מה 'תאוריית מערכת העולם' (World-Systems Theory) של ולרשטיין?","חלוקת עולם ל'מרכז', 'חצי-פריפריה' ו'פריפריה' כלכלית","מודל גלובליזציה חופשי","תאוריית שוק חופשי","ניתוח גיאופוליטי"],
+ ["מה 'עקרון הסאבסידיאריות' (Subsidiarity) באיחוד האירופי?","החלטות יתקבלו ברמה הנמוכה ביותר שיכולה לטפל בהן ביעילות","עקרון חלוקת תקציב","מדיניות ביזור כוח","הסכם פדרלי"],
+ ["מה 'אמנת רומא' (1957) ייסדה?","את הקהילה הכלכלית האירופית (EEC) — גרעין האיחוד האירופי","את האו\"ם","את נאט\"ו","את OECD"],
+ ["מה ה-'Overton Window' בפוליטיקה?","המסגרת של רעיונות פוליטיים 'מקובלים' שמשתנה לאורך זמן","חלון הזדמנויות בשיחות שלום","תאוריית מדיה","סף כניסה לפרלמנט"],
+ ["מה 'תאוריית האימפריאליזם' של לנין (1916)?","קפיטליזם בשלב גבוה מוביל להשתלטות על מדינות חלשות","הסבר לכישלון הקומוניזם","תאוריית מהפכה","ניתוח כלכלת שוק"],
+ ["מה 'פרדוקס ה-Condorcet'?","A>B>C>A בהצבעות זוגיות — אין מנצח ברור גם עם העדפות עקביות","בעיית ייצוג מיעוטים","כשל בשיטת הצבעה","בעיית מגוון מועמדים"]],
+// L12 125,000₪ — מומחה
+[["מה 'כשל הקומנס' (Tragedy of the Commons) — הארדין (1968)?","ניצול יתר של משאב משותף כשכל יחיד פועל לאינטרס עצמי","כשל שוק קלאסי","בעיית גירעון ממשלתי","ניהול ציבורי לא-יעיל"],
+ ["מה 'Two-Level Game' (פוטנם, 1988)?","משא ומתן בינ\"ל מוגבל בו-זמנית על ידי לחצים פנים-מדינתיים","מבנה כוחות גלובלי","תאוריית קואליציות","משחקי סכום-אפס"],
+ ["מה 'משפט ארו' (Arrow's Impossibility Theorem)?","אין שיטת הצבעה שמקיימת בו-זמנית את כל הקריטריונים הדמוקרטיים","שיטת הצבעה אידיאלית","מבנה קואליציה מיטבי","תאוריית רווחה חברתית"],
+ ["מה ה-'Washington Consensus'?","מדיניות כלכלית ניאו-ליברלית שיועצה למדינות מתפתחות: הפרטה, שחרור סחר, ריסון תקציבי","הסכם סחר אמריקאי","ועידת שלום","דוקטרינה צבאית"],
+ ["מה 'פרוטוקול מונטריאול' (1987)?","אמנה בין-לאומית להפחתת חומרים הפוגעים בשכבת האוזון","הסכם על פליטות פחמן","פרוטוקול גז טבעי","ממשיך לאמנת קיוטו"],
+ ["מה 'הגמוניה גרמשיאנית'?","שליטה תרבותית-אידיאולוגית של מעמד שולט דרך הסכמה, לא כפייה","שלטון צבאי","אימפריאליזם כלכלי","עוצמה רכה"]],
+// L13 250,000₪ — מומחה-על
+[["מה 'אמנת מונטווידאו' (1933) קובעת?","קריטריונים למדינה: עם קבע, שטח מוגדר, ממשל ויכולת ליחסי חוץ","הגדרת כיבוש צבאי","אמנת פליטים","חוקי מלחמה"],
+ ["מה 'ביקורת שיפוטית' (Judicial Review) — מי ביסס אותה?","נוצרה ב'מרבורי נגד מדיסון' (1803) — השופט מרשל","הכרזת הזכויות","חוקת ארה\"ב","נשיא ג'פרסון"],
+ ["מה 'בעיית הסוכן-שולח' (Principal-Agent Problem) בפוליטיקה?","בחירים (סוכנים) אינם תמיד פועלים לטובת הבוחרים (שולחים)","ניגוד עניינים בחוזים","בעיית מחיר בשוק","תאוריית ביורוקרטיה"],
+ ["מה 'Uti Possidetis' בדיני בין-לאומי?","עקרון שגבולות קיימים שמורים עם עצמאות — גם אם שרירותיים","זכות שיבה לאדמות","ריבונות על משאבים","זכות מעבר צבאי"],
+ ["מה 'כלל ה-60' בסנאט האמריקאי?","נדרשים 60 קולות לסיום פילבוסטר (cloture) ולא 51","רוב פשוט","כלל וטו","חוק חסינות"],
+ ["מה 'אפקט ה-Ratchet' בגידול ממשל?","תוכניות ממשלה שנוצרות בזמן משבר נוטות להישאר גם אחריו","ביקורת שיפוטית","ביטול חקיקה","הצרת ממשל"]],
+// L14 500,000₪ — על-מומחה
 [["מה 'משפט אי-השלמות' של גדל הוכיח?","בכל מערכת אקסיומות עשירה יש משפטים שלא ניתן להוכיח ולא להפריך","כל מתמטיקה ניתנת לסיכום","לוגיקה עולה על אינטואיציה","חשבון אינו עקבי"],
- ["מה 'הוראת AdS/CFT' (דואליות מלדאסנה) מציגה?","קורספונדנציה בין כבידה בנפח אדס לשדות קונפורמיים בגבולו","פתרון P=NP","הוכחת תאוריית הקורדים","גשר בין מכניקת קוואנטים לתאוריית יחסות"],
- ["מה ה'קבוע הקוסמולוגי' (Λ) של איינשטיין מייצג?","צפיפות אנרגיה ריקה-חלל (אנרגיה כהה)","מהירות התרחבות היקום","מסת החומר הכהה","טמפרטורת קרינת הרקע"],
- ["מה 'הוכחת בוטווינניק' בשחמט ידועה בה?","פיתוח עמדת 'הנשיא' הקוואנטי — לא רלוונטי; בוטווינניק ידוע בסגנון אסטרטגי וניתוח שיטתי","טקטיקה של קפיצות","עמדות גמר עם פרשים","מתקפת מלך-ורגלי"],
- ["מה 'תהליך ה-CNO cycle' בכוכבים?","מחזור שבו פחמן-חנקן-חמצן מזרזים איחוי של מימן להליום","ביקוע גרעיני של הליום","יצירת אלמנטים כבדים","כיבוי כוכב ענק"],
- ["מה ה'משוואה של שרדינגר' מתארת?","התפתחות בזמן של פונקציית הגל הקוואנטית","תנועת אלקטרון במסלול","מסת הפרוטון","עוצמת שדה חשמלי"]],
-// L14 500,000₪ קשה מאוד
-[["מה 'השערת רימן' (Riemann Hypothesis) טוענת?","כל אפסים לא-טריוויאלים של ζ(s) שוכנים על Re(s)=1/2","כל מספר ראשוני ניתן לביטוי כסכום ריבועים","אינסוף מספרים ראשוניים תאומים","פונקציית זטא שלימה בכל המישור"],
- ["מה 'מכניקת המטריצות' שפיתח היידנברג הייתה?","הניסוח הראשון של מכניקת הקוואנטים (1925)","שיטה לפתרון משוואות דיפרנציאליות","שיטת גילוי חלקיקים","תאוריית מסלולי אלקטרון"],
  ["מה 'פרדוקס ראסל' חשף?","סתירה בתאוריית הקבוצות הנאיבית — קבוצת כל הקבוצות שאינן מכילות עצמן","בעיה בחשבון האינפיניטסימלי","אי-שלמות הלוגיקה","סתירה בגיאומטריה אוקלידית"],
- ["מה 'הוכחת אנדרו ווילס' ב-1995 הייתה?","הוכחת המשפט הגדול של פרמה לאחר 358 שנה","פתרון בעיית הסתברות","מציאת מספר ראשוני גדול","הוכחת השערת רימן"],
- ["מה הייתה תרומתה של אמי נת'ר למתמטיקה?","משפט נת'ר — סימטריה מביאה לחוק שימור","פיתוח טריגונומטריה","גילוי מספר e","הוכחת משפט פיתגורס"],
- ["מה 'המודל הסטנדרטי' בפיזיקת חלקיקים כולל?","17 חלקיקים יסודיים ו-3 כוחות (לא כבידה)","את 4 כוחות הטבע","גרביטונים כחלקיקי כבידה","חלקיקי אנטי-חומר כנפרדים"]],
-// L15 1,000,000₪ קשה מאוד
-[["מה 'ניסוי קוונדיש' (1798) מדד לראשונה?","קבוע הכבידה G ומסת כדור הארץ","מהירות האור","מסת האלקטרון","קבוע פלאנק"],
- ["מה 'עקרון ההולוגרפי' בפיזיקה מציע?","מידע של נפח תלת-ממדי מקודד על משטחו הדו-ממדי","כל חומר הוא אנרגיה","ממדים נסתרים קיימים","חורים שחורים שומרים מידע"],
- ["מה 'נוסחת אויילר' e^(iπ)+1=0 מאחדת?","5 קבועים מתמטיים יסודיים: e, i, π, 1, 0","3 פונקציות טריגונומטריות","מישור מרוכב עם מישור ממשי","אנליזה ואלגברה לינארית בלבד"],
- ["מה 'בעיית הלט' (Halting Problem) של טיורינג הוכיחה?","אין אלגוריתם כללי שיכריע אם תוכנית תעצור","כל תוכנית ניתנת לאימות","מחשבים יהיו חזקים מהאדם","קיום בינה מלאכותית"],
- ["מה 'תופעת ה-Hawking radiation' מציעה?","חורים שחורים מאבדים מסה בהדרגה על-ידי פליטת קרינה","חורים שחורים קורסים מיידית","אנרגיה כהה יוצאת מחורים שחורים","אנטי-חומר נוצר ליד אופק אירועים"],
- ["מה ה'דואליות גל-חלקיק' (wave-particle duality) הוכיחה?","ניסוי שני-הסדקים: אלקטרון מתנהג כגל ביחד וכחלקיק כשנמדד","אור הוא גל בלבד","חלקיקים הם גלים בלבד","מדידה לא משפיעה על חלקיקים"]],
+ ["מה 'הוכחת אנדרו ווילס' (1995)?","הוכחת המשפט הגדול של פרמה לאחר 358 שנה","פתרון בעיית הסתברות","מציאת מספר ראשוני גדול","הוכחת השערת רימן"],
+ ["מה ה-'Gerrymander' — ממי שם המונח נגזר?","מאלברידג' ג'רי, מושל מסצ'וסטס ב-1812, שאישר מחוז בצורת סלמנדר","שם מתמטי נייטרלי","מנגנון בחירות בריטי","שם ממציא השיטה"],
+ ["מה 'ועידת ברסט-ליטובסק' (1918)?","הסכם שלום בין גרמניה לרוסיה הבולשביקית שהוציא רוסיה ממלחמת עולם ראשונה","ועידת שלום כללית","הסכם גרעיני","ועידת ייסוד הליגה"],
+ ["מה 'השערת רימן' (Riemann Hypothesis) טוענת?","כל האפסים הלא-טריוויאלים של פונקציית זטא שוכנים על Re(s)=½","כל מספר ראשוני ניתן לביטוי כסכום ריבועים","אינסוף מספרים ראשוניים תאומים","פונקציית זטא שלמה בכל המישור"]],
+// L15 1,000,000₪ — הקשה ביותר
+[["מה 'בעיית הלט' (Halting Problem) של טיורינג הוכיחה?","אין אלגוריתם כללי שיכריע אם תוכנית כלשהי תעצור — בעיה בלתי-כריעה","כל תוכנית ניתנת לאימות","מחשבים יהיו חזקים מהאדם","קיום בינה מלאכותית"],
+ ["מה 'תופעת ה-Hawking Radiation' מציעה?","חורים שחורים מאבדים מסה בהדרגה בפליטת קרינה עקב אפקטים קוואנטיים ליד האופק","חורים שחורים קורסים מיידית","אנרגיה כהה יוצאת מחורים שחורים","אנטי-חומר נוצר בתוך האופק"],
+ ["מה 'עקרון ההולוגרפי' בפיזיקה מציע?","מידע של נפח תלת-ממדי מקודד על משטחו הדו-ממדי","כל חומר הוא אנרגיה","ממדים נסתרים קיימים","חורים שחורים שומרים מידע לנצח"],
+ ["מה 'תאוריית ה-Lipset Hypothesis' קושרת?","ככל שמדינה עשירה יותר — גבוה הסיכוי שתהיה דמוקרטיה יציבה","עושר גורם לחוסר יציבות","מעמד ביניים מתנגד לדמוקרטיה","גישה מארקסיסטית"],
+ ["מה 'ועידת ברטון וודס' (1944) קבעה לגבי שער החליפין?","הצמדת כל המטבעות לדולר שהוצמד לזהב — Bretton Woods System","שוק חופשי מוחלט","ביטול הזהב","ניהול מטבע מרכזי גלובלי"],
+ ["מה 'בעיית ה-Democratic Backsliding' (נסיגה דמוקרטית)?","תהליך שבו דמוקרטיות נחלשות מבפנים — בית המשפט, מדיה, איזונים — לאו דווקא בהפיכה","קריסה חיצונית","השתלטות צבאית","קריסת כלכלה"]],
 ];
 
 const G14_PRIZES=[100,200,300,500,1000,2000,4000,8000,16000,32000,64000,125000,250000,500000,1000000];
