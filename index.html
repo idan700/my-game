@@ -710,6 +710,84 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   .g13-final-score{font-size:48px;}
 }
 
+/* ══ GAME 14 — מי רוצה להיות מיליונר ══ */
+.gc-14{background:linear-gradient(145deg,#1a0800,#4a1800);box-shadow:0 4px 22px rgba(255,160,0,0.25);}
+.gc-14:hover{box-shadow:0 8px 32px rgba(255,200,0,0.55);}
+#game14UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,#0a0a3e 0%,#04041e 60%,#000008 100%);flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow-y:auto;overflow-x:hidden;}
+#game14UI.show{display:flex;}
+.g14-wrap{width:100%;max-width:720px;padding:10px 12px 30px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:10px;}
+/* Header */
+.g14-header{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.g14-logo{font-size:13px;font-weight:900;color:#ffd700;letter-spacing:1px;opacity:0.8;}
+.g14-prize-badge{font-size:22px;font-weight:900;color:#ffd700;text-shadow:0 0 16px rgba(255,215,0,0.7);text-align:center;font-family:'Courier New',monospace;}
+.g14-level-label{font-size:11px;opacity:0.4;text-align:center;}
+/* Prize ladder */
+.g14-ladder{width:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:3px;}
+.g14-rung{text-align:center;padding:3px 2px;border-radius:6px;font-size:10px;font-weight:700;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.06);transition:all 0.2s;cursor:default;}
+.g14-rung.done{color:#6bcb77;border-color:rgba(107,203,119,0.3);background:rgba(107,203,119,0.06);}
+.g14-rung.current{color:#ffd700;border-color:#ffd700;background:rgba(255,215,0,0.12);box-shadow:0 0 10px rgba(255,215,0,0.25);animation:g14Pulse 1.2s ease-in-out infinite alternate;}
+.g14-rung.safe{border-color:rgba(100,180,255,0.4);}
+.g14-rung.safe.done{color:#4fc3f7;}
+@keyframes g14Pulse{from{box-shadow:0 0 6px rgba(255,215,0,0.2);}to{box-shadow:0 0 16px rgba(255,215,0,0.7);}}
+/* Lifeline */
+.g14-lifelines{display:flex;gap:8px;justify-content:center;width:100%;}
+.g14-ll{background:rgba(255,255,255,0.07);border:2px solid rgba(255,255,255,0.2);border-radius:50px;color:#fff;font-size:13px;font-weight:800;padding:7px 18px;cursor:pointer;transition:all 0.15s;}
+.g14-ll:hover:not(:disabled){background:rgba(255,255,255,0.18);transform:scale(1.05);}
+.g14-ll:disabled{opacity:0.25;cursor:not-allowed;text-decoration:line-through;}
+.g14-ll.used{opacity:0.2;cursor:not-allowed;}
+/* Question box */
+.g14-q-box{width:100%;background:rgba(0,10,60,0.7);border:2px solid rgba(255,200,0,0.35);border-radius:18px;padding:20px 20px 16px;text-align:center;box-shadow:0 0 40px rgba(255,180,0,0.08),inset 0 0 30px rgba(0,0,40,0.5);}
+.g14-q-num{font-size:11px;letter-spacing:2px;color:rgba(255,215,0,0.4);margin-bottom:8px;text-transform:uppercase;}
+.g14-q-text{font-size:18px;font-weight:700;color:#fff;line-height:1.5;direction:rtl;}
+/* Options */
+.g14-opts{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.g14-opt{position:relative;border:2px solid rgba(100,130,255,0.35);border-radius:14px;background:linear-gradient(135deg,rgba(0,20,80,0.8),rgba(0,10,50,0.9));color:#fff;font-size:15px;font-weight:700;padding:14px 14px 14px 38px;cursor:pointer;transition:all 0.15s;text-align:right;direction:rtl;-webkit-tap-highlight-color:transparent;}
+.g14-opt:hover:not(:disabled){background:linear-gradient(135deg,rgba(0,40,140,0.9),rgba(0,20,90,0.9));border-color:rgba(180,210,255,0.7);transform:scale(1.02);}
+.g14-opt:disabled{cursor:default;}
+.g14-opt-letter{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:rgba(100,140,255,0.25);border:1.5px solid rgba(150,180,255,0.4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#9ab0ff;}
+.g14-opt.correct{background:linear-gradient(135deg,rgba(0,100,0,0.8),rgba(0,70,0,0.9))!important;border-color:#6bcb77!important;box-shadow:0 0 20px rgba(107,203,119,0.45);}
+.g14-opt.correct .g14-opt-letter{background:rgba(107,203,119,0.4);border-color:#6bcb77;color:#6bcb77;}
+.g14-opt.wrong{background:linear-gradient(135deg,rgba(120,0,0,0.8),rgba(80,0,0,0.9))!important;border-color:#ff5555!important;opacity:0.85;}
+.g14-opt.wrong .g14-opt-letter{background:rgba(255,80,80,0.35);border-color:#ff5555;color:#ff8888;}
+.g14-opt.hidden{visibility:hidden;pointer-events:none;}
+/* Feedback / result */
+.g14-feedback{width:100%;min-height:40px;border-radius:12px;padding:10px 16px;text-align:center;display:none;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:800;}
+.g14-feedback.show{display:flex;}
+.g14-feedback.fb-win{background:rgba(107,203,119,0.12);border:1.5px solid rgba(107,203,119,0.3);color:#6bcb77;}
+.g14-feedback.fb-lose{background:rgba(255,80,80,0.1);border:1.5px solid rgba(255,80,80,0.3);color:#ff8888;}
+/* Next button */
+.g14-next-btn{display:none;background:linear-gradient(135deg,#b8860b,#ffd700,#b8860b);border:none;border-radius:50px;color:#1a0800;font-size:16px;font-weight:900;padding:13px 50px;cursor:pointer;box-shadow:0 6px 24px rgba(255,215,0,0.4);letter-spacing:0.5px;transition:transform 0.15s;}
+.g14-next-btn.show{display:block;}
+.g14-next-btn:hover{transform:scale(1.05);}
+/* Walk away */
+.g14-walk-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:50px;color:rgba(255,255,255,0.5);font-size:12px;font-weight:600;padding:6px 16px;cursor:pointer;transition:all 0.15s;}
+.g14-walk-btn:hover{background:rgba(255,255,255,0.12);color:#fff;}
+/* Overlay screens */
+.g14-overlay{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(5,5,30,0.98),rgba(0,0,5,0.99));display:none;flex-direction:column;align-items:center;justify-content:center;z-index:200;padding:24px;text-align:center;gap:14px;}
+.g14-overlay.show{display:flex;}
+.g14-ov-emoji{font-size:80px;animation:nsBob 2.5s ease-in-out infinite;}
+.g14-ov-title{font-size:28px;font-weight:900;}
+.g14-ov-amount{font-size:56px;font-weight:900;color:#ffd700;font-family:'Courier New',monospace;text-shadow:0 0 30px rgba(255,215,0,0.7);}
+.g14-ov-sub{font-size:14px;opacity:0.5;line-height:1.8;max-width:420px;}
+.g14-ov-btn{background:linear-gradient(135deg,#b8860b,#ffd700);border:none;border-radius:50px;color:#1a0800;font-size:16px;font-weight:900;padding:13px 40px;cursor:pointer;box-shadow:0 6px 24px rgba(255,215,0,0.4);transition:transform 0.15s;}
+.g14-ov-btn:hover{transform:scale(1.05);}
+.g14-back-btn{background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.18);border-radius:50px;color:#fff;font-size:14px;font-weight:700;padding:10px 24px;cursor:pointer;}
+.g14-back-btn:hover{background:rgba(255,255,255,0.16);}
+/* Start screen */
+.g14-start{width:100%;max-width:480px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;padding:20px;}
+.g14-start-logo{font-size:54px;animation:nsBob 3s ease-in-out infinite;}
+.g14-start-title{font-size:26px;font-weight:900;color:#ffd700;text-shadow:0 0 20px rgba(255,215,0,0.5);}
+.g14-start-sub{font-size:13px;opacity:0.5;line-height:1.7;}
+.g14-start-btn{background:linear-gradient(135deg,#b8860b,#ffd700,#b8860b);border:none;border-radius:50px;color:#1a0800;font-size:18px;font-weight:900;padding:15px 50px;cursor:pointer;box-shadow:0 8px 30px rgba(255,215,0,0.5);animation:nsBtnPulse 2.5s ease-in-out infinite;margin-top:8px;}
+.g14-start-btn:hover{transform:scale(1.05);}
+@media(max-width:500px){
+  .g14-q-text{font-size:15px;}
+  .g14-opt{font-size:13px;padding:12px 10px 12px 32px;}
+  .g14-ov-amount{font-size:40px;}
+  .g14-ladder{grid-template-columns:repeat(5,1fr);}
+  .g14-rung{font-size:9px;}
+}
+
 /* ══ GAME 12 — IATA Quiz ══ */
 #game12UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,#001a4d 0%,#000d2a 55%,#000510 100%);flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow-y:auto;overflow-x:hidden;}
 #game12UI.show{display:flex;}
@@ -1041,13 +1119,19 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
             <div class="card-num-badge">12</div>
             <span class="card-icon">✈️</span>
             <div class="card-name">IATA קוד</div>
-            <div class="card-desc">100 שאלות על קודי שדות תעופה בעולם</div>
+            <div class="card-desc">30 שאלות על קודי שדות תעופה בעולם</div>
           </div>
           <div class="game-card gc-13" onclick="startFromCard(13)" style="cursor:pointer;">
             <div class="card-num-badge">13</div>
             <span class="card-icon">🌍</span>
             <div class="card-name">בירות העולם</div>
-            <div class="card-desc">100 שאלות על בירות מדינות העולם</div>
+            <div class="card-desc">30 שאלות על בירות מדינות העולם</div>
+          </div>
+          <div class="game-card gc-14" onclick="startFromCard(14)" style="cursor:pointer;">
+            <div class="card-num-badge">14</div>
+            <span class="card-icon">💰</span>
+            <div class="card-name">מי רוצה להיות מיליונר?</div>
+            <div class="card-desc">15 שאלות · 3 גלגלי הצלה · עד מיליון ₪</div>
           </div>
         </div>
       </div>
@@ -1586,6 +1670,61 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   </div>
 </div>
 
+<!-- ══ GAME 14 — מי רוצה להיות מיליונר ══ -->
+<div id="game14UI">
+  <!-- Start screen -->
+  <div class="g14-overlay show" id="g14StartScreen">
+    <div class="g14-start-logo">💰</div>
+    <div class="g14-start-title">מי רוצה להיות מיליונר?</div>
+    <div class="g14-start-sub">15 שאלות עם דרגת קושי עולה<br>3 גלגלי הצלה • 2 נקודות בטחון<br>תענה נכון על כל 15 השאלות וזכה במיליון ₪!</div>
+    <button class="g14-start-btn" onclick="g14StartGame()">🎯 התחל לשחק!</button>
+    <button class="g14-back-btn" onclick="g14ExitToMenu()" style="margin-top:4px;">⬅ חזור לתפריט</button>
+  </div>
+  <!-- Game screen -->
+  <div class="g14-wrap" id="g14GameWrap" style="display:none">
+    <div class="g14-header">
+      <div class="g14-logo">💰 מיליונר</div>
+      <div style="text-align:center">
+        <div class="g14-prize-badge" id="g14PrizeBadge">100 ₪</div>
+        <div class="g14-level-label" id="g14LevelLabel">שאלה 1 מתוך 15</div>
+      </div>
+      <button class="g14-walk-btn" id="g14WalkBtn" onclick="g14WalkAway()">🚶 פרוש</button>
+    </div>
+    <!-- Prize ladder -->
+    <div class="g14-ladder" id="g14Ladder"></div>
+    <!-- Lifelines -->
+    <div class="g14-lifelines">
+      <button class="g14-ll" id="g14LL1" onclick="g14Use5050()">50:50</button>
+      <button class="g14-ll" id="g14LL2" onclick="g14UseAudience()">👥 קהל</button>
+      <button class="g14-ll" id="g14LL3" onclick="g14UseFriend()">📞 חבר</button>
+    </div>
+    <!-- Question -->
+    <div class="g14-q-box">
+      <div class="g14-q-num" id="g14QNum">שאלה 1 — קל מאוד</div>
+      <div class="g14-q-text" id="g14QText">טוען שאלה...</div>
+    </div>
+    <!-- Options -->
+    <div class="g14-opts">
+      <button class="g14-opt" id="g14OptA" onclick="g14Answer(0)"><span class="g14-opt-letter">A</span><span id="g14OptAT"></span></button>
+      <button class="g14-opt" id="g14OptB" onclick="g14Answer(1)"><span class="g14-opt-letter">B</span><span id="g14OptBT"></span></button>
+      <button class="g14-opt" id="g14OptC" onclick="g14Answer(2)"><span class="g14-opt-letter">C</span><span id="g14OptCT"></span></button>
+      <button class="g14-opt" id="g14OptD" onclick="g14Answer(3)"><span class="g14-opt-letter">D</span><span id="g14OptDT"></span></button>
+    </div>
+    <!-- Feedback + next -->
+    <div class="g14-feedback" id="g14Feedback"></div>
+    <button class="g14-next-btn" id="g14NextBtn" onclick="g14Next()">הבא ›</button>
+  </div>
+  <!-- End screen -->
+  <div class="g14-overlay" id="g14EndScreen">
+    <div class="g14-ov-emoji" id="g14EndEmoji">💸</div>
+    <div class="g14-ov-title" id="g14EndTitle"></div>
+    <div class="g14-ov-amount" id="g14EndAmount">0 ₪</div>
+    <div class="g14-ov-sub" id="g14EndSub"></div>
+    <button class="g14-ov-btn" onclick="g14StartGame()">🔄 שחק שוב</button>
+    <button class="g14-back-btn" onclick="g14ExitToMenu()">⬅ תפריט</button>
+  </div>
+</div>
+
 <!-- ══ WIN/LOSE OVERLAY ══ -->
 <div id="overlay">
   <div class="modal">
@@ -1621,6 +1760,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
       <button class="bgp-btn" data-lv="11" onclick="pickBreakLv(11)" title="Lucky Slots">🎰</button>
       <button class="bgp-btn" data-lv="12" onclick="pickBreakLv(12)" title="IATA קוד">✈️</button>
       <button class="bgp-btn" data-lv="13" onclick="pickBreakLv(13)" title="בירות העולם">🌍</button>
+      <button class="bgp-btn" data-lv="14" onclick="pickBreakLv(14)" title="מיליונר">💰</button>
     </div>
     <button class="break-start-btn" id="brkStartBtn" onclick="launchBreakGame()">🎮 התחל הפסקה!</button>
     <div id="breakTimeUp">
@@ -1740,6 +1880,7 @@ function hideGame(){
   g11ExitToMenu&&g11ExitToMenu(true);
   g12ExitToMenu&&g12ExitToMenu(true);
   g13ExitToMenu&&g13ExitToMenu(true);
+  g14ExitToMenu&&g14ExitToMenu(true);
 }
 function goHome(){navTo('mainPage');}
 
@@ -1764,6 +1905,7 @@ function startFromCard(lvl){
   if(lvl===11){startGame11();return;}
   if(lvl===12){startGame12();return;}
   if(lvl===13){startGame13();return;}
+  if(lvl===14){startGame14();return;}
   const g=document.getElementById('gameUI');g.style.display='flex';g.classList.add('show');
   currentScore=0;lives=3;startLevel(lvl);
 }
@@ -4470,7 +4612,7 @@ function g12Shuffle(arr){
 
 function g12BuildQuestions(){
   // Shuffle and pick 100 from 120
-  let pool=g12Shuffle(G12_AIRPORTS).slice(0,100);
+  let pool=g12Shuffle(G12_AIRPORTS).slice(0,30);
   // Prevent consecutive identical correct answers
   for(let i=1;i<pool.length;i++){
     if(pool[i][1]===pool[i-1][1]){
@@ -4641,7 +4783,7 @@ function g13Shuffle(arr){
 }
 
 function g13BuildQuestions(){
-  let pool=g13Shuffle(G13_COUNTRIES).slice(0,100);
+  let pool=g13Shuffle(G13_COUNTRIES).slice(0,30);
   // Prevent consecutive duplicate correct answers
   for(let i=1;i<pool.length;i++){
     if(pool[i][1]===pool[i-1][1]){
@@ -4752,6 +4894,345 @@ function g13ExitToMenu(silent){
 function startGame13(){
   g13El('game13UI').classList.add('show');
   g13StartGame();
+}
+
+// ══ GAME 14 — מי רוצה להיות מיליונר ════════════════════════════════════════
+// Questions: [שאלה, תשובה_נכונה, שגוי1, שגוי2, שגוי3]
+const G14_QS=[
+// L1 100₪ קל מאוד
+[["מה הסמל הכימי של זהב?","Au","Ag","Fe","Cu"],
+ ["כמה רגליים יש לעכביש?","8","6","10","4"],
+ ["מי ציירה את 'הלילה הכוכבי'?","ואן גוך","פיקאסו","מונה","דאלי"],
+ ["מה בירת אוסטרליה?","קנברה","סידני","מלבורן","בריסביין"],
+ ["מי היה הנשיא הראשון של ארצות הברית?","ג'ורג' וושינגטון","אברהם לינקולן","תומס ג'פרסון","ג'ון אדמס"],
+ ["איזה גז מרכיב כ-78% מהאטמוספירה?","חנקן","חמצן","CO2","ארגון"]],
+// L2 200₪ קל מאוד
+[["באיזו שנה פרצה מלחמת העולם הראשונה?","1914","1918","1939","1905"],
+ ["מה הפלנטה הגדולה ביותר במערכת השמש?","צדק","שבתאי","נפטון","אורנוס"],
+ ["מי כתב את 'הנסיך הקטן'?","אנטואן דה סנט-אקזיפרי","ויקטור הוגו","ז'ול ורן","אלכסנדר דומא"],
+ ["מה השם המדעי של האדם?","Homo sapiens","Homo erectus","Homo habilis","Pan troglodytes"],
+ ["מי מחזיק בשיא העולם בריצת 100 מ'?","אוסיין בולט","מייקל ג'ונסון","קרל לואיס","פרד קרי"],
+ ["מה הרכב הכימי של מים?","H₂O","CO₂","NaCl","H₂SO₄"]],
+// L3 300₪ קל מאוד
+[["מה מהירות האור בוואקום (בקירוב)?","~300,000 קמ\"ש","~150,000 קמ\"ש","~1,080,000 קמ\"ש","~30,000 קמ\"ש"],
+ ["מי חיבר את 'סימפוניה מספר 9'?","לודוויג ואן בטהובן","וולפגנג מוצרט","יוהן בך","פרנץ שוברט"],
+ ["מה מחלת הצפדינה נגרמת ממחסור ב?","ויטמין C","ויטמין D","ויטמין B12","ויטמין A"],
+ ["כמה יסודות כימיים יש בטבלה המחזורית?","118","92","112","103"],
+ ["מי כתב את 'מאה שנות בדידות'?","גבריאל גרסיה מרקס","ג'ורג' אורוול","מריו ורגס יוסה","פאולו קואלו"],
+ ["איזה איבר בגוף האדם מייצר אינסולין?","לבלב","כבד","כליה","טחול"]],
+// L4 500₪ קל
+[["מה 'חוק בויל' בפיזיקה קובע?","נפח גז הפוך ללחץ בטמפרטורה קבועה","לחץ גז עולה עם טמפרטורה","אנרגיה שמורה במערכת סגורה","כוח שווה מסה כפול תאוצה"],
+ ["כמה כרומוזומים יש בתא גוף אנושי?","46","23","44","48"],
+ ["מה האי הגדול ביותר בעולם?","גרינלנד","ניו גינאה","בורנאו","מדגסקר"],
+ ["מי כתב את 'האחים קרמזוב'?","פיודור דוסטויבסקי","לב טולסטוי","ניקולי גוגול","אנטון צ'כוב"],
+ ["מה שמו הלטיני של היסוד כסף?","Argentum","Aurum","Plumbum","Ferrum"],
+ ["כמה מדינות חברות ב-UN (2024)?","193","180","195","188"]],
+// L5 1,000₪ (בטחון) קל
+[["מה 'תאוריית הקוואנטום' של פלאנק קבעה?","אנרגיה נפלטת ביחידות בדידות","אור הוא גל בלבד","חלקיקים הם גלים","כוח אינרציה שמור"],
+ ["מי פיתח את חיסון הפוליו?","ג'ונס סאלק","לואי פסטר","רוברט קוך","אלכסנדר פלמינג"],
+ ["מה 'גבול קרמן' מגדיר?","קו 100 ק\"מ מהקרקע — תחילת החלל","גבול בין ים ליבשה","גבול בין שני לוחות טקטוניים","עומק מקסימלי של האוקיינוס"],
+ ["מי ניצח בפרס נובל לפיזיקה ב-1921?","אלברט איינשטיין","נילס בוהר","ארנסט רדרפורד","מקס פלאנק"],
+ ["כמה ספרות יש במספר 'גוגול' (googol)?","101 — 1 ואחריו 100 אפסים","100","1,000","10"],
+ ["מה 'אפקט הגרינהאוס' גורם?","התחממות האטמוספירה מלכידת קרינה","קירור הקטבים","ייצור עודף חמצן","ספיגת קרינת UV מוגברת"]],
+// L6 2,000₪ בינוני
+[["מה 'תסמונת סטוקהולם' מתארת?","רגשות חיוביים של קורבן כלפי חוטפיו","פחד עמוק מכאב","טראומה פוסט-אירועית","התמכרות לסכנה"],
+ ["מי פיתח את שפת התכנות C?","דניס ריצ'י","לינוס טורוואלדס","ביל גייטס","ג'יימס גוסלינג"],
+ ["מה 'מבחן טיורינג' בודק?","האם מכונה יכולה לחקות שיחה אנושית","מהירות מחשב","אבטחת נתונים","יכולת עיבוד תמונה"],
+ ["מה האפקט שגורם לשינוי תדר גל כשמקורו נע?","אפקט דופלר","אפקט פוטואלקטרי","אפקט קומפטון","אפקט זימן"],
+ ["מה ה'תופעה' שבה אלקטרונים נפלטים מחומר חשוף לאור?","אפקט פוטואלקטרי","קרינת חום","זוהר ביולוגי","אפקט דופלר"],
+ ["מה 'קבוע אבוגדרו' מייצג?","מספר חלקיקים במול — 6.02×10²³","מהירות אור","קבוע גרביטציה","קבוע פלאנק"]],
+// L7 4,000₪ בינוני
+[["מה 'פרדוקס פרמי' עוסק בו?","מדוע לא מצאנו חיים בחלל למרות הסבירות","סתירה במכניקת הקוואנטים","בעיה ביסודות המתמטיקה","מחסור בחומר כהה"],
+ ["מי כתב את 'שם הוורד'?","אומברטו אקו","ג'ורג' אורוול","אלדוס הקסלי","ריי ברדבורי"],
+ ["מה ה-'CRISPR-Cas9' מאפשר?","עריכה מדויקת של גנים ב-DNA","ייצור אנטיביוטיקה חדשה","שיבוט בעלי חיים","סריקת DNA לזיהוי"],
+ ["מה 'אלגוריתם' הוא?","סדרת הוראות מוגדרת לפתרון בעיה","שפת תכנות","מעבד מחשב","בסיס נתונים"],
+ ["מה קיבל אלפרד נובל עושרו ממנו?","המצאת הדינמיט","המצאת הטלגרף","תעשיית נפט","ייצור נשק"],
+ ["מה ה'ניתוח הספקטרלי' מאפשר לגלות?","הרכב כימי של חומר מהאור שהוא פולט","טמפרטורת כוכב","מרחק גלקסיות","עוצמת שדה מגנטי"]],
+// L8 8,000₪ בינוני
+[["מי ניצח בפרס נובל לכלכלה ב-2002 על פסיכולוגיה כלכלית?","דניאל כהנמן","גארי בקר","מילטון פרידמן","פול קרוגמן"],
+ ["מה ה-'Big-O notation' מציין?","מורכבות אלגוריתם כפונקציה של גודל קלט","גודל זיכרון נדרש","מהירות הרצה","שגיאת עיגול"],
+ ["מה שמו הכימי של 'סוכר השולחן'?","סוכרוז","גלוקוז","פרוקטוז","לקטוז"],
+ ["מה 'עקרון ארכימדס' קובע?","גוף בנוזל דוחה נוזל ששוקל כמוהו","נפח שמור בשינויי צורה","לחץ נוזל שווה בכל כיוון","זרימה שמרנית"],
+ ["מה שמו של 'המספר i' במתמטיקה?","יחידה מדומה — √(-1)","אינסוף","אפס מדומה","קבוע אויילר"],
+ ["מה 'כלל אוקאם' (Occam's Razor) קובע?","עדיף הסבר פשוט יותר כשהוא מספיק","כל טענה דורשת ראיה","פשטות שווה לאמת","חייבים לבדוק הכל"]],
+];
+
+// L9–L15 נוספות
+const G14_QS2=[
+// L9 16,000₪ בינוני+
+[["מה 'תאוריית הקורדים' מציעה?","ממדים נסתרים מעבר לארבעת הידועים","כוח כבידה שלילי","אנרגיה כהה כחלקיק","אנטי-חומר כמנוע"],
+ ["מי ניצח בנובל פיזיולוגיה 1962 על מבנה DNA?","ווטסון, קריק וווילקינס","לינוס פולינג","רוזלינד פרנקלין","ארוויד קארלסון"],
+ ["מה 'דינמיקת ברנולי' מסבירה?","לחץ נוזל קטן ככל שמהירותו גדולה","צמיגות נוזלים","זרימה טורבולנטית","משוואת הגל"],
+ ["מה שמה הכימי של האספירין?","חומצה אצטילסליצילית","פאראצטמול","איבופרופן","נפרוקסן"],
+ ["מי חיבר את 'ביקורת התבונה הטהורה'?","עמנואל קאנט","ג'ון לוק","גוטפריד לייבניץ","בארוך ספינוזה"],
+ ["מה 'אנומליה' הובילה לגילוי נפטון ב-1846?","חריגות מסלול אורנוס שלא הוסברו","כוכב שנעלם","כוח בלתי-מוסבר","ירח חדש של שבתאי"]],
+// L10 32,000₪ (בטחון) בינוני+
+[["מה 'על-מוליכות' (superconductivity) מאפיינת?","העברת חשמל ללא התנגדות בקור קיצוני","זרם חזק מאוד","שדה מגנטי חזק","טמפרטורת אפס מוחלט"],
+ ["מה 'פרדוקס התאומים' ביחסות מתאר?","תאום שטס בחלל מזדקן לאט יותר מתאומו","גופים נוגעים ממשיכים","זמן מוחלט שמור","מסה קבועה תמיד"],
+ ["מה 'תאוריה של הכל' (TOE) שואפת ל?","לאחד כוחות היסוד בטבע בתאוריה אחת","להסביר ביג-בנג","למדוד חומר כהה","לחשב גיל היקום"],
+ ["מה 'עידוש כבידתי' גורם?","עיוות מסלול אור סביב מסה גדולה","דחיית גופים קלים","האצת זרמי אוויר","קיצור אורכי גל"],
+ ["מי חיבר את 'פנומנולוגיה הרוח'?","גאורג וילהלם פרידריך הגל","קארל מארקס","פרידריך ניטשה","מרטין היידגר"],
+ ["מה הוכחת 'המשפט הגדול של פרמה' ב-1995?","xⁿ+yⁿ=zⁿ אין פתרון שלם עבור n>2","פירוק ראשוני יחיד","אינסוף מספרים ראשוניים","תאוריית הקבוצות"]],
+// L11 64,000₪ קשה
+[["מה 'עקרון אי-הוודאות' של היידנברג קובע?","אין לדעת בדיוק גם מיקום וגם תנע חלקיק","אור נע במהירות קבועה","אנרגיה שמורה תמיד","חלקיקים הם גלים"],
+ ["מה 'האנטרופיה' בתרמודינמיקה מודדת?","מדד לאי-סדר מערכת","אנרגיה פנימית","לחץ גז","מהירות תגובה"],
+ ["מי גילה את 'קרינת הרקע הקוסמית' (CMB)?","פנזיאס וווילסון (1964)","אדווין האבל","ג'ורג' גמוב","פרד הויל"],
+ ["מה 'כירליות' (chirality) מולקולרית?","מולקולה שאינה זהה לתמונת המראה שלה","חוזק קשר","מטען חשמלי","עצמת ספסורבציה"],
+ ["מה ה'ספיר-וורף היפותזה' בבלשנות?","שפה שאדם מדבר מעצבת את חשיבתו","כל שפה קשורה לתרבות","שפות נגזרות משפה-אם","ילדים לומדים שפה דרך חיקוי"],
+ ["מה היה שמו של המחשב שניצח לראשונה אלוף עולם בשחמט?","Deep Blue","AlphaZero","Stockfish","HAL 9000"]],
+// L12 125,000₪ קשה
+[["מה 'עקרון הסופרפוזיציה הקוואנטי' אומר?","חלקיק יכול להיות במצבים מרובים עד למדידה","אור הוא גל וחלקיק בו-זמנית","שני חלקיקים לא במצב זהה","חלקיק לא עובר מחסום אנרגיה"],
+ ["מה 'חוק האבל' קובע?","גלקסיות מתרחקות מהר יותר ככל שהן רחוקות","כוכבים מתפוצצים בקצב קבוע","גלקסיות מסתובבות","גלקסיות מתנגשות"],
+ ["מה 'ניסוי האפקט הפוטואלקטרי' של איינשטיין הוכיח?","אור מורכב מחבילות אנרגיה (פוטונים)","אור הוא גל בלבד","אלקטרונים חופשיים בכל חומר","פוטונים חסרי מסה"],
+ ["מי ניצח בנובל לשלום 1993?","נלסון מנדלה ו-פ.ו. דה קלרק","מנחם בגין ואנואר סאדאת","ג'ימי קרטר","מדר תרזה"],
+ ["מה 'בעיית P=NP' שואלת?","האם בעיות קשות לפתרון גם קשות לאימות?","האם כל אלגוריתם ניתן לשיפור","האם מחשב קוואנטי מהיר ממחשב רגיל","האם בינה מלאכותית תעלה על האדם"],
+ ["מה 'תסמונת מינכהאוזן' (Munchausen) מתארת?","המצאת מחלות לקבלת תשומת-לב רפואית","פחד עמוק מרופאים","אמונה שגויה בבריאות","פחד ממחלות מדבקות"]],
+// L13 250,000₪ קשה מאוד
+[["מה 'משפט אי-השלמות' של גדל הוכיח?","בכל מערכת אקסיומות עשירה יש משפטים שלא ניתן להוכיח ולא להפריך","כל מתמטיקה ניתנת לסיכום","לוגיקה עולה על אינטואיציה","חשבון אינו עקבי"],
+ ["מה 'הוראת AdS/CFT' (דואליות מלדאסנה) מציגה?","קורספונדנציה בין כבידה בנפח אדס לשדות קונפורמיים בגבולו","פתרון P=NP","הוכחת תאוריית הקורדים","גשר בין מכניקת קוואנטים לתאוריית יחסות"],
+ ["מה ה'קבוע הקוסמולוגי' (Λ) של איינשטיין מייצג?","צפיפות אנרגיה ריקה-חלל (אנרגיה כהה)","מהירות התרחבות היקום","מסת החומר הכהה","טמפרטורת קרינת הרקע"],
+ ["מה 'הוכחת בוטווינניק' בשחמט ידועה בה?","פיתוח עמדת 'הנשיא' הקוואנטי — לא רלוונטי; בוטווינניק ידוע בסגנון אסטרטגי וניתוח שיטתי","טקטיקה של קפיצות","עמדות גמר עם פרשים","מתקפת מלך-ורגלי"],
+ ["מה 'תהליך ה-CNO cycle' בכוכבים?","מחזור שבו פחמן-חנקן-חמצן מזרזים איחוי של מימן להליום","ביקוע גרעיני של הליום","יצירת אלמנטים כבדים","כיבוי כוכב ענק"],
+ ["מה ה'משוואה של שרדינגר' מתארת?","התפתחות בזמן של פונקציית הגל הקוואנטית","תנועת אלקטרון במסלול","מסת הפרוטון","עוצמת שדה חשמלי"]],
+// L14 500,000₪ קשה מאוד
+[["מה 'השערת רימן' (Riemann Hypothesis) טוענת?","כל אפסים לא-טריוויאלים של ζ(s) שוכנים על Re(s)=1/2","כל מספר ראשוני ניתן לביטוי כסכום ריבועים","אינסוף מספרים ראשוניים תאומים","פונקציית זטא שלימה בכל המישור"],
+ ["מה 'מכניקת המטריצות' שפיתח היידנברג הייתה?","הניסוח הראשון של מכניקת הקוואנטים (1925)","שיטה לפתרון משוואות דיפרנציאליות","שיטת גילוי חלקיקים","תאוריית מסלולי אלקטרון"],
+ ["מה 'פרדוקס ראסל' חשף?","סתירה בתאוריית הקבוצות הנאיבית — קבוצת כל הקבוצות שאינן מכילות עצמן","בעיה בחשבון האינפיניטסימלי","אי-שלמות הלוגיקה","סתירה בגיאומטריה אוקלידית"],
+ ["מה 'הוכחת אנדרו ווילס' ב-1995 הייתה?","הוכחת המשפט הגדול של פרמה לאחר 358 שנה","פתרון בעיית הסתברות","מציאת מספר ראשוני גדול","הוכחת השערת רימן"],
+ ["מה הייתה תרומתה של אמי נת'ר למתמטיקה?","משפט נת'ר — סימטריה מביאה לחוק שימור","פיתוח טריגונומטריה","גילוי מספר e","הוכחת משפט פיתגורס"],
+ ["מה 'המודל הסטנדרטי' בפיזיקת חלקיקים כולל?","17 חלקיקים יסודיים ו-3 כוחות (לא כבידה)","את 4 כוחות הטבע","גרביטונים כחלקיקי כבידה","חלקיקי אנטי-חומר כנפרדים"]],
+// L15 1,000,000₪ קשה מאוד
+[["מה 'ניסוי קוונדיש' (1798) מדד לראשונה?","קבוע הכבידה G ומסת כדור הארץ","מהירות האור","מסת האלקטרון","קבוע פלאנק"],
+ ["מה 'עקרון ההולוגרפי' בפיזיקה מציע?","מידע של נפח תלת-ממדי מקודד על משטחו הדו-ממדי","כל חומר הוא אנרגיה","ממדים נסתרים קיימים","חורים שחורים שומרים מידע"],
+ ["מה 'נוסחת אויילר' e^(iπ)+1=0 מאחדת?","5 קבועים מתמטיים יסודיים: e, i, π, 1, 0","3 פונקציות טריגונומטריות","מישור מרוכב עם מישור ממשי","אנליזה ואלגברה לינארית בלבד"],
+ ["מה 'בעיית הלט' (Halting Problem) של טיורינג הוכיחה?","אין אלגוריתם כללי שיכריע אם תוכנית תעצור","כל תוכנית ניתנת לאימות","מחשבים יהיו חזקים מהאדם","קיום בינה מלאכותית"],
+ ["מה 'תופעת ה-Hawking radiation' מציעה?","חורים שחורים מאבדים מסה בהדרגה על-ידי פליטת קרינה","חורים שחורים קורסים מיידית","אנרגיה כהה יוצאת מחורים שחורים","אנטי-חומר נוצר ליד אופק אירועים"],
+ ["מה ה'דואליות גל-חלקיק' (wave-particle duality) הוכיחה?","ניסוי שני-הסדקים: אלקטרון מתנהג כגל ביחד וכחלקיק כשנמדד","אור הוא גל בלבד","חלקיקים הם גלים בלבד","מדידה לא משפיעה על חלקיקים"]],
+];
+
+const G14_PRIZES=[100,200,300,500,1000,2000,4000,8000,16000,32000,64000,125000,250000,500000,1000000];
+const G14_SAFE=[0,0,0,0,1000,1000,1000,1000,1000,32000,32000,32000,32000,32000,32000]; // safety net by level idx
+const G14_DIFFICULTY=['קל מאוד','קל מאוד','קל מאוד','קל','קל','בינוני','בינוני','בינוני','בינוני+','בינוני+','קשה','קשה','קשה מאוד','קשה מאוד','קשה מאוד — מיליון!'];
+const G14_ALL_QS=[...G14_QS,...G14_QS2];
+
+let g14={level:0,q:null,ll:{f50:false,aud:false,fri:false},active:false,answered:false};
+
+function g14El(id){return document.getElementById(id);}
+
+function g14Fmt(n){return n>=1000?n.toLocaleString('he-IL'):String(n);}
+
+function g14ShuffleQ(raw){
+  // raw: [question, correct, w1, w2, w3]
+  const opts=[raw[1],raw[2],raw[3],raw[4]];
+  for(let i=3;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
+  return {q:raw[0],options:opts,correct:opts.indexOf(raw[1])};
+}
+
+function g14BuildLadder(){
+  const ladder=g14El('g14Ladder');
+  ladder.innerHTML='';
+  G14_PRIZES.forEach((p,i)=>{
+    const div=document.createElement('div');
+    div.className='g14-rung'+(i===4||i===9?' safe':'');
+    div.id='g14Rung'+i;
+    const safe=i===4||i===9;
+    div.innerHTML=(safe?'🛡️ ':'')+g14Fmt(p)+'₪';
+    div.title='שאלה '+(i+1)+' — '+G14_PRIZES[i]+'₪'+(safe?' (בטחון)':'');
+    ladder.appendChild(div);
+  });
+}
+
+function g14UpdateLadder(){
+  G14_PRIZES.forEach((_,i)=>{
+    const el=g14El('g14Rung'+i);
+    if(!el)return;
+    el.className='g14-rung'+(i===4||i===9?' safe':'');
+    if(i<g14.level)el.classList.add('done');
+    else if(i===g14.level)el.classList.add('current');
+  });
+}
+
+function g14ShowQuestion(){
+  const pool=G14_ALL_QS[g14.level];
+  const rawQ=pool[Math.floor(Math.random()*pool.length)];
+  g14.q=g14ShuffleQ(rawQ);
+  g14.answered=false;
+  const lvl=g14.level;
+  g14El('g14QNum').textContent='שאלה '+(lvl+1)+' — '+G14_DIFFICULTY[lvl];
+  g14El('g14QText').textContent=g14.q.q;
+  g14El('g14PrizeBadge').textContent=g14Fmt(G14_PRIZES[lvl])+' ₪';
+  g14El('g14LevelLabel').textContent='שאלה '+(lvl+1)+' מתוך 15';
+  const ids=['g14OptA','g14OptB','g14OptC','g14OptD'];
+  const tids=['g14OptAT','g14OptBT','g14OptCT','g14OptDT'];
+  ids.forEach((id,i)=>{
+    const btn=g14El(id);
+    btn.disabled=false;
+    btn.className='g14-opt';
+    g14El(tids[i]).textContent=g14.q.options[i];
+  });
+  g14El('g14Feedback').className='g14-feedback';
+  g14El('g14NextBtn').className='g14-next-btn';
+  g14UpdateLadder();
+}
+
+function g14Answer(idx){
+  if(g14.answered||!g14.active)return;
+  const btn=g14El(['g14OptA','g14OptB','g14OptC','g14OptD'][idx]);
+  if(btn.classList.contains('hidden')||btn.disabled)return;
+  g14.answered=true;
+  const correct=idx===g14.q.correct;
+  const ids=['g14OptA','g14OptB','g14OptC','g14OptD'];
+  ids.forEach((id,i)=>{
+    const b=g14El(id);
+    b.disabled=true;
+    if(i===g14.q.correct)b.classList.add('correct');
+    else if(i===idx&&!correct)b.classList.add('wrong');
+  });
+  const fb=g14El('g14Feedback');
+  if(correct){
+    const prize=g14Fmt(G14_PRIZES[g14.level]);
+    fb.className='g14-feedback show fb-win';
+    fb.innerHTML='🎉 נכון! זכית ב-<strong>'+prize+' ₪</strong>';
+    g14El('g14NextBtn').className='g14-next-btn show';
+  } else {
+    const safe=G14_SAFE[g14.level];
+    fb.className='g14-feedback show fb-lose';
+    fb.innerHTML='❌ לא נכון... התשובה הייתה: <strong>'+g14.q.options[g14.q.correct]+'</strong>';
+    setTimeout(()=>g14GameOver(false,safe),1800);
+  }
+}
+
+function g14Next(){
+  g14.level++;
+  if(g14.level>=15){
+    g14GameOver(true,1000000);
+  } else {
+    g14ShowQuestion();
+  }
+}
+
+function g14WalkAway(){
+  if(!g14.active||g14.answered)return;
+  const prize=G14_PRIZES[Math.max(0,g14.level-1)];
+  if(g14.level===0){g14GameOver(false,0);return;}
+  // Confirm walk-away
+  if(confirm('אתה בטוח שברצונך לפרוש עם '+(prize>0?g14Fmt(prize)+' ₪':'0 ₪')+'?')){
+    g14GameOver('walk',prize);
+  }
+}
+
+function g14Use5050(){
+  if(g14.ll.f50||!g14.active||g14.answered)return;
+  g14.ll.f50=true;
+  g14El('g14LL1').disabled=true;g14El('g14LL1').classList.add('used');
+  // Hide 2 wrong options
+  const ids=['g14OptA','g14OptB','g14OptC','g14OptD'];
+  let hidden=0;
+  const shuffledIdx=[0,1,2,3].filter(i=>i!==g14.q.correct).sort(()=>Math.random()-0.5);
+  shuffledIdx.slice(0,2).forEach(i=>{
+    const btn=g14El(ids[i]);
+    btn.classList.add('hidden');
+    btn.disabled=true;
+  });
+}
+
+function g14UseAudience(){
+  if(g14.ll.aud||!g14.active||g14.answered)return;
+  g14.ll.aud=true;
+  g14El('g14LL2').disabled=true;g14El('g14LL2').classList.add('used');
+  // Generate audience percentages weighted toward correct
+  const correct=g14.q.correct;
+  const base=[8,8,8,8];
+  base[correct]=62;
+  let rem=100-62-24;
+  const others=[0,1,2,3].filter(i=>i!==correct);
+  others.forEach((i,idx)=>{base[i]+=idx<rem?1:0;});
+  // Normalize
+  const total=base.reduce((s,v)=>s+v,0);
+  const pct=base.map(v=>Math.round(v/total*100));
+  const letters=['A','B','C','D'];
+  let html='👥 סקר הקהל:<br>';
+  pct.forEach((p,i)=>{
+    const isCorrect=i===correct;
+    html+=`<span style="margin:0 6px;color:${isCorrect?'#6bcb77':'#aaa'}">${letters[i]}: ${p}%</span>`;
+  });
+  const fb=g14El('g14Feedback');
+  fb.className='g14-feedback show';
+  fb.style.flexDirection='column';
+  fb.innerHTML=html;
+}
+
+function g14UseFriend(){
+  if(g14.ll.fri||!g14.active||g14.answered)return;
+  g14.ll.fri=true;
+  g14El('g14LL3').disabled=true;g14El('g14LL3').classList.add('used');
+  const correct=g14.q.correct;
+  const ans=g14.q.options[correct];
+  // Give a partial hint (first word or hint)
+  const hints=[
+    'אני לא בטוח לגמרי, אבל אני חושב שזה קשור ל'+ans.split(' ')[0]+'...',
+    'לדעתי התשובה מתחילה ב"'+ans.charAt(0)+'" — אבל תחליט בעצמך!',
+    'שמעתי פעם על זה... אני חושב שזה '+ans.split(' ')[0]+' משהו...',
+    'יש לי תחושה שהתשובה הנכונה היא לא A ולא... אממ, נסה ב-'+['A','B','C','D'][correct]+'?',
+  ];
+  const fb=g14El('g14Feedback');
+  fb.className='g14-feedback show';
+  fb.innerHTML='📞 חברך אומר: <em>"'+hints[Math.floor(Math.random()*hints.length)]+'"</em>';
+}
+
+function g14GameOver(win,amount){
+  g14.active=false;
+  g14El('g14GameWrap').style.display='none';
+  const end=g14El('g14EndScreen');
+  end.classList.add('show');
+  if(win===true){
+    g14El('g14EndEmoji').textContent='🏆';
+    g14El('g14EndTitle').textContent='🔥 זכית במיליון! אתה אלוף!';
+    g14El('g14EndTitle').style.color='#ffd700';
+    g14El('g14EndAmount').textContent='1,000,000 ₪';
+    g14El('g14EndSub').textContent='הגעת לשיא! ענית נכון על כל 15 השאלות!';
+  } else if(win==='walk'){
+    g14El('g14EndEmoji').textContent='🚶';
+    g14El('g14EndTitle').textContent='פרשת מהמשחק';
+    g14El('g14EndTitle').style.color='#ffd93d';
+    g14El('g14EndAmount').textContent=g14Fmt(amount)+' ₪';
+    g14El('g14EndSub').textContent='החלטה חכמה — לקחת את הכסף!';
+  } else {
+    g14El('g14EndEmoji').textContent=amount>0?'😅':'💸';
+    g14El('g14EndTitle').textContent='הפסדת... אבל לא יצאת ריק';
+    g14El('g14EndTitle').style.color='#ff8888';
+    g14El('g14EndAmount').textContent=g14Fmt(amount)+' ₪';
+    g14El('g14EndSub').textContent=amount>0?'שמרת על נקודת הבטחון! נסה שוב!':'לא הגעת לנקודת בטחון — נסה שוב!';
+  }
+}
+
+function g14StartGame(){
+  g14.level=0;
+  g14.answered=false;
+  g14.active=true;
+  g14.ll={f50:false,aud:false,fri:false};
+  g14El('g14StartScreen').classList.remove('show');
+  g14El('g14EndScreen').classList.remove('show');
+  g14El('g14GameWrap').style.display='flex';
+  // Reset lifelines
+  ['g14LL1','g14LL2','g14LL3'].forEach(id=>{
+    const b=g14El(id);b.disabled=false;b.className='g14-ll';
+  });
+  g14BuildLadder();
+  g14ShowQuestion();
+}
+
+function g14ExitToMenu(silent){
+  g14.active=false;
+  g14El('game14UI').classList.remove('show');
+  if(!silent)navTo('mainPage');
+}
+
+function startGame14(){
+  g14El('game14UI').classList.add('show');
+  g14El('g14StartScreen').classList.add('show');
+  g14El('g14EndScreen').classList.remove('show');
+  g14El('g14GameWrap').style.display='none';
 }
 
 // ── Boot ───────────────────────────────────────────────────────────────────────
