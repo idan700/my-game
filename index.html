@@ -88,6 +88,13 @@ body{background:#0d0d1a;font-family:'Segoe UI',Arial,sans-serif;color:#fff;direc
 .ign-cta-btn{background:linear-gradient(135deg,#b5185e,#e91e63,#ff4081);border:none;border-radius:50px;color:#fff;font-size:19px;font-weight:900;padding:17px 52px;cursor:pointer;box-shadow:0 8px 36px rgba(233,30,99,0.55);transition:transform 0.15s,box-shadow 0.15s;letter-spacing:0.5px;margin-bottom:12px;}
 .ign-cta-btn:hover{transform:scale(1.05);box-shadow:0 14px 44px rgba(233,30,99,0.75);}
 .ign-stars{font-size:22px;letter-spacing:6px;opacity:0.35;margin-top:6px;}
+.ign-hook{background:linear-gradient(135deg,rgba(80,0,60,0.6),rgba(140,0,100,0.5),rgba(80,0,80,0.6));border:1px solid rgba(255,100,180,0.35);border-radius:20px;padding:20px 18px 18px;margin-bottom:26px;position:relative;overflow:hidden;}
+.ign-hook::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(255,80,160,0.12),transparent 70%);pointer-events:none;}
+.ign-hook-tag{display:inline-block;background:linear-gradient(135deg,#c2185b,#e91e63);color:#fff;font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:12px;}
+.ign-hook-text{font-size:17px;font-weight:800;color:#fff;line-height:1.55;margin-bottom:10px;direction:rtl;}
+.ign-hook-text em{font-style:normal;color:#ff80c8;}
+.ign-hook-sub{font-size:13px;color:rgba(255,210,240,0.72);line-height:1.6;direction:rtl;}
+.ign-hook-emoji{font-size:28px;margin-bottom:8px;display:block;}
 .ign-feedback{margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:12px;}
 .ign-fb-text{font-size:14px;color:rgba(255,220,255,0.55);line-height:1.7;margin:0;}
 .ign-fb-btn{display:inline-block;padding:10px 28px;border-radius:20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:rgba(255,200,255,0.7);font-size:13px;font-weight:700;text-decoration:none;letter-spacing:0.5px;transition:background 0.2s,color 0.2s,border-color 0.2s;}
@@ -724,6 +731,43 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
 /* ══ GAME 14 — מי רוצה להיות מיליונר ══ */
 .gc-14{background:linear-gradient(145deg,#1a0800,#4a1800);box-shadow:0 4px 22px rgba(255,160,0,0.25);}
 .gc-14:hover{box-shadow:0 8px 32px rgba(255,200,0,0.55);}
+.gc-15{background:linear-gradient(145deg,#0d001a,#2d0060);box-shadow:0 4px 22px rgba(180,0,255,0.28);}
+.gc-15:hover{box-shadow:0 8px 32px rgba(220,0,255,0.6);}
+#game15UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 20%,#1a0a30 0%,#0a0418 50%,#050210 100%);flex-direction:column;align-items:center;z-index:90;overflow-y:auto;padding:0 16px 40px;}
+#game15UI.show{display:flex;}
+.g15-header{width:100%;max-width:480px;display:flex;align-items:center;justify-content:space-between;padding:14px 0 8px;direction:rtl;}
+.g15-back{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;border-radius:20px;padding:8px 18px;font-size:14px;font-weight:700;cursor:pointer;transition:background 0.15s;}
+.g15-back:hover{background:rgba(255,255,255,0.16);}
+.g15-title{font-size:20px;font-weight:900;color:#ffd93d;text-shadow:0 0 20px rgba(255,217,61,0.6);letter-spacing:1px;}
+.g15-score-wrap{margin:6px 0 14px;text-align:center;}
+.g15-score-label{font-size:11px;opacity:0.45;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;}
+.g15-score{font-size:72px;font-weight:900;background:linear-gradient(135deg,#ffd93d,#ff8e53,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;transition:transform 0.15s;}
+.g15-score.bump{transform:scale(1.14);}
+/* Slot machine */
+.g15-machine{display:flex;align-items:center;gap:0;justify-content:center;margin-bottom:16px;}
+.g15-drum-window{width:190px;height:320px;overflow:hidden;position:relative;border-radius:22px;border:3px solid rgba(200,80,255,0.55);background:linear-gradient(180deg,rgba(8,0,22,0.92),rgba(20,0,50,0.85),rgba(8,0,22,0.92));box-shadow:0 0 50px rgba(180,0,255,0.45),inset 0 0 30px rgba(0,0,0,0.7);}
+.g15-drum-window::before,.g15-drum-window::after{content:'';position:absolute;left:0;right:0;height:110px;z-index:3;pointer-events:none;}
+.g15-drum-window::before{top:0;background:linear-gradient(to bottom,rgba(8,0,22,1) 0%,rgba(8,0,22,0.7) 50%,transparent 100%);}
+.g15-drum-window::after{bottom:0;background:linear-gradient(to top,rgba(8,0,22,1) 0%,rgba(8,0,22,0.7) 50%,transparent 100%);}
+.g15-drum-center{position:absolute;top:50%;left:0;right:0;height:68px;transform:translateY(-50%);border-top:2px solid rgba(220,100,255,0.75);border-bottom:2px solid rgba(220,100,255,0.75);background:rgba(180,0,255,0.1);z-index:4;pointer-events:none;box-shadow:0 0 18px rgba(200,0,255,0.3) inset;}
+.g15-strip{position:absolute;top:0;left:0;right:0;will-change:transform;}
+.g15-cell{height:68px;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900;line-height:1;user-select:none;}
+/* Lever */
+.g15-lever{display:flex;flex-direction:column;align-items:center;width:58px;height:320px;position:relative;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;margin-left:6px;}
+.g15-lever-rod{position:absolute;left:50%;transform:translateX(-50%);top:52px;bottom:28px;width:12px;background:linear-gradient(to right,#880088,#dd00dd,#880088);border-radius:6px;box-shadow:0 0 14px rgba(200,0,255,0.6);}
+.g15-lever-handle{position:absolute;left:50%;transform:translateX(-50%);top:0;z-index:2;transition:top 0.2s cubic-bezier(0.34,1.56,0.64,1);}
+.g15-lever-handle.pulled{top:200px;transition:top 0.15s ease-in;}
+.g15-lever-ball{width:52px;height:52px;background:radial-gradient(circle at 35% 30%,#ff88ff,#cc00cc,#3a0060);border-radius:50%;box-shadow:0 6px 24px rgba(220,0,255,0.85),inset 0 -4px 10px rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;font-size:24px;transition:box-shadow 0.15s;}
+.g15-lever:hover .g15-lever-ball:not(.no-hover){box-shadow:0 8px 32px rgba(255,0,255,1),inset 0 -4px 10px rgba(0,0,0,0.4);}
+.g15-lever-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:48px;height:24px;background:linear-gradient(180deg,#aa00cc,#660099);border-radius:8px;box-shadow:0 4px 14px rgba(150,0,200,0.7);}
+/* Result & history */
+.g15-last{font-size:20px;font-weight:900;letter-spacing:0.5px;min-height:28px;text-align:center;}
+.g15-history{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;max-width:380px;margin-top:10px;}
+.g15-hist-chip,.g15-chip{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);}
+@keyframes g15pulse100{0%{transform:scale(0.92) rotate(-2deg);}100%{transform:scale(1.12) rotate(2deg);}}
+.g15-jackpot-flash{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:200;pointer-events:none;flex-direction:column;}
+.g15-jackpot-flash.show{display:flex;}
+.g15-jackpot-text{font-size:64px;font-weight:900;color:#ff4081;text-shadow:0 0 60px #ff4081,0 0 100px #ff0055;animation:g15pulse100 0.4s ease-in-out infinite alternate;text-align:center;padding:0 20px;}
 #game14UI{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,#0a0a3e 0%,#04041e 60%,#000008 100%);flex-direction:column;align-items:center;z-index:90;padding-top:52px;overflow-y:auto;overflow-x:hidden;}
 #game14UI.show{display:flex;}
 .g14-wrap{width:100%;max-width:720px;padding:10px 12px 30px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:10px;}
@@ -1059,7 +1103,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
             <span class="cat-title">🎰 הימורים</span>
             <div class="cat-line"></div>
           </div>
-          <div class="cat-grid cat-grid-2">
+          <div class="cat-grid cat-grid-3">
             <div class="game-card gc-10" onclick="startFromCard(10)">
               <div class="card-num-badge">1</div>
               <span class="card-icon"><svg viewBox="0 0 60 60" width="54" height="54" style="display:block;margin:0 auto 10px" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="29" fill="#7a5c10"/><path d="M30 30 L30 2 A28 28 0 0 1 44 5.75 Z" fill="#238823"/><path d="M30 30 L44 5.75 A28 28 0 0 1 54.25 16 Z" fill="#cc0000"/><path d="M30 30 L54.25 16 A28 28 0 0 1 58 30 Z" fill="#111"/><path d="M30 30 L58 30 A28 28 0 0 1 54.25 44 Z" fill="#cc0000"/><path d="M30 30 L54.25 44 A28 28 0 0 1 44 54.25 Z" fill="#111"/><path d="M30 30 L44 54.25 A28 28 0 0 1 30 58 Z" fill="#cc0000"/><path d="M30 30 L30 58 A28 28 0 0 1 16 54.25 Z" fill="#111"/><path d="M30 30 L16 54.25 A28 28 0 0 1 5.75 44 Z" fill="#cc0000"/><path d="M30 30 L5.75 44 A28 28 0 0 1 2 30 Z" fill="#111"/><path d="M30 30 L2 30 A28 28 0 0 1 5.75 16 Z" fill="#cc0000"/><path d="M30 30 L5.75 16 A28 28 0 0 1 16 5.75 Z" fill="#111"/><path d="M30 30 L16 5.75 A28 28 0 0 1 30 2 Z" fill="#cc0000"/><circle cx="30" cy="30" r="28" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.7"/><circle cx="30" cy="30" r="8" fill="#1a1a1a" stroke="#aaa" stroke-width="1"/><circle cx="30" cy="30" r="3.5" fill="#ddd"/></svg></span>
@@ -1071,6 +1115,12 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
               <span class="card-icon">🎰</span>
               <div class="card-name">Lucky Slots</div>
               <div class="card-desc">3 תפוחי מזל — סובב וזכה בג'קפוט!</div>
+            </div>
+            <div class="game-card gc-15" onclick="startFromCard(15)">
+              <div class="card-num-badge">3</div>
+              <span class="card-icon">🎰</span>
+              <div class="card-name">Spinner</div>
+              <div class="card-desc">SPIN וצבור נקודות — +100 נדיר ומרגש!</div>
             </div>
           </div>
         </div>
@@ -1785,6 +1835,36 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
   </div>
 </div>
 
+<!-- ══ GAME 15 — Spinner ══ -->
+<div id="game15UI">
+  <div class="g15-jackpot-flash" id="g15JackpotFlash">
+    <div class="g15-jackpot-text">🎉 +100 🎉<br>נדיר!</div>
+  </div>
+  <div class="g15-header">
+    <button class="g15-back" onclick="g15Back()">⬅ חזור</button>
+    <div class="g15-title">🎰 Spinner</div>
+  </div>
+  <div class="g15-score-wrap">
+    <div class="g15-score-label">ניקוד כולל</div>
+    <div class="g15-score" id="g15Score">0</div>
+  </div>
+  <div class="g15-machine">
+    <div class="g15-drum-window">
+      <div class="g15-drum-center"></div>
+      <div class="g15-strip" id="g15Strip"></div>
+    </div>
+    <div class="g15-lever" id="g15Lever" onclick="g15PullLever()">
+      <div class="g15-lever-handle" id="g15LeverHandle">
+        <div class="g15-lever-ball">🕹️</div>
+      </div>
+      <div class="g15-lever-rod"></div>
+      <div class="g15-lever-base"></div>
+    </div>
+  </div>
+  <div class="g15-last" id="g15Last">משוך את הידית!</div>
+  <div class="g15-history" id="g15History"></div>
+</div>
+
 <!-- ══ BREAK MODAL ══ -->
 <div id="breakModal">
   <div class="break-inner">
@@ -1797,6 +1877,7 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
       <div style="width:100%;text-align:center;font-size:10px;font-weight:800;color:rgba(255,215,0,0.5);letter-spacing:1.5px;margin:4px 0 2px;">🎰 הימורים</div>
       <button class="bgp-btn sel" data-lv="10" onclick="pickBreakLv(10)" title="קזינו 0-30"><svg viewBox="0 0 60 60" width="22" height="22" style="vertical-align:middle" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="29" fill="#7a5c10"/><path d="M30 30 L30 2 A28 28 0 0 1 44 5.75 Z" fill="#238823"/><path d="M30 30 L44 5.75 A28 28 0 0 1 54.25 16 Z" fill="#cc0000"/><path d="M30 30 L54.25 16 A28 28 0 0 1 58 30 Z" fill="#111"/><path d="M30 30 L58 30 A28 28 0 0 1 54.25 44 Z" fill="#cc0000"/><path d="M30 30 L54.25 44 A28 28 0 0 1 44 54.25 Z" fill="#111"/><path d="M30 30 L44 54.25 A28 28 0 0 1 30 58 Z" fill="#cc0000"/><path d="M30 30 L30 58 A28 28 0 0 1 16 54.25 Z" fill="#111"/><path d="M30 30 L16 54.25 A28 28 0 0 1 5.75 44 Z" fill="#cc0000"/><path d="M30 30 L5.75 44 A28 28 0 0 1 2 30 Z" fill="#111"/><path d="M30 30 L2 30 A28 28 0 0 1 5.75 16 Z" fill="#cc0000"/><path d="M30 30 L5.75 16 A28 28 0 0 1 16 5.75 Z" fill="#111"/><path d="M30 30 L16 5.75 A28 28 0 0 1 30 2 Z" fill="#cc0000"/><circle cx="30" cy="30" r="8" fill="#1a1a1a"/><circle cx="30" cy="30" r="3.5" fill="#ddd"/></svg></button>
       <button class="bgp-btn" data-lv="11" onclick="pickBreakLv(11)" title="Lucky Slots">🎰</button>
+      <button class="bgp-btn" data-lv="15" onclick="pickBreakLv(15)" title="Spinner">🎰</button>
       <!-- 🕹️ רטרו -->
       <div style="width:100%;text-align:center;font-size:10px;font-weight:800;color:rgba(255,215,0,0.5);letter-spacing:1.5px;margin:4px 0 2px;">🕹️ רטרו</div>
       <button class="bgp-btn" data-lv="1" onclick="pickBreakLv(1)" title="כובש שטחים">⚡</button>
@@ -1867,10 +1948,23 @@ canvas{display:block;border:2px solid rgba(255,255,255,0.12);border-radius:4px;t
     <div class="ign-brand-name">Ignisia</div>
     <div class="ign-tagline-top">It's all about creating real Moments</div>
 
-    <div class="ign-title">ככה בונים זוגיות - אבל לא רק...</div>
+    <div class="ign-hook">
+      <span class="ign-hook-tag">רגע לפני שחוזרים למשחקים 🎮</span>
+      <span class="ign-hook-emoji">💑</span>
+      <div class="ign-hook-text">
+        נהניתם מהמשחקים הממכרים?<br>
+        עכשיו הגיע הזמן ליצור <em>דייט זוגי אמיתי</em><br>
+        עם הפרטנר שלכם — לא מול המסך 😉
+      </div>
+      <div class="ign-hook-sub">
+        תארגנו בקלות את הדייט הבא, גלו מקומות חדשים ביחד,<br>וצרו רגעים שתזכרו גם אחרי שהמשחק נסגר 💜
+      </div>
+    </div>
+
+    <div class="ign-title">ככה בונים זוגיות — בחיים האמיתיים</div>
     <div class="ign-subtitle">
-      הפלטפורמה החדשה שעוזרת לכם לגלות מקומות שווים
-      וליצור רגעים אמיתיים יחד
+      הפלטפורמה שעוזרת לזוגות לגלות מקומות שווים,
+      לתכנן דייטים בלי מאמץ וליצור רגעים אמיתיים יחד
     </div>
 
     <div class="ign-points">
@@ -1962,6 +2056,7 @@ function hideGame(){
   g12ExitToMenu&&g12ExitToMenu(true);
   g13ExitToMenu&&g13ExitToMenu(true);
   g14ExitToMenu&&g14ExitToMenu(true);
+  g15ExitToMenu&&g15ExitToMenu(true);
 }
 function goHome(){navTo('mainPage');}
 function openIgnisia(){document.getElementById('ignisiaLanding').classList.add('show');document.body.style.overflow='hidden';}
@@ -1989,6 +2084,7 @@ function startFromCard(lvl){
   if(lvl===12){startGame12();return;}
   if(lvl===13){startGame13();return;}
   if(lvl===14){startGame14();return;}
+  if(lvl===15){startGame15();return;}
   const g=document.getElementById('gameUI');g.style.display='flex';g.classList.add('show');
   currentScore=0;lives=3;startLevel(lvl);
 }
@@ -5092,6 +5188,16 @@ const G14_QS=[
  ["איזה פרח אדום ומסמל אהבה?","ורד","צבעוני","חמנייה","שושנה"],
  ["כמה ידיות יש לדלת רגילה?","1","2","3","0"],
  ["מה גדול יותר — ים או אגם?","ים","אגם","שווה","נהר"],
+ ["מי המציא את הטלפון?","גרהם בל","תומס אדיסון הממציא הגדול","ניקולה טסלה","סמואל מורס"],
+ ["מי גילה את כוח המשיכה?","ניוטון","גלילאו גליליי הפיזיקאי האיטלקי","לאונרדו דה וינצ'י","רנה דקארט"],
+ ["מה המציא תומס אדיסון?","נורת החשמל","הרדיו","מנוע הסילון","המחשב"],
+ ["מי פיתח את תורת האבולוציה?","דארווין","ניוטון","פסטר","מנדל"],
+ ["מה גילה אלכסנדר פלמינג?","פניצילין","רדיואקטיביות","קרני X","אינסולין"],
+ ["מי היה המנהיג הנאצי של גרמניה?","היטלר","מוסוליני האיטלקי","פרנקו הספרדי","הינדנבורג"],
+ ["מי ניהל את בריטניה במלחמת העולם השנייה?","צ'רצ'יל","נוויל צ'מברליין","ג'ון מייג'ור","קלמנט אטלי"],
+ ["מי פיתח את תורת היחסות המיוחדת?","איינשטיין","ניוטון","הוקינג","בוהר"],
+ ["מי כבש את פרס, מצרים ועד הודו בעת העתיקה?","אלכסנדר הגדול","יוליוס קיסר","ג'ינגיס ח'אן","נפוליאון בונפרטה"],
+ ["מי היה הנשיא הראשון של ארצות הברית?","ג'ורג' וושינגטון","תומס ג'פרסון","אברהם לינקולן","בנג'מין פרנקלין"],
  ["כמה כנפיים יש לפרפר?","4","2","6","8"]
 ],
 // L2 200₪ — קל מאוד
@@ -5130,6 +5236,16 @@ const G14_QS=[
  ["מי היה ראש הממשלה הישראלי השני?","משה שרת","לוי אשכול","שמעון פרס","מנחם בגין"],
  ["מה שם ההר הגבוה ביותר בעולם?","אוורסט","ק2","קילימנג'רו","מון בלאן"],
  ["מה האוכל המסורתי ביותר בישראל?","חומוס","פיצה","סושי","שוארמה בלבד"],
+ ["מה גילה מארי קירי?","רדיואקטיביות","הפניצילין","קרני X","חיסון נגד שחפת"],
+ ["מי המציא את הרדיו?","מרקוני","גרהם בל","תומס אדיסון","ניקולה טסלה"],
+ ["מי היה הקיסר הראשון של צרפת?","נפוליאון","לואי ה-14","שרלמאן","ריכרד לב הארי"],
+ ["מה תרם גלילאו למדע?","חיזק את תורת המרכז שמשי וחקר תנועה","גילה את הכוח גרביטציה","המציא את המיקרוסקופ","ניסח חוקי הגנטיקה"],
+ ["מי ניסח את חוקי התורשה?","מנדל","דארווין","פסטר","פרמי"],
+ ["מי היה המנהיג הסובייטי הראשון?","לנין","סטלין","טרוצקי","חרושצ'וב"],
+ ["מה גילה וילהלם רנטגן?","קרני X","רדיואקטיביות","אלקטרון","נייטרון"],
+ ["מי בנה את הקולוסיאום ברומא?","האימפריה הרומית","יוון הקלאסית","קרתגו","ביזנטיון"],
+ ["מה המציא ג'יימס וואט?","מנוע קיטור יעיל","קטר","מטוס","סירת קיטור"],
+ ["מי כתב את 'מגנה קרטה' (1215) וחתם עליה?","המלך ג'ון מלך אנגליה","ריצ'רד לב הארי","הנרי השמיני","אדוארד הראשון"],
  ["כמה שחקנים יש בקבוצת בייסבול?","9","7","11","8"]
 ],
 // L3 300₪ — קל
@@ -5168,7 +5284,17 @@ const G14_QS=[
  ["מה שם הרקטה הראשונה שהגיעה לירח (1969)?","אפולו 11","סויוז","ורוסטוק","ג'מיני"],
  ["מה שנת ייסוד ארגון הבריאות העולמי (WHO)?","1948","1945","1950","1952"],
  ["מה שם הסרט שזכה בפרס אוסקר לסרט הטוב ביותר ב-1994?","שינדלר'ס ליסט","פורסט גאמפ","אמריקן ביוטי","טיטניק"],
- ["מה שם יוזם הנייד iPhone הראשון?","סטיב ג'ובס","ביל גייטס","מארק צוקרברג","אלון מאסק"]
+ ["מה שם יוזם הנייד iPhone הראשון?","סטיב ג'ובס","ביל גייטס","מארק צוקרברג","אלון מאסק"],
+ ["מי גילה את הפניצילין?","אלכסנדר פלמינג","לואי פסטר","רוברט קוך","פול אירליך"],
+ ["מה המציא גוגלייאמו מרקוני?","שידור רדיו אלחוטי","טלפון","מורס","רדיואקטיביות"],
+ ["מי היה הקיסר הצרפתי שכבש רוב אירופה?","נפוליאון","שרלמאן","לואי ה-14","ריכרד לב הארי"],
+ ["מה תרם אנדרה-מארי אמפר למדע?","ניסח חוקי זרם החשמל והמגנטיזם","גילה חשמל","המציא מנוע חשמלי","גילה נייטרון"],
+ ["מי ניהל את דרום אפריקה כנשיא לאחר הפרד'קטיביות?","נלסון מנדלה","פ.ו. בותה","דה קלרק","תאבו מבקי"],
+ ["מה גילה אנריקו פרמי?","בנה הכור הגרעיני הראשון וגילה אלמנטים חדשים","פיתח פצצת האטום בלבד","גילה נייטרינו בלבד","ניסח תורת הקוונטים"],
+ ["מי פרסם את 'בירת ה' של מרקס?","קרל מרקס","פרידריך אנגלס","לנין","טרוצקי"],
+ ["מה ניסח מייקל פרדיי?","חוק האינדוקציה — שינוי שדה מגנטי יוצר זרם","תורת הגלים","חוק הגרביטציה","חוק הגז"],
+ ["מי הנהיג את מדיניות 'הקפיצה הגדולה קדימה' בסין?","מאו דזה-דונג","דנג שיאופינג","ג'ו אנלאי","ג'יאנג זה-מין"],
+ ["מה גילה וויליאם הארווי ב-1628?","מחזור הדם בגוף האדם","תאי דם אדומים","הלב כמשאבה בלבד","קפילרות"]
 ],
 // L4 500₪ — קל-בינוני
 [["מי חתם על הסכמי אוסלו מטעם ישראל?","יצחק רבין","שמעון פרס","אריאל שרון","אהוד ברק"],
@@ -5206,6 +5332,16 @@ const G14_QS=[
  ["מה שם תנועת העצמאות האמריקנית שיזמה מלחמת עצמאות נגד בריטניה?","תנועת הפטריוטים","תנועת הלויאליסטים","תנועת הרפובליקנים","תנועת הדמוקרטים"],
  ["מה 'הסכם NAFTA' (1994)?","הסכם סחר חופשי בין ארה\"ב, קנדה ומקסיקו","הסכם צבאי","ברית כלכלית","הסכם שיתוף פעולה"],
  ["מה שמה של 'תורת האבולוציה' שפיתח צ'ארלס דרווין?","ברירה טבעית","ברירה מלאכותית","מוטציה מכוונת","אדפטציה מוסכמת"],
+ ["מה פיתח רוברט אופנהיימר?","פצצת האטום","רקטת V2","פצצת מימן","לייזר"],
+ ["מי היה המנהיג הסיני שייסד את הרפובליקה העממית?","מאו דזה-דונג","צ'אנג קאי-שק","דנג שיאופינג","ז'ואו אנלאי"],
+ ["מה ניסח ג'יימס קלרק מקסוול?","תורת האלקטרומגנטיזם","חוקי התנועה","תורת היחסות","חוק הגרביטציה"],
+ ["מי ניהל את דרום אפריקה אחרי שחרורו מהכלא?","נלסון מנדלה","דסמונד טוטו","סטיב ביקו","אוליבר טמבו"],
+ ["מה תרם לואי פסטר למדע?","תורת הנבט וחיסונים","גילוי פניצילין","המצאת מיקרוסקופ","גילוי DNA"],
+ ["מי כבש את מקסיקו ב-1521?","הרנן קורטס","פרנסיסקו פיזרו","קולומבוס","ולסקז"],
+ ["מה גילה מייקל פרדיי?","האינדוקציה האלקטרומגנטית","האלקטרון","הנייטרון","הפרוטון"],
+ ["מי היה 'האב המייסד' שכתב את עיקרי 'הפדרליסט'?","המילטון, מדיסון וג'יי","וושינגטון","ג'פרסון","אדמס"],
+ ["מה ייחודו של ניסוי מייקלסון-מורלי (1887)?","הוכיח שאין אתר מוחלט לאור — בסיס לתורת היחסות","גילה פרוטון","מדד מסת אלקטרון","הוכיח תורת הגלים"],
+ ["מי ניהל את יפן לאחר כניעתה במלחמת עולם שנייה?","מנהיגות אמריקאית בראשות מקארתור","הקיסר הירוהיטו בלבד","ממשלת ציריך","מועצת ביטחון"],
  ["מה שנת נפילת חומת ברלין?","1989","1991","1985","1979"]
 ],
 // L5 1,000₪ (עוגן ראשון) — בינוני
@@ -5244,6 +5380,16 @@ const G14_QS=[
  ["מה שם הנשיא שפתח מחדש יחסים בין ארה\"ב לסין ב-1972?","ריצ'רד ניקסון","ג'ימי קרטר","ג'ון קנדי","ליינדון ג'ונסון"],
  ["מה 'הסכם שלום ישראל-מצרים' (1979) חייב את ישראל?","נסיגה מסיני תמורת שלום מלא עם מצרים","נסיגה מעזה","ויתור על ירושלים","נסיגה מהגדה"],
  ["מה 'ליגת האומות' (1920)?","קודמת לאו\"ם שנוסדה לאחר מלחמת עולם ראשונה ונכשלה","ארגון כלכלי","ברית צבאית","ועידת שלום"],
+ ["מה גילו ווטסון וקריק ב-1953?","מבנה סליל ה-DNA הכפול","חיצי X","פניצילין","הגנום האנושי"],
+ ["מי קיבל פרס נובל לשלום ב-1993 יחד עם דה קלרק?","מנדלה","גנדי","אנוואר סאדאת","דסמונד טוטו"],
+ ["מה ניסח מקסוול פלאנק?","תורת הקוונטים — אנרגיה נפלטת בחבילות בדידות","תורת הגלים","חוקי התנועה","תאוריית הנסיגה"],
+ ["מי היה הדיקטטור של ספרד 1939-1975?","פרנקו","מוסוליני","היטלר","סלאזאר"],
+ ["מה תרם אנריקו פרמי?","בנה את הכור הגרעיני הראשון","פיתח פצצת המימן","ניסח תורת הקוונטים","גילה הנייטרון"],
+ ["מי כתב את 'הנסיך' — מדריך לשליטים?","מקיאוולי","פלאטון","הובס","אריסטו"],
+ ["מה גילתה רוזלינד פרנקלין?","צילומי קרני X שחשפו את מבנה ה-DNA","פניצילין","אנזימים","RNA"],
+ ["מי הוביל את המהפכה הצרפתית לשלטון?","הקונבנציה הלאומית ואחר כך נפוליאון","לואי ה-16","מרי אנטואנט","ז'ורז' דנטון בלבד"],
+ ["מה ניסח המילטון בתחום הכלכלה האמריקאית?","מדיניות הגנה תעשייתית ובנק מרכזי","סחר חופשי מוחלט","מדיניות חקלאית","בטל מסים פדרליים"],
+ ["מי פיתח את 'מנוע האנליטי' — קדם המחשב?","צ'ארלס ביבג'","אלן טיורינג","ג'ון פון נוימן","ג'ורג' בול"],
  ["מה שנת עצמאות הודו מבריטניה?","1947","1948","1950","1945"]
 ],
 // L6 2,000₪ — בינוני
@@ -5282,6 +5428,16 @@ const G14_QS=[
  ["מה 'ועידת ברלין' (1884-1885)?","חלוקת אפריקה בין המעצמות האירופיות","ייסוד גרמניה","ועידת שלום","הסכם סחר"],
  ["מה שם ה-'Détente' (הרפיית מתחים)?","שיפור יחסים בין ארה\"ב לברה\"מ בשנות ה-70 בהנהגת ניקסון-קיסינג'ר","פיוס מלחמת קוריאה","הסכם גרעיני","ברית הגנה"],
  ["מה 'חוק הבסיס של ישראל: הממשלה' קובע?","הממשלה זקוקה לאמון הכנסת","ממשלה כהונתית","ממשלה נשיאותית","ממשלת חירום"],
+ ["מה ניסח ניוטון בחשבון האינפיניטסימלי?","חישוב גזירה ואינטגרל עצמאי מלייבניץ","תורת הסתברות","חוקי תנועת כוכבים","מכניקת גלים"],
+ ["מי ניהל את מהפכת אוקטובר 1917?","לנין וטרוצקי","סטלין","קרנסקי","בוכרין"],
+ ["מה פרסם דרווין ב-1859?","על מקור המינים","מקור האדם","ביוגרפיה של מסעותיו","תורת הגנטיקה"],
+ ["מה תרם ניקולה טסלה?","פיתח מערכת החשמל AC ושינאי","המציא נורת החשמל","בנה רדיו ראשון","פיתח מנוע בנזין"],
+ ["מי הוביל את איטליה הפשיסטית?","מוסוליני","היטלר","פרנקו","הורתי"],
+ ["מה גילה ארנסט רתרפורד?","גרעין האטום","האלקטרון","הנייטרון","הקוורק"],
+ ["מי היה 'האב המייסד' של הפסיכואנליזה?","פרויד","יונג","אדלר","פאבלוב"],
+ ["מה גילה אדווין האבל ב-1929?","היקום מתרחב — גלקסיות מתרחקות","כוכב חדש","חור שחור","גל כבידה"],
+ ["מי הנהיג את סין במהלך מלחמת קוריאה?","מאו","ג'ו אנלאי","דנג שיאופינג","ליו שאוצ'י"],
+ ["מה ניסח קלוד שאנון ב-1948?","תורת המידע — בסיס לתקשורת דיגיטלית","תורת המחשוב","תורת ההצפנה","אלגברה בולאנית"],
  ["מה 'האינתיפאדה השנייה' (2000-2005)?","גל אלימות שפרץ לאחר ביקור שרון בהר הבית ועצר מגעי שלום","האינתיפאדה הראשונה","מלחמת לבנון","מבצע עמוד ענן"]
 ],
 // L7 4,000₪ — בינוני-קשה
@@ -5320,6 +5476,16 @@ const G14_QS=[
  ["מה 'ה-OSCE' — ארגון הביטחון והשיתוף האירופי?","ארגון לניטור בחירות וקידום ביטחון אנושי ב-57 מדינות","ועידת NATO","ארגון האו\"ם","האיחוד האירופי"],
  ["מה 'ה-Jus Cogens' בדין הבינ\"ל?","נורמות מחייבות מוחלטות שלא ניתן להתנות עליהן כמו איסור עבדות","נורמות מדינה","כללי אמנות","חוקי ריבונות"],
  ["מה 'ניסוי אשי' (Asch Conformity, 1950s)?","רוב אנשים ישנו תשובה נכונה תחת לחץ חברתי גם ללא כפייה","ניסוי משמעת","עצמאות מחשבה","ניסוי עיוור"],
+ ["מה ניסח פול דיראק שנוי מחלוקת?","נבא אנטי-חומר וניסח משוואת הגל הרלטיביסטי","גילה נייטרינו","ניסח חוקי הקוונטים","בנה מאיץ חלקיקים"],
+ ["מי ניהל את מדיניות ה-'קפיצה הגדולה' שגרמה לרעב המוני בסין?","מאו דזה-דונג","דנג שיאופינג","ג'ואו אנלאי","ליו שאוצ'י"],
+ ["מה תרמה ליז מייטנר?","תיארה ביקוע גרעיני — אך לא קיבלה נובל","גילתה רדיואקטיביות","בנתה פצצת אטום","גילתה נייטרון"],
+ ["מי ניסח את 'הקטגוריות' והלוגיקה הדדוקטיבית?","אריסטו","אפלטון","סוקרטס","תאלס"],
+ ["מה המציא גוטנברג?","דפוס במתכת מיטלטלת — מהפכת הדפוס","כתיבה","נייר","טחנת רוח"],
+ ["מי חיבר 'ביקורת התבונה הטהורה'?","קאנט","הגל","ניטשה","שופנהאואר"],
+ ["מה גילה לואי דה ברויי?","לחלקיקים יש תכונות גל — 'גל-חומר'","האלקטרון","הפוטון","הפרוטון"],
+ ["מי הנהיג את הרפובליקה הוויימרית לפני עליית היטלר?","הינדנבורג","ברינינג","פאפן","שטרסמן"],
+ ["מה תרם פון נוימן לאדריכלות המחשב?","ארכיטקטורת מחשב בעלת זיכרון משותף לנתונים וקוד","הגרפיקה הממוחשבת","הרשת הנוירונית","שפת תכנות"],
+ ["מי ניהל את מצרים בזמן לאומיות ערבית ולאחר הלאמת תעלת סואץ?","נאצר","סאדאת","מובארק","פארוק"],
  ["מה 'ה-Détente' השיג?","פתיחת יחסים עם סין, ועידת SALT, ירידת מתח עם ברה\"מ","מלחמה קרה חדשה","ברית ים","הסכם גרעיני"]
 ],
 // L8 8,000₪ — בינוני-קשה
@@ -5358,6 +5524,16 @@ const G14_QS=[
  ["מה 'ה-Washington Consensus'?","מדיניות כלכלית ניאו-ליברלית לפיתוח: הפרטה, שחרור סחר, ריסון תקציבי","הסכם סחר אמריקאי","ועידת שלום","דוקטרינה צבאית"],
  ["מה 'ה-Subnational Actors' ביחסים בינ\"ל?","גורמים שאינם מדינות (NGOs, תאגידים, ארגוני טרור) המשפיעים על פוליטיקה","מדינות קטנות","ארגונים בינ\"ל","מחוזות"],
  ["מה 'מהפכת קטיפה' בצ'כוסלובקיה (1989)?","מהפכה שלווה שהפילה את השלטון הקומוניסטי","מהפכת הנגריה","מהפכת פולין","מרד מזוין"],
+ ["מה נוסח ב'תזות על פוירבאך' של מרקס?","הפילוסופים רק פירשו עולם — המשימה לשנותו","חוקי דיאלקטיקה","תיאוריית ערך העבודה","ניתוח מעמדות"],
+ ["מי גילה את הסופרנובה שאישרה שהיקום מאיץ?","סאול פרלמוטר ועמיתיו — זכו נובל 2011","הובל","סאגן","הוקינג"],
+ ["מה ניסח פוינקרה לפני איינשטיין?","אלמנטים של יחסות מיוחדת — ללא פרשנות פיזיקלית","תורת הכאוס","פתרון בעיית שלושה גופים","גאומטריה לא-אוקלידית"],
+ ["מי ניהל את ברזיל בתקופת ה'מדיניות הגדולה'?","ז'וזאו גולארט — הודח בהפיכה 1964","לולה","ורגס","קרדוסו"],
+ ["מה תרמה בארברה מקלינטוק שזיכה אותה בנובל?","גילתה יסודות גנטיים ניידים 'טרנספוזונים'","פיצחה DNA","ניסחה מנדליזם","גילתה RNA"],
+ ["מי חיבר 'פנומנולוגיה של הרוח'?","הגל","קאנט","מרקס","הוסרל"],
+ ["מה גילה ג'יימס קלרק מקסוול לגבי האור?","האור הוא גל אלקטרומגנטי","האור מורכב מפוטונים","מהירות האור קבועה","האור מתכופף בכוח הגרביטציה"],
+ ["מי הנהיג את איראן במהפכה האסלאמית 1979?","חומייני","מוסדק","שאה","מונטזרי"],
+ ["מה הוכיח ניסוי דאבל-סליט?","אור וחלקיקים מתנהגים כגל וכחלקיק גם יחד","קיום אתר","מהירות האור","גלים עומדים"],
+ ["מי ניסח את 'מדיניות הבלימה' (Containment) נגד ברה''מ?","ג'ורג' קנן — הדיפלומט האמריקאי","טרומן","מרשל","אצ'סון"],
  ["מה 'מבצע ספיר' (ישראל, 2007)?","תקיפה ישראלית שהשמידה כור גרעיני בסוריה","מבצע בלבנון","תקיפה בעזה","מבצע עיראק"]
 ],
 ];
@@ -5457,230 +5633,436 @@ function g14El(id){return document.getElementById(id);}
 
 function g14Fmt(n){return n>=1000?n.toLocaleString('he-IL'):String(n);}
 
-function g14ShuffleQ(raw){
-  // raw: [question, correct, w1, w2, w3]
-  const opts=[raw[1],raw[2],raw[3],raw[4]];
-  for(let i=3;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
-  return {q:raw[0],options:opts,correct:opts.indexOf(raw[1])};
+// ══════════════════════════════════════════════════════════════════════════════
+// GAME 14 — מי רוצה להיות מיליונר?
+// ══════════════════════════════════════════════════════════════════════════════
+
+let g14ExitToMenu = null;
+
+function startGame14() {
+  document.getElementById('game14UI').classList.add('show');
+  document.getElementById('g14StartScreen').classList.add('show');
+  document.getElementById('g14GameWrap').style.display = 'none';
+  document.getElementById('g14EndScreen').classList.remove('show');
+  g14ExitToMenu = function(silent) {
+    document.getElementById('game14UI').classList.remove('show');
+    g14ExitToMenu = null;
+    g14.active = false;
+    if (!silent) { hideGame(); navTo('mainPage'); }
+  };
 }
 
-function g14BuildLadder(){
-  const ladder=g14El('g14Ladder');
-  ladder.innerHTML='';
-  G14_PRIZES.forEach((p,i)=>{
-    const div=document.createElement('div');
-    div.className='g14-rung'+(i===4||i===9?' safe':'');
-    div.id='g14Rung'+i;
-    const safe=i===4||i===9;
-    div.innerHTML=(safe?'🛡️ ':'')+g14Fmt(p)+'₪';
-    div.title='שאלה '+(i+1)+' — '+G14_PRIZES[i]+'₪'+(safe?' (בטחון)':'');
-    ladder.appendChild(div);
-  });
+function g14PickQ(lvl) {
+  const pool = G14_ALL_QS[lvl] || G14_ALL_QS[G14_ALL_QS.length - 1];
+  const idx = Math.floor(Math.random() * pool.length);
+  const raw = pool[idx];
+  const opts = [raw[1], raw[2], raw[3], raw[4]];
+  for (let i = opts.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [opts[i], opts[j]] = [opts[j], opts[i]];
+  }
+  return { text: raw[0], correct: raw[1], opts };
 }
 
-function g14UpdateLadder(){
-  G14_PRIZES.forEach((_,i)=>{
-    const el=g14El('g14Rung'+i);
-    if(!el)return;
-    el.className='g14-rung'+(i===4||i===9?' safe':'');
-    if(i<g14.level)el.classList.add('done');
-    else if(i===g14.level)el.classList.add('current');
-  });
+function g14StartGame() {
+  g14.level = 0;
+  g14.ll = { f50: false, aud: false, fri: false };
+  g14.active = true;
+  g14.answered = false;
+  document.getElementById('g14StartScreen').classList.remove('show');
+  document.getElementById('g14GameWrap').style.display = 'flex';
+  document.getElementById('g14EndScreen').classList.remove('show');
+  g14LoadLevel();
 }
 
-function g14ShowQuestion(){
-  const pool=G14_ALL_QS[g14.level];
-  const rawQ=pool[Math.floor(Math.random()*pool.length)];
-  g14.q=g14ShuffleQ(rawQ);
-  g14.answered=false;
-  const lvl=g14.level;
-  g14El('g14QNum').textContent='שאלה '+(lvl+1)+' — '+G14_DIFFICULTY[lvl];
-  g14El('g14QText').textContent=g14.q.q;
-  g14El('g14PrizeBadge').textContent=g14Fmt(G14_PRIZES[lvl])+' ₪';
-  g14El('g14LevelLabel').textContent='שאלה '+(lvl+1)+' מתוך 15';
-  const ids=['g14OptA','g14OptB','g14OptC','g14OptD'];
-  const tids=['g14OptAT','g14OptBT','g14OptCT','g14OptDT'];
-  ids.forEach((id,i)=>{
-    const btn=g14El(id);
-    btn.disabled=false;
-    btn.className='g14-opt';
-    g14El(tids[i]).textContent=g14.q.options[i];
-  });
-  g14El('g14Feedback').className='g14-feedback';
-  g14El('g14NextBtn').className='g14-next-btn';
+function g14LoadLevel() {
+  g14.answered = false;
+  g14.q = g14PickQ(g14.level);
   g14UpdateLadder();
+  g14UpdateLifelines();
+  g14UpdateHeader();
+  g14ShowQ();
+  const fb = g14El('g14Feedback');
+  fb.className = 'g14-feedback';
+  fb.textContent = '';
+  const nb = g14El('g14NextBtn');
+  nb.className = 'g14-next-btn';
 }
 
-function g14Answer(idx){
-  if(g14.answered||!g14.active)return;
-  const btn=g14El(['g14OptA','g14OptB','g14OptC','g14OptD'][idx]);
-  if(btn.classList.contains('hidden')||btn.disabled)return;
-  g14.answered=true;
-  const correct=idx===g14.q.correct;
-  const ids=['g14OptA','g14OptB','g14OptC','g14OptD'];
-  ids.forEach((id,i)=>{
-    const b=g14El(id);
-    b.disabled=true;
-    if(i===g14.q.correct)b.classList.add('correct');
-    else if(i===idx&&!correct)b.classList.add('wrong');
+function g14UpdateHeader() {
+  const prize = G14_PRIZES[g14.level];
+  g14El('g14PrizeBadge').textContent = g14Fmt(prize) + ' ₪';
+  g14El('g14LevelLabel').textContent = 'שאלה ' + (g14.level + 1) + ' מתוך 15';
+  g14El('g14QNum').textContent = 'שאלה ' + (g14.level + 1) + ' — ' + G14_DIFFICULTY[g14.level];
+}
+
+function g14UpdateLadder() {
+  const ladder = g14El('g14Ladder');
+  const safeIdxs = [4, 9];
+  ladder.innerHTML = G14_PRIZES.map((p, i) => {
+    let cls = 'g14-rung';
+    if (i < g14.level) cls += ' done';
+    if (i === g14.level) cls += ' current';
+    if (safeIdxs.includes(i)) cls += ' safe';
+    return '<div class="' + cls + '">' + g14Fmt(p) + '</div>';
+  }).join('');
+}
+
+function g14UpdateLifelines() {
+  g14El('g14LL1').disabled = g14.ll.f50;
+  g14El('g14LL2').disabled = g14.ll.aud;
+  g14El('g14LL3').disabled = g14.ll.fri;
+  if (g14.ll.f50) g14El('g14LL1').classList.add('used');
+  if (g14.ll.aud) g14El('g14LL2').classList.add('used');
+  if (g14.ll.fri) g14El('g14LL3').classList.add('used');
+}
+
+function g14ShowQ() {
+  const q = g14.q;
+  g14El('g14QText').textContent = q.text;
+  ['A','B','C','D'].forEach((l, i) => {
+    const btn = g14El('g14Opt' + l);
+    btn.disabled = false;
+    btn.className = 'g14-opt';
+    btn.style.visibility = '';
+    g14El('g14Opt' + l + 'T').textContent = q.opts[i];
   });
-  const fb=g14El('g14Feedback');
-  if(correct){
-    const prize=g14Fmt(G14_PRIZES[g14.level]);
-    fb.className='g14-feedback show fb-win';
-    fb.innerHTML='🎉 נכון! זכית ב-<strong>'+prize+' ₪</strong>';
-    g14El('g14NextBtn').className='g14-next-btn show';
+}
+
+function g14Answer(idx) {
+  if (g14.answered) return;
+  g14.answered = true;
+  const q = g14.q;
+  const chosen = q.opts[idx];
+  const correct = chosen === q.correct;
+  ['A','B','C','D'].forEach((l, i) => {
+    const btn = g14El('g14Opt' + l);
+    btn.disabled = true;
+    if (q.opts[i] === q.correct) btn.classList.add('correct');
+    else if (i === idx && !correct) btn.classList.add('wrong');
+  });
+  const fb = g14El('g14Feedback');
+  if (correct) {
+    fb.className = 'g14-feedback fb-win show';
+    fb.textContent = '✅ נכון!';
+    const nb = g14El('g14NextBtn');
+    if (g14.level < 14) {
+      nb.textContent = g14.level === 13 ? '🏆 קח/י את המיליון!' : 'הבא ›';
+      nb.className = 'g14-next-btn show';
+    } else {
+      setTimeout(function() { g14EndGame(true, 1000000); }, 1400);
+    }
   } else {
-    const safe=G14_SAFE[g14.level];
-    fb.className='g14-feedback show fb-lose';
-    fb.innerHTML='❌ לא נכון... התשובה הייתה: <strong>'+g14.q.options[g14.q.correct]+'</strong>';
-    setTimeout(()=>g14GameOver(false,safe),1800);
+    fb.className = 'g14-feedback fb-lose show';
+    fb.textContent = '❌ לא נכון. התשובה הנכונה: ' + q.correct;
+    const safeAmount = G14_SAFE[g14.level];
+    setTimeout(function() { g14EndGame(false, safeAmount); }, 2000);
   }
 }
 
-function g14Next(){
+function g14Next() {
   g14.level++;
-  if(g14.level>=15){
-    g14GameOver(true,1000000);
+  g14LoadLevel();
+}
+
+function g14WalkAway() {
+  if (!g14.active || g14.answered) return;
+  const amount = g14.level === 0 ? 0 : G14_PRIZES[g14.level - 1];
+  g14EndGame(null, amount);
+}
+
+function g14EndGame(won, amount) {
+  g14.active = false;
+  g14El('g14GameWrap').style.display = 'none';
+  const es = g14El('g14EndScreen');
+  es.classList.add('show');
+  document.getElementById('g14EndAmount').textContent = g14Fmt(amount) + ' ₪';
+  if (won === true) {
+    document.getElementById('g14EndEmoji').textContent = '🏆';
+    document.getElementById('g14EndTitle').textContent = 'מזל טוב! זכית במיליון!';
+    document.getElementById('g14EndSub').textContent = 'ענית נכון על כל 15 השאלות — אתה/ת אלוף/ת!';
+    startConfetti();
+    setTimeout(stopConfetti, 5000);
+  } else if (won === false) {
+    document.getElementById('g14EndEmoji').textContent = amount > 0 ? '💸' : '💀';
+    document.getElementById('g14EndTitle').textContent = amount > 0 ? 'טעות! אבל הגעת לנקודת ביטחון' : 'הפסדת!';
+    document.getElementById('g14EndSub').textContent = amount > 0
+      ? 'הגעת לנקודת ביטחון ולוקח/ת הביתה ' + g14Fmt(amount) + ' ₪'
+      : 'לא הגעת לנקודת ביטחון — יוצא/ת עם 0 ₪';
   } else {
-    g14ShowQuestion();
+    document.getElementById('g14EndEmoji').textContent = '🚶';
+    document.getElementById('g14EndTitle').textContent = 'פרשת עם:';
+    document.getElementById('g14EndSub').textContent = amount > 0 ? 'החלטה חכמה לפעמים 😉' : 'טוב לנסות שוב!';
   }
 }
 
-function g14WalkAway(){
-  if(!g14.active||g14.answered)return;
-  const prize=G14_PRIZES[Math.max(0,g14.level-1)];
-  if(g14.level===0){g14GameOver(false,0);return;}
-  // Confirm walk-away
-  if(confirm('אתה בטוח שברצונך לפרוש עם '+(prize>0?g14Fmt(prize)+' ₪':'0 ₪')+'?')){
-    g14GameOver('walk',prize);
-  }
-}
-
-function g14Use5050(){
-  if(g14.ll.f50||!g14.active||g14.answered)return;
-  g14.ll.f50=true;
-  g14El('g14LL1').disabled=true;g14El('g14LL1').classList.add('used');
-  // Hide 2 wrong options
-  const ids=['g14OptA','g14OptB','g14OptC','g14OptD'];
-  let hidden=0;
-  const shuffledIdx=[0,1,2,3].filter(i=>i!==g14.q.correct).sort(()=>Math.random()-0.5);
-  shuffledIdx.slice(0,2).forEach(i=>{
-    const btn=g14El(ids[i]);
+function g14Use5050() {
+  if (g14.ll.f50 || g14.answered) return;
+  g14.ll.f50 = true;
+  g14El('g14LL1').disabled = true;
+  g14El('g14LL1').classList.add('used');
+  const q = g14.q;
+  const wrongIdxs = q.opts.map((o, i) => o !== q.correct ? i : -1).filter(i => i >= 0);
+  const toHide = wrongIdxs.sort(function() { return Math.random() - 0.5; }).slice(0, 2);
+  const letters = ['A','B','C','D'];
+  toHide.forEach(function(i) {
+    const btn = g14El('g14Opt' + letters[i]);
     btn.classList.add('hidden');
-    btn.disabled=true;
+    btn.disabled = true;
   });
 }
 
-function g14UseAudience(){
-  if(g14.ll.aud||!g14.active||g14.answered)return;
-  g14.ll.aud=true;
-  g14El('g14LL2').disabled=true;g14El('g14LL2').classList.add('used');
-  // Generate audience percentages weighted toward correct
-  const correct=g14.q.correct;
-  const base=[8,8,8,8];
-  base[correct]=62;
-  let rem=100-62-24;
-  const others=[0,1,2,3].filter(i=>i!==correct);
-  others.forEach((i,idx)=>{base[i]+=idx<rem?1:0;});
-  // Normalize
-  const total=base.reduce((s,v)=>s+v,0);
-  const pct=base.map(v=>Math.round(v/total*100));
-  const letters=['A','B','C','D'];
-  let html='👥 סקר הקהל:<br>';
-  pct.forEach((p,i)=>{
-    const isCorrect=i===correct;
-    html+=`<span style="margin:0 6px;color:${isCorrect?'#6bcb77':'#aaa'}">${letters[i]}: ${p}%</span>`;
-  });
-  const fb=g14El('g14Feedback');
-  fb.className='g14-feedback show';
-  fb.style.flexDirection='column';
-  fb.innerHTML=html;
+function g14UseAudience() {
+  if (g14.ll.aud || g14.answered) return;
+  g14.ll.aud = true;
+  g14El('g14LL2').disabled = true;
+  g14El('g14LL2').classList.add('used');
+  const q = g14.q;
+  const correctIdx = q.opts.indexOf(q.correct);
+  const letters = ['A','B','C','D'];
+  const correctPct = 45 + Math.floor(Math.random() * 31);
+  const remaining = 100 - correctPct;
+  const others = [0,1,2,3].filter(function(i) { return i !== correctIdx; });
+  let splits = others.map(function() { return Math.floor(remaining / 3); });
+  splits[0] += remaining - splits.reduce(function(a,b) { return a+b; }, 0);
+  const pcts = [0,1,2,3].map(function(i) { return i === correctIdx ? correctPct : splits[others.indexOf(i)]; });
+  const fb = g14El('g14Feedback');
+  fb.className = 'g14-feedback fb-win show';
+  fb.innerHTML = '👥 קהל: ' + letters.map(function(l, i) { return '<strong>' + l + ':' + pcts[i] + '%</strong>'; }).join(' · ');
 }
 
-function g14UseFriend(){
-  if(g14.ll.fri||!g14.active||g14.answered)return;
-  g14.ll.fri=true;
-  g14El('g14LL3').disabled=true;g14El('g14LL3').classList.add('used');
-  const correct=g14.q.correct;
-  const ans=g14.q.options[correct];
-  // Give a partial hint (first word or hint)
-  const hints=[
-    'אני לא בטוח לגמרי, אבל אני חושב שזה קשור ל'+ans.split(' ')[0]+'...',
-    'לדעתי התשובה מתחילה ב"'+ans.charAt(0)+'" — אבל תחליט בעצמך!',
-    'שמעתי פעם על זה... אני חושב שזה '+ans.split(' ')[0]+' משהו...',
-    'יש לי תחושה שהתשובה הנכונה היא לא A ולא... אממ, נסה ב-'+['A','B','C','D'][correct]+'?',
-  ];
-  const fb=g14El('g14Feedback');
-  fb.className='g14-feedback show';
-  fb.innerHTML='📞 חברך אומר: <em>"'+hints[Math.floor(Math.random()*hints.length)]+'"</em>';
-}
-
-function g14GameOver(win,amount){
-  g14.active=false;
-  g14El('g14GameWrap').style.display='none';
-  const end=g14El('g14EndScreen');
-  end.classList.add('show');
-  if(win===true){
-    g14El('g14EndEmoji').textContent='🏆';
-    g14El('g14EndTitle').textContent='🔥 זכית במיליון! אתה אלוף!';
-    g14El('g14EndTitle').style.color='#ffd700';
-    g14El('g14EndAmount').textContent='1,000,000 ₪';
-    g14El('g14EndSub').textContent='הגעת לשיא! ענית נכון על כל 15 השאלות!';
-  } else if(win==='walk'){
-    g14El('g14EndEmoji').textContent='🚶';
-    g14El('g14EndTitle').textContent='פרשת מהמשחק';
-    g14El('g14EndTitle').style.color='#ffd93d';
-    g14El('g14EndAmount').textContent=g14Fmt(amount)+' ₪';
-    g14El('g14EndSub').textContent='החלטה חכמה — לקחת את הכסף!';
+function g14UseFriend() {
+  if (g14.ll.fri || g14.answered) return;
+  g14.ll.fri = true;
+  g14El('g14LL3').disabled = true;
+  g14El('g14LL3').classList.add('used');
+  const q = g14.q;
+  const correctIdx = q.opts.indexOf(q.correct);
+  const letters = ['A','B','C','D'];
+  const confident = Math.random() < 0.80;
+  const fb = g14El('g14Feedback');
+  fb.className = 'g14-feedback fb-win show';
+  if (confident) {
+    fb.innerHTML = '📞 חבר: "אני בטוח שזה <strong>' + letters[correctIdx] + ' — ' + q.correct + '</strong>"';
   } else {
-    g14El('g14EndEmoji').textContent=amount>0?'😅':'💸';
-    g14El('g14EndTitle').textContent='הפסדת... אבל לא יצאת ריק';
-    g14El('g14EndTitle').style.color='#ff8888';
-    g14El('g14EndAmount').textContent=g14Fmt(amount)+' ₪';
-    g14El('g14EndSub').textContent=amount>0?'שמרת על נקודת הבטחון! נסה שוב!':'לא הגעת לנקודת בטחון — נסה שוב!';
+    fb.innerHTML = '📞 חבר: "אני חושב שזה <strong>' + letters[correctIdx] + '</strong>... אבל לא בטוח 100%"';
   }
 }
 
-function g14StartGame(){
-  g14.level=0;
-  g14.answered=false;
-  g14.active=true;
-  g14.ll={f50:false,aud:false,fri:false};
-  g14El('g14StartScreen').classList.remove('show');
-  g14El('g14EndScreen').classList.remove('show');
-  g14El('g14GameWrap').style.display='flex';
-  // Reset lifelines
-  ['g14LL1','g14LL2','g14LL3'].forEach(id=>{
-    const b=g14El(id);b.disabled=false;b.className='g14-ll';
-  });
-  g14BuildLadder();
-  g14ShowQuestion();
+// ══════════════════════════════════════════════════════════════════════════════
+// GAME 15 — Spinner
+// ══════════════════════════════════════════════════════════════════════════════
+
+// ══════════════════════════════════════════════════════════════════════════════
+// GAME 15 — Spinner
+// ══════════════════════════════════════════════════════════════════════════════
+
+let g15ExitToMenu = null;
+
+const G15_OUTCOMES = [
+  {val:100, prob:0.01},
+  {val:20,  prob:0.05},
+  {val:7,   prob:0.2034},
+  {val:4,   prob:0.2033},
+  {val:3,   prob:0.2033},
+  {val:1,   prob:0.33}
+];
+
+// Base reel sequence — all prize values appear, roughly proportional
+const G15_REEL_BASE = [1,3,7,1,4,20,1,7,3,4,1,3,7,4,1,20,3,7,1,4,3,1,7,100,1,3,4,7,1,3];
+const CELL_H = 68; // px — must match CSS .g15-cell height
+
+let g15Score = 0;
+let g15Spinning = false;
+let g15History = [];
+let g15StripPos = 0;   // current center index in g15StripData
+let g15StripData = []; // the full strip array
+let g15AnimFrame = null;
+
+function g15Roll() {
+  var r = Math.random(), cum = 0;
+  for (var i = 0; i < G15_OUTCOMES.length; i++) {
+    cum += G15_OUTCOMES[i].prob;
+    if (r <= cum) return G15_OUTCOMES[i].val;
+  }
+  return 3;
 }
 
-function g14ExitToMenu(silent){
-  g14.active=false;
-  g14El('game14UI').classList.remove('show');
-  if(!silent)navTo('mainPage');
+function g15CellColor(v) {
+  return v === 100 ? '#ffd700' : v >= 20 ? '#00eeff' : v >= 7 ? '#88ff88' : 'rgba(255,255,255,0.85)';
 }
 
-function startGame14(){
-  g14El('game14UI').classList.add('show');
-  g14El('g14StartScreen').classList.add('show');
-  g14El('g14EndScreen').classList.remove('show');
-  g14El('g14GameWrap').style.display='none';
+function g15BuildStrip() {
+  // Repeat base reel 12 times = 360 cells — plenty for many spins
+  g15StripData = [];
+  for (var i = 0; i < 12; i++) {
+    for (var j = 0; j < G15_REEL_BASE.length; j++) {
+      g15StripData.push(G15_REEL_BASE[j]);
+    }
+  }
+  var strip = document.getElementById('g15Strip');
+  if (!strip) return;
+  strip.innerHTML = g15StripData.map(function(v) {
+    var col = g15CellColor(v);
+    var extra = v === 100 ? 'text-shadow:0 0 24px #ffa000,0 0 8px #ffd700;' : v >= 20 ? 'text-shadow:0 0 18px #00bbcc;' : '';
+    return '<div class="g15-cell" style="color:' + col + ';' + extra + '">+' + v + '</div>';
+  }).join('');
 }
 
-// ── Boot ───────────────────────────────────────────────────────────────────────
-playerName=localStorage.getItem('kbs_name')||'';
-// Always show name screen — pre-fill if returning user
-const _saved=playerName;
-showNameScreen();
-if(_saved){
-  const _inp=document.getElementById('nameInput');
-  _inp.value=_saved;
-  _inp.select();
+function g15SetPos(idx) {
+  // Translate strip so that item[idx] is centered in window (window height=320, center=160)
+  // Center of item[idx] should be at y=160 inside window
+  // item[idx] top = idx * CELL_H, center = idx*CELL_H + CELL_H/2
+  // strip translateY such that (idx*CELL_H + CELL_H/2) = 160
+  // translateY = 160 - (idx*CELL_H + CELL_H/2) = 160 - idx*CELL_H - 34
+  var y = 160 - (idx * CELL_H + CELL_H / 2);
+  var strip = document.getElementById('g15Strip');
+  if (strip) strip.style.transform = 'translateY(' + y + 'px)';
 }
+
+function startGame15() {
+  g15Score = 0; g15Spinning = false; g15History = [];
+  document.getElementById('game15UI').classList.add('show');
+  document.getElementById('g15Score').textContent = '0';
+  document.getElementById('g15Last').textContent = 'משוך את הידית!';
+  document.getElementById('g15Last').style.color = '';
+  document.getElementById('g15History').innerHTML = '';
+  var flash = document.getElementById('g15JackpotFlash');
+  if (flash) flash.style.display = 'none';
+  var h = document.getElementById('g15LeverHandle');
+  if (h) h.classList.remove('pulled');
+  g15BuildStrip();
+  // Start at middle of strip
+  g15StripPos = Math.floor(g15StripData.length / 2);
+  g15SetPos(g15StripPos);
+  g15ExitToMenu = function(silent) {
+    document.getElementById('game15UI').classList.remove('show');
+    if (g15AnimFrame) { cancelAnimationFrame(g15AnimFrame); g15AnimFrame = null; }
+    g15ExitToMenu = null; g15Spinning = false;
+    if (!silent) { hideGame(); navTo('mainPage'); }
+  };
+}
+
+function g15Back() {
+  if (g15ExitToMenu) g15ExitToMenu(false);
+  else { hideGame(); navTo('mainPage'); }
+}
+
+function g15PullLever() {
+  if (g15Spinning) return;
+  var h = document.getElementById('g15LeverHandle');
+  if (h) {
+    h.classList.add('pulled');
+    setTimeout(function() { h.classList.remove('pulled'); }, 420);
+  }
+  setTimeout(g15Spin, 250);
+}
+
+function g15Spin() {
+  if (g15Spinning) return;
+  g15Spinning = true;
+
+  var result = g15Roll();
+
+  // ── Circular buffer: keep g15StripPos in safe zone ──
+  // After each spin we'll normalize back, but guard here too
+  var reelLen = G15_REEL_BASE.length; // 30
+  var safeZone = reelLen * 3; // keep pos within first 90 items
+  if (g15StripPos > safeZone) {
+    var cycles = Math.floor((g15StripPos - reelLen) / reelLen);
+    g15StripPos -= cycles * reelLen;
+    g15SetPos(g15StripPos); // silent teleport to equivalent position
+  }
+
+  // Find target: 20-35 cells ahead (visible but not dizzying)
+  var minAhead = 20;
+  var maxAhead = 38;
+  var candidates = [];
+  for (var i = g15StripPos + minAhead; i <= g15StripPos + maxAhead && i < g15StripData.length - 5; i++) {
+    if (g15StripData[i] === result) candidates.push(i);
+  }
+  // Widen search if needed
+  if (candidates.length === 0) {
+    for (var i = g15StripPos + maxAhead + 1; i < g15StripPos + 80 && i < g15StripData.length - 5; i++) {
+      if (g15StripData[i] === result) { candidates.push(i); break; }
+    }
+  }
+  if (candidates.length === 0) {
+    candidates = [g15StripPos + minAhead + 5]; // absolute fallback
+  }
+  var targetIdx = candidates[Math.floor(Math.random() * candidates.length)];
+
+  var startPos = g15StripPos;
+  var totalCells = targetIdx - startPos;
+  var duration = 4200; // ms — longer = each cell visible longer
+
+  // Easing: constant speed then smooth decelerate.
+  // Linear for first 60%, quadratic ease-out for last 40%.
+  function easeSlot(t) {
+    if (t < 0.60) {
+      return t * (0.72 / 0.60); // covers 72% of cells at constant pace
+    }
+    var s = (t - 0.60) / 0.40; // 0→1 in last 40%
+    return 0.72 + 0.28 * (1 - Math.pow(1 - s, 2));
+  }
+
+  var startTime = null;
+  function frame(ts) {
+    if (!startTime) startTime = ts;
+    var t = Math.min((ts - startTime) / duration, 1);
+    var pos = startPos + totalCells * easeSlot(t);
+    var y = 160 - (pos * CELL_H + CELL_H / 2);
+    var strip = document.getElementById('g15Strip');
+    if (strip) strip.style.transform = 'translateY(' + y + 'px)';
+
+    if (t < 1) {
+      g15AnimFrame = requestAnimationFrame(frame);
+    } else {
+      g15StripPos = targetIdx;
+      g15SetPos(g15StripPos);
+      g15OnResult(result);
+    }
+  }
+  g15AnimFrame = requestAnimationFrame(frame);
+}
+
+function g15OnResult(result) {
+  g15Score += result;
+  document.getElementById('g15Score').textContent = g15Score;
+  g15History.unshift(result);
+  if (g15History.length > 10) g15History.pop();
+  var histEl = document.getElementById('g15History');
+  histEl.innerHTML = g15History.map(function(v) {
+    var col = g15CellColor(v);
+    return '<span class="g15-chip" style="border-color:' + col + ';color:' + col + '">+' + v + '</span>';
+  }).join('');
+  var lastEl = document.getElementById('g15Last');
+  if (result === 100) {
+    lastEl.textContent = '🎉 JACKPOT! +100 נדיר!'; lastEl.style.color = '#ffd700';
+    startConfetti();
+    var flash = document.getElementById('g15JackpotFlash');
+    if (flash) { flash.style.display = 'flex'; setTimeout(function() { flash.style.display = 'none'; }, 3500); }
+    setTimeout(stopConfetti, 4500);
+  } else if (result >= 20) {
+    lastEl.textContent = '✨ מעולה! +' + result; lastEl.style.color = '#00eeff';
+    setTimeout(function() { lastEl.style.color = ''; }, 2500);
+  } else {
+    lastEl.textContent = 'קיבלת +' + result; lastEl.style.color = '';
+  }
+  g15Spinning = false;
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────────────
+(function init() {
+  playerName = localStorage.getItem('kbs_name') || '';
+  if (playerName) {
+    document.getElementById('greetName').textContent = playerName;
+    navTo('mainPage');
+  } else {
+    showNameScreen();
+  }
+})();
+
 </script>
 </body>
 </html>
