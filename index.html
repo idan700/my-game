@@ -7637,3 +7637,2288 @@ function g17S5ContinueBtn() {
 </script>
 </body>
 </html>
+# -*- coding: utf-8 -*-
+filepath = '/sessions/bold-confident-feynman/mnt/outputs/כובש_השטחים.html'
+with open(filepath, 'r', encoding='utf-8') as f:
+    content = f.read()
+orig = len(content)
+print(f"Original: {orig}")
+
+# ─────────────────────────────────────────────────────────────────
+# 1.  CSS
+# ─────────────────────────────────────────────────────────────────
+CSS_ANCHOR = '.g17-s4-continue-btn{background:linear-gradient(135deg,#7a3800,#cc6600);border:none;color:#fff;font-size:16px;font-weight:900;padding:16px 48px;border-radius:26px;cursor:pointer;box-shadow:0 6px 28px rgba(180,80,0,0.55);}'
+CSS_NEW = CSS_ANCHOR + r"""
+/* ══════ SCREEN 5 – CALENDAR ROOM ══════ */
+#g17Trans5{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(170deg,#010510 0%,#040d28 55%,#020818 100%);padding:40px 28px;text-align:center;direction:rtl;}
+#g17Trans5.show{display:flex;}
+.g17-t5-icon{font-size:60px;margin-bottom:20px;animation:g17transFloat 3s ease-in-out infinite;}
+.g17-t5-trans-text{font-size:15px;color:rgba(160,190,255,0.88);line-height:1.85;max-width:320px;border:1px solid rgba(80,120,255,0.25);border-radius:18px;padding:20px 22px;background:rgba(10,20,80,0.3);margin-bottom:30px;}
+.g17-t5-trans-btn{background:linear-gradient(135deg,#0a2080,#1a4acc);border:none;color:#fff;font-size:17px;font-weight:900;padding:16px 50px;border-radius:28px;cursor:pointer;box-shadow:0 6px 28px rgba(30,80,220,0.55);transition:transform .15s;}
+.g17-t5-trans-btn:active{transform:scale(.96);}
+#g17S5{display:none;min-height:100vh;flex-direction:column;align-items:center;background:linear-gradient(170deg,#010510 0%,#030d25 55%,#020818 100%);padding-bottom:48px;direction:rtl;}
+#g17S5.show{display:flex;}
+.g17-s5-narration{font-size:13px;color:rgba(160,190,255,0.82);text-align:center;max-width:340px;line-height:1.75;padding:10px 20px 14px;border-bottom:1px solid rgba(80,120,255,0.2);margin-bottom:14px;width:100%;box-sizing:border-box;}
+/* clue notes */
+.g17-clues-wrap{display:flex;flex-direction:column;gap:10px;width:100%;max-width:400px;padding:0 14px;box-sizing:border-box;margin-bottom:16px;}
+.g17-clue-note{background:rgba(255,255,255,0.04);border:1px solid rgba(100,140,255,0.3);border-radius:14px;padding:12px 16px;direction:rtl;}
+.g17-clue-title{font-size:11px;color:rgba(140,170,255,0.6);font-weight:800;letter-spacing:1.5px;margin-bottom:8px;}
+.g17-clue-seq{display:flex;gap:6px;align-items:flex-end;flex-wrap:wrap;direction:rtl;}
+.g17-clue-letter{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.g17-clue-heart{font-size:14px;line-height:1;color:#ff4080;visibility:hidden;}
+.g17-clue-heart.show{visibility:visible;}
+.g17-clue-char{font-size:15px;font-weight:900;color:rgba(200,215,255,0.9);width:20px;text-align:center;}
+.g17-clue-char.active{color:#ffd700;text-shadow:0 0 8px rgba(255,215,0,0.7);}
+.g17-clue-year-wrap{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:4px;}
+.g17-clue-box{width:44px;height:44px;border:2px solid rgba(100,140,255,0.6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#ffd700;box-shadow:0 0 12px rgba(100,140,255,0.3);}
+.g17-clue-eq{font-size:16px;color:rgba(160,190,255,0.75);font-weight:700;}
+.g17-clue-result{font-size:20px;font-weight:900;color:rgba(140,180,255,0.9);}
+/* calendar */
+.g17-cal-wrap{width:100%;max-width:360px;padding:0 14px;box-sizing:border-box;margin-bottom:16px;}
+.g17-cal-month{font-size:13px;font-weight:900;color:#7aa8ff;text-align:center;letter-spacing:2px;margin-bottom:8px;direction:rtl;}
+.g17-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.g17-cal-hdr{font-size:11px;font-weight:900;color:rgba(140,170,255,0.55);text-align:center;padding:4px 2px;}
+.g17-cal-hdr.thu{color:rgba(255,215,0,0.75);}
+.g17-cal-day{font-size:13px;font-weight:700;color:rgba(180,205,255,0.65);text-align:center;padding:5px 2px;border-radius:6px;cursor:pointer;transition:background .15s,color .15s;}
+.g17-cal-day:hover{background:rgba(80,120,255,0.2);}
+.g17-cal-day.empty{cursor:default;}
+.g17-cal-day.thu{color:rgba(255,215,0,0.8);}
+.g17-cal-day.selected{background:rgba(255,215,0,0.25);color:#ffd700;font-weight:900;box-shadow:0 0 10px rgba(255,215,0,0.4);}
+.g17-cal-day.target-thu{background:rgba(255,100,180,0.15);border:1px solid rgba(255,100,180,0.35);color:#ff80c8;}
+/* code input */
+.g17-s5-lock-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 16px;width:100%;max-width:380px;box-sizing:border-box;}
+.g17-s5-label{font-size:12px;color:rgba(140,170,255,0.6);font-weight:800;letter-spacing:1px;direction:rtl;}
+.g17-s5-code-row{display:flex;gap:10px;align-items:center;direction:ltr;}
+.g17-s5-input{width:150px;height:52px;background:rgba(2,5,20,0.9);border:2px solid rgba(80,120,255,0.7);border-radius:14px;color:#ffd700;font-size:22px;font-weight:900;text-align:center;letter-spacing:4px;outline:none;caret-color:#ffd700;transition:border-color .2s,box-shadow .2s;}
+.g17-s5-input:focus{border-color:#6699ff;box-shadow:0 0 18px rgba(80,140,255,0.45);}
+.g17-s5-open-btn{background:linear-gradient(135deg,#0a2080,#1a4acc);border:none;color:#fff;font-size:14px;font-weight:900;padding:14px 18px;border-radius:14px;cursor:pointer;box-shadow:0 4px 16px rgba(30,80,220,0.4);transition:transform .12s;}
+.g17-s5-open-btn:active{transform:scale(.95);}
+.g17-s5-feedback{font-size:13px;font-weight:800;color:rgba(255,130,130,0.95);text-align:center;min-height:22px;direction:rtl;}
+.g17-s5-hint{font-size:13px;color:rgba(255,215,0,0.8);text-align:center;max-width:290px;padding:10px 16px;background:rgba(40,50,0,0.35);border:1px solid rgba(255,200,0,0.22);border-radius:12px;display:none;direction:rtl;line-height:1.6;margin-top:6px;}
+/* success 5 */
+#g17Success5{display:none;position:fixed;inset:0;background:rgba(0,2,12,0.93);z-index:220;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;direction:rtl;}
+#g17Success5.show{display:flex;}
+.g17-s5-orb{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#d0e8ff,#4488ff,rgba(20,60,200,0));animation:g17orbpulse 1.6s ease-in-out infinite;margin-bottom:22px;display:flex;align-items:center;justify-content:center;font-size:52px;}
+.g17-s5-success-hed{font-size:21px;font-weight:900;color:#88bbff;margin-bottom:10px;text-shadow:0 0 20px rgba(80,140,255,0.6);}
+.g17-s5-success-body{font-size:15px;color:rgba(180,210,255,0.9);line-height:1.8;max-width:300px;margin-bottom:28px;}
+.g17-s5-continue-btn{background:linear-gradient(135deg,#0a2080,#1a4acc);border:none;color:#fff;font-size:16px;font-weight:900;padding:16px 48px;border-radius:26px;cursor:pointer;box-shadow:0 6px 28px rgba(30,80,220,0.55);}
+"""
+if CSS_ANCHOR in content:
+    content = content.replace(CSS_ANCHOR, CSS_NEW, 1)
+    print("CSS OK")
+else:
+    print("ERROR: CSS anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+# 2.  HTML
+# ─────────────────────────────────────────────────────────────────
+HTML_ANCHOR = '    <button class="g17-s4-continue-btn" onclick="g17S4ContinueBtn()">המשך למסע 🌟</button>\n  </div>\n\n</div>\n\n<!-- ══ GAME 16'
+HTML_NEW = '''    <button class="g17-s4-continue-btn" onclick="g17S4ContinueBtn()">המשך למסע 🌟</button>
+  </div>
+
+  <!-- ── TRANSITION → S5 ── -->
+  <div id="g17Trans5">
+    <div class="g17-t5-icon">📅</div>
+    <div class="g17-t5-trans-text">
+      הזמן לא עוצר… אבל הוא גם לא מתגלה למי שלא יודע לקרוא אותו.<br><br>
+      רגע אחד נכון — יכול לפתוח דרך שלמה.
+    </div>
+    <button class="g17-t5-trans-btn" onclick="g17EnterCalRoom()">כניסה לחדר הזמן 📅</button>
+  </div>
+
+  <!-- ── SCREEN 5 – CALENDAR ROOM ── -->
+  <div id="g17S5">
+    <div class="g17-header">
+      <button class="g17-back-btn" onclick="g17GoBack()">⬅ חזור</button>
+      <div class="g17-screen-title">📅 חדר הזמן</div>
+      <div style="width:70px"></div>
+    </div>
+    <div class="g17-s5-narration">
+      הזמן מפוזר סביבך.<br>
+      אבל רק סדר נכון — יחשוף את הרגע.
+    </div>
+
+    <div class="g17-clues-wrap">
+
+      <!-- Clue 1: Days of week -->
+      <div class="g17-clue-note">
+        <div class="g17-clue-title">🔹 רמז א׳ — ימי השבוע</div>
+        <div class="g17-clue-seq" id="g17Clue1"></div>
+      </div>
+
+      <!-- Clue 2: Months -->
+      <div class="g17-clue-note">
+        <div class="g17-clue-title">🔹 רמז ב׳ — החודשים</div>
+        <div class="g17-clue-seq" id="g17Clue2"></div>
+      </div>
+
+      <!-- Clue 3: Year -->
+      <div class="g17-clue-note">
+        <div class="g17-clue-title">🔹 רמז ג׳ — השנה</div>
+        <div class="g17-clue-year-wrap">
+          <div class="g17-clue-box">9</div>
+          <div class="g17-clue-eq">² = 81</div>
+          <div class="g17-clue-eq">→</div>
+          <div class="g17-clue-result">שנה: <strong>81</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Calendar -->
+    <div class="g17-cal-wrap">
+      <div class="g17-cal-month">✦ מאי ✦</div>
+      <div class="g17-cal-grid" id="g17CalGrid"></div>
+    </div>
+
+    <!-- Code input -->
+    <div class="g17-s5-lock-wrap">
+      <div class="g17-s5-label">הקלד את הרגע המדויק (יום + חודש + שנה)</div>
+      <div class="g17-s5-code-row">
+        <input class="g17-s5-input" id="g17S5Code" type="tel" maxlength="6" placeholder="??????"/>
+        <button class="g17-s5-open-btn" onclick="g17CheckS5()">פתח 🔑</button>
+      </div>
+      <div class="g17-s5-feedback" id="g17S5Feedback"></div>
+      <div class="g17-s5-hint" id="g17S5Hint">
+        💡 זה לא רק תאריך. זה רגע שלם.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SUCCESS 5 ── -->
+  <div id="g17Success5">
+    <div class="g17-s5-orb">📅</div>
+    <div class="g17-s5-success-hed">אתה לא רק מצאת את היום —</div>
+    <div class="g17-s5-success-body">
+      אתה הבנת את הזמן.
+    </div>
+    <button class="g17-s5-continue-btn" onclick="g17S5ContinueBtn()">המשך למסע 🌟</button>
+  </div>
+
+</div>
+
+<!-- ══ GAME 16'''
+if HTML_ANCHOR in content:
+    content = content.replace(HTML_ANCHOR, HTML_NEW, 1)
+    print("HTML OK")
+else:
+    print("ERROR: HTML anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+# 3.  JS
+# ─────────────────────────────────────────────────────────────────
+OLD_JS = r"""function g17S4ContinueBtn() {
+  document.getElementById('g17Success4').classList.remove('show');
+  g17GoBack();
+}
+</script>"""
+
+NEW_JS = r"""function g17S4ContinueBtn() {
+  document.getElementById('g17Success4').classList.remove('show');
+  document.getElementById('g17S4').classList.remove('show');
+  var t5 = document.getElementById('g17Trans5');
+  if (t5) t5.classList.add('show');
+}
+
+/* ═══════════════════════════════════════════════
+   SCREEN 5 – חדר הזמן (Calendar Room)
+   ═══════════════════════════════════════════════ */
+const G17_S5_CODE = '190581';
+let g17S5WrongCount = 0;
+let g17S5SelDay = null;
+
+function g17EnterCalRoom() {
+  var t5 = document.getElementById('g17Trans5');
+  if (t5) t5.classList.remove('show');
+  g17S5WrongCount = 0;
+  g17S5SelDay = null;
+  document.getElementById('g17S5Code').value = '';
+  document.getElementById('g17S5Feedback').textContent = '';
+  document.getElementById('g17S5Hint').style.display = 'none';
+  document.getElementById('g17Success5').classList.remove('show');
+  g17BuildClue1();
+  g17BuildClue2();
+  g17BuildCalendar();
+  document.getElementById('g17S5').classList.add('show');
+}
+
+function g17BuildClue1() {
+  // ר,ש,ש,ר,ח,ש,ש  — heart above position 4 (ח)
+  var seq = ['ר','ש','ש','ר','ח','ש','ש'];
+  var heartIdx = 4; // 0-based: ח is index 4
+  var wrap = document.getElementById('g17Clue1');
+  if (!wrap) return;
+  var html = '';
+  seq.forEach(function(ch, i) {
+    var active = i === heartIdx ? ' active' : '';
+    var heartShow = i === heartIdx ? ' show' : '';
+    html += '<div class="g17-clue-letter">'
+          + '<div class="g17-clue-heart' + heartShow + '">❤️</div>'
+          + '<div class="g17-clue-char' + active + '">' + ch + '</div>'
+          + '</div>';
+  });
+  wrap.innerHTML = html;
+}
+
+function g17BuildClue2() {
+  // י,פ,מ,א,מ,י,י,א,ס,א,נ,ד — heart above position 4 (מ = מאי)
+  var seq = ['י','פ','מ','א','מ','י','י','א','ס','א','נ','ד'];
+  var heartIdx = 4; // מ at index 4 = May
+  var wrap = document.getElementById('g17Clue2');
+  if (!wrap) return;
+  var html = '';
+  seq.forEach(function(ch, i) {
+    var active = i === heartIdx ? ' active' : '';
+    var heartShow = i === heartIdx ? ' show' : '';
+    html += '<div class="g17-clue-letter">'
+          + '<div class="g17-clue-heart' + heartShow + '">❤️</div>'
+          + '<div class="g17-clue-char' + active + '">' + ch + '</div>'
+          + '</div>';
+  });
+  wrap.innerHTML = html;
+}
+
+function g17BuildCalendar() {
+  var grid = document.getElementById('g17CalGrid');
+  if (!grid) return;
+  // Headers: Sun(ר)=1, Mon(ש)=2, Tue(ש)=3, Wed(ר)=4, Thu(ח)=5, Fri(ש)=6, Sat(ש)=7
+  var hdrs = ['ר','ש','ש','ר','ח','ש','ש'];
+  var html = '';
+  hdrs.forEach(function(h, i) {
+    var cls = i === 4 ? ' thu' : ''; // index 4 = Thursday col
+    html += '<div class="g17-cal-hdr' + cls + '">' + h + '</div>';
+  });
+  // May starts Sunday (index 0), 31 days
+  // Thursdays: 5,12,19,26 → 3rd Thursday = 19
+  var thuDays = [5,12,19,26];
+  var target = 19;
+  var startDay = 0; // Sunday = index 0
+  // empty cells before day 1
+  for (var e = 0; e < startDay; e++) {
+    html += '<div class="g17-cal-day empty"></div>';
+  }
+  for (var d = 1; d <= 31; d++) {
+    var col = (startDay + d - 1) % 7;
+    var isThu = (col === 4);
+    var isTarget = (d === target);
+    var cls = '';
+    if (isThu) cls += ' thu';
+    if (isTarget) cls += ' target-thu';
+    html += '<div class="g17-cal-day' + cls + '" onclick="g17CalTap(' + d + ')">' + d + '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+function g17CalTap(day) {
+  // highlight tapped day
+  g17S5SelDay = day;
+  var days = document.querySelectorAll('.g17-cal-day:not(.empty)');
+  days.forEach(function(el){ el.classList.remove('selected'); });
+  // find and mark
+  days.forEach(function(el){
+    if (parseInt(el.textContent) === day) el.classList.add('selected');
+  });
+  // auto-fill day portion if not already entered
+  var inp = document.getElementById('g17S5Code');
+  var dayStr = day < 10 ? '0'+day : ''+day;
+  if (inp.value.length < 2) { inp.value = dayStr; }
+}
+
+function g17CheckS5() {
+  var val = document.getElementById('g17S5Code').value.trim();
+  var fb = document.getElementById('g17S5Feedback');
+  if (val.length < 6) {
+    fb.style.color = 'rgba(255,200,100,0.9)';
+    fb.textContent = 'הקוד צריך להיות 6 ספרות (יום + חודש + שנה).';
+    return;
+  }
+  if (val === G17_S5_CODE) {
+    g17S5Success();
+  } else {
+    g17S5WrongCount++;
+    if (g17S5WrongCount >= 2) {
+      document.getElementById('g17S5Hint').style.display = 'block';
+    }
+    fb.style.color = 'rgba(255,130,130,0.95)';
+    fb.textContent = 'הזמן זז… אבל לא עצרת ברגע הנכון.';
+    var inp = document.getElementById('g17S5Code');
+    inp.style.borderColor = '#ff4444';
+    setTimeout(function(){ inp.style.borderColor = ''; fb.textContent = ''; }, 1000);
+    document.getElementById('g17S5Code').value = '';
+  }
+}
+
+function g17S5Success() {
+  document.getElementById('g17S5Feedback').textContent = '';
+  document.getElementById('g17S5Hint').style.display = 'none';
+  // flash calendar target day
+  var days = document.querySelectorAll('.g17-cal-day.target-thu');
+  days.forEach(function(el){ el.classList.add('selected'); });
+  setTimeout(function(){
+    document.getElementById('g17Success5').classList.add('show');
+  }, 800);
+}
+
+function g17S5ContinueBtn() {
+  document.getElementById('g17Success5').classList.remove('show');
+  g17GoBack();
+}
+</script>"""
+
+if OLD_JS in content:
+    content = content.replace(OLD_JS, NEW_JS, 1)
+    print("JS OK")
+else:
+    print("ERROR: JS anchor not found")
+    idx = content.find('function g17S4ContinueBtn()')
+    print(f"  found at: {idx}")
+
+# ─────────────────────────────────────────────────────────────────
+# 4. Reset on startGame17
+# ─────────────────────────────────────────────────────────────────
+OLD_R = "  var g17s4ov = document.getElementById('g17Success4'); if(g17s4ov) g17s4ov.classList.remove('show');"
+NEW_R = (OLD_R
+  + "\n  var g17t5=document.getElementById('g17Trans5');if(g17t5)g17t5.classList.remove('show');"
+  + "\n  var g17s5=document.getElementById('g17S5');if(g17s5)g17s5.classList.remove('show');"
+  + "\n  var g17s5ov=document.getElementById('g17Success5');if(g17s5ov)g17s5ov.classList.remove('show');")
+if OLD_R in content:
+    content = content.replace(OLD_R, NEW_R, 1)
+    print("Reset OK")
+else:
+    print("WARN: reset anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(content)
+print(f"Done. {orig} → {len(content)} (+{len(content)-orig})")
+# -*- coding: utf-8 -*-
+filepath = '/sessions/bold-confident-feynman/mnt/outputs/כובש_השטחים.html'
+with open(filepath, 'r', encoding='utf-8') as f:
+    content = f.read()
+orig = len(content)
+print(f"Original: {orig}")
+
+# ─────────────────────────────────────────────────────────────────
+# 1.  CSS
+# ─────────────────────────────────────────────────────────────────
+CSS_ANCHOR = '.g17-s2-continue-btn{background:linear-gradient(135deg,#7700bb,#c400a0);border:none;color:#fff;font-size:16px;font-weight:900;padding:16px 48px;border-radius:26px;cursor:pointer;box-shadow:0 6px 28px rgba(180,0,255,0.55);}'
+CSS_NEW = CSS_ANCHOR + r"""
+/* ══════ SCREEN 4 – TIME ROOM ══════ */
+#g17Trans4{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(170deg,#0d0500 0%,#1e0d02 55%,#120800 100%);padding:40px 28px;text-align:center;direction:rtl;}
+#g17Trans4.show{display:flex;}
+.g17-t4-icon{font-size:64px;margin-bottom:20px;animation:g17transFloat 3s ease-in-out infinite;}
+.g17-t4-trans-text{font-size:15px;color:rgba(255,215,160,0.85);line-height:1.85;max-width:320px;border:1px solid rgba(200,130,0,0.28);border-radius:18px;padding:20px 22px;background:rgba(80,40,0,0.28);margin-bottom:30px;}
+.g17-t4-trans-btn{background:linear-gradient(135deg,#7a3800,#cc6600);border:none;color:#fff;font-size:17px;font-weight:900;padding:16px 50px;border-radius:28px;cursor:pointer;box-shadow:0 6px 28px rgba(180,80,0,0.55);transition:transform .15s;}
+.g17-t4-trans-btn:active{transform:scale(.96);}
+#g17S4{display:none;min-height:100vh;flex-direction:column;align-items:center;background:linear-gradient(170deg,#0a0300 0%,#190a01 55%,#0e0500 100%);padding-bottom:48px;direction:rtl;}
+#g17S4.show{display:flex;}
+.g17-s4-narration{font-size:13px;color:rgba(255,210,155,0.8);text-align:center;max-width:340px;line-height:1.75;padding:10px 20px 16px;border-bottom:1px solid rgba(200,130,0,0.22);margin-bottom:10px;width:100%;box-sizing:border-box;}
+.g17-s4-task{font-size:12px;color:rgba(255,190,100,0.65);text-align:center;padding:0 20px 14px;direction:rtl;}
+/* sortable cards */
+.g17-s4-list{display:flex;flex-direction:column;gap:10px;width:100%;max-width:360px;padding:0 16px;box-sizing:border-box;margin-bottom:18px;}
+.g17-s4-card{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(60,25,0,0.7),rgba(40,15,0,0.85));border:2px solid rgba(200,130,0,0.35);border-radius:18px;padding:14px 18px;cursor:pointer;transition:transform .15s,background .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent;user-select:none;}
+.g17-s4-card:hover{background:linear-gradient(135deg,rgba(90,40,0,0.75),rgba(60,25,0,0.9));}
+.g17-s4-card.selected{border-color:#ffd700;background:linear-gradient(135deg,rgba(120,60,0,0.8),rgba(80,35,0,0.9));box-shadow:0 0 18px rgba(255,180,0,0.5);}
+.g17-s4-card.correct-flash{border-color:#00e87a;box-shadow:0 0 18px rgba(0,220,120,0.5);}
+.g17-s4-pos{font-size:13px;font-weight:900;color:rgba(200,140,60,0.7);min-width:20px;text-align:center;}
+.g17-s4-emoji{font-size:36px;line-height:1;}
+.g17-s4-label{font-size:16px;font-weight:800;color:rgba(255,220,160,0.95);flex:1;}
+.g17-s4-drag-hint{font-size:11px;color:rgba(200,140,60,0.45);text-align:right;direction:rtl;}
+/* hint for drag on desktop */
+.g17-s4-info{font-size:12px;color:rgba(200,140,60,0.5);text-align:center;margin-bottom:10px;direction:rtl;}
+/* check + feedback */
+.g17-s4-check-btn{background:linear-gradient(135deg,#7a3800,#cc6600);border:none;color:#fff;font-size:15px;font-weight:900;padding:14px 36px;border-radius:16px;cursor:pointer;box-shadow:0 4px 18px rgba(160,70,0,0.4);transition:transform .12s;margin-bottom:10px;}
+.g17-s4-check-btn:active{transform:scale(.95);}
+.g17-s4-feedback{font-size:13px;font-weight:800;color:rgba(255,130,130,0.95);text-align:center;min-height:22px;direction:rtl;max-width:300px;padding:0 12px;}
+.g17-s4-hint-box{font-size:13px;color:rgba(255,215,0,0.8);text-align:center;max-width:290px;padding:10px 16px;background:rgba(70,40,0,0.35);border:1px solid rgba(255,180,0,0.22);border-radius:12px;display:none;direction:rtl;line-height:1.6;margin-top:8px;}
+/* success 4 */
+#g17Success4{display:none;position:fixed;inset:0;background:rgba(5,2,0,0.92);z-index:220;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;direction:rtl;}
+#g17Success4.show{display:flex;}
+.g17-s4-orb{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff9e6,#ffb300,rgba(200,80,0,0));animation:g17orbpulse 1.6s ease-in-out infinite;margin-bottom:22px;display:flex;align-items:center;justify-content:center;font-size:52px;}
+.g17-s4-success-hed{font-size:22px;font-weight:900;color:#ffcc44;margin-bottom:10px;text-shadow:0 0 20px rgba(255,180,0,0.6);}
+.g17-s4-success-body{font-size:15px;color:rgba(255,230,180,0.9);line-height:1.8;max-width:300px;margin-bottom:28px;}
+.g17-s4-continue-btn{background:linear-gradient(135deg,#7a3800,#cc6600);border:none;color:#fff;font-size:16px;font-weight:900;padding:16px 48px;border-radius:26px;cursor:pointer;box-shadow:0 6px 28px rgba(180,80,0,0.55);}
+"""
+if CSS_ANCHOR in content:
+    content = content.replace(CSS_ANCHOR, CSS_NEW, 1)
+    print("CSS OK")
+else:
+    print("ERROR: CSS anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+# 2.  HTML (insert before closing </div> of game17UI)
+# ─────────────────────────────────────────────────────────────────
+HTML_ANCHOR = '    <button class="g17-s2-continue-btn" onclick="g17S2ContinueBtn()">המשך למסע 🌟</button>\n  </div>\n\n</div>\n\n<!-- ══ GAME 16'
+HTML_NEW = '''    <button class="g17-s2-continue-btn" onclick="g17S2ContinueBtn()">המשך למסע 🌟</button>
+  </div>
+
+  <!-- ── TRANSITION → S4 ── -->
+  <div id="g17Trans4">
+    <div class="g17-t4-icon">⏳</div>
+    <div class="g17-t4-trans-text">
+      המראה נפתחה… ומאחוריה חדר שלא נראה כמוהו.<br><br>
+      כאן הזמן שולט בכל. דברים נעלמים, משתנים, נשכחים.<br>
+      אבל לא הכול נעלם באותו קצב.
+    </div>
+    <button class="g17-t4-trans-btn" onclick="g17EnterTimeRoom()">כניסה לחדר הזמן ⏳</button>
+  </div>
+
+  <!-- ── SCREEN 4 – TIME ROOM ── -->
+  <div id="g17S4">
+    <div class="g17-header">
+      <button class="g17-back-btn" onclick="g17GoBack()">⬅ חזור</button>
+      <div class="g17-screen-title">⏳ חדר הזמן</div>
+      <div style="width:70px"></div>
+    </div>
+    <div class="g17-s4-narration">
+      הכול משתנה עם הזמן.<br>אבל לא הכול נעלם באותו קצב.
+    </div>
+    <div class="g17-s4-task">סדר את הדברים לפי מה שנעלם ראשון ועד מה שנשאר אחרון.</div>
+    <div class="g17-s4-info">לחץ על פריט → ואז על מיקום אחר להחלפה</div>
+
+    <div class="g17-s4-list" id="g17S4List"></div>
+
+    <button class="g17-s4-check-btn" onclick="g17CheckS4()">בדוק את הסדר ✓</button>
+    <div class="g17-s4-feedback" id="g17S4Feedback"></div>
+    <div class="g17-s4-hint-box" id="g17S4Hint">
+      💡 חשוב מה קורה לכל אחד מהם עם הזמן — בטבע, בחיים, בלב.
+    </div>
+  </div>
+
+  <!-- ── SUCCESS 4 ── -->
+  <div id="g17Success4">
+    <div class="g17-s4-orb">❤️</div>
+    <div class="g17-s4-success-hed">הזמן הבין אותך.</div>
+    <div class="g17-s4-success-body">
+      הדרך נפתחת…<br>כי מה שנשאר בסוף הוא אהבה.
+    </div>
+    <button class="g17-s4-continue-btn" onclick="g17S4ContinueBtn()">המשך למסע 🌟</button>
+  </div>
+
+</div>
+
+<!-- ══ GAME 16'''
+if HTML_ANCHOR in content:
+    content = content.replace(HTML_ANCHOR, HTML_NEW, 1)
+    print("HTML OK")
+else:
+    print("ERROR: HTML anchor not found")
+    idx = content.find('g17S2ContinueBtn()">המשך למסע')
+    print(f"  button at idx: {idx}")
+
+# ─────────────────────────────────────────────────────────────────
+# 3.  JS – update g17S2ContinueBtn + add all S4 logic
+# ─────────────────────────────────────────────────────────────────
+OLD_JS = r"""function g17S2ContinueBtn() {
+  // No screen 3 yet — close gracefully
+  document.getElementById('g17Success2').classList.remove('show');
+  g17GoBack();
+}
+</script>"""
+
+NEW_JS = r"""function g17S2ContinueBtn() {
+  document.getElementById('g17Success2').classList.remove('show');
+  document.getElementById('g17S2').classList.remove('show');
+  var t4 = document.getElementById('g17Trans4');
+  if (t4) t4.classList.add('show');
+}
+
+/* ═══════════════════════════════════════════════
+   SCREEN 4 – חדר הזמן (Time Room)
+   ═══════════════════════════════════════════════ */
+const G17_S4_ITEMS = [
+  { id:'ice',    emoji:'🧊', label:'קרח'   },
+  { id:'candle', emoji:'🕯️', label:'נר'    },
+  { id:'rose',   emoji:'🌹', label:'ורד'   },
+  { id:'love',   emoji:'❤️', label:'אהבה'  }
+];
+const G17_S4_CORRECT = ['ice','candle','rose','love'];
+let g17S4Order = [];
+let g17S4Selected = -1;
+let g17S4WrongCount = 0;
+
+function g17EnterTimeRoom() {
+  var t4 = document.getElementById('g17Trans4');
+  if (t4) t4.classList.remove('show');
+  // shuffle order (make sure it's not already correct)
+  g17S4Order = ['love','rose','ice','candle'];
+  g17S4Selected = -1;
+  g17S4WrongCount = 0;
+  document.getElementById('g17S4Feedback').textContent = '';
+  document.getElementById('g17S4Hint').style.display = 'none';
+  document.getElementById('g17Success4').classList.remove('show');
+  g17RenderS4();
+  document.getElementById('g17S4').classList.add('show');
+}
+
+function g17RenderS4() {
+  var list = document.getElementById('g17S4List');
+  if (!list) return;
+  var html = '';
+  g17S4Order.forEach(function(id, i) {
+    var item = G17_S4_ITEMS.find(function(x){ return x.id === id; });
+    var sel = (i === g17S4Selected) ? ' selected' : '';
+    var posLabels = ['ראשון','שני','שלישי','אחרון'];
+    html += '<div class="g17-s4-card' + sel + '" onclick="g17S4Tap(' + i + ')" draggable="true" ondragstart="g17S4DragStart(event,' + i + ')" ondragover="g17S4DragOver(event)" ondrop="g17S4Drop(event,' + i + ')">'
+          + '<div class="g17-s4-pos">' + (i+1) + '</div>'
+          + '<div class="g17-s4-emoji">' + item.emoji + '</div>'
+          + '<div class="g17-s4-label">' + item.label + '</div>'
+          + '<div class="g17-s4-drag-hint">⠿</div>'
+          + '</div>';
+  });
+  list.innerHTML = html;
+}
+
+/* tap-to-swap (works on all devices) */
+function g17S4Tap(idx) {
+  if (g17S4Selected === -1) {
+    g17S4Selected = idx;
+  } else if (g17S4Selected === idx) {
+    g17S4Selected = -1;
+  } else {
+    var tmp = g17S4Order[g17S4Selected];
+    g17S4Order[g17S4Selected] = g17S4Order[idx];
+    g17S4Order[idx] = tmp;
+    g17S4Selected = -1;
+  }
+  g17RenderS4();
+}
+
+/* drag-and-drop (desktop) */
+var g17DragSrc = -1;
+function g17S4DragStart(e, idx) {
+  g17DragSrc = idx;
+  e.dataTransfer.effectAllowed = 'move';
+}
+function g17S4DragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+}
+function g17S4Drop(e, idx) {
+  e.preventDefault();
+  if (g17DragSrc < 0 || g17DragSrc === idx) { g17DragSrc = -1; return; }
+  var tmp = g17S4Order[g17DragSrc];
+  g17S4Order[g17DragSrc] = g17S4Order[idx];
+  g17S4Order[idx] = tmp;
+  g17DragSrc = -1;
+  g17S4Selected = -1;
+  g17RenderS4();
+}
+
+function g17CheckS4() {
+  var match = G17_S4_CORRECT.every(function(id, i){ return g17S4Order[i] === id; });
+  var fb = document.getElementById('g17S4Feedback');
+  if (match) {
+    g17S4Success();
+  } else {
+    g17S4WrongCount++;
+    if (g17S4WrongCount >= 2) {
+      document.getElementById('g17S4Hint').style.display = 'block';
+    }
+    fb.style.color = 'rgba(255,130,130,0.95)';
+    fb.textContent = 'הזמן עדיין לא השתכנע… משהו כאן נעלם מוקדם מדי או מאוחר מדי.';
+    // shake
+    var cards = document.querySelectorAll('.g17-s4-card');
+    cards.forEach(function(c){ c.style.animation='g17shake .35s ease'; });
+    setTimeout(function(){ cards.forEach(function(c){ c.style.animation=''; }); fb.textContent=''; }, 1200);
+  }
+}
+
+function g17S4Success() {
+  document.getElementById('g17S4Feedback').textContent = '';
+  document.getElementById('g17S4Hint').style.display = 'none';
+  // flash cards green one by one
+  var cards = document.querySelectorAll('.g17-s4-card');
+  cards.forEach(function(c, i){
+    setTimeout(function(){ c.classList.add('correct-flash'); }, i * 250);
+  });
+  setTimeout(function(){
+    document.getElementById('g17Success4').classList.add('show');
+  }, cards.length * 250 + 600);
+}
+
+function g17S4ContinueBtn() {
+  document.getElementById('g17Success4').classList.remove('show');
+  g17GoBack();
+}
+</script>"""
+
+if OLD_JS in content:
+    content = content.replace(OLD_JS, NEW_JS, 1)
+    print("JS OK")
+else:
+    print("ERROR: JS anchor not found")
+    idx = content.find('function g17S2ContinueBtn()')
+    print(f"  g17S2ContinueBtn at: {idx}")
+
+# ─────────────────────────────────────────────────────────────────
+# 4.  Reset S4 screens on startGame17 re-entry
+# ─────────────────────────────────────────────────────────────────
+OLD_RESET = "  var g17s2ov = document.getElementById('g17Success2'); if(g17s2ov) g17s2ov.classList.remove('show');"
+NEW_RESET = (OLD_RESET
+  + "\n  var g17t4 = document.getElementById('g17Trans4'); if(g17t4) g17t4.classList.remove('show');"
+  + "\n  var g17s4 = document.getElementById('g17S4'); if(g17s4) g17s4.classList.remove('show');"
+  + "\n  var g17s4ov = document.getElementById('g17Success4'); if(g17s4ov) g17s4ov.classList.remove('show');")
+if OLD_RESET in content:
+    content = content.replace(OLD_RESET, NEW_RESET, 1)
+    print("Reset OK")
+else:
+    print("WARN: reset anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(content)
+print(f"Done. {orig} → {len(content)} (+{len(content)-orig})")
+# -*- coding: utf-8 -*-
+filepath = '/sessions/bold-confident-feynman/mnt/outputs/כובש_השטחים.html'
+with open(filepath, 'r', encoding='utf-8') as f:
+    content = f.read()
+orig = len(content)
+print(f"Original: {orig}")
+
+# ─────────────────────────────────────────────────────────────────
+# 1.  CSS for Screen 2
+# ─────────────────────────────────────────────────────────────────
+CSS_ANCHOR = '.g17-gate-light{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,220,100,0.7) 0%,transparent 70%);animation:g17gateBurst 1.2s ease-out forwards;pointer-events:none;border-radius:inherit;}'
+CSS_NEW = CSS_ANCHOR + r"""
+/* ══════ TRANSITION SCREEN ══════ */
+#g17Trans{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(170deg,#020008 0%,#0d0228 60%,#180430 100%);padding:40px 28px;text-align:center;direction:rtl;}
+#g17Trans.show{display:flex;}
+.g17-trans-icon{font-size:64px;margin-bottom:22px;animation:g17transFloat 3s ease-in-out infinite;}
+@keyframes g17transFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.g17-trans-text{font-size:16px;color:rgba(215,190,255,0.88);line-height:1.85;max-width:320px;border:1px solid rgba(160,80,255,0.25);border-radius:18px;padding:20px 22px;background:rgba(60,0,120,0.28);margin-bottom:32px;}
+.g17-trans-btn{background:linear-gradient(135deg,#6600aa,#bb0099);border:none;color:#fff;font-size:17px;font-weight:900;padding:16px 50px;border-radius:28px;cursor:pointer;box-shadow:0 6px 28px rgba(160,0,220,0.55);transition:transform .15s;}
+.g17-trans-btn:active{transform:scale(.96);}
+/* ══════ SCREEN 2 – MIRRORS ROOM ══════ */
+#g17S2{display:none;min-height:100vh;flex-direction:column;align-items:center;background:linear-gradient(170deg,#050010 0%,#100225 55%,#080018 100%);padding-bottom:48px;direction:rtl;}
+#g17S2.show{display:flex;}
+.g17-s2-narration{font-size:13px;color:rgba(200,175,255,0.78);text-align:center;max-width:340px;line-height:1.75;padding:10px 20px 16px;border-bottom:1px solid rgba(140,70,255,0.2);margin-bottom:16px;width:100%;box-sizing:border-box;}
+/* 4 mirrors grid */
+.g17-mirrors-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px;width:100%;max-width:420px;box-sizing:border-box;margin-bottom:16px;}
+.g17-mirror{position:relative;background:linear-gradient(160deg,#08001c,#140435,#0a0020);border-radius:50% 50% 46% 46% / 55% 55% 45% 45%;border:2px solid rgba(160,80,255,0.45);padding:18px 10px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:default;transition:box-shadow .4s,border-color .4s;min-height:120px;overflow:hidden;}
+.g17-mirror::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(145deg,rgba(200,140,255,0.06) 0%,transparent 60%);pointer-events:none;}
+.g17-mirror-letters{font-size:22px;font-weight:900;color:rgba(220,190,255,0.9);letter-spacing:4px;font-family:monospace;text-shadow:0 0 12px rgba(180,100,255,0.6);}
+.g17-mirror-num{font-size:11px;color:rgba(180,140,255,0.45);font-weight:700;letter-spacing:1px;}
+/* lit state (success) */
+.g17-mirror.lit{border-color:rgba(255,215,0,0.9);box-shadow:0 0 28px rgba(255,200,0,0.7),0 0 60px rgba(255,160,0,0.3),inset 0 0 20px rgba(255,210,0,0.15);animation:g17mirrorLit .6s ease-out;}
+@keyframes g17mirrorLit{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}
+.g17-mirror.lit .g17-mirror-letters{color:#ffd700;text-shadow:0 0 20px rgba(255,215,0,0.9);}
+/* central mirror */
+.g17-central-wrap{width:100%;max-width:420px;padding:0 16px;box-sizing:border-box;margin-bottom:14px;display:flex;flex-direction:column;align-items:center;}
+.g17-central-mirror{width:100%;background:linear-gradient(175deg,#06001a,#140338,#08001c);border-radius:50% 50% 48% 48% / 38% 38% 62% 62%;border:2.5px solid rgba(140,60,255,0.5);padding:28px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden;min-height:110px;transition:box-shadow .6s,border-color .6s;}
+.g17-central-mirror::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(145deg,rgba(200,140,255,0.05) 0%,transparent 55%);pointer-events:none;}
+.g17-central-lock{font-size:32px;opacity:.7;}
+.g17-central-label{font-size:12px;color:rgba(170,130,255,0.65);font-weight:700;letter-spacing:1.5px;}
+.g17-central-mirror.open{border-color:rgba(255,215,0,0.95);box-shadow:0 0 40px rgba(255,210,0,0.8),0 0 90px rgba(255,160,0,0.4),inset 0 0 40px rgba(255,220,0,0.2);}
+.g17-central-mirror.open .g17-central-lock{font-size:36px;opacity:1;animation:g17lockUnlock .5s ease-out;}
+@keyframes g17lockUnlock{0%{transform:scale(1) rotate(0)}50%{transform:scale(1.3) rotate(-15deg)}100%{transform:scale(1) rotate(0)}}
+/* code row s2 */
+.g17-s2-lock-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 16px;width:100%;max-width:380px;box-sizing:border-box;}
+.g17-s2-code-row{display:flex;gap:10px;align-items:center;direction:ltr;}
+.g17-s2-input{width:96px;height:52px;background:rgba(6,0,18,0.9);border:2px solid rgba(140,70,255,0.7);border-radius:14px;color:#ffd700;font-size:28px;font-weight:900;text-align:center;letter-spacing:6px;outline:none;caret-color:#ffd700;transition:border-color .2s,box-shadow .2s;}
+.g17-s2-input:focus{border-color:#cc44ff;box-shadow:0 0 18px rgba(200,80,255,0.45);}
+.g17-s2-open-btn{background:linear-gradient(135deg,#7700bb,#c400a0);border:none;color:#fff;font-size:14px;font-weight:900;padding:14px 20px;border-radius:14px;cursor:pointer;box-shadow:0 4px 16px rgba(160,0,255,0.4);transition:transform .12s;}
+.g17-s2-open-btn:active{transform:scale(.95);}
+.g17-s2-feedback{font-size:13px;font-weight:800;color:rgba(255,130,130,0.95);text-align:center;min-height:22px;direction:rtl;}
+.g17-s2-hint{font-size:13px;color:rgba(255,215,0,0.8);text-align:center;max-width:290px;padding:10px 16px;background:rgba(70,55,0,0.32);border:1px solid rgba(255,200,0,0.22);border-radius:12px;display:none;direction:rtl;line-height:1.6;}
+/* success 2 */
+#g17Success2{display:none;position:fixed;inset:0;background:rgba(2,0,10,0.9);z-index:220;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;direction:rtl;}
+#g17Success2.show{display:flex;}
+.g17-s2-success-orb{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff9e6,#ffd700,rgba(255,140,0,0));animation:g17orbpulse 1.6s ease-in-out infinite;margin-bottom:22px;display:flex;align-items:center;justify-content:center;font-size:52px;}
+.g17-s2-success-hed{font-size:22px;font-weight:900;color:#ffd700;margin-bottom:10px;text-shadow:0 0 20px rgba(255,215,0,0.6);}
+.g17-s2-success-body{font-size:15px;color:rgba(220,200,255,0.9);line-height:1.8;max-width:300px;margin-bottom:28px;}
+.g17-s2-continue-btn{background:linear-gradient(135deg,#7700bb,#c400a0);border:none;color:#fff;font-size:16px;font-weight:900;padding:16px 48px;border-radius:26px;cursor:pointer;box-shadow:0 6px 28px rgba(180,0,255,0.55);}
+"""
+if CSS_ANCHOR in content:
+    content = content.replace(CSS_ANCHOR, CSS_NEW, 1)
+    print("CSS OK")
+else:
+    print("ERROR: CSS anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+# 2.  HTML – Transition + Screen 2 (insert before closing </div> of game17UI)
+# ─────────────────────────────────────────────────────────────────
+HTML_ANCHOR = '    <button class="g17-continue-btn" onclick="g17ContinueBtn()">המשך למסע 🌟</button>\n  </div>\n\n</div>\n\n<!-- ══ GAME 16'
+HTML_NEW = '''    <button class="g17-continue-btn" onclick="g17ContinueBtn()">המשך למסע 🌟</button>
+  </div>
+
+  <!-- ── TRANSITION ── -->
+  <div id="g17Trans">
+    <div class="g17-trans-icon">🌟</div>
+    <div class="g17-trans-text">
+      השער נפתח באור זהוב… אבל זה היה רק חימום.<br><br>
+      כדי להגיע אל הנסיכה, תצטרך להרכיב את האמת מתוך השברים.
+    </div>
+    <button class="g17-trans-btn" onclick="g17EnterMirrors()">כניסה לחדר המראות 🪞</button>
+  </div>
+
+  <!-- ── SCREEN 2 – MIRRORS ROOM ── -->
+  <div id="g17S2">
+    <div class="g17-header">
+      <button class="g17-back-btn" onclick="g17GoBack()">⬅ חזור</button>
+      <div class="g17-screen-title">🪞 חדר המראות</div>
+      <div style="width:70px"></div>
+    </div>
+    <div class="g17-s2-narration">
+      המראות פיזרו את הסוד לחלקים.<br>
+      רק מי שיסדר נכון את מה שנשבר — יוכל להמשיך.
+    </div>
+
+    <div class="g17-mirrors-grid">
+      <div class="g17-mirror" id="g17m1">
+        <div class="g17-mirror-letters">NEELEV</div>
+        <div class="g17-mirror-num">מראה א׳</div>
+      </div>
+      <div class="g17-mirror" id="g17m2">
+        <div class="g17-mirror-letters">YTWENT</div>
+        <div class="g17-mirror-num">מראה ב׳</div>
+      </div>
+      <div class="g17-mirror" id="g17m3">
+        <div class="g17-mirror-letters">EHTER</div>
+        <div class="g17-mirror-num">מראה ג׳</div>
+      </div>
+      <div class="g17-mirror" id="g17m4">
+        <div class="g17-mirror-letters">VNESE</div>
+        <div class="g17-mirror-num">מראה ד׳</div>
+      </div>
+    </div>
+
+    <div class="g17-central-wrap">
+      <div class="g17-central-mirror" id="g17CentralMirror">
+        <div class="g17-central-lock">🔒</div>
+        <div class="g17-central-label">מראה המרכז — נעולה</div>
+      </div>
+    </div>
+
+    <div class="g17-s2-lock-wrap">
+      <div class="g17-s2-code-row">
+        <input class="g17-s2-input" id="g17S2Code" type="tel" maxlength="2" placeholder="??"/>
+        <button class="g17-s2-open-btn" onclick="g17CheckS2()">פתח את המראה 🔑</button>
+      </div>
+      <div class="g17-s2-feedback" id="g17S2Feedback"></div>
+      <div class="g17-s2-hint" id="g17S2Hint">
+        💡 המראות לא מציגות מילים שלמות… אבל כל שבר מסתיר מספר.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SUCCESS 2 ── -->
+  <div id="g17Success2">
+    <div class="g17-s2-success-orb">🪞</div>
+    <div class="g17-s2-success-hed">הצלחת להרכיב את הסוד.</div>
+    <div class="g17-s2-success-body">
+      המראה נפתחת… והדרך אל הנסיכה ממשיכה.
+    </div>
+    <button class="g17-s2-continue-btn" onclick="g17S2ContinueBtn()">המשך למסע 🌟</button>
+  </div>
+
+</div>
+
+<!-- ══ GAME 16'''
+if HTML_ANCHOR in content:
+    content = content.replace(HTML_ANCHOR, HTML_NEW, 1)
+    print("HTML OK")
+else:
+    print("ERROR: HTML anchor not found")
+    # debug
+    idx = content.find('g17ContinueBtn()">המשך למסע')
+    print(f"  Button found at: {idx}")
+    if idx > 0: print(repr(content[idx:idx+120]))
+
+# ─────────────────────────────────────────────────────────────────
+# 3.  JS – replace g17ContinueBtn + add all Screen 2 functions
+# ─────────────────────────────────────────────────────────────────
+OLD_JS = r"""function g17ContinueBtn() {
+  // No next screen yet — just close gracefully
+  document.getElementById('g17Success').classList.remove('show');
+  g17GoBack();
+}"""
+NEW_JS = r"""function g17ContinueBtn() {
+  document.getElementById('g17Success').classList.remove('show');
+  // show transition screen
+  var t = document.getElementById('g17Trans');
+  t.classList.add('show');
+  document.getElementById('g17S1').classList.remove('show');
+  document.getElementById('g17Intro').style.display = 'none';
+}
+
+function g17EnterMirrors() {
+  document.getElementById('g17Trans').classList.remove('show');
+  // reset screen 2
+  g17S2WrongCount = 0;
+  document.getElementById('g17S2Code').value = '';
+  document.getElementById('g17S2Feedback').textContent = '';
+  document.getElementById('g17S2Hint').style.display = 'none';
+  document.getElementById('g17Success2').classList.remove('show');
+  ['g17m1','g17m2','g17m3','g17m4'].forEach(function(id){
+    document.getElementById(id).classList.remove('lit');
+  });
+  var cm = document.getElementById('g17CentralMirror');
+  cm.classList.remove('open');
+  cm.querySelector('.g17-central-lock').textContent = '🔒';
+  cm.querySelector('.g17-central-label').textContent = 'מראה המרכז — נעולה';
+  document.getElementById('g17S2').classList.add('show');
+}
+
+let g17S2WrongCount = 0;
+const G17_CODE2 = '41';
+
+function g17CheckS2() {
+  var val = document.getElementById('g17S2Code').value.trim();
+  var fb = document.getElementById('g17S2Feedback');
+  if (!val) {
+    fb.style.color = 'rgba(255,200,100,0.9)';
+    fb.textContent = 'הכנס את הקוד כדי לפתוח את המראה.';
+    return;
+  }
+  if (val === G17_CODE2) {
+    g17MirrorsSuccess();
+  } else {
+    g17S2WrongCount++;
+    if (g17S2WrongCount >= 2) {
+      document.getElementById('g17S2Hint').style.display = 'block';
+    }
+    fb.style.color = 'rgba(255,130,130,0.95)';
+    fb.textContent = 'המראה רעדה… אבל לא נפתחה. הסוד עדיין לא הורכב נכון.';
+    var inp = document.getElementById('g17S2Code');
+    inp.style.borderColor = '#ff4444';
+    setTimeout(function(){ inp.style.borderColor = ''; }, 700);
+    document.getElementById('g17S2Code').value = '';
+  }
+}
+
+function g17MirrorsSuccess() {
+  document.getElementById('g17S2Feedback').textContent = '';
+  document.getElementById('g17S2Hint').style.display = 'none';
+  var mirrors = ['g17m1','g17m2','g17m3','g17m4'];
+  mirrors.forEach(function(id, i) {
+    setTimeout(function(){
+      document.getElementById(id).classList.add('lit');
+    }, i * 320);
+  });
+  // central mirror opens after all 4 light up
+  setTimeout(function(){
+    var cm = document.getElementById('g17CentralMirror');
+    cm.classList.add('open');
+    cm.querySelector('.g17-central-lock').textContent = '🔓';
+    cm.querySelector('.g17-central-label').textContent = 'המראה נפתחת…';
+  }, mirrors.length * 320 + 400);
+  // show success overlay
+  setTimeout(function(){
+    document.getElementById('g17Success2').classList.add('show');
+  }, mirrors.length * 320 + 1400);
+}
+
+function g17S2ContinueBtn() {
+  // No screen 3 yet — close gracefully
+  document.getElementById('g17Success2').classList.remove('show');
+  g17GoBack();
+}"""
+
+if OLD_JS in content:
+    content = content.replace(OLD_JS, NEW_JS, 1)
+    print("JS OK")
+else:
+    print("ERROR: JS anchor not found")
+    idx = content.find('function g17ContinueBtn()')
+    print(f"  g17ContinueBtn found at: {idx}")
+    if idx > 0: print(repr(content[idx:idx+80]))
+
+# ─────────────────────────────────────────────────────────────────
+# 4.  Also reset g17Trans on startGame17 re-entry
+# ─────────────────────────────────────────────────────────────────
+OLD_RESET = "  document.getElementById('g17Intro').style.display = 'flex';\n  document.getElementById('g17S1').classList.remove('show');"
+NEW_RESET = "  document.getElementById('g17Intro').style.display = 'flex';\n  document.getElementById('g17S1').classList.remove('show');\n  var g17t = document.getElementById('g17Trans'); if(g17t) g17t.classList.remove('show');\n  var g17s2 = document.getElementById('g17S2'); if(g17s2) g17s2.classList.remove('show');\n  var g17s2ov = document.getElementById('g17Success2'); if(g17s2ov) g17s2ov.classList.remove('show');"
+if OLD_RESET in content:
+    content = content.replace(OLD_RESET, NEW_RESET, 1)
+    print("Reset OK")
+else:
+    print("WARN: reset anchor not found (non-critical)")
+
+# ─────────────────────────────────────────────────────────────────
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(content)
+print(f"Done. {orig} → {len(content)} (+{len(content)-orig})")
+# -*- coding: utf-8 -*-
+import re
+
+filepath = '/sessions/bold-confident-feynman/mnt/outputs/כובש_השטחים.html'
+with open(filepath, 'r', encoding='utf-8') as f:
+    content = f.read()
+
+orig_len = len(content)
+print(f"Original length: {orig_len}")
+
+# ─────────────────────────────────────────────────────────────────
+# 1.  CSS
+# ─────────────────────────────────────────────────────────────────
+CSS_ANCHOR = '.gc-16:hover{box-shadow:0 8px 32px rgba(0,255,140,0.5);}'
+CSS_NEW = r"""
+/* ── Game 17 – הנסיכה הקסומה ── */
+.gc-17{background:linear-gradient(145deg,#130025,#3d006b);box-shadow:0 4px 22px rgba(160,0,255,0.32);}
+.gc-17:hover{box-shadow:0 8px 32px rgba(200,100,255,0.55);}
+/* --- full-screen container --- */
+#game17UI{display:none;position:fixed;inset:0;z-index:90;overflow-y:auto;overscroll-behavior:contain;}
+#game17UI.show{display:block;}
+/* --- shared back btn --- */
+.g17-back-btn{background:rgba(160,60,255,0.18);border:1.5px solid rgba(180,80,255,0.4);color:#cc88ff;font-size:13px;font-weight:800;padding:7px 14px;border-radius:12px;cursor:pointer;transition:background .15s;}
+.g17-back-btn:active{transform:scale(.95);}
+/* ══════ INTRO SCREEN ══════ */
+#g17Intro{min-height:100vh;display:flex;flex-direction:column;align-items:center;background:linear-gradient(180deg,#03000f 0%,#0f0328 55%,#1a0535 100%);overflow:hidden;position:relative;}
+.g17-intro-stars{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.g17-star{position:absolute;border-radius:50%;background:#fff;animation:g17twinkle 2.5s ease-in-out infinite alternate;}
+@keyframes g17twinkle{0%{opacity:.15;transform:scale(.8)}100%{opacity:1;transform:scale(1.3)}}
+.g17-castle-wrap{width:100%;max-width:520px;flex-shrink:0;}
+.g17-castle-svg{width:100%;display:block;}
+.g17-intro-body{text-align:center;padding:0 24px 40px;direction:rtl;position:relative;z-index:2;width:100%;max-width:420px;}
+.g17-main-title{font-size:30px;font-weight:900;background:linear-gradient(135deg,#ffe57a,#ffd700,#ffb300);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px;margin-bottom:4px;line-height:1.2;}
+.g17-sub-title{font-size:13px;color:rgba(200,155,255,0.85);font-weight:800;letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;}
+.g17-intro-story{font-size:14px;color:rgba(220,200,255,0.82);line-height:1.85;border:1px solid rgba(160,80,255,0.25);border-radius:18px;padding:18px 20px;background:rgba(70,0,130,0.25);margin-bottom:26px;text-align:center;}
+.g17-start-btn{background:linear-gradient(135deg,#7700bb,#c400a0);border:none;color:#fff;font-size:18px;font-weight:900;padding:16px 52px;border-radius:30px;cursor:pointer;box-shadow:0 6px 28px rgba(180,0,255,0.55);letter-spacing:1px;transition:transform .15s,box-shadow .15s;}
+.g17-start-btn:hover{transform:translateY(-2px);box-shadow:0 10px 38px rgba(200,0,255,0.75);}
+.g17-start-btn:active{transform:scale(.97);}
+/* ══════ SCREEN 1 – GATE ══════ */
+#g17S1{display:none;min-height:100vh;flex-direction:column;align-items:center;background:linear-gradient(170deg,#070014 0%,#130330 55%,#0d0028 100%);padding-bottom:48px;direction:rtl;}
+#g17S1.show{display:flex;}
+.g17-header{width:100%;max-width:480px;display:flex;align-items:center;justify-content:space-between;padding:14px 16px 6px;}
+.g17-screen-title{font-size:15px;font-weight:900;color:#ffd700;}
+.g17-narration{font-size:13px;color:rgba(215,190,255,0.8);text-align:center;max-width:340px;line-height:1.75;padding:10px 20px 16px;border-bottom:1px solid rgba(160,80,255,0.2);margin-bottom:10px;width:100%;box-sizing:border-box;}
+/* scene grid */
+.g17-scene{display:grid;grid-template-columns:1fr 160px 1fr;grid-template-rows:1fr 1fr;gap:10px;padding:6px 14px;width:100%;max-width:440px;box-sizing:border-box;}
+.g17-item{display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(70,0,130,0.3);border:1.5px solid rgba(160,80,255,0.35);border-radius:18px;padding:12px 6px 10px;cursor:pointer;gap:5px;transition:transform .15s,background .15s,box-shadow .15s;-webkit-tap-highlight-color:transparent;}
+.g17-item:hover,.g17-item:active{transform:scale(1.07);background:rgba(110,0,190,0.5);box-shadow:0 4px 20px rgba(180,80,255,0.45);}
+.g17-item.checked{border-color:#ffd700;background:rgba(100,70,0,0.35);box-shadow:0 0 14px rgba(255,200,0,0.3);}
+.g17-item-icon{font-size:36px;line-height:1.1;}
+.g17-item-lbl{font-size:11px;color:rgba(205,170,255,0.9);font-weight:800;text-align:center;}
+.g17-gate-cell{grid-column:2;grid-row:1/3;display:flex;align-items:center;justify-content:center;}
+.g17-gate-svg{width:100%;max-width:158px;}
+/* lock section */
+.g17-lock-wrap{width:100%;max-width:380px;display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 16px;margin-top:4px;}
+.g17-code-row{display:flex;gap:10px;align-items:center;direction:ltr;}
+.g17-code-input{width:118px;height:52px;background:rgba(10,0,28,0.9);border:2px solid rgba(160,80,255,0.7);border-radius:14px;color:#ffd700;font-size:28px;font-weight:900;text-align:center;letter-spacing:8px;outline:none;caret-color:#ffd700;transition:border-color .2s,box-shadow .2s;}
+.g17-code-input:focus{border-color:#cc44ff;box-shadow:0 0 18px rgba(200,80,255,0.45);}
+.g17-open-btn{background:linear-gradient(135deg,#7700bb,#c400a0);border:none;color:#fff;font-size:15px;font-weight:900;padding:14px 22px;border-radius:14px;cursor:pointer;box-shadow:0 4px 18px rgba(160,0,255,0.4);transition:transform .12s;}
+.g17-open-btn:active{transform:scale(.95);}
+.g17-feedback{font-size:13px;font-weight:800;color:rgba(255,140,140,0.95);text-align:center;min-height:22px;padding:0 20px;direction:rtl;}
+.g17-hint-box{font-size:13px;color:rgba(255,215,0,0.8);text-align:center;max-width:290px;padding:10px 16px;background:rgba(70,55,0,0.35);border:1px solid rgba(255,200,0,0.25);border-radius:12px;display:none;direction:rtl;line-height:1.6;}
+/* ══════ POPUP ══════ */
+#g17Popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.78);z-index:210;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;}
+#g17Popup.show{display:flex;}
+.g17-popup-box{background:linear-gradient(145deg,#170430,#2c006a);border:1.5px solid rgba(200,110,255,0.55);border-radius:26px;max-width:320px;width:100%;padding:28px 22px 22px;text-align:center;position:relative;box-shadow:0 10px 48px rgba(160,0,255,0.5);direction:rtl;}
+.g17-popup-icon{font-size:54px;margin-bottom:12px;line-height:1;}
+.g17-popup-name{font-size:13px;color:rgba(200,155,255,0.75);font-weight:800;margin-bottom:8px;letter-spacing:1px;}
+.g17-popup-clue{font-size:15px;color:rgba(230,210,255,0.95);line-height:1.75;margin-bottom:22px;}
+.g17-popup-close{background:rgba(160,60,255,0.22);border:1.5px solid rgba(200,110,255,0.45);color:#cc88ff;font-size:14px;font-weight:800;padding:10px 30px;border-radius:14px;cursor:pointer;transition:background .15s;}
+.g17-popup-close:hover{background:rgba(160,60,255,0.45);}
+/* ══════ SUCCESS OVERLAY ══════ */
+#g17Success{display:none;position:fixed;inset:0;background:rgba(2,0,10,0.9);z-index:220;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;direction:rtl;}
+#g17Success.show{display:flex;}
+.g17-success-orb{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff9e6,#ffd700,rgba(255,140,0,0));animation:g17orbpulse 1.6s ease-in-out infinite;margin-bottom:22px;display:flex;align-items:center;justify-content:center;font-size:50px;}
+@keyframes g17orbpulse{0%,100%{transform:scale(1);box-shadow:0 0 30px rgba(255,215,0,0.5)}50%{transform:scale(1.12);box-shadow:0 0 70px rgba(255,215,0,0.9)}}
+.g17-success-hed{font-size:24px;font-weight:900;color:#ffd700;margin-bottom:10px;text-shadow:0 0 20px rgba(255,215,0,0.6);}
+.g17-success-body{font-size:15px;color:rgba(220,200,255,0.9);line-height:1.8;max-width:300px;margin-bottom:30px;}
+.g17-continue-btn{background:linear-gradient(135deg,#7700bb,#c400a0);border:none;color:#fff;font-size:16px;font-weight:900;padding:16px 48px;border-radius:26px;cursor:pointer;box-shadow:0 6px 28px rgba(180,0,255,0.55);}
+/* gate open animation */
+@keyframes g17gateOpen{0%{transform:scaleX(1);opacity:1}100%{transform:scaleX(0);opacity:0}}
+.g17-gate-opening .g17-gate-bars{animation:g17gateOpen .9s ease-in forwards;}
+@keyframes g17lockGlow{0%,100%{filter:drop-shadow(0 0 4px rgba(255,215,0,0.4))}50%{filter:drop-shadow(0 0 16px rgba(255,215,0,1))}}
+.g17-lock-glow{animation:g17lockGlow .5s ease-in-out 3;}
+/* gate light burst */
+@keyframes g17gateBurst{0%{opacity:0;transform:scaleX(0)}40%{opacity:1}100%{opacity:0;transform:scaleX(1)}}
+.g17-gate-light{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,220,100,0.7) 0%,transparent 70%);animation:g17gateBurst 1.2s ease-out forwards;pointer-events:none;border-radius:inherit;}
+"""
+
+if CSS_ANCHOR in content:
+    content = content.replace(CSS_ANCHOR, CSS_ANCHOR + CSS_NEW, 1)
+    print("CSS OK")
+else:
+    print("ERROR: CSS anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+# 2. CATEGORY + CARD (after עוד משחקים section)
+# ─────────────────────────────────────────────────────────────────
+CAT_ANCHOR = '            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n\n    <!-- Ignisia right ads -->'
+CAT_NEW = '''            </div>
+          </div>
+        </div>
+
+        <!-- ══ חדר בריחה ══ -->
+        <div class="cat-section">
+          <div class="cat-header">
+            <div class="cat-line"></div>
+            <span class="cat-title">🏰 חדר בריחה</span>
+            <div class="cat-line"></div>
+          </div>
+          <div class="cat-grid cat-grid-2">
+            <div class="game-card gc-17" onclick="startFromCard(17)">
+              <div class="card-num-badge">16</div>
+              <span class="card-icon">🔮</span>
+              <div class="card-name">הנסיכה הקסומה</div>
+              <div class="card-desc">פענח את סימני האגדות ופתח את שער הממלכה</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Ignisia right ads -->'''
+
+if CAT_ANCHOR in content:
+    content = content.replace(CAT_ANCHOR, CAT_NEW, 1)
+    print("Category OK")
+else:
+    print("ERROR: Category anchor not found — trying fallback")
+    # fallback: look for simpler pattern
+    fallback = '      </div>\n    </div>\n\n    <!-- Ignisia right ads -->'
+    if fallback in content:
+        content = content.replace(fallback,
+            '\n        <!-- ══ חדר בריחה ══ -->\n'
+            '        <div class="cat-section">\n'
+            '          <div class="cat-header">\n'
+            '            <div class="cat-line"></div>\n'
+            '            <span class="cat-title">🏰 חדר בריחה</span>\n'
+            '            <div class="cat-line"></div>\n'
+            '          </div>\n'
+            '          <div class="cat-grid cat-grid-2">\n'
+            '            <div class="game-card gc-17" onclick="startFromCard(17)">\n'
+            '              <div class="card-num-badge">16</div>\n'
+            '              <span class="card-icon">🔮</span>\n'
+            '              <div class="card-name">הנסיכה הקסומה</div>\n'
+            '              <div class="card-desc">פענח את סימני האגדות ופתח את שער הממלכה</div>\n'
+            '            </div>\n'
+            '          </div>\n'
+            '        </div>\n\n'
+            '      </div>\n    </div>\n\n    <!-- Ignisia right ads -->', 1)
+        print("Category fallback OK")
+    else:
+        print("ERROR: fallback also failed")
+
+# ─────────────────────────────────────────────────────────────────
+# 3. GAME HTML (before BREAK MODAL)
+# ─────────────────────────────────────────────────────────────────
+HTML_ANCHOR = '<!-- ══ GAME 16 – מיקס מילים ══ -->'
+
+GAME_HTML = '''<!-- ══ GAME 17 – הנסיכה הקסומה ══ -->
+<div id="game17UI">
+
+  <!-- ── INTRO SCREEN ── -->
+  <div id="g17Intro">
+    <div class="g17-intro-stars" id="g17Stars"></div>
+
+    <div class="g17-castle-wrap">
+      <svg class="g17-castle-svg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g17sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#020009"/>
+            <stop offset="45%" stop-color="#0f0328"/>
+            <stop offset="100%" stop-color="#1a0535"/>
+          </linearGradient>
+          <radialGradient id="g17moonhalo" cx="75%" cy="20%" r="25%">
+            <stop offset="0%" stop-color="rgba(255,245,180,0.35)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          <radialGradient id="g17moonface" cx="42%" cy="38%" r="50%">
+            <stop offset="0%" stop-color="#fffde8"/>
+            <stop offset="65%" stop-color="#ffe082"/>
+            <stop offset="100%" stop-color="#ffc107"/>
+          </radialGradient>
+          <radialGradient id="g17win1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff9c4"/>
+            <stop offset="100%" stop-color="#ffa726"/>
+          </radialGradient>
+          <filter id="g17glow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="g17wglow" x="-120%" y="-120%" width="340%" height="340%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Sky -->
+        <rect width="400" height="260" fill="url(#g17sky)"/>
+        <!-- Moon halo -->
+        <circle cx="300" cy="52" r="52" fill="url(#g17moonhalo)"/>
+        <!-- Moon -->
+        <circle cx="300" cy="52" r="26" fill="url(#g17moonface)" filter="url(#g17glow)"/>
+        <circle cx="293" cy="46" r="4" fill="rgba(0,0,0,0.09)"/>
+        <circle cx="308" cy="57" r="3" fill="rgba(0,0,0,0.07)"/>
+        <!-- Stars -->
+        <circle cx="30" cy="20" r="1.5" fill="#fff" opacity=".8"/>
+        <circle cx="65" cy="11" r="1" fill="#fff" opacity=".6"/>
+        <circle cx="110" cy="26" r="1.5" fill="#fff" opacity=".9"/>
+        <circle cx="148" cy="9" r="1" fill="#fff" opacity=".7"/>
+        <circle cx="182" cy="19" r="2" fill="#ffe082" opacity=".75"/>
+        <circle cx="222" cy="13" r="1" fill="#fff" opacity=".6"/>
+        <circle cx="252" cy="31" r="1.5" fill="#fff" opacity=".7"/>
+        <circle cx="356" cy="16" r="1" fill="#fff" opacity=".8"/>
+        <circle cx="386" cy="36" r="1.5" fill="#fff" opacity=".6"/>
+        <circle cx="50" cy="46" r="1" fill="#fff" opacity=".5"/>
+        <circle cx="15" cy="62" r="1.5" fill="#fff" opacity=".65"/>
+        <circle cx="372" cy="62" r="1" fill="#fff" opacity=".6"/>
+        <circle cx="79" cy="56" r="1" fill="#fff" opacity=".4"/>
+        <circle cx="166" cy="42" r="1" fill="#ffe082" opacity=".55"/>
+        <circle cx="330" cy="86" r="1" fill="#fff" opacity=".45"/>
+        <circle cx="18" cy="88" r="1" fill="#fff" opacity=".4"/>
+        <circle cx="390" cy="90" r="1.5" fill="#fff" opacity=".5"/>
+        <!-- Ground -->
+        <ellipse cx="200" cy="255" rx="240" ry="28" fill="#0a001a"/>
+        <!-- Left wall -->
+        <rect x="32" y="158" width="336" height="102" fill="#14072e"/>
+        <!-- Left tower -->
+        <rect x="26" y="128" width="74" height="102" fill="#130630"/>
+        <rect x="21" y="116" width="84" height="17" fill="#180a3a"/>
+        <rect x="23" y="105" width="15" height="14" fill="#180a3a"/>
+        <rect x="46" y="105" width="15" height="14" fill="#180a3a"/>
+        <rect x="69" y="105" width="15" height="14" fill="#180a3a"/>
+        <rect x="87" y="105" width="15" height="14" fill="#180a3a"/>
+        <!-- Center tower (tallest) -->
+        <rect x="150" y="58" width="100" height="172" fill="#1a0c3e"/>
+        <rect x="144" y="46" width="112" height="17" fill="#1e1046"/>
+        <rect x="146" y="33" width="17" height="16" fill="#1e1046"/>
+        <rect x="171" y="33" width="17" height="16" fill="#1e1046"/>
+        <rect x="196" y="33" width="17" height="16" fill="#1e1046"/>
+        <rect x="221" y="33" width="17" height="16" fill="#1e1046"/>
+        <rect x="239" y="33" width="17" height="16" fill="#1e1046"/>
+        <!-- Center spire -->
+        <polygon points="200,8 179,44 221,44" fill="#220e4c"/>
+        <!-- Right tower -->
+        <rect x="300" y="128" width="74" height="102" fill="#130630"/>
+        <rect x="295" y="116" width="84" height="17" fill="#180a3a"/>
+        <rect x="297" y="105" width="15" height="14" fill="#180a3a"/>
+        <rect x="320" y="105" width="15" height="14" fill="#180a3a"/>
+        <rect x="343" y="105" width="15" height="14" fill="#180a3a"/>
+        <rect x="362" y="105" width="15" height="14" fill="#180a3a"/>
+        <!-- Gate arch -->
+        <path d="M154,260 L154,178 Q200,140 246,178 L246,260 Z" fill="#07000e"/>
+        <!-- Gate bars -->
+        <line x1="165" y1="188" x2="165" y2="260" stroke="#1a0832" stroke-width="5"/>
+        <line x1="179" y1="182" x2="179" y2="260" stroke="#1a0832" stroke-width="5"/>
+        <line x1="192" y1="178" x2="192" y2="260" stroke="#1a0832" stroke-width="5"/>
+        <line x1="208" y1="178" x2="208" y2="260" stroke="#1a0832" stroke-width="5"/>
+        <line x1="221" y1="182" x2="221" y2="260" stroke="#1a0832" stroke-width="5"/>
+        <line x1="235" y1="188" x2="235" y2="260" stroke="#1a0832" stroke-width="5"/>
+        <!-- Glowing windows -->
+        <rect x="52" y="142" width="22" height="28" rx="3" fill="url(#g17win1)" filter="url(#g17wglow)" opacity=".85"/>
+        <rect x="104" y="168" width="19" height="24" rx="2" fill="#ffa726" filter="url(#g17wglow)" opacity=".65"/>
+        <rect x="170" y="72" width="19" height="25" rx="2" fill="url(#g17win1)" filter="url(#g17wglow)" opacity=".9"/>
+        <rect x="211" y="72" width="19" height="25" rx="2" fill="url(#g17win1)" filter="url(#g17wglow)" opacity=".85"/>
+        <rect x="170" y="112" width="19" height="24" rx="2" fill="#ffb300" filter="url(#g17wglow)" opacity=".7"/>
+        <rect x="211" y="112" width="19" height="24" rx="2" fill="#ffb300" filter="url(#g17wglow)" opacity=".65"/>
+        <rect x="277" y="168" width="19" height="24" rx="2" fill="#ffa726" filter="url(#g17wglow)" opacity=".65"/>
+        <rect x="326" y="142" width="22" height="28" rx="3" fill="url(#g17win1)" filter="url(#g17wglow)" opacity=".85"/>
+        <!-- ground glow -->
+        <ellipse cx="200" cy="257" rx="55" ry="7" fill="rgba(140,60,255,0.18)"/>
+      </svg>
+    </div>
+
+    <div class="g17-intro-body">
+      <div class="g17-main-title">הנסיכה הקסומה</div>
+      <div class="g17-sub-title">✦ חדר הבריחה ✦</div>
+      <div class="g17-intro-story">
+        ברוכים הבאים לחדר הבריחה של הנסיכה הקסומה.<br>
+        רק מי שיפענח את סימני האגדות…<br>יוכל להיכנס אל הממלכה.
+      </div>
+      <button class="g17-start-btn" onclick="g17StartPuzzle()">✨ התחל מסע</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 1 – THE GATE ── -->
+  <div id="g17S1">
+    <div class="g17-header">
+      <button class="g17-back-btn" onclick="g17GoBack()">⬅ חזור</button>
+      <div class="g17-screen-title">🔒 שער הכניסה</div>
+      <div style="width:70px"></div>
+    </div>
+    <div class="g17-narration">
+      ארבע אגדות השאירו כאן סימן.<br>
+      כל סימן מסתיר ספרה אחת.<br>
+      מצא את הקוד ופתח את השער.
+    </div>
+
+    <div class="g17-scene">
+      <!-- Top-left: Apple (Snow White) -->
+      <div class="g17-item" id="g17item-apple" onclick="g17OpenClue('apple')">
+        <div class="g17-item-icon">🍎</div>
+        <div class="g17-item-lbl">תפוח</div>
+      </div>
+
+      <!-- CENTER: Gate (spans 2 rows) -->
+      <div class="g17-gate-cell">
+        <div style="position:relative;width:100%;">
+          <svg class="g17-gate-svg" viewBox="0 0 160 260" xmlns="http://www.w3.org/2000/svg" id="g17GateSvg">
+            <defs>
+              <linearGradient id="g17st" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#28145a"/>
+                <stop offset="50%" stop-color="#3c2080"/>
+                <stop offset="100%" stop-color="#28145a"/>
+              </linearGradient>
+              <linearGradient id="g17bar" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#281a4a"/>
+                <stop offset="50%" stop-color="#483568"/>
+                <stop offset="100%" stop-color="#281a4a"/>
+              </linearGradient>
+            </defs>
+            <!-- Outer arch stone -->
+            <path d="M8,260 L8,106 Q80,22 152,106 L152,260 Z" fill="url(#g17st)" stroke="#5a3a90" stroke-width="2"/>
+            <!-- Stone seam lines -->
+            <line x1="8" y1="142" x2="38" y2="142" stroke="#4a2a70" stroke-width="1"/>
+            <line x1="122" y1="142" x2="152" y2="142" stroke="#4a2a70" stroke-width="1"/>
+            <line x1="8" y1="178" x2="33" y2="178" stroke="#4a2a70" stroke-width="1"/>
+            <line x1="127" y1="178" x2="152" y2="178" stroke="#4a2a70" stroke-width="1"/>
+            <line x1="8" y1="214" x2="28" y2="214" stroke="#4a2a70" stroke-width="1"/>
+            <line x1="132" y1="214" x2="152" y2="214" stroke="#4a2a70" stroke-width="1"/>
+            <!-- Inner arch dark -->
+            <path d="M28,260 L28,114 Q80,44 132,114 L132,260 Z" fill="#05000c"/>
+            <!-- Iron bars group (will be animated) -->
+            <g id="g17Bars" class="g17-gate-bars">
+              <rect x="36" y="126" width="10" height="134" rx="5" fill="url(#g17bar)"/>
+              <rect x="54" y="119" width="10" height="141" rx="5" fill="url(#g17bar)"/>
+              <rect x="72" y="116" width="10" height="144" rx="5" fill="url(#g17bar)"/>
+              <rect x="90" y="116" width="10" height="144" rx="5" fill="url(#g17bar)"/>
+              <rect x="108" y="119" width="10" height="141" rx="5" fill="url(#g17bar)"/>
+              <rect x="126" y="126" width="10" height="134" rx="5" fill="url(#g17bar)"/>
+              <!-- Spikes -->
+              <polygon points="41,126 36,111 46,111" fill="#5a3a90"/>
+              <polygon points="59,119 54,104 64,104" fill="#5a3a90"/>
+              <polygon points="77,116 72,101 82,101" fill="#5a3a90"/>
+              <polygon points="95,116 90,101 100,101" fill="#5a3a90"/>
+              <polygon points="113,119 108,104 118,104" fill="#5a3a90"/>
+              <polygon points="131,126 126,111 136,111" fill="#5a3a90"/>
+              <!-- Crossbar -->
+              <rect x="31" y="172" width="98" height="10" rx="4" fill="#3a2a60" stroke="#5a4080" stroke-width="1"/>
+            </g>
+            <!-- Lock -->
+            <g id="g17LockGroup">
+              <rect x="66" y="155" width="28" height="20" rx="5" fill="#1a1000" stroke="#ffd700" stroke-width="1.5" id="g17LockBody"/>
+              <path d="M70,155 L70,146 Q80,136 90,146 L90,155" fill="none" stroke="#ffd700" stroke-width="2.2" id="g17LockShackle"/>
+              <circle cx="80" cy="163" r="4" fill="#04000a"/>
+              <rect x="78" y="165" width="4" height="6" rx="1.5" fill="#04000a"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Top-right: Love Letter (Romeo & Juliet) -->
+      <div class="g17-item" id="g17item-letter" onclick="g17OpenClue('letter')">
+        <div class="g17-item-icon">💌</div>
+        <div class="g17-item-lbl">מכתב אהבה</div>
+      </div>
+
+      <!-- Bottom-left: Clock (Cinderella) -->
+      <div class="g17-item" id="g17item-clock" onclick="g17OpenClue('clock')">
+        <div class="g17-item-icon">🕛</div>
+        <div class="g17-item-lbl">שעון חצות</div>
+      </div>
+
+      <!-- Bottom-right: Building (Sesame Street / neighbors) -->
+      <div class="g17-item" id="g17item-building" onclick="g17OpenClue('building')">
+        <div class="g17-item-icon">🏠</div>
+        <div class="g17-item-lbl">בניין</div>
+      </div>
+    </div>
+
+    <div class="g17-lock-wrap">
+      <div class="g17-code-row">
+        <input class="g17-code-input" id="g17CodeInput" type="tel" maxlength="4" placeholder="????"/>
+        <button class="g17-open-btn" onclick="g17CheckCode()">פתח את השער 🔑</button>
+      </div>
+      <div class="g17-feedback" id="g17Feedback"></div>
+      <div class="g17-hint-box" id="g17Hint">
+        💡 כל פריט מספר סיפור אחר… אל תחפש תשובה ישירה — אלא <em>משמעות</em>.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CLUE POPUP ── -->
+  <div id="g17Popup">
+    <div class="g17-popup-box">
+      <div class="g17-popup-icon" id="g17PopupIcon"></div>
+      <div class="g17-popup-name" id="g17PopupName"></div>
+      <div class="g17-popup-clue" id="g17PopupClue"></div>
+      <button class="g17-popup-close" onclick="g17CloseClue()">סגור</button>
+    </div>
+  </div>
+
+  <!-- ── SUCCESS OVERLAY ── -->
+  <div id="g17Success">
+    <div class="g17-success-orb">🔓</div>
+    <div class="g17-success-hed">השער נפתח…</div>
+    <div class="g17-success-body">
+      אתה מתחיל להבין את שפת האגדות.<br>
+      הממלכה מחכה לך מעבר לשער.
+    </div>
+    <button class="g17-continue-btn" onclick="g17ContinueBtn()">המשך למסע 🌟</button>
+  </div>
+
+</div>
+
+'''
+
+if HTML_ANCHOR in content:
+    content = content.replace(HTML_ANCHOR, GAME_HTML + HTML_ANCHOR, 1)
+    print("HTML OK")
+else:
+    print("ERROR: HTML anchor not found — trying BREAK MODAL")
+    BM = '<!-- ══ BREAK MODAL ══ -->'
+    if BM in content:
+        content = content.replace(BM, GAME_HTML + BM, 1)
+        print("HTML fallback OK")
+    else:
+        print("ERROR: HTML fallback also failed")
+
+# ─────────────────────────────────────────────────────────────────
+# 4. ROUTING
+# ─────────────────────────────────────────────────────────────────
+ROUTE_ANCHOR = '  if(lvl===16){startGame16();return;}'
+ROUTE_NEW = '  if(lvl===16){startGame16();return;}\n  if(lvl===17){startGame17();return;}'
+if ROUTE_ANCHOR in content:
+    content = content.replace(ROUTE_ANCHOR, ROUTE_NEW, 1)
+    print("Routing OK")
+else:
+    print("ERROR: Routing anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+# 5. CLEANUP IN hideGame
+# ─────────────────────────────────────────────────────────────────
+HIDE_ANCHOR = '  g16ExitToMenu&&g16ExitToMenu(true);'
+HIDE_NEW = '  g16ExitToMenu&&g16ExitToMenu(true);\n  g17ExitToMenu&&g17ExitToMenu(true);'
+if HIDE_ANCHOR in content:
+    content = content.replace(HIDE_ANCHOR, HIDE_NEW, 1)
+    print("Cleanup OK")
+else:
+    print("ERROR: Cleanup anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+# 6. JAVASCRIPT
+# ─────────────────────────────────────────────────────────────────
+JS_ANCHOR = '</script>\n</body>'
+
+GAME_JS = r"""
+/* ═══════════════════════════════════════════════
+   GAME 17 – הנסיכה הקסומה – חדר הבריחה
+   ═══════════════════════════════════════════════ */
+let g17ExitToMenu = null;
+let g17WrongCount = 0;
+
+const G17_CLUES = {
+  apple:    { icon:'🍎', name:'שלגיה',           clue:'מי שליווה אותה ביער לא היה אחד… כמה היו?' },
+  letter:   { icon:'💌', name:'רומיאו ויוליה',    clue:'סיפור אהבה אחד… שני לבבות… גורל אחד.\n\nכמה היה?' },
+  clock:    { icon:'🕛', name:'סינדרלה',          clue:'ברגע שהשעון היכה חצות, הקסם נעלם.\nחבר את ספרות השעה שבה הכל השתנה.' },
+  building: { icon:'🏠', name:'דירה להשכיר',      clue:'בבניין אחד חיפשו שכן חדש.\nכמה דיירים כבר גרו שם?' }
+};
+const G17_CODE = '7235';
+
+function startGame17() {
+  if (g17ExitToMenu) g17ExitToMenu(false);
+  var ui = document.getElementById('game17UI');
+  g17WrongCount = 0;
+  // reset state
+  document.getElementById('g17CodeInput').value = '';
+  document.getElementById('g17Feedback').textContent = '';
+  document.getElementById('g17Hint').style.display = 'none';
+  ['apple','letter','clock','building'].forEach(function(k){
+    var el = document.getElementById('g17item-'+k);
+    if(el) el.classList.remove('checked');
+  });
+  document.getElementById('g17Success').classList.remove('show');
+  document.getElementById('g17Popup').classList.remove('show');
+  // restore bars opacity
+  var bars = document.getElementById('g17Bars');
+  if (bars) { bars.style.opacity='1'; bars.style.transform=''; }
+  // show intro
+  document.getElementById('g17Intro').style.display = 'flex';
+  document.getElementById('g17S1').classList.remove('show');
+
+  g17ExitToMenu = function(silent) {
+    g17ExitToMenu = null;
+    if (!silent) { hideGame(); navTo('mainPage'); }
+  };
+  ui.classList.add('show');
+  navTo('game17UI');
+  g17MakeStars();
+}
+
+function g17MakeStars() {
+  var wrap = document.getElementById('g17Stars');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  for (var i = 0; i < 28; i++) {
+    var s = document.createElement('div');
+    s.className = 'g17-star';
+    var sz = 1.5 + Math.random() * 2.5;
+    s.style.cssText = 'width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*70)+'%;left:'+(Math.random()*100)+'%;animation-delay:'+(Math.random()*3)+'s;animation-duration:'+(2+Math.random()*2)+'s;';
+    wrap.appendChild(s);
+  }
+}
+
+function g17StartPuzzle() {
+  document.getElementById('g17Intro').style.display = 'none';
+  document.getElementById('g17S1').classList.add('show');
+}
+
+function g17GoBack() {
+  if (g17ExitToMenu) g17ExitToMenu(false);
+  else { hideGame(); navTo('mainPage'); }
+}
+
+function g17OpenClue(item) {
+  var data = G17_CLUES[item];
+  if (!data) return;
+  document.getElementById('g17PopupIcon').textContent = data.icon;
+  document.getElementById('g17PopupName').textContent = data.name;
+  document.getElementById('g17PopupClue').textContent = data.clue;
+  document.getElementById('g17Popup').classList.add('show');
+  // mark item as checked
+  var el = document.getElementById('g17item-'+item);
+  if (el) el.classList.add('checked');
+}
+
+function g17CloseClue() {
+  document.getElementById('g17Popup').classList.remove('show');
+}
+
+function g17CheckCode() {
+  var val = document.getElementById('g17CodeInput').value.trim();
+  var fb = document.getElementById('g17Feedback');
+  if (val.length < 4) {
+    fb.textContent = 'הכנס 4 ספרות כדי לפתוח את השער.';
+    fb.style.color = 'rgba(255,200,100,0.9)';
+    return;
+  }
+  if (val === G17_CODE) {
+    g17OpenGate();
+  } else {
+    g17WrongCount++;
+    if (g17WrongCount >= 2) {
+      document.getElementById('g17Hint').style.display = 'block';
+    }
+    fb.style.color = 'rgba(255,130,130,0.95)';
+    fb.textContent = 'השער רעד… אבל לא נפתח. אחת האגדות עדיין מסתירה ממך את הסוד.';
+    // shake input
+    var inp = document.getElementById('g17CodeInput');
+    inp.style.animation = 'none';
+    inp.style.borderColor = '#ff4444';
+    setTimeout(function(){
+      inp.style.borderColor = '';
+      inp.style.animation = '';
+    }, 600);
+    document.getElementById('g17CodeInput').value = '';
+  }
+}
+
+function g17OpenGate() {
+  // lock glow
+  var lock = document.getElementById('g17LockGroup');
+  if (lock) lock.style.filter = 'drop-shadow(0 0 12px rgba(255,215,0,1))';
+  document.getElementById('g17Feedback').textContent = '';
+  document.getElementById('g17Hint').style.display = 'none';
+  // fade out bars
+  var bars = document.getElementById('g17Bars');
+  if (bars) {
+    bars.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    bars.style.opacity = '0';
+    bars.style.transform = 'scaleX(0)';
+  }
+  // after animation show success
+  setTimeout(function() {
+    document.getElementById('g17Success').classList.add('show');
+  }, 1100);
+}
+
+function g17ContinueBtn() {
+  // No next screen yet — just close gracefully
+  document.getElementById('g17Success').classList.remove('show');
+  g17GoBack();
+}
+"""
+
+if JS_ANCHOR in content:
+    content = content.replace(JS_ANCHOR, GAME_JS + JS_ANCHOR, 1)
+    print("JS OK")
+else:
+    print("ERROR: JS anchor not found")
+
+# ─────────────────────────────────────────────────────────────────
+# WRITE
+# ─────────────────────────────────────────────────────────────────
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(content)
+new_len = len(content)
+print(f"Done! New length: {new_len}  (+{new_len - orig_len})")
+    import re
+
+filepath = '/sessions/bold-confident-feynman/mnt/outputs/כובש_השטחים.html'
+with open(filepath, 'r', encoding='utf-8') as f:
+    content = f.read()
+
+orig_len = len(content)
+print(f"Original length: {orig_len}")
+
+# ─────────────────────────────────────────
+# 1. ADD CSS (after .gc-15:hover rule)
+# ─────────────────────────────────────────
+CSS_ANCHOR = '.gc-15:hover{box-shadow:0 8px 32px rgba(220,0,255,0.6);}'
+CSS_INSERT = '''
+/* ── Game 16 – מיקס מילים ── */
+.gc-16{background:linear-gradient(145deg,#001a10,#004d2e);box-shadow:0 4px 22px rgba(0,220,120,0.22);}
+.gc-16:hover{box-shadow:0 8px 32px rgba(0,255,140,0.5);}
+#game16UI{display:none;position:fixed;inset:0;background:linear-gradient(160deg,#001a10 0%,#003322 50%,#001a10 100%);flex-direction:column;align-items:center;z-index:90;overflow-y:auto;padding:0 16px 40px;}
+#game16UI.show{display:flex;}
+.g16-header{width:100%;max-width:460px;display:flex;align-items:center;justify-content:space-between;padding:14px 0 10px;}
+.g16-back{background:rgba(0,200,100,0.18);border:1.5px solid rgba(0,220,120,0.4);color:#7fffb8;font-size:14px;font-weight:800;padding:7px 14px;border-radius:12px;cursor:pointer;}
+.g16-back:active{transform:scale(0.95);}
+.g16-title{font-size:22px;font-weight:900;color:#fff;text-align:center;flex:1;direction:rtl;}
+.g16-timer-wrap{width:100%;max-width:460px;display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.g16-timer-bar-bg{flex:1;height:14px;background:rgba(255,255,255,0.1);border-radius:7px;overflow:hidden;}
+.g16-timer-bar{height:100%;width:100%;background:linear-gradient(90deg,#00e87a,#00c46a);border-radius:7px;transition:width 0.25s linear,background 0.5s;}
+.g16-timer-num{font-size:22px;font-weight:900;color:#00e87a;min-width:36px;text-align:center;}
+.g16-score-row{display:flex;gap:20px;margin-bottom:18px;direction:rtl;}
+.g16-score-box{background:rgba(0,200,100,0.12);border:1px solid rgba(0,200,100,0.3);border-radius:14px;padding:8px 20px;text-align:center;}
+.g16-score-label{font-size:11px;color:rgba(0,220,120,0.7);font-weight:700;}
+.g16-score-val{font-size:26px;font-weight:900;color:#00e87a;}
+.g16-word-len{font-size:13px;color:rgba(200,255,230,0.6);margin-bottom:10px;direction:rtl;}
+.g16-built-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;min-height:64px;align-items:center;margin-bottom:14px;direction:rtl;}
+.g16-built-cell{width:52px;height:56px;background:rgba(0,160,80,0.25);border:2px solid rgba(0,220,120,0.5);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#fff;cursor:pointer;transition:transform 0.1s,background 0.15s;}
+.g16-built-cell.filled{background:rgba(0,180,90,0.45);border-color:rgba(0,255,140,0.8);}
+.g16-built-cell.error{background:rgba(200,0,0,0.4);border-color:#ff4444;animation:g16shake 0.35s ease;}
+.g16-built-cell.correct-flash{background:rgba(0,220,120,0.6);border-color:#00ffaa;}
+@keyframes g16shake{0%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}}
+.g16-letters-grid{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:420px;margin-bottom:18px;direction:rtl;}
+.g16-letter-btn{width:58px;height:62px;background:linear-gradient(145deg,rgba(0,160,80,0.5),rgba(0,100,50,0.7));border:2px solid rgba(0,220,120,0.5);border-radius:14px;font-size:28px;font-weight:900;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.1s,opacity 0.15s,background 0.15s;-webkit-tap-highlight-color:transparent;}
+.g16-letter-btn:active{transform:scale(0.9);}
+.g16-letter-btn.used{opacity:0.18;pointer-events:none;}
+.g16-actions{display:flex;gap:12px;margin-bottom:20px;direction:rtl;}
+.g16-act-btn{padding:10px 22px;border-radius:14px;font-size:14px;font-weight:800;cursor:pointer;border:none;transition:transform 0.1s,opacity 0.15s;}
+.g16-act-btn:active{transform:scale(0.93);}
+.g16-undo-btn{background:rgba(255,200,0,0.2);color:#ffd700;border:1.5px solid rgba(255,200,0,0.4);}
+.g16-clear-btn{background:rgba(255,80,80,0.18);color:#ff8888;border:1.5px solid rgba(255,80,80,0.35);}
+.g16-msg{font-size:17px;font-weight:800;color:#fff;min-height:28px;text-align:center;direction:rtl;transition:opacity 0.3s;}
+.g16-confetti-wrap{position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden;}
+.g16-confetti-piece{position:absolute;width:10px;height:10px;border-radius:2px;animation:g16confFall linear forwards;}
+@keyframes g16confFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+'''
+if CSS_ANCHOR in content:
+    content = content.replace(CSS_ANCHOR, CSS_ANCHOR + CSS_INSERT, 1)
+    print("CSS inserted OK")
+else:
+    print("ERROR: CSS anchor not found!")
+
+# ─────────────────────────────────────────
+# 2. ADD GAME CARD in עוד משחקים
+# ─────────────────────────────────────────
+CARD_ANCHOR = '''            <div class="game-card gc-9" onclick="startFromCard(9)">
+              <div class="card-num-badge">14</div>
+              <span class="card-icon">🥙</span>
+              <div class="card-name">מלך הפלאפל</div>
+              <div class="card-desc">תפוס פלאפלים לתוך הפיתה — היה המלך!</div>
+            </div>
+          </div>
+        </div>'''
+CARD_INSERT = '''            <div class="game-card gc-9" onclick="startFromCard(9)">
+              <div class="card-num-badge">14</div>
+              <span class="card-icon">🥙</span>
+              <div class="card-name">מלך הפלאפל</div>
+              <div class="card-desc">תפוס פלאפלים לתוך הפיתה — היה המלך!</div>
+            </div>
+            <div class="game-card gc-16" onclick="startFromCard(16)">
+              <div class="card-num-badge">15</div>
+              <span class="card-icon">🔤</span>
+              <div class="card-name">מיקס מילים</div>
+              <div class="card-desc">הרכב מילים מאותיות מבולבלות — תגבר על השעון!</div>
+            </div>
+          </div>
+        </div>'''
+if CARD_ANCHOR in content:
+    content = content.replace(CARD_ANCHOR, CARD_INSERT, 1)
+    print("Card inserted OK")
+else:
+    print("ERROR: Card anchor not found!")
+
+# ─────────────────────────────────────────
+# 3. ADD GAME HTML (before BREAK MODAL)
+# ─────────────────────────────────────────
+HTML_ANCHOR = '<!-- ══ BREAK MODAL ══ -->'
+GAME_HTML = '''<!-- ══ GAME 16 – מיקס מילים ══ -->
+<div id="game16UI">
+  <div class="g16-header">
+    <button class="g16-back" onclick="g16GoBack()">⬅ חזור</button>
+    <div class="g16-title">🔤 מיקס מילים</div>
+    <div style="width:70px"></div>
+  </div>
+  <div class="g16-score-row">
+    <div class="g16-score-box"><div class="g16-score-label">ניקוד</div><div class="g16-score-val" id="g16Score">0</div></div>
+    <div class="g16-score-box"><div class="g16-score-label">מילה</div><div class="g16-score-val" id="g16WordNum">1</div></div>
+  </div>
+  <div class="g16-timer-wrap">
+    <div class="g16-timer-bar-bg"><div class="g16-timer-bar" id="g16TimerBar"></div></div>
+    <div class="g16-timer-num" id="g16TimerNum">30</div>
+  </div>
+  <div class="g16-word-len" id="g16WordLen"></div>
+  <div class="g16-built-row" id="g16BuiltRow"></div>
+  <div class="g16-letters-grid" id="g16Letters"></div>
+  <div class="g16-actions">
+    <button class="g16-act-btn g16-undo-btn" onclick="g16UndoLast()">↩ בטל אחרון</button>
+    <button class="g16-act-btn g16-clear-btn" onclick="g16Clear()">🗑 נקה הכל</button>
+  </div>
+  <div class="g16-msg" id="g16Msg"></div>
+  <div class="g16-confetti-wrap" id="g16ConfWrap"></div>
+</div>
+
+<!-- ══ BREAK MODAL ══ -->'''
+if HTML_ANCHOR in content:
+    content = content.replace(HTML_ANCHOR, GAME_HTML, 1)
+    print("HTML inserted OK")
+else:
+    print("ERROR: HTML anchor not found!")
+
+# ─────────────────────────────────────────
+# 4. ADD ROUTING in startFromCard
+# ─────────────────────────────────────────
+ROUTE_ANCHOR = '  if(lvl===15){startGame15();return;}'
+ROUTE_INSERT = '  if(lvl===15){startGame15();return;}\n  if(lvl===16){startGame16();return;}'
+if ROUTE_ANCHOR in content:
+    content = content.replace(ROUTE_ANCHOR, ROUTE_INSERT, 1)
+    print("Route inserted OK")
+else:
+    print("ERROR: Route anchor not found!")
+
+# ─────────────────────────────────────────
+# 5. ADD CLEANUP in hideGame
+# ─────────────────────────────────────────
+HIDE_ANCHOR = '  g15ExitToMenu&&g15ExitToMenu(true);'
+HIDE_INSERT = '  g15ExitToMenu&&g15ExitToMenu(true);\n  g16ExitToMenu&&g16ExitToMenu(true);'
+if HIDE_ANCHOR in content:
+    content = content.replace(HIDE_ANCHOR, HIDE_INSERT, 1)
+    print("Hide cleanup inserted OK")
+else:
+    print("ERROR: Hide anchor not found!")
+
+# ─────────────────────────────────────────
+# 6. ADD JS (before closing </script>)
+# ─────────────────────────────────────────
+JS_ANCHOR = '</script>\n</body>'
+GAME_JS = r"""
+/* ═══════════════════════════════════════════════
+   GAME 16 – מיקס מילים (Word Scramble)
+   ═══════════════════════════════════════════════ */
+const G16_WORDS = [
+  'מחשבון','מחברות','מצלמות','ספריות','חשמלית','תחבורה',
+  'מערכות','תהליכים','החלטות','הצלחות','כישלונות','שינויים',
+  'סקרנות','תקשורת','הקשבה','חיבורים','אמונות','ביטחון',
+  'יציבות','רגישות','חברויות','אהבות','התלהבות','התרגשות',
+  'התקדמות','התמודדות','התחדשות','מחשבות','גלריות','מוזיקה',
+  'מסעדות','חקירות','גילויים','שלווה','תשוקה','תעשייה',
+  'מזרקות','תחושות','הזדמנות','גלריה','מסעדה','חקירה',
+  'השראה','ידידות','משפחה','אומץ','חכמה','צדקה','שמחה',
+  'הרפתקה','יצירתיות','עצמאות','מנהיגות','כבוד','אמנות'
+];
+const G16_TIME = 30;
+let g16State = {
+  score: 0, wordNum: 0, word: '', scrambled: [],
+  built: [], usedIdx: [], timerSec: G16_TIME,
+  timerRaf: null, timerStart: null, running: false,
+  usedWords: []
+};
+let g16ExitToMenu = null;
+
+function startGame16() {
+  if (g16ExitToMenu) g16ExitToMenu(false);
+  var ui = document.getElementById('game16UI');
+  g16State.score = 0;
+  g16State.wordNum = 0;
+  g16State.usedWords = [];
+  g16UpdateScore();
+  g16ExitToMenu = function(silent) {
+    g16StopTimer();
+    g16ExitToMenu = null;
+    if (!silent) { hideGame(); navTo('mainPage'); }
+  };
+  ui.classList.add('show');
+  navTo('game16UI');
+  g16NewRound();
+}
+
+function g16GoBack() {
+  if (g16ExitToMenu) g16ExitToMenu(false);
+  else { hideGame(); navTo('mainPage'); }
+}
+
+function g16NewRound() {
+  g16StopTimer();
+  // pick unused word
+  var pool = G16_WORDS.filter(function(w){ return g16State.usedWords.indexOf(w) === -1; });
+  if (pool.length === 0) { g16State.usedWords = []; pool = G16_WORDS.slice(); }
+  var word = pool[Math.floor(Math.random() * pool.length)];
+  g16State.usedWords.push(word);
+  g16State.word = word;
+  g16State.wordNum++;
+  // scramble — ensure different from original
+  var letters = word.split('');
+  var scrambled;
+  var tries = 0;
+  do {
+    scrambled = letters.slice().sort(function(){ return Math.random()-0.5; });
+    tries++;
+  } while (scrambled.join('') === word && tries < 20);
+  g16State.scrambled = scrambled;
+  g16State.built = [];
+  g16State.usedIdx = [];
+  g16State.running = true;
+  g16State.timerSec = G16_TIME;
+  document.getElementById('g16WordNum').textContent = g16State.wordNum;
+  document.getElementById('g16WordLen').textContent = 'מילה בת ' + word.length + ' אותיות';
+  document.getElementById('g16Msg').textContent = '';
+  g16RenderBuilt();
+  g16RenderLetters();
+  g16StartTimer();
+}
+
+function g16RenderBuilt() {
+  var row = document.getElementById('g16BuiltRow');
+  var word = g16State.word;
+  var html = '';
+  for (var i = 0; i < word.length; i++) {
+    var letter = g16State.built[i] || '';
+    var cls = 'g16-built-cell' + (letter ? ' filled' : '');
+    html += '<div class="' + cls + '" data-pos="' + i + '">' + letter + '</div>';
+  }
+  row.innerHTML = html;
+}
+
+function g16RenderLetters() {
+  var grid = document.getElementById('g16Letters');
+  var html = '';
+  g16State.scrambled.forEach(function(ch, i) {
+    var used = g16State.usedIdx.indexOf(i) !== -1;
+    html += '<button class="g16-letter-btn' + (used ? ' used' : '') + '" onclick="g16ClickLetter(' + i + ')">' + ch + '</button>';
+  });
+  grid.innerHTML = html;
+}
+
+function g16ClickLetter(idx) {
+  if (!g16State.running) return;
+  if (g16State.usedIdx.indexOf(idx) !== -1) return;
+  if (g16State.built.length >= g16State.word.length) return;
+  g16State.built.push(g16State.scrambled[idx]);
+  g16State.usedIdx.push(idx);
+  g16RenderBuilt();
+  g16RenderLetters();
+  if (g16State.built.length === g16State.word.length) {
+    setTimeout(g16CheckWord, 80);
+  }
+}
+
+function g16UndoLast() {
+  if (!g16State.running) return;
+  if (g16State.built.length === 0) return;
+  g16State.built.pop();
+  g16State.usedIdx.pop();
+  g16RenderBuilt();
+  g16RenderLetters();
+}
+
+function g16Clear() {
+  if (!g16State.running) return;
+  g16State.built = [];
+  g16State.usedIdx = [];
+  g16RenderBuilt();
+  g16RenderLetters();
+}
+
+function g16CheckWord() {
+  var attempt = g16State.built.join('');
+  if (attempt === g16State.word) {
+    g16ShowSuccess();
+  } else {
+    g16ShowError();
+  }
+}
+
+function g16ShowSuccess() {
+  g16StopTimer();
+  g16State.running = false;
+  var speedBonus = Math.round(g16State.timerSec * 0.5);
+  var pts = 10 + speedBonus;
+  g16State.score += pts;
+  g16UpdateScore();
+  // flash cells green
+  var cells = document.querySelectorAll('.g16-built-cell');
+  cells.forEach(function(c){ c.classList.add('correct-flash'); });
+  document.getElementById('g16Msg').textContent = '✅ נכון! +' + pts + ' נקודות 🎉';
+  g16Confetti();
+  setTimeout(g16NewRound, 1800);
+}
+
+function g16ShowError() {
+  // shake built row
+  var cells = document.querySelectorAll('.g16-built-cell');
+  cells.forEach(function(c){ c.classList.add('error'); });
+  setTimeout(function(){
+    cells.forEach(function(c){ c.classList.remove('error'); });
+  }, 400);
+  // clear and let try again
+  g16State.built = [];
+  g16State.usedIdx = [];
+  setTimeout(function(){
+    g16RenderBuilt();
+    g16RenderLetters();
+    document.getElementById('g16Msg').textContent = '❌ לא נכון, נסה שוב!';
+    setTimeout(function(){ document.getElementById('g16Msg').textContent = ''; }, 1200);
+  }, 400);
+}
+
+function g16TimeUp() {
+  g16State.running = false;
+  document.getElementById('g16Msg').textContent = '⏰ הזמן נגמר! המילה: ' + g16State.word;
+  // show answer in built row
+  g16State.built = g16State.word.split('');
+  g16RenderBuilt();
+  var btns = document.querySelectorAll('.g16-letter-btn');
+  btns.forEach(function(b){ b.classList.add('used'); });
+  setTimeout(g16NewRound, 2200);
+}
+
+function g16StartTimer() {
+  g16State.timerStart = performance.now();
+  var totalMs = G16_TIME * 1000;
+  function tick(now) {
+    var elapsed = now - g16State.timerStart;
+    var remaining = Math.max(0, totalMs - elapsed);
+    var secs = Math.ceil(remaining / 1000);
+    if (secs !== g16State.timerSec) {
+      g16State.timerSec = secs;
+      document.getElementById('g16TimerNum').textContent = secs;
+    }
+    var pct = remaining / totalMs * 100;
+    var bar = document.getElementById('g16TimerBar');
+    if (bar) {
+      bar.style.width = pct + '%';
+      if (pct < 30) { bar.style.background = 'linear-gradient(90deg,#ff4444,#cc2222)'; }
+      else if (pct < 60) { bar.style.background = 'linear-gradient(90deg,#ffaa00,#cc8800)'; }
+      else { bar.style.background = 'linear-gradient(90deg,#00e87a,#00c46a)'; }
+    }
+    if (remaining <= 0) { g16TimeUp(); return; }
+    g16State.timerRaf = requestAnimationFrame(tick);
+  }
+  g16State.timerRaf = requestAnimationFrame(tick);
+}
+
+function g16StopTimer() {
+  if (g16State.timerRaf) { cancelAnimationFrame(g16State.timerRaf); g16State.timerRaf = null; }
+}
+
+function g16UpdateScore() {
+  var el = document.getElementById('g16Score');
+  if (el) el.textContent = g16State.score;
+}
+
+function g16Confetti() {
+  var wrap = document.getElementById('g16ConfWrap');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  var colors = ['#00e87a','#ffd700','#ff6b6b','#7ec8e3','#ff80c8','#fff'];
+  for (var i = 0; i < 48; i++) {
+    var p = document.createElement('div');
+    p.className = 'g16-confetti-piece';
+    p.style.left = (Math.random() * 100) + '%';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.width = (8 + Math.random() * 10) + 'px';
+    p.style.height = (8 + Math.random() * 10) + 'px';
+    p.style.animationDuration = (1.2 + Math.random() * 1.4) + 's';
+    p.style.animationDelay = (Math.random() * 0.4) + 's';
+    wrap.appendChild(p);
+    setTimeout(function(el){ el.remove(); }, 3000, p);
+  }
+}
+"""
+if JS_ANCHOR in content:
+    content = content.replace(JS_ANCHOR, GAME_JS + JS_ANCHOR, 1)
+    print("JS inserted OK")
+else:
+    print("ERROR: JS anchor not found!")
+
+# ─────────────────────────────────────────
+# WRITE BACK
+# ─────────────────────────────────────────
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(content)
+new_len = len(content)
+print(f"New length: {new_len}  (diff: +{new_len - orig_len})")
+    #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import re, json
+
+FILE = '/sessions/bold-confident-feynman/mnt/outputs/כובש_השטחים.html'
+
+# 30 new questions per level, format: ["question","correct","w1","w2","w3"]
+# L1 = 100₪ — trivially easy
+L1 = [
+["כמה אצבעות יש בשתי הידיים?","10","8","12","6"],
+["מה צבע השמיים ביום בהיר?","כחול","ירוק","אדום","לבן"],
+["כמה עיניים יש לאדם רגיל?","2","1","3","4"],
+["כמה שעות יש ביממה?","24","12","48","36"],
+["מה הצבע של שלג?","לבן","שחור","כחול","ירוק"],
+["כמה חודשים יש בשנה?","12","10","11","13"],
+["מה הפרי הצהוב הארוך?","בננה","תפוח","ענב","אגס"],
+["איזה בעל חיים נובח?","כלב","חתול","פרה","סוס"],
+["כמה רגליים יש לציפור?","2","4","6","0"],
+["מה הכלי שאוכלים בו מרק?","כף","מזלג","סכין","מחבת"],
+["כמה ביצים יש בתריסר?","12","6","10","24"],
+["מה צבע הלב כסמל?","אדום","כחול","ירוק","צהוב"],
+["כמה צבעים יש בקשת בענן?","7","5","6","8"],
+["מה החיה הגדולה ביותר ביבשה?","פיל","ג'ירפה","קרנף","היפופוטם"],
+["כמה פינות יש למשולש?","3","4","5","2"],
+["מה הכוכב הקרוב ביותר לכדור הארץ?","השמש","ירח","מאדים","נוגה"],
+["כמה ימים יש בשבועיים?","14","7","10","12"],
+["מה אוספים מדבורים?","דבש","חלב","ביצים","שמן"],
+["כמה רגליים יש לחרק?","6","4","8","10"],
+["מה הצבע של אות עצור ברמזור?","אדום","ירוק","צהוב","כחול"],
+["כמה קצוות יש למגן דוד?","6","5","7","8"],
+["מה שם הלוויין של כדור הארץ?","הירח","שמש","נוגה","כוכב"],
+["כמה ספרות יש במספר אלף?","4","3","5","2"],
+["מה יוצא כשמרתיחים מים?","אדים","קרח","שלג","אבק"],
+["מה הצבע של בננה בשלה?","צהוב","אדום","ירוק","כחול"],
+["כמה פינות יש לריבוע?","4","3","5","6"],
+["איזה פרח אדום ומסמל אהבה?","ורד","צבעוני","חמנייה","שושנה"],
+["כמה ידיות יש לדלת רגילה?","1","2","3","0"],
+["מה גדול יותר — ים או אגם?","ים","אגם","שווה","נהר"],
+["כמה כנפיים יש לפרפר?","4","2","6","8"],
+]
+
+# L2 = 200₪ — very easy
+L2 = [
+["מה בירת ספרד?","מדריד","ברצלונה","ולנסיה","סביליה"],
+["מה המטבע של ישראל?","שקל","דולר","אירו","לירה"],
+["מי כתב את 'הארי פוטר'?","ג'יי. קיי. רולינג","סטיבן קינג","ג'יי. אר. אר. טולקין","ג'ורג' אורוול"],
+["כמה שחקנים יש בכל קבוצת כדורגל בשדה?","11","10","9","12"],
+["מה שם הנשיא הראשון של ארה\"ב?","ג'ורג' וושינגטון","אברהם לינקולן","תומס ג'פרסון","בנג'מין פרנקלין"],
+["כמה מדינות יש בארצות הברית?","50","48","52","45"],
+["מי צייר את 'מונה ליזה'?","לאונרדו דה וינצ'י","מיכלאנג'לו","רפאל","פיקאסו"],
+["מה בירת יפן?","טוקיו","אוסקה","קיוטו","הירושימה"],
+["כמה ימים יש בפברואר בשנה רגילה?","28","29","30","27"],
+["מה הספורט הפופולרי ביותר בעולם?","כדורגל","כדורסל","טניס","שחייה"],
+["מה בירת אוסטרליה?","קנברה","סידני","מלבורן","ברסביין"],
+["מה בירת סין?","בייג'ינג","שנגחאי","הונג קונג","גואנגג'ו"],
+["מי המציא את הטלפון?","אלכסנדר גרהם בל","תומס אדיסון","ניקולה טסלה","גוגליאלמו מרקוני"],
+["מה הציפור הלאומית של ישראל?","הדוכיפת","הנשר","היונה","הנץ"],
+["כמה שחקנים משחקים בכל קבוצת כדורסל?","5","6","4","7"],
+["מה הים שמפריד בין אירופה לאפריקה?","הים התיכון","האוקיינוס האטלנטי","ים האדריאטי","הים השחור"],
+["כמה כוכבים יש בדגל ארה\"ב?","50","48","52","45"],
+["מה בירת הולנד?","אמסטרדם","רוטרדם","האג","אנטוורפן"],
+["מה שם האוקיינוס הגדול ביותר בעולם?","האוקיינוס השקט","האטלנטי","ההינדי","הארקטי"],
+["מה בירת קנדה?","אוטווה","טורונטו","מונטריאול","ונקובר"],
+["מי המציא את הנורה החשמלית?","תומס אדיסון","אלכסנדר גרהם בל","ניקולה טסלה","בנימין פרנקלין"],
+["מה בירת ברזיל?","ברזיליה","ריו דה ז'נרו","סאו פאולו","סלבדור"],
+["מה בירת רוסיה?","מוסקבה","סנקט פטרסבורג","קייב","מינסק"],
+["מה שם הפלנטה האדומה?","מאדים","נוגה","צדק","שבתאי"],
+["כמה שחקנים יש בכל קבוצת כדורעף?","6","5","7","4"],
+["מה בירת מצרים?","קהיר","אלכסנדריה","אסואן","לוקסור"],
+["מי היה ראש הממשלה הישראלי השני?","משה שרת","לוי אשכול","שמעון פרס","מנחם בגין"],
+["מה שם ההר הגבוה ביותר בעולם?","אוורסט","ק2","קילימנג'רו","מון בלאן"],
+["מה האוכל המסורתי ביותר בישראל?","חומוס","פיצה","סושי","שוארמה בלבד"],
+["כמה שחקנים יש בקבוצת בייסבול?","9","7","11","8"],
+]
+
+# L3 = 300₪ — easy
+L3 = [
+["באיזו שנה הסתיימה מלחמת העולם השנייה?","1945","1944","1946","1943"],
+["מי היה ראש ממשלת בריטניה במלחמת העולם השנייה?","וינסטון צ'רצ'יל","ניוויל צ'מברלין","קלמנט אטלי","הרולד מקמילן"],
+["מה בירת ארגנטינה?","בואנוס איירס","מונטווידאו","סנטיאגו","לימה"],
+["מה שמה של הספינה שטבעה ב-1912?","טיטניק","אולימפיק","מוריטניה","לוסיטניה"],
+["מה שם המנהיג הנאצי שהוביל את גרמניה?","אדולף היטלר","יוזף גבלס","הרמן גרינג","היינריך הימלר"],
+["מה שם האמנה הבינ\"ל שהגדירה את זכויות האדם ב-1948?","הצהרת זכויות האדם האוניברסלית","אמנת ז'נבה","מגנה קרטה","חוק האדם"],
+["מה בירת הודו?","ניו דלהי","מומביי","קולקטה","בנגלור"],
+["מי חיבר את 'רומיאו ויוליה'?","וויליאם שייקספיר","ג'ון מילטון","ג'פרי צ'וסר","כריסטופר מארלו"],
+["מה שנת כינון הרפובליקה הטורקית?","1923","1920","1918","1925"],
+["מה הנהר הארוך ביותר באירופה?","הוולגה","הריין","הדנובה","המזה"],
+["מה בירת פורטוגל?","ליסבון","פורטו","פארו","קוימברה"],
+["מה שם האחים שהמציאו את המטוס?","האחים רייט","האחים לומייר","אדיסון ובל","פורד ודייזל"],
+["מה שמה של מהפכת 1917 שהעלתה את לנין לשלטון?","מהפכת אוקטובר","מהפכת פברואר","מהפכת נובמבר","המהפכה הבורגנית"],
+["מה שם האנציקלופדיה החופשית ברשת?","ויקיפדיה","גוגל","ברוקהאוס","אנציקלופדיה בריטניקה"],
+["מה שם הנשיא הדרום-אפריקאי שאיחד את המדינה?","נלסון מנדלה","תאבו מבקי","פ.וו. דה קלרק","דזמונד טוטו"],
+["מה שם הרכבת המהירה של יפן?","שינקנסן","TGV","ICE","בולט טריין"],
+["מה שנת פתיחת תעלת סואץ?","1869","1900","1860","1880"],
+["מה שמה של האמנה המגינה על שבויי מלחמה?","אמנת ז'נבה","אמנת האג","מגנה קרטה","הצהרת וינה"],
+["מי הוביל את תנועת עצמאות הודו?","מהטמה גנדי","ג'וואהרלל נהרו","סובהאש צ'נדרה בוס","בהגת סינג"],
+["מה שם הים שבין תורכיה ליוון?","הים האגאי","הים האדריאטי","ים מרמרה","הים הלבן"],
+["מה בירת שוודיה?","סטוקהולם","גטבורג","מלמו","אופסלה"],
+["מה שנת הכרזת העצמאות האמריקאית?","1776","1789","1770","1782"],
+["מה שם הפסל המפורסם שמיכלאנג'לו יצר בפירנצה?","דוד","משה","הפייטה","אפולו"],
+["כמה מדינות יש באיחוד האירופי כיום (2024)?","27","28","25","30"],
+["מה שם הנבחרת שזכתה בכי רוב גביעי עולם בכדורגל?","ברזיל","גרמניה","איטליה","ארגנטינה"],
+["מה בירת בלגיה?","בריסל","אנטוורפן","גנט","ברוז'"],
+["מה שם הרקטה הראשונה שהגיעה לירח (1969)?","אפולו 11","סויוז","ורוסטוק","ג'מיני"],
+["מה שנת ייסוד ארגון הבריאות העולמי (WHO)?","1948","1945","1950","1952"],
+["מה שם הסרט שזכה בפרס אוסקר לסרט הטוב ביותר ב-1994?","שינדלר'ס ליסט","פורסט גאמפ","אמריקן ביוטי","טיטניק"],
+["מה שם יוזם הנייד iPhone הראשון?","סטיב ג'ובס","ביל גייטס","מארק צוקרברג","אלון מאסק"],
+]
+
+# L4 = 500₪ — easy-medium
+L4 = [
+["מה 'חוק השבות' הישראלי?","חוק המאפשר לכל יהודי לעלות לישראל","חוק גירוש מהארץ","חוק אזרחות לערבים","חוק הרחקת מתנגדי שלטון"],
+["מי היה מנהיג ה-PLO עד מותו ב-2004?","יאסר ערפאת","מחמוד עבאס","ח'אלד משעל","ג'ורג' חבש"],
+["מה ה-IMF?","קרן המטבע הבינ\"ל","הבנק העולמי","ארגון הסחר העולמי","הבנק האירופי"],
+["מה 'מלחמת ששת הימים' (1967)?","מלחמה שבה ישראל כבשה סיני, גדה מערבית ורמת הגולן","מלחמת העצמאות","מלחמת יום כיפור","מלחמת ההתשה"],
+["מה 'מלחמת יום כיפור' (1973)?","מלחמה שהותקפה ישראל ביום כיפור על ידי מצרים וסוריה","מלחמת ששת הימים","מלחמת לבנון","מבצע קדש"],
+["מה שם הפרלמנט הישראלי?","כנסת","סנאט","בית נבחרים","אסיפה לאומית"],
+["מה שם הנשיא הראשון של ישראל?","חיים ויצמן","דוד בן גוריון","משה שרת","יצחק בן-צבי"],
+["מה 'הסכם שנגן' האירופי?","הסכם חופש תנועה בין מדינות אירופה ללא דרכון","הסכם כלכלי","הסכם הגנה משותפת","הסכם ויזה"],
+["מה 'זכות הצבעה אוניברסלית'?","כל אזרח בגיר רשאי להצביע ללא קשר לגזע, מין או רכוש","הצבעה רק לעשירים","הצבעה לגברים בלבד","הצבעה על פי מס הכנסה"],
+["כמה חברים יש בכנסת הישראלית?","120","100","150","60"],
+["מה 'אפרטהייד'?","מדיניות הפרדה גזעית שמיסדה דרום אפריקה עד 1994","מדיניות אי-שוויון כלכלי","מדיניות הגירה","מדיניות לאומנות"],
+["מה שם הנשיא שניהל את ארה\"ב במהלך מלחמת העולם השנייה?","פרנקלין ד. רוזוולט","הארי טרומן","דווייט אייזנהאואר","וודרו וילסון"],
+["מה 'מלחמה קרה'?","מתח גיאופוליטי בין ארה\"ב לברה\"מ 1947-1991 ללא עימות ישיר","מלחמה בחורף","מלחמה ביבשת הקרח","מלחמה בסיביר"],
+["מה ה-'G7'?","קבוצת 7 הכלכלות המתקדמות הגדולות בעולם","ועידה צבאית","ועידת האקלים","קבוצת ביטחון"],
+["מה 'מדיניות אחת סין'?","עמדה שלפיה טאיוואן היא חלק מסין","מדיניות גבולות","הסכם כלכלי","ברית צבאית"],
+["מה שם המנהיג הסובייטי שפירק את ברה\"מ?","מיכאיל גורבצ'וב","בוריס ילצין","ליאוניד ברז'נייב","קונסטנטין צ'רננקו"],
+["מה 'זכות ווטו' מאפשרת לחמש המעצמות?","לבטל כל החלטה במועצת הביטחון","להאיץ הצבעה","להרחיק מדינה","לנהל פגישה חשאית"],
+["מה שמו של הנשיא שחתם על חוק זכויות האזרח האמריקאי (1964)?","לינדון ג'ונסון","ג'ון קנדי","ריצ'רד ניקסון","דווייט אייזנהאואר"],
+["מה שם ועידת השלום שסיימה את מלחמת העולם הראשונה?","ועידת פריז-ורסאי","ועידת יאלטה","ועידת פוטסדם","ועידת ז'נבה"],
+["מה 'מדינת ישראל' הכריזה על עצמה בתשמ\"ח?","מדינה יהודית ודמוקרטית","מדינה יהודית בלבד","מדינה תיאוקרטית","מדינה ניטרלית"],
+["מי היה מנהיג קובה הקומוניסטי הידוע?","פידל קסטרו","צ'ה גווארה","ראול קסטרו","בטיסטה"],
+["מה שנת האיחוד הגרמני (Reunification)?","1990","1989","1991","1988"],
+["מה שם הנשיא שניצח בבחירות ארה\"ב 2020?","ג'ו ביידן","ברק אובמה","הילרי קלינטון","בני סנדרס"],
+["מה 'הצהרת זכויות האדם' (Bill of Rights, 1791)?","10 תיקונים ראשונים לחוקה המגנים על זכויות אזרח","הצהרת העצמאות","חוקת ארה\"ב","חוק הצבא"],
+["מה שנת ייסוד נאט\"ו?","1949","1945","1948","1950"],
+["מה שם ועידת המנהיגים שקבעה סדר אירופה לאחר מלחמת עולם שנייה?","ועידת פוטסדם","ועידת יאלטה","ועידת ז'נבה","ועידת ברלין"],
+["מה שם תנועת העצמאות האמריקנית שיזמה מלחמת עצמאות נגד בריטניה?","תנועת הפטריוטים","תנועת הלויאליסטים","תנועת הרפובליקנים","תנועת הדמוקרטים"],
+["מה 'הסכם NAFTA' (1994)?","הסכם סחר חופשי בין ארה\"ב, קנדה ומקסיקו","הסכם צבאי","ברית כלכלית","הסכם שיתוף פעולה"],
+["מה שמה של 'תורת האבולוציה' שפיתח צ'ארלס דרווין?","ברירה טבעית","ברירה מלאכותית","מוטציה מכוונת","אדפטציה מוסכמת"],
+["מה שנת נפילת חומת ברלין?","1989","1991","1985","1979"],
+]
+
+# L5 = 1,000₪ — medium (first checkpoint)
+L5 = [
+["מה 'הסכם אוסלו' (1993) קבע?","מסגרת לשלום בין ישראל ל-PLO עם אוטונומיה פלסטינית","שלום מלא ותמידי","ויתור על ירושלים","הסכם מעבר בלבד"],
+["מה 'חוק יסוד: ישראל מדינת הלאום' (2018)?","הגדיר ישראל כמדינת הלאום של העם היהודי","חוק אזרחות","חוק השבות","חוק הדמוקרטיה"],
+["מה 'מלחמת לבנון השנייה' (2006)?","מלחמה בין ישראל לחיזבאללה לאחר חטיפת חיילים","מלחמה בין ישראל לסוריה","מבצע בעזה","מלחמת לבנון הראשונה"],
+["מה 'מבצע אופרה' (1981)?","תקיפה ישראלית של הכור הגרעיני העיראקי אוסיראק","מבצע בלבנון","תקיפה בסוריה","מבצע בעזה"],
+["מה ה-'WTO'?","ארגון הסחר העולמי","קרן המטבע","הבנק העולמי","ועידת סחר"],
+["מה 'עיקרון הפרדת הרשויות' של מונטסקייה?","הפרדה בין מחוקק, מבצע ושופט למניעת ריכוז כוח","ריכוז כוח בממשל","שלטון אצולה","דוקטרינה כנסייתית"],
+["מה 'תוכנית מרשל' (1948)?","סיוע כלכלי אמריקאי לשיחזור אירופה אחרי מלחמת עולם שנייה","ברית צבאית","הסכם גרעיני","תוכנית להנשמת ברלין"],
+["מה 'אפרטהייד' — מתי הסתיים?","1994 עם בחירת מנדלה לנשיא","1990","1989","1999"],
+["מה 'עצרת האו\"ם'?","גוף שמייצג את כל 193 מדינות החברות","מועצת הביטחון","הוועד הכלכלי","בית הדין הבינ\"ל"],
+["מה שנת ייסוד האיחוד האירופי (אמנת מאסטריכט)?","1993","1992","1991","1994"],
+["מה 'מלחמת וייטנאם' (1955-1975)?","מלחמה שבה ארה\"ב נלחמה לצד וייטנאם הדרומית נגד הצפון הקומוניסטי","מלחמת האיחוד הווייטנאמי בלבד","מלחמה יפנית","מלחמה סינית"],
+["מה 'משבר הטילים בקובה' (1962)?","עימות גרעיני בין ארה\"ב לברה\"מ על פריסת טילים קוביאניים","פלישה לקובה","מהפכת קסטרו","הטלת סנקציות"],
+["מה 'תוכנית מנהטן'?","פרויקט סודי אמריקאי לפיתוח פצצה גרעינית במלחמת עולם שנייה","פרויקט פיתוח טיל","תוכנית עיור","מבצע ביטחוני"],
+["מה 'הכרזת ורסאי' קבעה לגבי גרמניה?","אחריות גרמניה למלחמת עולם ראשונה ופיצויים כבדים","פיצול גרמניה","פירוז גרמניה","גרמניה מאוחדת"],
+["מה שנת ייסוד ה-UN (האומות המאוחדות)?","1945","1944","1946","1948"],
+["מה שם ראש ממשלת ישראל שנרצח ב-1995?","יצחק רבין","שמעון פרס","אריאל שרון","אהוד ברק"],
+["מה 'הסכם SALT' (1972)?","הסכם הגבלת נשק אסטרטגי בין ארה\"ב לברה\"מ","הסכם חיסול נשק","ברית הגנה","הסכם סחר"],
+["מה 'ברית ורשה' (1955)?","ברית צבאית סובייטית של מדינות מזרח אירופה כנגד נאט\"ו","ברית כלכלית","הסכם גרעיני","ועידת שלום"],
+["מה שם 'האב המייסד' שכתב את הצהרת העצמאות האמריקאית?","תומס ג'פרסון","ג'ורג' וושינגטון","בנג'מין פרנקלין","אלכסנדר המילטון"],
+["מה 'מלחמת קוריאה' (1950-1953)?","מלחמה בין קוריאה הצפונית לדרומית שהסתיימה בשביתת נשק","כיבוש יפני","מלחמה עם סין","מהפכה קומוניסטית"],
+["מה 'הסכם JCPOA' (2015)?","הסכם הגרעין בין איראן למעצמות 5+1","הסכם שלום","ברית אזורית","הסכם נשק"],
+["מה 'הסכמי אברהם' (2020) כלל מלבד אמירויות?","בחריין, מרוקו וסודן","ערב הסעודית","עיראק","קטר"],
+["מה שם מלחמת ישראל-מצרים שחתמה על הסכם שלום?","מלחמת יום כיפור 1973 הובילה לשלום 1979","מלחמת ששת הימים","מלחמת העצמאות","מלחמת ההתשה"],
+["מה 'דוקטרינת טרומן' (1947)?","מדיניות אמריקאית לסיוע למדינות הנאבקות בקומוניזם","תוכנית מרשל","עקרון מונרו","מדיניות בידוד"],
+["מה 'הסכם ורסאי' (1919)?","הסכם שסיים רשמית את מלחמת העולם הראשונה","הסכם שסיים מלחמת עולם שנייה","הסכם שיסד את האו\"ם","הסכם אי-תוקפנות"],
+["מה שנת המהפכה הצרפתית?","1789","1776","1793","1799"],
+["מה שם הנשיא שפתח מחדש יחסים בין ארה\"ב לסין ב-1972?","ריצ'רד ניקסון","ג'ימי קרטר","ג'ון קנדי","ליינדון ג'ונסון"],
+["מה 'הסכם שלום ישראל-מצרים' (1979) חייב את ישראל?","נסיגה מסיני תמורת שלום מלא עם מצרים","נסיגה מעזה","ויתור על ירושלים","נסיגה מהגדה"],
+["מה 'ליגת האומות' (1920)?","קודמת לאו\"ם שנוסדה לאחר מלחמת עולם ראשונה ונכשלה","ארגון כלכלי","ברית צבאית","ועידת שלום"],
+["מה שנת עצמאות הודו מבריטניה?","1947","1948","1950","1945"],
+]
+
+# L6 = 2,000₪ — medium
+L6 = [
+["מה 'הסכם מינסק' (2014-2015)?","הסכמי הפסקת אש לגבי הסכסוך במזרח אוקראינה","הסכם סחר עם רוסיה","ברית הגנה","הסכם גבולות"],
+["מה 'מדיניות בלימה' (Containment) של קנן?","מדיניות ארה\"ב לבלום התפשטות ברה\"מ ללא עימות ישיר","התקפה ישירה","בידוד כלכלי","דיפלומטיה גרעינית"],
+["מה 'ועידת פוטסדם' (1945) דנה ב?","מה יקרה לגרמניה לאחר מלחמת עולם שנייה","ייסוד האו\"ם","הסכם שלום","מסגרת מלחמת קרה"],
+["מה שם ראש הממשלה הבריטי שניסה להרגיע את היטלר?","ניוויל צ'מברלין","וינסטון צ'רצ'יל","אנתוני עדן","הרולד מקמילן"],
+["מה 'משפטי נירנברג' (1945-1946)?","משפטים בינ\"ל נגד מנהיגים נאצים בפשעי מלחמה ופשעים נגד האנושות","משפטים גרמניים פנימיים","משפטי בית דין צבאי","משפטי הנאצים בישראל"],
+["מה 'מלחמת סואץ' (1956)?","מבצע ישראלי-בריטי-צרפתי לאחר שמצרים לאמה את תעלת סואץ","מלחמת ישראל-מצרים בלבד","מלחמת ששת הימים","מבצע קדש בלבד"],
+["מה 'חוק לאנד-ליז' האמריקאי (1941)?","חוק שאפשר לארה\"ב לספק נשק לבנות הברית בלי לשלם מיד","הצהרת מלחמה","הסכם כלכלי","תוכנית מרשל"],
+["מה 'ועידת סן-רמו' (1920) קבעה?","חלוקת שטחי האימפריה העות'מאנית, כולל מנדט פלסטין לבריטניה","ייסוד ליגת האומות","הסכם שלום עם תורכיה","חלוקת גרמניה"],
+["מה 'עקרון הריבונות הלאומית'?","שלטון מדינה על שטחה מבלי שמדינות אחרות תתערבנה","ריבונות קולקטיבית","אי-מעורבות","עיקרון מנדטורי"],
+["מה 'מועצת הביטחון של האו\"ם' כוללת?","5 חברים קבועים עם זכות וטו ו-10 נבחרים לסרוגין","15 חברים קבועים","כל 193 מדינות","7 מעצמות"],
+["מה 'הסכם אוסלו ב'' (1995)?","חלוקת הגדה ל-3 אזורים (A, B, C) עם שליטה שונה","הסכם שלום סופי","ועידת קמפ-דייוויד","הסכמי אברהם"],
+["מה 'ביטחון קולקטיבי'?","עיקרון שתקיפת חבר ברית היא תקיפת כולם","ביטחון לאומי","הגנה עצמית","שמירת גבולות"],
+["מה 'הסכם ה-NPT' (1968)?","אמנה בינ\"ל לאי-הפצת נשק גרעיני","הסכם גרעיני בין ארה\"ב לברה\"מ","הסכם SALT","ועידת ביטחון גרעיני"],
+["מה 'אמנת ז'נבה' (1949)?","אמנה בינ\"ל לטיפול בשבויים ואזרחים בזמן מלחמה","אמנת אי-הפצה","אמנת האג","הסכם שלום"],
+["מה 'מזכר בודפשט' (1994)?","הבטחות ביטחון שניתנו לאוקראינה תמורת ויתור על נשק גרעיני","הסכם שלום","הסכם SALT","ועידת נאט\"ו"],
+["מה ה-'Axis Powers' (ציר) במלחמת עולם שנייה?","גרמניה, איטליה ויפן","גרמניה ורוסיה","גרמניה ואיטליה בלבד","כל מדינות אירופה"],
+["מה 'הברית המשולשת' (Triple Entente) לפני מלחמת עולם ראשונה?","בריטניה, צרפת ורוסיה","גרמניה, אוסטריה ואיטליה","בריטניה, גרמניה, צרפת","ארה\"ב, בריטניה, רוסיה"],
+["מה 'הבנק העולמי' (World Bank)?","מוסד פיננסי המספק הלוואות לפיתוח למדינות עניות","קרן מטבע","בנק מרכזי","בנק מסחרי"],
+["מה 'האינתיפאדה הראשונה' (1987-1993)?","מרידת הפלסטינים בשטחים שהובילה למגעי שלום ואוסלו","מלחמת יום כיפור","אינתיפאדה שנייה","מהומות 1948"],
+["מה שם ראש הממשלה שחתם על הסכם השלום ישראל-מצרים?","מנחם בגין","יצחק רבין","שמעון פרס","אריאל שרון"],
+["מה 'ה-Axis of Evil' — מי טבע את הביטוי?","ג'ורג' וו. בוש (2002) לתיאור איראן, עיראק, קוריאה הצפונית","ביל קלינטון","ג'ון קרי","קונדוליסה רייס"],
+["מה שמה של 'תורת ריאל-פוליטיק'?","מדיניות חוץ המבוססת על כוח ואינטרסים, לא ערכים","אידיאליזם ליברלי","מדיניות ניטרלית","נייטרליות"],
+["מה 'מהפכת הצבעונים' האוקראינית (2004)?","מחאת עם נגד בחירות מזויפות שהובילה לבחירות מחדש","הפיכה צבאית","מהפכה קומוניסטית","כיבוש זר"],
+["מה 'הסכם שלום ישראל-ירדן' (1994) נחתם ב?","ערבה, קרוב לאילת","ירושלים","תל אביב","עמאן"],
+["מה שנת מלחמת האחים האמריקאית (Civil War)?","1861-1865","1775-1783","1812-1815","1898"],
+["מה שם הנשיא שניהל את ארה\"ב בתקופת מלחמת וייטנאם השיא?","ריצ'רד ניקסון","ג'ון קנדי","ליינדון ג'ונסון","ג'ימי קרטר"],
+["מה 'ועידת ברלין' (1884-1885)?","חלוקת אפריקה בין המעצמות האירופיות","ייסוד גרמניה","ועידת שלום","הסכם סחר"],
+["מה שם ה-'Détente' (הרפיית מתחים)?","שיפור יחסים בין ארה\"ב לברה\"מ בשנות ה-70 בהנהגת ניקסון-קיסינג'ר","פיוס מלחמת קוריאה","הסכם גרעיני","ברית הגנה"],
+["מה 'חוק הבסיס של ישראל: הממשלה' קובע?","הממשלה זקוקה לאמון הכנסת","ממשלה כהונתית","ממשלה נשיאותית","ממשלת חירום"],
+["מה 'האינתיפאדה השנייה' (2000-2005)?","גל אלימות שפרץ לאחר ביקור שרון בהר הבית ועצר מגעי שלום","האינתיפאדה הראשונה","מלחמת לבנון","מבצע עמוד ענן"],
+]
+
+# L7 = 4,000₪ — medium-hard
+L7 = [
+["מה 'תיאוריית המשחקים' (Game Theory) עוסקת ב?","ניתוח אסטרטגי של קבלת החלטות בסיטואציות תחרות ושיתוף פעולה","ניתוח שחמט בלבד","מודל ספורט","תיאוריית הסתברות"],
+["מה 'פרדוקס הביטחון' (Security Dilemma)?","חיזוק הגנה של מדינה אחת גורם לאחרת לחוש מאוימת — ומחמיר חוסר-ביטחון","עקרון הרתעה","ברית הגנה","תגובת שרשרת"],
+["מה 'תורת כוח רך' (Soft Power) של ג'וזף נאי?","השפעה דרך תרבות, ערכים ומדיניות — לא כוח צבאי","כוח צבאי","סנקציות","עוצמה כלכלית"],
+["מה 'ועידת וואנסי' (Wannsee, 1942)?","ועידה נאצית שתכננה את 'הפתרון הסופי' — השמדת יהודי אירופה","ועידת שלום","ועידת כיבוש","ועידה כלכלית"],
+["מה 'הסכם New START' (2010)?","הסכם ארה\"ב-רוסיה לצמצום נשק גרעיני אסטרטגי","הסכם SALT","ברית הגנה","ועידת NPT"],
+["מה ה-'Responsibility to Protect' (R2P)?","הקהילה הבינ\"ל אחראית להגן על אזרחים כשממשלתם כושלת","עיקרון ריבונות","אי-התערבות","חובת האו\"ם"],
+["מה 'הבנק המרכזי האירופי' (ECB)?","בנק מרכזי של גוש האירו המנהל את מדיניות הריבית","הבנק העולמי","IMF","הבנק האירופי לפיתוח"],
+["מה 'ה-Arab League' — הליגה הערבית?","ארגון של 22 מדינות ערב שהוקם ב-1945","ארגון כלכלי","ברית צבאית","קהילה תרבותית"],
+["מה 'מבצע חומת מגן' (2002)?","מבצע ישראלי גדול בגדה המערבית לאחר גל פיגועים","מבצע בעזה","מלחמת לבנון","מבצע שמש"],
+["מה 'ה-Geopolitics' של מקינדר?","שליטה בלב יורסיה (Heartland) מבטיחה שליטה עולמית","ים כגורם כוח","תיאוריית סחר","גיאוגרפיה ניטרלית"],
+["מה 'הסכם CTBT'?","אמנה לאיסור ניסויים גרעיניים בכל מקום","הסכם NPT","SALT","START"],
+["מה 'אמנת רומא לבית הדין הפלילי הבינ\"ל' (ICC)?","אמנה שהקימה בית דין בינ\"ל לפשעי מלחמה ופשעים נגד האנושות","אמנת ז'נבה","בית דין ICJ","בית דין האו\"ם"],
+["מה 'ה-Status Quo' בפוליטיקה הבינ\"ל?","המצב הנוכחי של יחסי כוחות שנבקש לשמרו","שינוי גבולות","מהפכה","הסכם שלום"],
+["מה 'ה-Shuttle Diplomacy' של קיסינג'ר?","דיפלומטיה שבה המגשר עובר בין הצדדים ללא פגישה ישירה","משא ומתן ישיר","כינוס רב-צדדי","גישור פומבי"],
+["מה 'ה-Fog of War' (ערפל הקרב)?","מושג קלאוזוויץ — חוסר הוודאות הבלתי-נמנע בקרב","גז מלחמה","עשן מלאכותי","הסתרת מידע"],
+["מה 'הסכם דייטון' (1995)?","הסכם שסיים את מלחמת יוגוסלביה ויצר את בוסניה-הרצגובינה הנוכחית","ועידת ז'נבה","הסכם שלום בסרביה","ועידת OHR"],
+["מה 'ה-Democratic Peace Theory'?","דמוקרטיות ליברליות אינן נוטות להילחם זו בזו","דמוקרטיה יציבה יותר","עיקרון בחירות","פתרון סכסוכים"],
+["מה 'מהפכת הנגריה' (1956)?","מרד נגד השלטון הסובייטי שדוכא על ידי כוחות ברה\"מ","מהפכת צ'כוסלובקיה","מהפכת פולין","מהפכה כלכלית"],
+["מה 'ה-Overton Window' בפוליטיקה?","הטווח של רעיונות פוליטיים שנחשבים מקובלים בזמן נתון","פתח שמוזז","חלון מדיה","מנגנון בחירות"],
+["מה 'ה-Nuclear Triad'?","שלוש מערכות שיגור גרעיני: יבשה, ים (צוללות) ואוויר (מפציצים)","3 מדינות גרעיניות","3 הסכמי נשק","3 שלבי פיתוח"],
+["מה 'ה-Green Line' בישראל?","קו הפסקת האש מ-1949 שמסמן את גבולות ישראל לפני 1967","גבול ישראל-לבנון","גבול ישראל-ירדן","גדר ההפרדה"],
+["מה 'פריסת טילים ברלין' — ה-'Berlin Blockade' (1948-1949)?","חסימה סובייטית של ברלין המערבית שנשברה על ידי גשר אווירי","קרב ברלין 1945","נפילת חומת ברלין","משבר הטילים"],
+["מה 'ה-Preemptive Strike' (מכה מקדימה)?","תקיפה צבאית לפני שהאויב מבצע את מתקפתו הצפויה","תגובה להתקפה","מלחמה מניעה","תקיפת מנע"],
+["מה 'ה-Unilateralism'?","מדיניות שבה מדינה פועלת לבדה ללא תיאום בינ\"ל","ריבוי-צדדיות","ביטחון קולקטיבי","דיפלומטיה"],
+["מה 'תוכנית ה-Marshall Plan' ייעודה הראשי?","מנוע את התפשטות הקומוניזם לאירופה מוחלשת על ידי שיחזור כלכלי","עזרה הומניטרית","ברית צבאית","פיתוח אסיה"],
+["מה 'ה-Polarity' בתיאוריות יחסים בינ\"ל?","מספר מרכזי הכוח בסדר העולמי (חד-קוטבי, דו-קוטבי, רב-קוטבי)","מדיניות גיאוגרפית","מבנה כלכלי","ברית ביטחונית"],
+["מה 'ה-OSCE' — ארגון הביטחון והשיתוף האירופי?","ארגון לניטור בחירות וקידום ביטחון אנושי ב-57 מדינות","ועידת NATO","ארגון האו\"ם","האיחוד האירופי"],
+["מה 'ה-Jus Cogens' בדין הבינ\"ל?","נורמות מחייבות מוחלטות שלא ניתן להתנות עליהן כמו איסור עבדות","נורמות מדינה","כללי אמנות","חוקי ריבונות"],
+["מה 'ניסוי אשי' (Asch Conformity, 1950s)?","רוב אנשים ישנו תשובה נכונה תחת לחץ חברתי גם ללא כפייה","ניסוי משמעת","עצמאות מחשבה","ניסוי עיוור"],
+["מה 'ה-Détente' השיג?","פתיחת יחסים עם סין, ועידת SALT, ירידת מתח עם ברה\"מ","מלחמה קרה חדשה","ברית ים","הסכם גרעיני"],
+]
+
+# L8 = 8,000₪ — medium-hard
+L8 = [
+["מה 'בעיית האסיר' (Prisoner's Dilemma)?","שני שחקנים רציונליים שלא מתואמים יגיעו לתוצאה גרועה לשניהם","שיתוף פעולה אופטימלי","שחמט פוליטי","בעיית מנהיגות"],
+["מה 'פשעי מלחמה' לפי אמנת ז'נבה?","הפרות חמורות הכוללות תקיפת אזרחים, עינויים ושימוש בנשק אסור","כל מעשה במלחמה","ריגול","גרימת נזק כלכלי"],
+["מה 'ניסוי אשי' (Asch) גילה שונה מ'ניסוי מילגרם'?","אשי הראה ציות לרוב; מילגרם הראה ציות לסמכות","שניהם זהים","אשי דן בסמכות","מילגרם דן בעדר"],
+["מה 'תאוריית ה-Clash of Civilizations' של הנטינגטון?","שסכסוכים עתידיים יהיו בין קבוצות תרבותיות-דתיות ולא מדינות","גיאופוליטיקה","תאוריה כלכלית","ריאליזם"],
+["מה 'עקרון האחריות ההיסטורית' בדין הבינ\"ל?","מדינות אחראיות לפעולות ממשלות קודמות שלהן","זכות ריבונות","עיקרון אמנות","ביטול חוב"],
+["מה 'מדד ה-Gini'?","מדד אי-שוויון בחלוקת הכנסה (0=שוויון מלא, 1=אי-שוויון מוחלט)","מדד אינפלציה","מדד GDP","מדד עוני"],
+["מה 'מערכת ווסטפאליה' (Westphalian System, 1648)?","מערכת יחסים בינ\"ל המבוססת על ריבונות מדינות ואי-התערבות","אמנת שלום","ייסוד האו\"ם","ברית מדינות"],
+["מה 'משפט אייכמן' (1961-1962)?","משפטו של אדולף אייכמן שנחטף מארגנטינה ונשפט בירושלים","משפט נירנברג","משפט ממשלתי","משפט פוליטי"],
+["מה 'ה-Hawkish' לעומת 'Dovish' בפוליטיקה?","'ניצי' = מדיניות חזקה/צבאית; 'יוני' = דיפלומטיה ופשרה","ימין ושמאל","שמרני ופרוגרסיבי","ליברלי ושמרני"],
+["מה 'ניסוי סטנפורד' (Zimbardo, 1971)?","אנשים רגילים ינהגו באכזריות תחת מבנה כוח קיצוני של שומרים-אסירים","ניסוי ציות","ניסוי חברתי","ניסוי קוגניטיבי"],
+["מה 'ה-Third Way' (הדרך השלישית) של בלייר?","מדיניות סוציאל-דמוקרטית שאימצה כלכלת שוק עם מדינת רווחה","ניאו-ליברליזם","קומוניזם","שמרנות"],
+["מה 'שיטת בחירות פרופורציונלית' לעומת 'רוב'?","פרופורציונלית: ייצוג לפי הצבעות; רוב: הזוכה בכל מחוז מייצג","שיטות שוות","שניהן דמוקרטיות","שתיהן ייצוגיות"],
+["מה 'ה-Securitization' בתיאוריית ביטחון?","הפיכת נושא פוליטי ל'סיכון ביטחוני' שמאפשר לממשל לנקוט צעדים חריגים","ביטחון לאומי","הגנה פיזית","ריגול"],
+["מה 'ה-Oslo II' (1995) חילק?","את הגדה המערבית ל-3 אזורים (A, B, C) עם שליטה שונה","את ירושלים","את רצועת עזה","את הגולן"],
+["מה 'מהפכת הנגריה' (1956) הדגימה?","שברה\"מ לא תאפשר לחברות ברית ורשה לעזוב את הגוש הסובייטי","חולשה סובייטית","עצמאות אפשרית","מלחמת קרה שנגמרת"],
+["מה 'הסכם סייקס-פיקו' (1916) גרם?","חלוקת המזרח התיכון שיצרה גבולות שרירותיים הקיימים עד היום","שלום אזורי","עצמאות ערבית","מנדטים יציבים"],
+["מה 'ניסוי מילגרם' לימד לגבי מנהיגות?","שממשל לגיטימי לכאורה מסוגל לגרום לרוב האנשים לבצע מעשים מזיקים","שאנשים עצמאיים","שסמכות לא עובדת","שרק פסיכופטים ציייתו"],
+["מה 'ה-Balancing' בתיאוריית יחסים בינ\"ל?","מדינות ריאליסטיות יאזנו נגד מעצמה חזקה כדי לשמור על שיווי משקל","הצטרפות למעצמה","ניטרליות","בידוד"],
+["מה 'מסמכי הפנטגון' חשפו לגבי מדיניות ארה\"ב?","שהממשלה הטעתה את הציבור לגבי גודל מעורבות ארה\"ב בוייטנאם","שצבא ארה\"ב ניצח","שסין מאחורי הסצנה","שמועצה קיבלה החלטות"],
+["מה 'ה-Geneva Conventions' (אמנות ז'נבה) — כמה יש?","4 אמנות (1949) ועוד פרוטוקולים נוספים","3","5","2"],
+["מה 'ה-Cognitive Dissonance' (דיסוננס קוגניטיבי)?","אי-נוחות נפשית מאמונות סותרות המובילה לעיוות תפישה","הטיית אישור","שגיאת חשיבה","הכחשה גמורה"],
+["מה 'הסכם Dayton' (1995) כלל?","הסכם שסיים את מלחמת יוגוסלביה ויצר פדרציה בוסנית-קרואטית וישות הסרבית","שסיים את מלחמת קוסובו","שחילק יוגוסלביה ל-7","שאיחד את הבלקן"],
+["מה 'ה-Boiling Frog Syndrome' בפוליטיקה?","שינוי הדרגתי מסוכן שאינו מזוהה ומטופל עד שמאוחר מדי","קריסה פתאומית","תגובה מהירה לאיום","תיאוריה מדינית"],
+["מה 'בעיית הבחירה הציבורית' (Public Choice Theory)?","פוליטיקאים ופקידים פועלים לאינטרס עצמי כמו שחקנים כלכליים","שממשל תמיד יעיל","תיאוריית שוק","בעיית כשל שוק"],
+["מה 'ה-Marshall Court' קבע ב-'Marbury v. Madison' (1803)?","ביסס את עקרון הביקורת השיפוטית — בית משפט יכול לבטל חוק לא חוקתי","שנשיא מעל החוק","שסנאט קובע","שחוקים אינם ניתנים לביקורת"],
+["מה 'ה-Realpolitik' של ביסמרק?","מדיניות פרגמטית המבוססת על כוח ואינטרסים, לא אידיאלים","אידיאליזם ויסוני","פוליטיקה כלכלית","מדיניות הגנה"],
+["מה 'ה-Washington Consensus'?","מדיניות כלכלית ניאו-ליברלית לפיתוח: הפרטה, שחרור סחר, ריסון תקציבי","הסכם סחר אמריקאי","ועידת שלום","דוקטרינה צבאית"],
+["מה 'ה-Subnational Actors' ביחסים בינ\"ל?","גורמים שאינם מדינות (NGOs, תאגידים, ארגוני טרור) המשפיעים על פוליטיקה","מדינות קטנות","ארגונים בינ\"ל","מחוזות"],
+["מה 'מהפכת קטיפה' בצ'כוסלובקיה (1989)?","מהפכה שלווה שהפילה את השלטון הקומוניסטי","מהפכת הנגריה","מהפכת פולין","מרד מזוין"],
+["מה 'מבצע ספיר' (ישראל, 2007)?","תקיפה ישראלית שהשמידה כור גרעיני בסוריה","מבצע בלבנון","תקיפה בעזה","מבצע עיראק"],
+]
+
+# L9 = 16,000₪ — hard
+L9 = [
+["מה 'ה-Constructivism' (קונסטרוקטיביזם) ביחסים בינ\"ל?","תיאוריה שזהויות ואינטרסים של מדינות נבנות חברתית ולא קבועות מראש","ריאליזם","ליברליזם","מרקסיזם"],
+["מה 'ה-Security Community' של דויטש?","קבוצת מדינות שאין ביניהן ציפיה למלחמה — כמו נאט\"ו","ברית ביטחון","ברית כלכלית","ועדת ביטחון"],
+["מה 'עקרון ה-Non-Refoulement'?","איסור גירוש פליט למדינה שבה פניו לסכנת חיים","זכות מקלט","פרוטוקול ז'נבה","חוק הגירה"],
+["מה 'ה-Genocide Convention' (1948) מגדיר כרצח עם?","כוונה להשמיד קבוצה לאומית, אתנית, גזעית או דתית","כל הרג המוני","אלימות מדינית","פשע מלחמה"],
+["מה 'ה-Deterrence Theory' — מה ההבדל בין שני הסוגים?","הרתעה בהפחדה (by punishment) ובהכחשה (by denial)","גרעיני ולא-גרעיני","יבשתי וימי","ישיר ועקיף"],
+["מה 'ה-First Strike' לעומת 'Second Strike' בגרעין?","First Strike = תקיפה ראשונה; Second Strike = יכולת תגמול לאחר קבלת מכה","שלבי מלחמה","דרגות כוננות","צורות שיגור"],
+["מה 'ה-Oslo Process' — מה נשאר לא-פתור?","גבולות, ירושלים, פליטים, מים ומתנחלים","הפסקת אש","שאלת הכרה","שאלת נשק"],
+["מה 'ה-Legitimacy' בתיאוריית שלטון?","הסכמה של הנשלטים לסמכות השולטים — נבדלת מלגיטימיות משפטית","חוקתיות","ריבונות","סמכות"],
+["מה 'ה-Rational Choice Theory' ביחסים בינ\"ל?","מדינות כשחקנים רציונליים מחשבים עלות-תועלת בהחלטותיהן","ריאליזם","ליברליזם","מרקסיזם"],
+["מה 'ה-Failed State' (מדינה כושלת)?","מדינה שאינה מסוגלת לספק שירותים בסיסיים ולשמור על מונופול על הכוח","מדינה עניה","מדינה בשלטון צבאי","מדינה כבושה"],
+["מה 'ה-Suez Crisis' (1956) חשף?","חולשתן של בריטניה וצרפת ועוצמת ארה\"ב במזרח התיכון","כישלון ישראלי","עוצמת מצרים","כוח ה-UN"],
+["מה 'ה-Functionalism' האירופי?","שיתוף פעולה טכני-כלכלי יוביל להדרגה לאיחוד פוליטי — בסיס לאיחוד האירופי","פדרליזם","ריאליזם","לאומנות"],
+["מה 'ה-Groupthink' (חשיבת עדר)?","קבוצה מגובשת מדכאת חוסר-הסכמה ומגיעה להחלטות פגומות","לחץ חברתי","עיוות מידע","הטיה קוגניטיבית"],
+["מה 'ה-Responsibility to Protect' — מהם שלושת עמודיו?","(1) אחריות מדינה, (2) סיוע בינ\"ל, (3) תגובה בינ\"ל","גילוי-מניעה-תגובה","קביעת עובדות-פסיקה-אכיפה","מדידה-דיווח-התערבות"],
+["מה 'ה-Post-Colonial Theory'?","ביקורת על ירושה הכלכלית, תרבותית ופוליטית של הקולוניאליזם","תיאוריה על עצמאות","הגנת אנושות","תאוריה כלכלית"],
+["מה 'ה-Just War Theory' (מלחמה צודקת) — מה תנאיה?","סיבה צודקת, כוונה נכונה, סמכות לגיטימית, מוצא אחרון, יחסיות","כוח בלבד","ניצחון","ביטחון"],
+["מה 'ה-IAEA'?","הסוכנות הגרעינית הבינ\"ל — מפקחת על יישום ה-NPT","ארגון אנרגיה ירוקה","ברית גרעין","ועידת ביטחון"],
+["מה 'ה-Arms Race' (מרוץ חימוש)?","תחרות בין מדינות על צבירת נשק הנזינת מאחד לשני — מדיניות ביטחון פגומה","בניית ברית","פיתוח כלכלי","מדיניות הרתעה"],
+["מה 'ה-Democratic Transition' — דוגמאות שהצליחו?","ספרד (1975), פורטוגל (1974), דרום אפריקה (1994)","רוסיה (1991)","סין (1978)","איראן (1979)"],
+["מה 'ה-Bandwagoning' לעומת 'Balancing'?","Bandwagoning = הצטרפות למעצמה; Balancing = ריסון מולה","שניהם זהים","Balancing הוא תמיכה","Bandwagoning הוא ניגוד"],
+["מה 'ה-Absolute Gains' לעומת 'Relative Gains'?","ליברלים: רווח מוחלט לכולם; ריאליסטים: ההשוואה הרלטיבית מכרעת","תאוריית סחר","עקרון הגנה","תיאוריית עושר"],
+["מה 'ה-Status Quo Powers' לעומת 'Revisionist Powers'?","שמרניות שמוות מהסדר הנוכחי; רוויזיוניסטים שמבקשים לשנותו","ריאליזם לעומת ליברליזם","כוח גדול לקטן","דמוקרטיה לאוטוריטריה"],
+["מה 'ה-Multilateralism'?","מדינות מרובות פועלות יחד על פי חוקים ונורמות משותפות","חד-צדדיות","דו-צדדיות","בידוד"],
+["מה 'ה-Green Line' ומה מעמדה המשפטי?","קו שביתת הנשק 1949 — ישראל מבחינתה ריבונית מדה; בינ\"ל גבול טנטטיבי","גבול מוכר בינ\"ל רשמי","גבול בין מדינות","קו מינהלי בלבד"],
+["מה 'ה-International Criminal Court' (ICC) לעומת ה-ICJ?","ICC דן יחידים בפשעי מלחמה; ICJ דן מחלוקות בין מדינות","שניהם זהים","ICC הוא שלוח האו\"ם","ICJ מעל ICC"],
+["מה 'ה-Nuclear Non-Proliferation Treaty' — מי לא חתם?","הודו, פקיסטן, ישראל וצפון קוריאה (יצאה)","רוסיה","צרפת","גרמניה"],
+["מה 'ה-Kantian Peace' (שלום קנטיאני)?","טיעון שדמוקרטיות, סחר ואינטגרציה בינ\"ל מפחיתים מלחמות","שלום כפוי","הרתעה גרעינית","ביטחון קיבוצי"],
+["מה 'ה-Security Council Veto' — כמה פעמים הרוסים השתמשו בו כנגד ישראל?","רוסיה וסין חסמו רוב הצעות ההחלטה; ארה\"ב חסמה נגד ישראל פחות מרוסיה","אף פעם","תמיד","מספר שווה"],
+["מה 'ה-Westphalian Sovereignty' ומה אתגר אותה?","ריבונות מלאה של מדינה על שטחה — אתגרה R2P, ICC ועקרון ההתערבות","היא לא אותגרה","רק NATO אתגרה","רק ה-UN"],
+["מה 'ה-Hybrid Warfare'?","שילוב אסטרטגי של לוחמה קונבנציונלית, סייבר, תעמולה ומלחמה בלתי-סדירה","מלחמה קלאסית","לוחמה בלתי-סדירה בלבד","מלחמת סייבר בלבד"],
+]
+
+with open(FILE, 'r', encoding='utf-8') as f:
+    content = f.read()
+
+def qs_to_js(questions):
+    """Convert list of [q,a,w1,w2,w3] to JS array fragment"""
+    lines = []
+    for q in questions:
+        # Escape double quotes in strings
+        parts = [s.replace('\\', '\\\\').replace('"', '\\"') for s in q]
+        lines.append(' ["' + '","'.join(parts) + '"]')
+    return ',\n'.join(lines)
+
+# For each level, find the closing ]] of the level array and insert before it
+# Pattern: each level ends with a line like: ["...","...","...","...","..."]], or similar
+
+levels_new = [L1, L2, L3, L4, L5, L6, L7, L8]
+
+# We'll locate each level by its comment line and inject after its last question
+# More robust: find the exact closing of each level's array
+
+# Strategy: replace each level block individually
+# L1 starts after "// L1 100₪" comment
+# Each level block is: [["q","a","w1","w2","w3"],\n ...,\n ["q","a","w1","w2","w3"]]
+
+# We identify each level by its last question (unique enough) and add new questions before closing ]]
+# Let's find the last existing question per level and inject after it
+
+level_markers = [
+    ('["מה נוסחת המים?","H₂O","CO₂","O₂","NaCl"]]', L1),
+    ('["מה שם הכוכב שסביבו מסתובבת כדור הארץ?","השמש","הירח","נוגה","מאדים"]]', L2),
+    ('["מה ה-UN?","האומות המאוחדות","האיחוד האירופי","ברית האטלנטי הצפוני","הבנק העולמי"]]', L3),
+    ('["מה בירת ארצות הברית?","וושינגטון די.סי.","ניו יורק","לוס אנג\'לס","שיקגו"]]', L4),
+    ('["מה \'ברית ורשה\'?","ברית צבאית של מדינות מזרח אירופה בראשות ברה\\"מ","ברית כלכלית אירופית","הסכם שלום","ועידת מעצמות"]]', L5),
+    ('["מה \'חוק יסוד: כבוד האדם וחירותו\'?","חוק יסוד ישראלי המגן על זכויות האדם הבסיסיות","חוק השירות הצבאי","חוק הכנסת","חוק האזרחות"]]', L6),
+    ('["מה \'דיפלומטיית פינג-פונג\' (1971)?","שימוש בטניס שולחן לפתיחת יחסים בין ארה\\"ב לסין","שיטת משא ומתן","פינוי שגרירים","מדיניות סנקציות"]]', L7),
+    ('["מה \'ניסוי מילגרם\' (1961) גילה?","אנשים ממשיכים לציית לסמכות גם כשגורמים נזק לאחרים","כוח הלחץ החברתי","חוסר אמפתיה אנושית","כוח העדר"]]', L8),
+]
+
+for marker, new_qs in level_markers:
+    new_js = qs_to_js(new_qs)
+    # The marker ends with ]] — we want to change it to ],\n new_qs]]
+    # marker ends with ]] so we replace ]] with ],\n<new questions>\n]
+    replacement = marker[:-2] + '],\n' + new_js + '\n]'
+    if marker in content:
+        content = content.replace(marker, replacement, 1)
+        print(f"✓ Injected {len(new_qs)} questions for marker ending: ...{marker[-40:]}")
+    else:
+        print(f"✗ NOT FOUND: {marker[-60:]}")
+
+# Now handle L9 — its last question marker
+l9_marker = '["מה \'אפקט הדומינו\' בתיאוריה גיאופוליטית?","נפילת מדינה לקומוניזם תגרור נפילת מדינות שכנות","ביטחון קיבוצי","ייצוב אזורי","תגובת שרשרת כלכלית"]]'
+l9_replacement = l9_marker[:-2] + '],\n' + qs_to_js(L9) + '\n]'
+if l9_marker in content:
+    content = content.replace(l9_marker, l9_replacement, 1)
+    print(f"✓ Injected {len(L9)} questions for L9")
+else:
+    print(f"✗ L9 marker NOT FOUND")
+
+with open(FILE, 'w', encoding='utf-8') as f:
+    f.write(content)
+
+print("Done! File saved.")
+    
