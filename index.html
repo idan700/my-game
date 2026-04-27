@@ -6952,13 +6952,15 @@ function startGame16() {
   g16State.wordNum = 0;
   g16State.usedWords = [];
   g16UpdateScore();
+  ui.classList.add('show');
+  navTo('game16UI');
   g16ExitToMenu = function(silent) {
     g16StopTimer();
     g16ExitToMenu = null;
+    var ui16 = document.getElementById('game16UI');
+    if (ui16) ui16.classList.remove('show');
     if (!silent) { hideGame(); navTo('mainPage'); }
   };
-  ui.classList.add('show');
-  navTo('game16UI');
   g16NewRound();
 }
 
